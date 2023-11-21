@@ -138,11 +138,11 @@ export class OrderTableComponent implements OnInit {
       this.product = data;
     });
 
-    this.orders.array.forEach((element: any) => {
-      this.oD.getOrderDetailById(this.selectedOrderId).subscribe((data) => {
-        this.orderdetail = data;
-      });
-    });
+    // this.orders.forEach((element: any) => {
+    //   this.oD.getOrderDetailById(this.selectedOrderId).subscribe((data) => {
+    //     this.orderdetail = data;
+    //   });
+    // });
 
 
   }
