@@ -1,4 +1,5 @@
 export interface IProduct {
+        [x: string]: any;
 
         id:number;
         solanxem:number;
@@ -7,7 +8,7 @@ export interface IProduct {
         hinh:string;
         ngay:string;
         idType:number;
-        images: string;
+        thumbImage: string;
         description: string;
         discount: number;
         discountPrice: number;
@@ -16,5 +17,6 @@ export interface IProduct {
         price:number;
         updateDate:string;
         categoryId: number;
+        Images: [];
     
 }

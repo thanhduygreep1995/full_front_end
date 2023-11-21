@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { RatingService } from '../services/rating.service';
+import { FeedbackService } from '../services/feedback/feedback.service';
 
 @Component({
   selector: 'app-view',
@@ -28,6 +29,9 @@ export class ViewComponent {
   totalRate: any[] = [];
   starsInfo: { filled: boolean, half: boolean , noFill: boolean}[] = [];
   loading: boolean = false;
+  feedBacks: any;
+  nameCustomer: any;
+  comment: any;
 
   constructor( 
     private rate:RatingService,
@@ -38,6 +42,7 @@ export class ViewComponent {
     private formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef,
     private cartService: CartService,
+    private fB: FeedbackService,
     // private snackBar: MatSnackBar
 
   ) {
@@ -64,13 +69,14 @@ export class ViewComponent {
     this.d.getTakeProduct(this.id).subscribe ( 
       res => { 
         this.infoProduct  = res[this.id - 1];
-      //  this.categoryId = this.takeProduct.idLoai;
-
-        this.getRatingListByProduct(this.id);
+        // this.getRatingListByProduct(this.id);
 
       });
+
+    this.fB.getFeedBackProduct(this.id).subscribe((data) => {
+        this.feedBacks = data;
+      });
     
-      // this.cdr.detectChanges();
       
   }
 
