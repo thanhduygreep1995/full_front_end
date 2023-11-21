@@ -1,0 +1,18 @@
+.star {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    background-size: contain;
+  }
+  
+  .filled {
+    background-image: url('/assets/img/filled-star.svg');
+  }
+  
+  .half-filled {
+    background-image: url('/assets/img/half-filled-star.svg');
+  }
+  
+  .no-fill {
+    background-image: url('/assets/img/no-filled-star.svg');
+  }

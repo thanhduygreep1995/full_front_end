@@ -1,0 +1,114 @@
+<!-- Content Wrapper. Contains page content -->
+<!-- <div class="content-wrapper"> -->
+<!-- Content Header (Page header) -->
+<section class="content-header" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Income Report</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Income Report</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <!-- <div class="card-header">
+              <h3 class="card-title">Select Date To Show Report</h3>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
+              </button>
+            </div>  -->
+            <!-- /.card-header -->
+            
+            <div class="card-body">  
+              <table
+                id="example"
+                datatable
+                *ngIf="IncomeReports && IncomeReports.length > 0"
+                [dtOptions]="dtOptions"
+                class="table table-bordered table-striped row-border hover"
+              >
+                <!-- Các cột dữ liệu ở đây -->
+                
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Date</th>
+                    <th>Orders Time</th>
+                    <th>Revenue</th>
+                  </tr>
+                </thead>
+                <div id="dataTableContainer">
+                
+                </div>
+                <tbody>
+                  <tr *ngFor="let b of IncomeReports; let i = index" class="print-hide">
+                    <td class="col-2">{{ i + 1 }}</td>
+                    <td>{{ b.date }}</td>
+                    <td>{{ b.orders}}</td>
+                    <td>{{ b.revenue }}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                    <tr >
+                      <th [colSpan]="2" class="text-center d-none"></th>
+                      <th class="text-center print-hide d-none"></th>
+                      <th class="text-center">{{getTotalRevenue()}}</th>
+                    </tr>
+                    
+                </tfoot>
+                
+                
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3>Chart</h3>
+              <h3 class="card-title">Income Report</h3>
+            </div> 
+            <!-- /.card-header -->
+            
+            <div class="card-body">
+              <div class="container"  width="200px" height="200px">
+                <canvas id="lineChart"></canvas>
+              </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+  <!-- </div> -->
+  <!-- /.content-wrapper -->
+

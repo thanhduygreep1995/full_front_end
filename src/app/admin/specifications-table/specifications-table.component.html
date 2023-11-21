@@ -1,0 +1,88 @@
+<!-- Content Wrapper. Contains page content -->
+<!-- <div class="content-wrapper"> -->
+<!-- Content Header (Page header) -->
+<section class="content-header" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Specifications List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Specifications Lists</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+</div>
+<!-- Main content -->
+<section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh Sách User</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table datatable *ngIf="specs && specs.length > 0" [dtOptions]="dtOptions" class="table table-bordered table-striped row-border hover">
+                            <thead>
+                                <tr>
+                                    <th hidden>Id</th>
+                                    <th>No</th>
+                                    <th>processor</th>
+                                    <th>graphicsCard</th>
+                                    <th>ram</th>
+                                    <th>storage</th>
+                                    <th>display</th>
+                                    <th>operatingSystem</th>
+                                    <th>camera</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let s of specs; let i = index">
+                                    <td hidden>{{ s.id }}</td>
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ s.processor }}</td>
+                                    <td>{{ s.graphicsCard }}</td>
+                                    <td>{{ s.ram }}</td>
+                                    <td>{{ s.storage }}</td>
+                                    <td>{{ s.display }}</td>
+                                    <td>{{ s.operatingSystem }}</td>
+                                    <td>{{ s.camera }}</td>
+                                    <td>
+                                        <button class="btn btn-info" (click)="onUpdate(s.id)">
+                                            Update
+                                        </button>
+                                        <button class="btn btn-danger" (click)="fnDeleteProduct(s.id)">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- </div> -->
+<!-- /.content-wrapper -->

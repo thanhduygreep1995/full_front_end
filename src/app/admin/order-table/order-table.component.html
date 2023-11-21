@@ -1,0 +1,163 @@
+<!-- Content Wrapper. Contains page content -->
+<!-- <div class="content-wrapper"> -->
+<!-- Content Header (Page header) -->
+<section class="content-header" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Orders Lists</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Order Lists</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+</div>
+<!-- Main content -->
+<section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh Sách Orders</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table datatable [dtOptions]="dtOptions" *ngIf="orders && orders.length > 0" class="table table-bordered table-striped row-border hover">
+                            <thead>
+                                <tr>
+                                    <!-- <th hidden>Id</th> -->
+                                    <th>No</th>
+                                    <th>Customer</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Order Date</th>
+                                    <th>Note</th>
+                                    <th>Status</th>
+                                    <th>Payment Method</th>
+                                    <th>Discount Price</th>
+                                    <th hidden>Product Name</th>
+                                    <th hidden>Quantity</th>
+                                    <th hidden>Total Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let o of orders ; let i = index ">
+                                    <!-- <td hidden>{{ o.id }}</td> -->
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ o.customer.firstName+' '+ o.customer.lastName}}</td>
+                                    <td>{{ o.email }}</td>
+                                    <td>{{ o.phone }}</td>
+                                    <td>{{ o.orderDate }}</td>
+                                    <td>{{ o.note }}</td>
+                                    <td>{{ o.status }}</td>
+                                    <td>{{ o.paymentMethod }}</td>
+                                    <td>{{ o.discountPrice }}</td>
+                                    <td hidden>{{ o.orderdetail.product.name }}</td>
+                                    <td hidden>{{ o.orderdetail.quantity }}</td>
+                                    <td hidden>{{ o.orderdetail.totalPrice }}</td>
+                                    <td>
+                                        <button class="btn btn-info" data-toggle="modal" data-target="#updateModal" (click)="onUpdate(o.id)">
+                                    Update
+                                    </button>
+                                        <!-- <button class="btn btn-warning" (click)="onDetail(o.id)">
+                                        Detail
+                                        </button> -->
+                                        <button class="btn btn-warning" data-toggle="modal" data-target="#DetailModal" (click)="onUpdate(o.id)">
+                                            Details
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateModalLabel">Update Order</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form [formGroup]="orderForm">
+                                            <label for="orderStatus " class="form-label ">Status</label>
+                                            <select formControlName="status" class="form-control select2 " style="width: 100% " [ngModel]="selectedStatus">
+                                            <option value="PENDING ">PENDING</option>
+                                            <option value="PROCESSING ">PROCESSING</option>
+                                            <option value="DELIVERED ">DELIVERED</option>
+                                            <option value="CANCELLED ">CANCELLED</option>
+                                          </select>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer ">
+                                        <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
+                                        <button type="button " class="btn btn-primary " (click)="fnUpdateOrder() ">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="DetailModalLabel">Detail Order</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table datatable [dtOptions]="dtOp" *ngIf="orders && orders.length > 0" class="table table-bordered table-striped row-border hover">
+                                            <thead>
+                                                <tr>
+                                                    <th hidden>Id</th>
+                                                    <th>No</th>
+                                                    <th>Product</th>
+                                                    <th>Quantity</th>
+                                                    <th>Totail Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let o of orderdetails; let i = index">
+                                                    <td hidden>{{ o.id }}</td>
+                                                    <td>{{ i+1}}</td>
+                                                    <td>{{ o.product.name }}</td>
+                                                    <td>{{ o.quantity }}</td>
+                                                    <td>{{ o.totalPrice }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <div class="modal-footer ">
+                                        <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- </div> -->
+<!-- /.content-wrapper -->

@@ -1,0 +1,19 @@
+.status-pending {
+    color: yellow;
+}
+
+.status-shipped {
+    color: orange;
+}
+
+.status-delivered {
+    color: green;
+}
+
+.text-yellow-300 {
+    color: yellow;
+}
+
+.text-green-500 {
+    color: green;
+}

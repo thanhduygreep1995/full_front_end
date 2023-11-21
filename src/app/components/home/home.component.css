@@ -1,0 +1,5 @@
+.relative  {
+    border-radius: 10PX;
+}
+/* @import "/src/assets/output/css/tailwind/tailwind.css"; */
+.border-primary{border-color: red;}

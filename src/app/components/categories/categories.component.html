@@ -1,0 +1,167 @@
+
+<div class="col-span-1 bg-gray-100 px-4 pt-4 pb-6 shadow-sm rounded overflow-hidden absolute lg:static left-4 top-16 z-10 w-72 lg:w-full lg:block">
+    <div class="divide-gray-300 divide-y space-y-5 relative">
+    <!-- ---- Category filter --->
+         <div class="relative">
+              <div class="lg:hidden text-gray-400 hover:text-primary text-lg absolute right-0 top-0 cursor-pointer ">
+              </div>
+              <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Categories </h3>
+             
+              <div class="space-y-2">
+                     <!-- ----Single Category  --->
+                   <div class="flex items-center" *ngFor="let loai of listTypePro" (click)="toggleProductSelection(loai.id)">
+                    
+                        <input  type="checkbox"   [checked]="selectedProducts.includes(loai.id)" class="text-primary focus:ring-0 rounded-sm cursor-pointer " />
+                        <label for="Bedroom" class="text-gray-600 ml-3 cursor-pointer  " >{{loai.name}}</label>
+                        <div class="ml-auto text-gray-600 text-sm ">(15)</div>
+
+                   </div>
+                      <!-- ----End Single Category --->
+              </div>      
+         </div>
+    <!-- ---- End Categoryfilter --->
+
+
+<!-- ---- Brand filter --->
+<div class="pt-4">
+
+<h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Brand </h3>
+<div class="space-y-2">
+      <!-- ----Single Brand  --->
+    <div class="flex items-center">
+         <input type="checkbox" id="Dominik" class="text-primary focus:ring-0 rounded-sm cursor-pointer " />
+         <label for="Dominik" class="text-gray-600 ml-3 cursor-pointer  " >Dominik</label>
+         <div class="ml-auto text-gray-600 text-sm ">(12)</div>
+
+    </div>
+       <!-- ----End Single Brand --->
+
+         <!-- ----Single Brand  --->
+    <div class="flex items-center">
+         <input type="checkbox" id="Karl" class="text-primary focus:ring-0 rounded-sm cursor-pointer " />
+         <label for="Karl" class="text-gray-600 ml-3 cursor-pointer  " >Karl</label>
+         <div class="ml-auto text-gray-600 text-sm ">(3)</div>
+
+    </div>
+       <!-- ----End Single Brand --->
+
+
+         <!-- ----Single Brand  --->
+    <div class="flex items-center">
+         <input type="checkbox" id="Maxing" class="text-primary focus:ring-0 rounded-sm cursor-pointer " />
+         <label for="Maxing" class="text-gray-600 ml-3 cursor-pointer  " >Maxing</label>
+         <div class="ml-auto text-gray-600 text-sm ">(5)</div>
+
+    </div>
+       <!-- ----End Single Brand --->
+
+
+         <!-- ----Single Brand  --->
+    <div class="flex items-center">
+         <input type="checkbox" id="Zara" class="text-primary focus:ring-0 rounded-sm cursor-pointer " />
+         <label for="Zara" class="text-gray-600 ml-3 cursor-pointer  " >Zara</label>
+         <div class="ml-auto text-gray-600 text-sm ">(8)</div>
+
+    </div>
+       <!-- ----End Single Brand --->
+    </div>
+
+</div> 
+<!-- ---- End Brand filter --->
+
+<!-- ---- Price filter --->
+<div class="pt-4">
+<h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Price </h3>
+
+<div class="mt-4 flex items-center ">
+    <input type="text" class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded " placeholder="Min" />
+    <span class="mx-3 text-gray-500"> - </span>
+    <input type="text" class="w-full border-gray-300 focus:ring-0 focus:border-primary px-3 py-1 text-gray-600 text-sm shadow-sm rounded " placeholder="Mix" />
+</div> 
+</div> 
+<!-- ---- End Price filter --->
+
+<!-- ---- Size filter --->
+
+<div class="pt-4">
+<h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Size </h3>
+<div class="flex items-center gap-2">
+    <!-- ---- Single Size --->
+    <div class="size-selector">
+         <input type="radio" name="size" class="hidden" id="size-s" />
+         <label for="size-s" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 " >S</label>
+    </div>
+    <!-- ---- End Single Size --->
+
+      <!-- ---- Single Size --->
+      <div class="size-selector">
+         <input type="radio" name="size" class="hidden" id="size-m" />
+         <label for="size-m" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 " >M</label>
+    </div>
+    <!-- ---- End Single Size --->
+
+
+      <!-- ---- Single Size --->
+      <div class="size-selector">
+         <input type="radio" name="size" class="hidden" id="size-l" />
+         <label for="size-l" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 " >L</label>
+    </div>
+    <!-- ---- End Single Size --->
+
+
+      <!-- ---- Single Size --->
+      <div class="size-selector">
+         <input type="radio" name="size" class="hidden" id="size-xs" />
+         <label for="size-xs" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 " >XS</label>
+    </div>
+    <!-- ---- End Single Size --->
+
+
+      <!-- ---- Single Size --->
+      <div class="size-selector">
+         <input type="radio" name="size" class="hidden" id="size-xl" />
+         <label for="size-xl" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 " >XL</label>
+    </div>
+    <!-- ---- End Single Size --->
+
+</div>
+</div>
+<!-- ---- End Size filter --->
+
+<!-- ----  Color filter --->
+<div class="pt-4">
+<h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Color </h3>
+
+<div class="flex items-center gap-2">
+<!-- ---- Single Color --->
+<div class="color-selector">
+    <input type="radio" name="color" class="hidden" id="color-red" checked />
+    <label for="color-red" style="background-color: brown;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm" ></label>
+
+</div>
+<!-- ----  End Single Color --->
+
+<!-- ---- Single Color --->
+<div class="color-selector">
+<input type="radio" name="color" class="hidden" id="color-white"  />
+<label for="color-white" style="background-color:blueviolet;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm" ></label>
+
+</div>
+<!-- ----  End Single Color --->
+
+
+<!-- ---- Single Color --->
+<div class="color-selector">
+<input type="radio" name="color" class="hidden" id="color-black"  />
+<label for="color-black" style="background-color: #000000;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm" ></label>
+
+</div>
+<!-- ----  End Single Color --->
+</div> 
+</div>
+
+<!-- ---- End Color filter ---> 
+
+    </div>
+
+ </div>

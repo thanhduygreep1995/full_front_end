@@ -1,0 +1,118 @@
+<!-- Content Wrapper. Contains page content -->
+<!-- <div class="content-wrapper"> -->
+<!-- Content Header (Page header) -->
+<section class="content-header" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>User List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">User List</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+</div>
+<!-- Main content -->
+<section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Danh Sách User</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table datatable [dtOptions]="dtOptions" *ngIf="customers && customers.length > 0" class="table table-bordered table-striped row-border hover">
+                            <!-- id="example2" -->
+                            <!-- class="table table-bordered table-striped" -->
+                            <thead>
+                                <tr>
+                                    <th hidden>Id</th>
+                                    <th>No</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Date Of Birth</th>
+                                    <th>Email</th>
+                                    <th>Phone Number</th>
+                                    <th>Create Date </th>
+                                    <th>Status</th>
+                                    <th>Role</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let c of customers; let i = index ">
+                                    <td hidden>{{ c.id }}</td>
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ c.firstName }}</td>
+                                    <td>{{ c.lastName }}</td>
+                                    <td>{{ c.dateOfBirth }}</td>
+                                    <td>{{ c.email }}</td>
+                                    <td>{{ c.phoneNumber }}</td>
+                                    <td>{{ c.createDate }}</td>
+                                    <td>{{ c.status }}</td>
+                                    <td>{{ c.role.name }}</td>
+                                    <td>
+                                        <button class="btn btn-info" data-toggle="modal" data-target="#updateModal" (click)="onUpdate(c.id)">
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateModalLabel">Update Customer</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form [formGroup]="customerForm">
+                                            <label for="customerStatus" class="form-label ">Status</label>
+                                            <select formControlName="status" class="form-control select2 " style="width: 100% " [ngModel]="selectedStatus">
+                                            <option value="ACTIVE ">ACTIVE</option>
+                                            <option value="LOCKED ">LOCKED</option>
+                                          </select>
+                                            <label for="">Brand</label><br>
+                                            <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedRole">
+                                              <option value="" selected disabled>Role</option>
+  
+                                        <option  *ngFor="let r of roles"  [value]="r.id">{{r.name}}</option>
+                                      </select>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer ">
+                                        <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
+                                        <button type="button " class="btn btn-primary " (click)="fnUpdateCustomer() ">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->

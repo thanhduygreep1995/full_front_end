@@ -1,0 +1,70 @@
+<!-- Content Wrapper. Contains page content -->
+<!-- <div class="content-wrapper"> -->
+<!-- Content Header (Page header) -->
+<section class="content-header" *ngIf="!isSpinning" [@fadeInOut]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Origin Edition</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Origin Edition</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+</div>
+<!-- Main content -->
+<section class="content" *ngIf="!isSpinning" [@fadeInOut]="!isSpinning">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-10">
+                <!-- style="max-width: 540px;" -->
+                <form class="card" [formGroup]="infoOrigin">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div class="mb-1">
+                                    <label hidden for="id" class="form-label">Id</label>
+                                    <input hidden formControlName="id" type="text" class="form-control mb-2" name="id" id="id" />
+                                    <label for="country" class="form-label">Country</label>
+                                    <input formControlName="country" type="text" class="form-control mb-2" name="country" id="country" placeholder="Country Name" />
+                                    <div *ngIf="
+                                    infoOrigin.controls['country'].invalid &&
+                                    infoOrigin.controls['country'].touched
+                                    " class="text-danger">
+                                        Country Name is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mx-2 mb-2">
+                        <div class="col-12 d-flex flex-wrap justify-content-end">
+                            <button (click)="fnAddOrigin()" [disabled]="ButtonSave" type="button" class="btn btn-primary mx-2">
+                              Save
+                            </button>
+                            <button *ngIf="buttonService.getShowButton6()" (click)="fnUpdateOrigin()" [disabled]="ButtonUpdate" [disabled]="" type="button" class="btn btn-primary mx-2">
+                              Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- </div> -->
+<!-- /.content-wrapper -->

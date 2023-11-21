@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400">
+  <!-- Filled part of the star -->
+  <path d="2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.26 12 Z" fill="none" />
+  <!-- Outline of the star -->
+  <polygon points="12 2 9 8.26 2 9.27 7 14.14 5.82 21.02 12 17.77 18.18 21.02 17 14.14 22 9.27 15.09 8.26 12 2" fill="none" />
+</svg>
+
+
+

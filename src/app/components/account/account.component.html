@@ -1,0 +1,82 @@
+
+
+<!-- ---- BreadCrum ----- -->
+<div class="container py-4 flex justify-between">
+     <div class="flex gap-3 items-center">
+       <a href="index.html" class="text-primary text-base">
+         <i class="fas fa-home"></i>
+       </a>
+       <span class="text-sm text-gray-500">
+         <i class="fas fa-chevron-right"></i>
+       </span>
+       <p class="text-gray-500 font-medium uppercase">My Account</p>
+     </div>
+   </div>
+   <!-- ---- End BreadCrum --->
+   
+   <!-- ---- Account Wrapper--->
+   
+   <div class="container lg:grid grid-cols-12 items-start gap-6 pt-4 pb-16">
+     <!-- ---- Sidebar --->
+     <div class="col-span-3">
+       <app-account-sidebar></app-account-sidebar>
+     </div>
+   
+     <!-- ----End Sidebar--->
+   
+     <!-- ----Account Content --->
+     <div class="col-span-9 grid md:grid-cols-2 gap-4 mt-6 lg:mt-0">
+       <!-- ----single card --->
+       <div class="shadow rounded bg-gray-100 px-4 pt-6 pb-8">
+         <div class="flex justify-between items-center mb-4">
+           <h3 class="font-medium capitalize text-gray-800 text-lg">
+             Personal Profile
+           </h3>
+           <a routerLink="/account/personal-profile" class="text-primary">Edit</a>
+         </div>
+         <div class="space-y-1" *ngIf="customerInfo">
+           <h3 class="text-gray-700 font-medium">{{fullName}}</h3>
+           <p class="text-gray-800">{{ customerInfo.email }}</p>
+           <p class="text-gray-800">{{ customerInfo.dateOfBirth }}</p>
+           <p class="text-gray-800">(+84){{ customerInfo.phoneNumber }}</p>
+         </div>
+       </div>
+       <!-- ----End single card --->
+   
+       <!-- ----single card --->
+       <div class="shadow rounded bg-gray-100 px-4 pt-6 pb-8">
+         <div class="flex justify-between items-center mb-4">
+           <h3 class="font-medium capitalize text-gray-800 text-lg">
+             Shipping Address
+           </h3>
+           <a href="#" class="text-primary">Edit</a>
+         </div>
+         <div class="space-y-1">
+           <h3 class="text-gray-700 font-medium">Kazi Ariyan</h3>
+           <p class="" text-gray-800>ariyan@gmail.com</p>
+           <p class="" text-gray-800>(123)3434-43434</p>
+         </div>
+       </div>
+       <!-- ----End single card --->
+   
+       <!-- ----single card --->
+       <!-- <div class="shadow rounded bg-gray-100 px-4 pt-6 pb-8">
+         <div class="flex justify-between items-center mb-4">
+           <h3 class="font-medium capitalize text-gray-800 text-lg">
+             Builling Address
+           </h3>
+           <a href="#" class="text-primary">Edit</a>
+         </div>
+         <div class="space-y-1">
+           <h3 class="text-gray-700 font-medium">Kazi Ariyan</h3>
+           <p class="" text-gray-800>ariyan@gmail.com</p>
+           <p class="" text-gray-800>(123)3434-43434</p>
+         </div>
+       </div> -->
+       <!-- ----End single card --->
+     </div>
+   
+     <!-- ----End Account Content--->
+   </div>
+   
+   <!-- ---- End Account Wrapper --->

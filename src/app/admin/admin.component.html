@@ -1,0 +1,21 @@
+<!-- <router-outlet></router-outlet> -->
+
+<div class="wrapper">
+  <app-navbar></app-navbar>
+
+  <app-sidebar></app-sidebar>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- <div class="wrapper"> -->
+      <router-outlet></router-outlet>
+    <!-- </div> -->
+  
+    <app-main-content></app-main-content>
+  </div>
+  <!-- /.content-wrapper -->
+
+  <app-control-sidebar></app-control-sidebar>
+
+  <app-footer></app-footer>
+</div>
