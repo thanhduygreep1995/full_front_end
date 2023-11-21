@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ButtonService } from '../service/button/buttonservice';
 
-
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
     confirmButton: 'btn btn-danger mx-3',
@@ -60,7 +59,7 @@ interface ProductResponse {
 export class ProductEditionComponent implements OnInit {
   // product: Product = new Product();
   id: any;
-  productForm: FormGroup;
+  productForm: any;
   ButtonSave: boolean = true;
   ButtonDelete: boolean = true;
   ButtonUpdate: boolean = true;
@@ -93,7 +92,7 @@ export class ProductEditionComponent implements OnInit {
       name: ['', Validators.required],
       model: ['', Validators.required],
       price: ['', Validators.required],
-      stockQuantity: ['', Validators.required],
+      stockQuantity: ['', Validators.required, Validators.min(1)],
       description: ['', Validators.required],
       discountPercentage: ['', Validators.required],
       discountPrice: ['', Validators.required],
@@ -113,15 +112,24 @@ export class ProductEditionComponent implements OnInit {
 
     this.productForm.valueChanges.subscribe(() => {
       const nameControl = this.productForm.controls['name'].invalid;
-      const descriptionControl =
-        this.productForm.controls['description'].invalid;
-      this.ButtonSave = nameControl || descriptionControl;
+      const priceControl = this.productForm.controls['price'].invalid;
+      const quantityControl = this.productForm.controls['stockQuantity'].invalid;
+      const discountPercentageControl = this.productForm.controls['discountPercentage'].invalid;
+      const discountPriceControl = this.productForm.controls['discountPrice'].invalid;
+      const descriptionControl = this.productForm.controls['description'].invalid;
+      this.ButtonSave = nameControl || descriptionControl || priceControl || quantityControl ||  discountPercentageControl || discountPriceControl ;
     });
     this.productForm.valueChanges.subscribe(() => {
       this.ButtonDelete = this.productForm.controls['id'].invalid;
     });
     this.productForm.valueChanges.subscribe(() => {
-      this.ButtonUpdate = this.productForm.invalid;
+      const nameControl = this.productForm.controls['name'].invalid;
+      const priceControl = this.productForm.controls['price'].invalid;
+      const quantityControl = this.productForm.controls['stockQuantity'].invalid;
+      const discountPercentageControl = this.productForm.controls['discountPercentage'].invalid;
+      const discountPriceControl = this.productForm.controls['discountPrice'].invalid;
+      const descriptionControl = this.productForm.controls['description'].invalid;
+      this.ButtonUpdate = nameControl || descriptionControl || priceControl || quantityControl ||  discountPercentageControl || discountPriceControl ;
     });
 
   };

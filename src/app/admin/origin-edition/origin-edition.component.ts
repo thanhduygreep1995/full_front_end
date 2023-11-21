@@ -67,7 +67,7 @@ export class OriginEditionComponent implements OnInit {
       this.ButtonSave = this.infoOrigin.controls['country'].invalid;
     });
     this.infoOrigin.valueChanges.subscribe(() => {
-      this.ButtonUpdate = this.infoOrigin.invalid;
+      this.ButtonUpdate = this.infoOrigin.controls['country'].invalid;
     });
   }
 
