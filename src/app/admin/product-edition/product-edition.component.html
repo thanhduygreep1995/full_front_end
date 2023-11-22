@@ -68,30 +68,29 @@
                                     </select>
                                     </div>
                                 </div>
-                                <label for="price" class="form-label"> Price</label>
-                                <input formControlName="price" type="text" class="form-control mb-2" name="price" id="price" placeholder="Enter Price" />
-                                <div *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].touched" class="text-danger">
-                                    Price is required.
+                                <div>
+                                    <label for="price" class="form-label"> Price</label>
+                                    <input formControlName="price" type="number" class="form-control mb-2" name="price" id="price" ngModel min="1" placeholder="Enter Price" />
+                                    <div *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].touched" class="text-danger">
+                                        Price is required.
+                                    </div>
+                                    <div *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].errors.min" class="text-danger">
+                                        Price min 1.
+                                    </div>
                                 </div>
-                                <label for="stockQuantity" class="form-label">
-                                  Stock Quantity</label
-                              >
-                              <input
-                                  formControlName="stockQuantity"
-                                  type="text"
-                                  class="form-control mb-2"
-                                  name="stockQuantity"
-                                  id="stockQuantity"
-                                  placeholder="Enter Stock Quantity"
-                              />
-                              <div
-                                  *ngIf="productForm.controls['stockQuantity'].invalid && productForm.controls['stockQuantity'].touched"
-                                  class="text-danger"
-                              >
-                                  Stock Quantity is required.
-                              </div>
-                              <label for="description" class="form-label"
-                                  >Description</label
+                                <div>
+                                    <label for="stockQuantity" class="form-label">
+                                        Stock Quantity</label>
+                                    <input formControlName="stockQuantity" type="number" class="form-control mb-2" name="stockQuantity" id="stockQuantity" ngModel min="1" placeholder="Enter Stock Quantity" />
+                                    <div *ngIf="productForm.controls['stockQuantity'].invalid && productForm.controls['stockQuantity'].touched" class="text-danger">
+                                        Stock Quantity is required.
+                                    </div>
+                                    <div *ngIf="productForm.controls['stockQuantity'].invalid && productForm.controls['stockQuantity'].errors.min" class="text-danger">
+                                        Price min 1.
+                                    </div>
+                                </div>
+
+                                <label for="description" class="form-label">Description</label
                               >
                               <input
                                   formControlName="description"
@@ -116,6 +115,7 @@
                                   class="form-control"
                                   name="discountPercentage"
                                   id="discountPercentage"
+                                  ngModel min="1"
                                   placeholder="Enter Discount"
                               />
                               <div
@@ -124,6 +124,9 @@
                               >
                                   Discount is required.
                               </div>
+                              <div *ngIf="productForm.controls['discountPercentage'].invalid && productForm.controls['discountPercentage'].errors.min" class="text-danger">
+                                Discount min 1.
+                            </div>
                               <label for="discountPrice" class="form-label"
                                   >Discount Price</label
                               >
@@ -133,6 +136,7 @@
                                   class="form-control mb-2"
                                   name="discountPrice"
                                   id="discountPrice"
+                                  ngModel min="1" ngModel min="1"
                                   placeholder="Enter Discount Price"
                               />
                               <div
@@ -141,6 +145,9 @@
                               >
                                   Discount is required.
                               </div>
+                              <div *ngIf="productForm.controls['discountPrice'].invalid && productForm.controls['discountPrice'].errors.min" class="text-danger">
+                                Discount Price min 1.
+                            </div>
                               <label for="categoryStatus" class="form-label">Status</label>
                                 <select formControlName="status" class="form-control select2" style="width: 100%">
                                   <option value="AVAILABLE">AVAILABLE</option>
@@ -152,11 +159,11 @@
                         <hr />
                         <div class="row mx-2 mb-2">
                             <div class="col-12 d-flex flex-wrap justify-content-end">
-                                <button (click)="fnAddProduct()" [disabled]="ButtonSave" type="button" class="btn btn-primary mx-2">
-                                      Add
+                                <button (click)="fnAddProduct()" [disabled]="ButtonSave" type="button" class="btn mx-2" style="background-color: cadetblue;">
+                                    <i class="fa fa-plus"></i>
                                   </button>
-                                <button *ngIf="buttonService.getShowButton2()" (click)="fnUpdateProduct()" type=" button " class="btn btn-primary mx-2 ">
-                                  Update
+                                <button *ngIf="buttonService.getShowButton2()" (click)="fnUpdateProduct()" [disabled]="ButtonUpdate" type=" button " class="btn mx-2 " style="background-color: cornflowerblue;">
+                                    <i class="fa fa-pencil"></i>
                               </button>
                             </div>
                         </div>

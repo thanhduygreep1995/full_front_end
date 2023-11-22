@@ -148,7 +148,7 @@ export class CategoryTableComponent implements OnInit {
     this.refreshTable();
   }
   onUpdate(id: number): void {
-    this.router.navigate(['/category-edition', id])
+    this.router.navigate(['admin/category-edition', id])
     this.buttonService.setShowButton4(true);
   }
 

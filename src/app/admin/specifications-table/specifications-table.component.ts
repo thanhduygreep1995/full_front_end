@@ -123,7 +123,7 @@ export class SpecificationsTableComponent implements OnInit {
     });
   }
   onUpdate(id: number): void {
-    this.router.navigate(['/specifications-edition', id])
+    this.router.navigate(['admin/specifications-edition', id])
     this.buttonService.setShowButton3(true)
   }
 

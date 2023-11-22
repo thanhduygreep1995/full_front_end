@@ -1,142 +1,148 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "Web_Going": {
-      "projectType": "application",
-      "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/web-going",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/admin-lte/dist/css/adminlte.min.css",
-              "src/styles.css",
-              "src/assets/output/css/tailwind/tailwind.css", 
-              "src/assets/output/css/bootstrap/bootstrap.css"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "Web_Going": {
+            "projectType": "application",
+            "schematics": {},
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/web-going",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": [
+                            "zone.js"
+                        ],
+                        "tsConfig": "tsconfig.app.json",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/admin-lte/dist/css/adminlte.min.css",
+                            "src/styles.css",
+                            "src/assets/output/css/tailwind/tailwind.css",
+                            "src/assets/output/css/bootstrap/bootstrap.css",
+                            "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
+                            "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+                            "node_modules/admin-lte/dist/css/adminlte.min.css",
+                            "node_modules/font-awesome/css/font-awesome.css",
+                            "node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
+                            "node_modules/datatables.net-dt/css/jquery.dataTables.css"
 
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/assets/output/css/tailwind",   
-                "src/assets/output/css/bootstrap"    
-              ]
-            },
+                        ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "src/assets/output/css/tailwind",
+                                "src/assets/output/css/bootstrap"
 
-            "scripts": [
-              "node_modules/admin-lte/plugins/jquery/jquery.min.js",
-              "node_modules/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
-              "node_modules/admin-lte/dist/js/adminlte.js",
-              "node_modules/admin-lte/plugins/jquery-mousewheel/jquery.mousewheel.js",
-              "node_modules/admin-lte/plugins/raphael/raphael.min.js",
-              "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.min.js",
-              "node_modules/admin-lte/plugins/jquery-mapael/maps/usa_states.min.js",
-              "node_modules/admin-lte/plugins/chart.js/Chart.min.js",
-              "node_modules/admin-lte/dist/js/pages/dashboard3.js",
-              "node_modules/jszip/dist/jszip.js",
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js",
-              "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
-              "node_modules/datatables.net-buttons/js/buttons.colVis.js",
-              "node_modules/datatables.net-buttons/js/buttons.flash.js",
-              "node_modules/datatables.net-buttons/js/buttons.html5.js",
-              "node_modules/datatables.net-buttons/js/buttons.print.js",
-              "node_modules/datatables.net-select/js/dataTables.select.min.js"
-              
+                            ]
+                        },
+
+                        "scripts": [
+                            "node_modules/admin-lte/plugins/jquery/jquery.min.js",
+                            "node_modules/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+                            "node_modules/admin-lte/dist/js/adminlte.js",
+                            "node_modules/admin-lte/plugins/jquery-mousewheel/jquery.mousewheel.js",
+                            "node_modules/admin-lte/plugins/raphael/raphael.min.js",
+                            "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.min.js",
+                            "node_modules/admin-lte/plugins/jquery-mapael/maps/usa_states.min.js",
+                            "node_modules/admin-lte/plugins/chart.js/Chart.min.js",
+                            "node_modules/admin-lte/dist/js/pages/dashboard3.js",
+                            "node_modules/jszip/dist/jszip.js",
+                            "node_modules/jquery/dist/jquery.js",
+                            "node_modules/datatables.net/js/jquery.dataTables.js",
+                            "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+                            "node_modules/datatables.net-buttons/js/buttons.colVis.js",
+                            "node_modules/datatables.net-buttons/js/buttons.flash.js",
+                            "node_modules/datatables.net-buttons/js/buttons.html5.js",
+                            "node_modules/datatables.net-buttons/js/buttons.print.js",
+                            "node_modules/datatables.net-select/js/dataTables.select.min.js"
 
 
-            ]
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [{
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "Web_Going:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "Web_Going:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "Web_Going:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ],
+                        "tsConfig": "tsconfig.spec.json",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.css"
+                        ],
+                        "scripts": [
+                            "src/assets/js/index.js",
+                            "src/assets/js/us-aea-en.js",
+                            "src/assets/js/components/chart-01.js",
+                            "src/assets/js/components/chart-02.js",
+                            "src/assets/js/components/chart-03.js",
+                            "src/assets/js/components/chart-04.js",
+                            "src/assets/js/components/map-01.js"
+                        ]
+                    }
                 }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
             }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "Web_Going:build:production"
-            },
-            "development": {
-              "browserTarget": "Web_Going:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "Web_Going:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": [
-              "src/assets/js/index.js",
-              "src/assets/js/us-aea-en.js",
-              "src/assets/js/components/chart-01.js",
-              "src/assets/js/components/chart-02.js",
-              "src/assets/js/components/chart-03.js",
-              "src/assets/js/components/chart-04.js",
-              "src/assets/js/components/map-01.js"
-            ]
-          }
         }
-      }
+    },
+    "cli": {
+        "analytics": "c84ca3ea-5aac-4553-906c-b5368993cfe7"
     }
-  },
-  "cli": {
-    "analytics": "c84ca3ea-5aac-4553-906c-b5368993cfe7"
-  }
 }

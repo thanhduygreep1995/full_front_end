@@ -112,7 +112,7 @@ export class OriginTableComponent implements OnInit {
     });
   }
   onUpdate(id: number): void {
-    this.router.navigate(['/origin-edition', id]);
+    this.router.navigate(['admin/origin-edition', id]);
     this.buttonService.setShowButton6(true)
   }
 
