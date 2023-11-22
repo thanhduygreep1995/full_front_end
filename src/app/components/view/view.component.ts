@@ -5,13 +5,14 @@ import { Data } from '@angular/router';
 import { IProduct } from 'src/app/components/interfaces/iproduct';
 import { CartService } from 'src/app/components/services/cart.service';
 import   localeFr from '@angular/common/locales/fr';
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 registerLocaleData(localeFr, 'fr');
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { RatingService } from '../services/rating.service';
 import { FeedbackService } from '../services/feedback/feedback.service';
+import { ProductService } from '../services/product/product.service';
 
 @Component({
   selector: 'app-view',
@@ -32,6 +33,7 @@ export class ViewComponent {
   feedBacks: any;
   nameCustomer: any;
   comment: any;
+  data: any[]=[];
 
   constructor( 
     private rate:RatingService,
@@ -43,6 +45,7 @@ export class ViewComponent {
     private cdr: ChangeDetectorRef,
     private cartService: CartService,
     private fB: FeedbackService,
+    private pS: ProductService,
     // private snackBar: MatSnackBar
 
   ) {
@@ -61,6 +64,7 @@ export class ViewComponent {
       categoryId: [''],
       brandId: [''],
       OriginsId: [''],
+      images: [''],
     });
    }
 
@@ -217,61 +221,31 @@ export class ViewComponent {
     this.cartService.addToCart(product);
   }
   
+  createFeedback(){
+    this.id = Number(this.route.snapshot.params['id']);    
+    const feedback = {
+      nameCustomer:this.infoProduct.nameCustomer,
+      comment: this.infoProduct.comment,
+      status: '',
+      createDate: new Date(),
+      updateDate: new Date(),
+      customers: { id: 5 },
+      products: { id: this.id }
+  };
+
+  this.fB.createFeedBackProduct(feedback).subscribe(
+    (response) => {
+      console.log('Successfully Create Feedback!',response);
+    },
+    (error) => {
+      console.error('Failed to Create Feedback:', error);
+      window.location.reload();
+    }
+
+  );
+  }
+
+
 }
 
-
-      //   takeProduct:IProduct={
-//    id: 0, tensp:"", giasp:0, 
-//    solanxem:0, hinh:"", 
-//    mota:"", hot:0, ngay:"", idLoai:0 ,   
-//    model: "",  
-//    name: "",
-//    price: 0,
-//    description: "",
-//    discount: 0,
-//    discountPrice:0,
-//    updateDate: "",
-//    categoryId: 0
-//  }; 
-//  idSP:number=1;  
-//  idLoai:number=0;
-//  tenLoai:string="";
-
-  // this.d.getTakeProduct().subscribe((data: any) => {
-  //   console.log(data);
-  //   this.products = data;
-  // });
-
-      
-
-     
-    //  }//res
-    //  addToCart() {
-    //   this.cartService.addToCart(this.takeProduct);
-    //   this.router.navigate(['/cart']);
-// constructor( private d:DataService, private h: HttpClient, private cart: CartService) { 
-
-// }
-// listProduct:IProduct[] = [];
-// ngOnInit(): void {
-//   this.d.getNewProduct().subscribe( d => this.listProduct = d);
-// }
-// addToCart(product:IProduct){
-//   this.cart.addToCart(product);
-//   alert("Đã thêm vào giỏ hàng")
-// }
-
-//   takeProduct:IProduct={
-//    id:, tensp:"", giasp:0, 
-//    solanxem:0, hinh:"", 
-//    mota:"", hot:0, ngay:"", idLoai:0 ,   
-//    model: "",  
-//    name: "",
-//    price: 0,
-//    description: "",
-//    discount: 0,
-//    discountPrice:0,
-//    updateDate: "",
-//    categoryId: 0
-//  }; 
 

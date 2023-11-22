@@ -39,6 +39,7 @@
                                     <th>No</th>
                                     <th>Name</th>
                                     <th>Model</th>
+                                    <th>Image</th>
                                     <th>Price</th>
                                     <th>Stock Quantity</th>
                                     <th>Description</th>
@@ -57,6 +58,15 @@
                                     <td>{{ p.index }}</td>
                                     <td>{{ p.name }}</td>
                                     <td>{{ p.model }}</td>
+                                    <td>
+                                        <div *ngIf="p.thumbImage; else defaultImage">
+                                            <img src="{{ p.thumbImage }}" type="button" height="300" width="300" data-toggle="modal" data-target="#thumbImage" (click)="openProduct(p.id)">
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=13RxBgoxnq_AUz_IPmo3UP0rZNWijLTIo&export=view" height="300" width="300" type="button" data-toggle="modal" data-target="#thumbImage" (click)="openProduct(p.id)">
+                                        </ng-template>
+                                    </td>
                                     <td>{{ p.price }}</td>
                                     <td>{{ p.stockQuantity }}</td>
                                     <td>{{ p.description }}</td>
@@ -92,3 +102,34 @@
 <!-- /.content -->
 <!-- </div> -->
 <!-- /.content-wrapper -->
+
+<div class="modal fade" id="thumbImage" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Update Image </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="text" id="productId" name="productId" class="form-control" value="{{ seclectedProductId }}" hidden>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageFile">Select Image:</label>
+                            <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" width="300" height="200">
+                            <input type="file" id="imageFile" (change)="onFileChange($event)" class="form-control-file">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateThumbImage(seclectedProductId)">Update Image</button>
+            </div>
+        </div>
+    </div>
+</div>

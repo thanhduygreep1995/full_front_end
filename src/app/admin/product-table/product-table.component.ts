@@ -60,6 +60,8 @@ export class ProductTableComponent implements OnInit {
   categories: any;
   isSpinning: boolean = false;
   progressTimerOut: number = 1200;
+  seclectedProductId: any;
+  selectedImage: string | ArrayBuffer | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -88,7 +90,7 @@ export class ProductTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dtOptions = {
+    this.dtOptions = {  
       pagingType: 'full_numbers',
       pageLength: 10,
       dom: 'Bfrtip', // Hiển thị các nút: buttons, filter, length change, ... (Xem thêm tài liệu DataTables để biết thêm thông tin)
@@ -225,6 +227,41 @@ export class ProductTableComponent implements OnInit {
       },
       (error) => {
         console.error('Lỗi khi lấy dữ liệu mới:', error);
+      }
+    );
+  }
+
+  onFileChange(event: any) {
+    const reader = new FileReader();
+  
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+  
+      reader.onload = () => {
+        this.selectedImage = reader.result;
+      };
+    }
+  }
+
+  openProduct(productId: number): void {
+    this.seclectedProductId= productId;
+  }
+
+  updateThumbImage(id: any){
+    if (!this.selectedImage) {
+      console.log('Image cant find');
+      return;
+    }
+    const fileInput = document.getElementById('imageFile') as HTMLInputElement;
+    const file = (fileInput.files as FileList)[0];
+    this.pS.updateThumbImage(id, file).subscribe(
+      (response) => {
+        console.log('Image update successfully', response);
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Error update image', error);
       }
     );
   }

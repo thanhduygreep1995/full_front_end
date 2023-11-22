@@ -52,9 +52,10 @@
 <div class="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
     <!-- ---- Product Image  --->
     <div>
-        <div>
-            <img id="main-img" src="{{infoProduct.images}}" class="w-full" />
+        <div *ngFor="let i of infoProduct.images" class="row">
+            <img id="main-img" src="{{i.imageUrl}}" width="200" height="400" />
         </div>
+
 
         <div class="grid grid-cols-5 gap-4 mt-4 ">
 
@@ -72,7 +73,7 @@
     <!-- ---- Product Content  --->
     <div>
         <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2">{{infoProduct.name}}</h2>
-        <div class="flex items-center mb-4">
+        <!-- <div class="flex items-center mb-4">
             <div class="flex gap-1 text-sm ">
                 <div class="flex items-center ">
                     <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[0].filled, 'half-filled': starsInfo[0].half, 'no-fill': starsInfo[0].noFill}"></span>
@@ -84,27 +85,27 @@
             </div>
             <div class="text-xs text-gray-500 ml-3">({{ count }} Reviews)</div>
 
-        </div>
+        </div> -->
 
         <div class="space-y-2">
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Availability : </span>
-                <span class="text-green-600"> {{infoProduct.productStatus}} </span>
+                <span class="text-green-600"></span>
             </p>
 
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Brand : </span>
-                <span class="text-gray-600"> {{infoProduct.brandId.name}} </span>
+                <span class="text-gray-600"></span>
             </p>
 
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Category : </span>
-                <span class="text-gray-600"> {{infoProduct.categoryId.name}} </span>
+                <span class="text-gray-600"></span>
             </p>
 
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>SKU : </span>
-                <span class="text-gray-600">AKHASFD34 </span>
+                <span class="text-gray-600"></span>
             </p>
         </div>
 
@@ -288,64 +289,47 @@
             </tr>
         </table>
     </div>
-    <section class=" dark:bg-gray-900 py-8 lg:py-16 antialiased">
-        <div class="max-w-2xl mr-auto px-5 lg:grid-cols-2">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion ()</h2>
-            </div>
-            <form class="mb-6">
-                <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                    <label for="comment" class="sr-only">Name</label>
-                    <input id="comment" rows="6" class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800" placeholder="Your name" required>
-                </div>
-                <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                    <label for="comment" class="sr-only">Your comment</label>
-                    <textarea id="comment" rows="6" class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800" placeholder="Write a comment..." required></textarea>
-                </div>
-                <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                  Post comment
-              </button>
-            </form>
-            <article class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
-                <footer class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough">Huy</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate>2023-10-10</time></p>
-                    </div>
-                    <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1" class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        type="button">
-                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                          <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-                      </svg>
-                      <span class="sr-only">Comment settings</span>
-                  </button>
 
-                    <div id="dropdownComment1" class="hidden z-10 w-36 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconHorizontalButton">
-                            <li>
-                                <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
-                            </li>
-                            <li>
-                                <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                            </li>
-                        </ul>
+    <!-- component -->
+    <div class="grid grid-cols-2 gap-8 mt-4">
+        <div class="row d-flex justify-content-start m-3 ">
+            <div class="antialiased mx-auto max-w-screen-sm col-6 ">
+                <h3 class="mb-4 text-lg font-semibold text-gray-900 ">Comments</h3>
+                <form class="mb-6 ">
+                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
+                        <label for="comment " class="sr-only ">Name</label>
+                        <input id="nameCustomer" name="nameCustomer" [(ngModel)]="infoProduct.nameCustomer" rows="6 " class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 " placeholder="Your name "
+                            required>
                     </div>
-                </footer>
-                <p class="text-gray-500 dark:text-gray-400">Comment</p>
-                <div class="flex items-center mt-4 space-x-4">
-                    <button type="button" class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400 font-medium">
-                      <svg class="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
-                      </svg>
-                      Reply
-                  </button>
+                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
+                        <label for="comment " class="sr-only ">Your comment</label>
+                        <textarea id="comment" name="comment" [(ngModel)]="infoProduct.comment" rows="6 " class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 " placeholder="Write a comment... "
+                            required></textarea>
+                    </div>
+                    <button type="button" (click)="createFeedback()" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 ">
+                         Post comment
+                     </button>
+                </form>
+                <div class="space-y-4 " *ngFor="let f of feedBacks">
+                    <div class="flex ">
+                        <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed mt-3 bg-white">
+                            <footer class="flex justify-between items-center mb-2">
+                                <div class="flex items-center">
+                                    <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough"><strong>{{f.nameCustomer}}</strong></p>
+                                    <p class="text-sm  text-gray-600 dark:text-gray-400">{{f.updateDate}}</p>
+                                </div>
+                            </footer>
+                            <p class="text-sm ">
+                                {{f.comment}}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </article>
+            </div>
         </div>
-    </section>
+    </div>
+
+
 
 </div>
 

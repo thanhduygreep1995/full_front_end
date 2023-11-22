@@ -170,7 +170,7 @@
                         <img src="{{pro.thumbImage}}" class="" width="200" height="300" />
 
                         <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition ">
-                            <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex  items-center justify-center ">
+                            <a href="/view/{{pro.id}}" (click)="onChangeView(pro.id)" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex  items-center justify-center ">
                                 <i class="fas fa-search"></i>
                             </a>
                             <a (click)="addToWish(pro)" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center ">
@@ -184,7 +184,7 @@
 
                     <div class="pt-4 pb-3 px-4 ">
                         <div style="display: flex; flex-direction: column;  height: 3rem ">
-                            <a href="/view/{{pro.id}}">
+                            <a href="/view/{{pro.id}}" (click)="onChangeView(pro.id)">
                                 <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition" style="word-wrap: break-word; overflow-wrap: break-word;">
                                     {{pro.model}}
                                 </h6>

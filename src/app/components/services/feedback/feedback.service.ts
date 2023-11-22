@@ -18,7 +18,7 @@ export class FeedbackService {
   }
 
   createFeedBackProduct(feedback: any){
-    const url = `${this.baseUrl}`;
+    const url = `${this.baseUrl + '/create'}`;
     return this.http.post(url, feedback);
   }
 
