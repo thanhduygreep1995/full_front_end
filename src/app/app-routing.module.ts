@@ -19,7 +19,7 @@ import { ProByTypeComponent } from './components/pro-by-type/pro-by-type.compone
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { UserComponent } from './components/user/user.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 
 
@@ -47,6 +47,7 @@ const routes: Routes = [
       { path: 'typeproduct', component: TypeProductComponent },
       { path: 'checkcart', component: CheckCartComponent },
       { path: 'account/order-history', component: OrderHistoryComponent },
+      { path: 'listproduct', component: ProductListComponent },
     ]
   },
 
