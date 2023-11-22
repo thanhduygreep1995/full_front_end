@@ -149,7 +149,7 @@ export class ProductTableComponent implements OnInit {
   }
 
   onUpdate(id: number): void {
-    this.router.navigate(['/product-edition', id]);
+    this.router.navigate(['admin/product-edition', id]);
     this.buttonService.setShowButton2(true)
   }
 

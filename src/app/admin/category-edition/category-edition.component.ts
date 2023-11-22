@@ -77,7 +77,10 @@ export class CategoryEditionComponent implements OnInit {
       this.ButtonDelete = this.infoCategory.controls['id'].invalid;
     });
     this.infoCategory.valueChanges.subscribe(() => {
-      this.ButtonUpdate = this.infoCategory.invalid;
+      const nameControl = this.infoCategory.controls['name'].invalid;
+      const descriptionControl =
+        this.infoCategory.controls['description'].invalid;
+      this.ButtonUpdate  = nameControl || descriptionControl;
     });
   }
 
@@ -159,7 +162,6 @@ export class CategoryEditionComponent implements OnInit {
     this.isSpinning = true;
     this.cate.updateCategory(this.id, categoryInfo).subscribe(
       (response) => {
-
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated category!');

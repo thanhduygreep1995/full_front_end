@@ -65,7 +65,7 @@ export class BrandEditionComponent implements OnInit {
       this.ButtonSave = this.infoBrand.controls['name'].invalid;
     });
     this.infoBrand.valueChanges.subscribe(() => {
-      this.ButtonUpdate = this.infoBrand.invalid;
+      this.ButtonUpdate = this.infoBrand.controls['name'].invalid;
     });
   }
   ngOnInit(): void {

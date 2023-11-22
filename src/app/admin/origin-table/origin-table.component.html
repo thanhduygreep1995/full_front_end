@@ -31,7 +31,7 @@
                         <h3 class="card-title">Danh Sách Origins</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table datatable *ngIf="origins && origins.length > 0" [dtOptions]="dtOptions" class="table table-bordered table-striped row-border hover">
                             <!-- Các cột dữ liệu ở đây -->
                             <thead>
@@ -46,12 +46,12 @@
                                     <td class="col-2">{{ i + 1 }}</td>
                                     <td>{{ o.country }}</td>
                                     <td class="col-2">
-                                        <button class="btn btn-info mx-2" (click)="onUpdate(o.id)">
-                      Update
-                    </button>
+                                        <button class="btn mx-2" style="background-color: cornflowerblue;" (click)="onUpdate(o.id)">
+                                            <i class="fa fa-pencil"></i>
+                                            </button>
                                         <button class="btn btn-danger" (click)="fnDeleteOrigin(o.id)">
-                      Delete
-                    </button>
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>

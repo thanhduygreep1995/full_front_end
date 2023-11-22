@@ -32,9 +32,9 @@
                                     <label for="name" class="form-label">Brand Name</label>
                                     <input formControlName="name" type="text" class="form-control mb-2" name="name" id="name" placeholder="Brand Name" />
                                     <div *ngIf="
-                      infoBrand.controls['name'].invalid &&
-                      infoBrand.controls['name'].touched
-                    " class="text-danger">
+                                            infoBrand.controls['name'].invalid &&
+                                            infoBrand.controls['name'].touched
+                                            " class="text-danger">
                                         Brand Name is required.
                                     </div>
                                 </div>
@@ -44,12 +44,12 @@
                     <hr />
                     <div class="row mx-2 mb-2">
                         <div class="col-12 d-flex flex-wrap justify-content-end">
-                            <button (click)="fnAddBrand()" [disabled]="ButtonSave" type="button" class="btn btn-primary mx-2">
-                Save
-              </button>
-                            <button *ngIf="buttonService.getShowButton5()" (click)="fnUpdateBrand()" [disabled]="ButtonUpdate" type="button" class="btn btn-primary mx-2">
-                Update
-              </button>
+                            <button (click)="fnAddBrand()" [disabled]="ButtonSave" type="button" class="btn mx-2" style="background-color: cadetblue;">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <button *ngIf="buttonService.getShowButton5()" (click)="fnUpdateBrand()" [disabled]="ButtonUpdate" type="button" class="btn mx-2" style="background-color: cornflowerblue;">
+                                <i class="fa fa-pencil"></i>
+                            </button>
                         </div>
                     </div>
                 </form>

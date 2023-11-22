@@ -31,12 +31,12 @@
                         <h3 class="card-title">Danh Sách Sản Phẩm</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table datatable [dtOptions]="dtOptions" *ngIf="products && products.length > 0" class="table table-bordered table-striped row-border hover">
                             <thead>
                                 <tr>
-                                    <th hidden>Id</th>
-                                    <th>No</th>
+                                    <!-- <th hidden>Id</th> -->
+                                    <th class="col-2">No</th>
                                     <th>Name</th>
                                     <th>Model</th>
                                     <th>Image</th>
@@ -49,13 +49,13 @@
                                     <th>Category</th>
                                     <th>Origin</th>
                                     <th>Brand</th>
-                                    <th>Action</th>
+                                    <th class="col-2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let p of products">
-                                    <td hidden>{{ p.id }}</td>
-                                    <td>{{ p.index }}</td>
+                                <tr *ngFor="let p of products; let i = index">
+                                    <!-- <td hidden>{{ p.id }}</td> -->
+                                    <td class="col-2">{{ i + 1 }}</td>
                                     <td>{{ p.name }}</td>
                                     <td>{{ p.model }}</td>
                                     <td>
@@ -67,21 +67,21 @@
                                             <img src="https://drive.google.com/uc?id=13RxBgoxnq_AUz_IPmo3UP0rZNWijLTIo&export=view" height="300" width="300" type="button" data-toggle="modal" data-target="#thumbImage" (click)="openProduct(p.id)">
                                         </ng-template>
                                     </td>
-                                    <td>{{ p.price }}</td>
+                                    <td>{{ p.price+" "| currency:",":"":"6.0"}} VNĐ</td>
                                     <td>{{ p.stockQuantity }}</td>
                                     <td>{{ p.description }}</td>
                                     <td>{{ p.discountPercentage }}</td>
-                                    <td>{{ p.discountPrice }}</td>
+                                    <td>{{ p.discountPrice+" "| currency:",":"":"6.0"}} VNĐ</td>
                                     <td>{{ p.status }}</td>
                                     <td>{{ p.category.name}}</td>
                                     <td>{{ p.origin.country}}</td>
                                     <td>{{ p.brand.name}}</td>
-                                    <td>
-                                        <button class="btn btn-info" (click)="onUpdate(p.id)">
-                                        Update
-                                        </button>
+                                    <td class="col-2">
+                                        <button class="btn mb-2" style="background-color: cornflowerblue;" (click)="onUpdate(p.id)">
+                                            <i class="fa fa-pencil"></i>
+                                        </button><br>
                                         <button class="btn btn-danger" (click)="fnDeleteProduct(p.id)">
-                                        Delete
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
                                 </tr>

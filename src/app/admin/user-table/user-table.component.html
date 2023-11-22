@@ -31,7 +31,7 @@
                         <h3 class="card-title">Danh Sách User</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table datatable [dtOptions]="dtOptions" *ngIf="customers && customers.length > 0" class="table table-bordered table-striped row-border hover">
                             <!-- id="example2" -->
                             <!-- class="table table-bordered table-striped" -->
@@ -63,8 +63,8 @@
                                     <td>{{ c.status }}</td>
                                     <td>{{ c.role.name }}</td>
                                     <td>
-                                        <button class="btn btn-info" data-toggle="modal" data-target="#updateModal" (click)="onUpdate(c.id)">
-                                            Edit
+                                        <button class="btn" style="background-color: cornflowerblue;" data-toggle="modal" data-target="#updateModal" (click)="onUpdate(c.id)">
+                                            <i class="fa fa-pencil"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -86,7 +86,7 @@
                                             <option value="ACTIVE ">ACTIVE</option>
                                             <option value="LOCKED ">LOCKED</option>
                                           </select>
-                                            <label for="">Brand</label><br>
+                                            <label for="">Role</label><br>
                                             <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedRole">
                                               <option value="" selected disabled>Role</option>
   
@@ -95,8 +95,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer ">
-                                        <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
-                                        <button type="button " class="btn btn-primary " (click)="fnUpdateCustomer() ">Update</button>
+                                        <button type="button " class="btn" style="background-color: cornflowerblue;" (click)="fnUpdateCustomer() "><i class="fa fa-pencil"></i></button>
                                     </div>
                                 </div>
                             </div>

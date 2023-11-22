@@ -31,7 +31,7 @@
                         <h3 class="card-title">Danh Sách Brands</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table datatable *ngIf="brands && brands.length > 0" [dtOptions]="dtOptions" class="table table-bordered table-striped row-border hover">
                             <!-- Các cột dữ liệu ở đây -->
                             <thead>
@@ -46,12 +46,12 @@
                                     <td class="col-2">{{ i + 1 }}</td>
                                     <td>{{ b.name }}</td>
                                     <td class="col-2">
-                                        <button class="btn btn-info mx-2" (click)="onUpdate(b.id)">
-                      Update
-                    </button>
+                                        <button class="btn mx-2" style="background-color: cornflowerblue;" (click)="onUpdate(b.id)">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
                                         <button class="btn btn-danger" (click)="fnDeleteBrand(b.id)">
-                      Delete
-                    </button>
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
