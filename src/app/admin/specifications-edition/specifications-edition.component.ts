@@ -58,6 +58,7 @@ export class SpecificationsEditionComponent implements OnInit {
   ButtonSave: boolean = true;
   ButtonDelete: boolean = true;
   ButtonUpdate: boolean = true;
+
   isSpinning: boolean = false;
   selectedProductId!: any;
   Product!: any[];
@@ -72,6 +73,8 @@ export class SpecificationsEditionComponent implements OnInit {
     public buttonService: ButtonService
   ) {
     this.specForm = this.formBuilder.group({
+      selectedProduct: ['', Validators.required],
+      id: ['', Validators.required],
       processor: ['', Validators.required],
       graphicsCard: ['', Validators.required],
       ram: ['', Validators.required],

@@ -64,6 +64,7 @@ export class ProductEditionComponent implements OnInit {
   ButtonSave: boolean = true;
   ButtonDelete: boolean = true;
   ButtonUpdate: boolean = true;
+
   categories!: any[];
   Origin!: any[];
   brands!: any[];
@@ -205,7 +206,6 @@ export class ProductEditionComponent implements OnInit {
   this.pS.getAllProduct().subscribe((data) => {
     console.log(data);
     this.products = data;
-
     for (let p of this.products) {
       if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
         setTimeout(() => {
@@ -324,4 +324,5 @@ fnUpdateProduct() {
     );
 
   });
+    }
 }

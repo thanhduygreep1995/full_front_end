@@ -36,4 +36,6 @@ export class SpecService {
   getSpecById(id: any) {
     return this.http.get(this.baseUrl + '/' + id);
   }
+
+
 }
