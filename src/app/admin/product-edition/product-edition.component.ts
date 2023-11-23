@@ -203,7 +203,7 @@ export class ProductEditionComponent implements OnInit {
     this.products = data;
     for (let p of this.products) {
       this.isSpinning = true;
-      if (this.productForm.value.name.equals(p.name) && this.productForm.value.model.equals(p.model)) {
+      if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
         setTimeout(() => {
           this.isSpinning = false;
           Swal.fire({
@@ -270,7 +270,7 @@ fnUpdateProduct() {
     this.products = data;
     for (let p of this.products) {       
       this.isSpinning = true;
-      if (this.productForm.value.name.equals(p.name) && this.productForm.value.model.equals(p.model)) {
+      if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
         setTimeout(() => {
           this.isSpinning = false;
           Swal.fire({
