@@ -4,7 +4,7 @@ import 'datatables.net-buttons/js/dataTables.buttons.js';
 import 'datatables.net-buttons/js/buttons.html5.js';
 import Swal from 'sweetalert2';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from '../service/order/order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from '../service/customer/customer.service';
@@ -68,12 +68,13 @@ export class OrderTableComponent implements OnInit {
   // Must be declared as "any", not as "DataTables.Settings"
   getid: any;
   id: any;
-  orders: any;
+  orders: any[] = [];
   orderForm: any;
+  orderDetailForm: any;
   dtOptions: any = {};
   dtOp:any = {};
-  customer: any;
-  product: any;
+  customer: any[] = [];
+  product: any[] = [];
   orderdetail: any;
   data: any[] = []; // Mảng dữ liệu cho DataTables
   isSpinning: boolean = false;
@@ -107,10 +108,25 @@ export class OrderTableComponent implements OnInit {
         id: [""],
       }),
     });
+    this.orderDetailForm = this.formBuilder.group({
+      id: [''],
+      quantity: ['', Validators.required],
+      phone: [''],
+      email: [''],
+      totalPrice: [''],
+      customer: this.formBuilder.group({
+        id: [""],
+      }),
+      product: this.formBuilder.group({
+        id: [""],
+      }),
+      address: this.formBuilder.group({
+        id: [""],
+      }),
+    });
   }
 
   ngOnInit(): void {
-
     this.route.params.subscribe((params) => {
       if (params && params['id']) {
         this.id = params['id'];
@@ -130,7 +146,6 @@ export class OrderTableComponent implements OnInit {
     this.refreshTable();
     this.dtOptions = this.getDTOptions();
     
-    this.getOrder();
     this.Cs.getCustomer().subscribe((data) => {
       this.customer = data;
     });
@@ -138,7 +153,7 @@ export class OrderTableComponent implements OnInit {
       this.product = data;
     });
 
-    this.orders.array.forEach((element: any) => {
+    this.orders.forEach((element: any) => {
       this.oD.getOrderDetailById(this.selectedOrderId).subscribe((data) => {
         this.orderdetail = data;
       });
@@ -147,20 +162,20 @@ export class OrderTableComponent implements OnInit {
 
   }
 
-  getOrder(): any {
-    this.oS.getOrder().subscribe((orders) => {    
-        console.log(orders);
-        if (orders != null && orders.length > 0) {
-          this.orders =  orders;
-          // Thêm dữ liệu mới vào mảng chartDate và chartRevenue
-          for (let o of this.orders) {
-            o.orderDate =  moment.default(o.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
-          };
-        }   
-    },(error) => {
-      console.error(error);
-    });
-  }
+  // getOrder(): any {
+  //   this.oS.getOrder().subscribe((orders) => {    
+  //       console.log(orders);
+  //       if (orders != null && orders.length > 0) {
+  //         this.orders =  orders;
+  //         // Thêm dữ liệu mới vào mảng chartDate và chartRevenue
+  //         for (let o of this.orders) {
+  //           o.orderDate =  moment.default(o.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
+  //         };
+  //       }   
+  //   },(error) => {
+  //     console.error(error);
+  //   });
+  // }
   getDTOptions2(): any {
     let dataTables: any = {};
     return dataTables =  {
@@ -248,7 +263,7 @@ export class OrderTableComponent implements OnInit {
         },
       ],
     };
-  }
+  }   
   
   defaultStatus() {
     // selected status Active
@@ -276,9 +291,13 @@ export class OrderTableComponent implements OnInit {
 
   refreshTable() {
     // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới
+    this.orders = [];
     this.oS.getOrder().subscribe(
       (newData) => {
         this.orders = newData;
+        for (let o of this.orders) {
+          o.orderDate =  moment.default(o.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        };
         console.log('Dữ liệu mới đã được cập nhật:', this.orders);
       },
       (error) => {
@@ -317,6 +336,109 @@ export class OrderTableComponent implements OnInit {
     } else {
       console.error('Không có id hợp lệ để cập nhật đơn hàng.');
     }
+  }
+  fnUpdateQuantityOrderDetail() {
+    if (this.selectedOrderId) { // Kiểm tra xem selectedOrderId có tồn tại
+      const orderdetailinfo = {
+        quantity: this.orderDetailForm.value.quantity 
+      }; 
+      this.isSpinning = true;
+      this.oD.updateQuantityOrderDetail(this.selectedOrderId, orderdetailinfo).subscribe(
+        (response) => {
+          console.log('Successfully updated Quantity Order Detail!');
+          this.refreshTable(); // Tải lại dữ liệu sau khi cập nhật thành công
+          window.location.reload();
+          setTimeout(() => {
+            this.isSpinning = false;
+            this.orderForm.reset();
+            this.defaultStatus();
+            Swal.fire({
+              icon: 'success',
+              title: 'Successfully updated Order!',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          }, this.progressTimerOut),window.location.reload();
+        },
+        (error) => {
+          console.error('Failed to update Order:', error);
+        }
+      );
+    } else {
+      console.error('Không có id hợp lệ để cập nhật đơn hàng.');
+    }
+  }
+
+  fnDeleteDetailOrder(id: any) {
+    const DetailOrderToDelete = this.orderdetails.find((orderdetails: {id: any;}) => orderdetails.id == id);
+    if (DetailOrderToDelete) {
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Gửi yêu cầu xóa đến backend
+          this.DS.deleteDetailOrder(id).subscribe(() => {
+            this.isSpinning = true;
+            setTimeout(() => {
+              this.isSpinning = false;
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your data has been deleted.',
+                icon: 'success',
+                confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
+                timer: 2000
+              })
+              console.log('Chi tiết đơn hàng đã được xóa thành công');
+              window.location.reload();
+            },this.progressTimerOut);
+            this.refreshTable();
+          }, (error) => {
+            this.isSpinning = false;
+            Swal.fire({
+              title: 'Error',
+              text: 'Something went wrong. Please try again!',
+              icon: 'error',
+              confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
+              timer: 2000
+            });
+            console.error('Đã xảy ra lỗi khi xóa Chi tiết đơn hàng:', error);
+          });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          this.isSpinning = true;
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              title: 'Cancelled!',
+              text: 'Your data is safe :)',
+              icon: 'success',
+              confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
+              timer: 2000
+            });
+          },this.progressTimerOut);
+        }
+      });
+    } else {
+      // Hiển thị thông báo lỗi khi id không tồn tại trong danh sách
+      swalWithBootstrapButtons.fire(
+        'Error',
+        'Detail Order with the specified ID does not exist!',
+        'error'
+      );
+      setTimeout(() => this.isSpinning = false,this.progressTimerOut);
+    } 
+  }
+  getTotalPrice(): any {
+    let TotalPrice = 0;
+    for (let o of this.orderdetails) {
+      TotalPrice += o.totalPrice;
+    };
+    return TotalPrice;
   }
   
   

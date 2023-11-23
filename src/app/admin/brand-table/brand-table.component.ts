@@ -112,7 +112,7 @@ export class BrandTableComponent implements OnInit {
   }
 
   onUpdate(id: number): void {
-    this.router.navigate(['/brand-edition', id]);
+    this.router.navigate(['admin/brand-edition', id]);
     this.buttonService.setShowButton5(true)
   }
 

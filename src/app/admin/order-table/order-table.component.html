@@ -31,8 +31,8 @@
                         <h3 class="card-title">Danh Sách Orders</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <table datatable [dtOptions]="dtOptions" *ngIf="orders && orders.length > 0" class="table table-bordered table-striped row-border hover">
+                    <div class="card-body table-responsive">
+                        <table datatable [dtOptions]="dtOptions" *ngIf="orders && orders.length > 0" class="table table-bordered table-striped row-border hover w-100">
                             <thead>
                                 <tr>
                                     <!-- <th hidden>Id</th> -->
@@ -62,19 +62,16 @@
                                     <td>{{ o.note }}</td>
                                     <td>{{ o.status }}</td>
                                     <td>{{ o.paymentMethod }}</td>
-                                    <td>{{ o.discountPrice }}</td>
+                                    <td>{{ o.discountPrice+" "| currency:",":"":"6.0"}} VNĐ</td>
                                     <td hidden>{{ o.orderdetail.product.name }}</td>
                                     <td hidden>{{ o.orderdetail.quantity }}</td>
                                     <td hidden>{{ o.orderdetail.totalPrice }}</td>
                                     <td>
-                                        <button class="btn btn-info" data-toggle="modal" data-target="#updateModal" (click)="onUpdate(o.id)">
-                                    Update
-                                    </button>
-                                        <!-- <button class="btn btn-warning" (click)="onDetail(o.id)">
-                                        Detail
-                                        </button> -->
-                                        <button class="btn btn-warning" data-toggle="modal" data-target="#DetailModal" (click)="onUpdate(o.id)">
-                                            Details
+                                        <button class="btn  mb-2" style="background-color: cornflowerblue;" data-toggle="modal" data-target="#updateModal" (click)="onUpdate(o.id)">
+                                            <i class="fa fa-pencil"></i>
+                                        </button><br>
+                                        <button class="btn" style="background-color: gainsboro;" data-toggle="modal" data-target="#DetailModal" (click)="onUpdate(o.id)">
+                                            <i class="fa fa-th-list"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -91,7 +88,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form [formGroup]="orderForm">
-                                            <label for="orderStatus " class="form-label ">Status</label>
+                                            <label for="orderStatus" class="form-label ">Status</label>
                                             <select formControlName="status" class="form-control select2 " style="width: 100% " [ngModel]="selectedStatus">
                                             <option value="PENDING ">PENDING</option>
                                             <option value="PROCESSING ">PROCESSING</option>
@@ -101,47 +98,96 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer ">
-                                        <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
-                                        <button type="button " class="btn btn-primary " (click)="fnUpdateOrder() ">Update</button>
+                                        <button type="button" class="btn" style="background-color: cornflowerblue;" (click)="fnUpdateOrder() "><i class="fa fa-pencil"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal fade" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="DetailModalLabel">Detail Order</h5>
+                        <div class="modal " id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog-scrollable" role="document">
+                                <div class="modal-content ">
+                                    <div class="modal-header ">
+                                        <h5 class="modal-title " id="DetailModalLabel ">Order Detail</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
+                                            <span aria-hidden="true ">&times;</span>
+                                          </button>
                                     </div>
-                                    <div class="modal-body">
-                                        <table datatable [dtOptions]="dtOp" *ngIf="orders && orders.length > 0" class="table table-bordered table-striped row-border hover">
+                                    <div class="modal-body table-responsive">
+                                        <table datatable [dtOptions]="dtOp" *ngIf="orderdetails && orderdetails.length> 0" class="table table-bordered table-striped row-border hover">
                                             <thead>
                                                 <tr>
                                                     <th hidden>Id</th>
                                                     <th>No</th>
                                                     <th>Product</th>
                                                     <th>Quantity</th>
-                                                    <th>Totail Price</th>
+                                                    <th>Address</th>
+                                                    <th>Customer</th>
+                                                    <th>Phone</th>
+                                                    <th>Email</th>
+                                                    <th>Price</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let o of orderdetails; let i = index">
-                                                    <td hidden>{{ o.id }}</td>
+                                                <tr *ngFor="let od of orderdetails; let i = index">
+                                                    <td hidden>{{ od.id }}</td>
                                                     <td>{{ i+1}}</td>
-                                                    <td>{{ o.product.name }}</td>
-                                                    <td>{{ o.quantity }}</td>
-                                                    <td>{{ o.totalPrice }}</td>
+                                                    <td>{{ od.product.name }}</td>
+                                                    <td>{{ od.quantity }}</td>
+                                                    <td>{{ od.order.address.streetNumber+','+od.order.address.street+','+od.order.address.district+','+od.order.address.city.city }}</td>
+                                                    <td>{{ od.order.customer.firstName+' '+ od.order.customer.lastName}}</td>
+                                                    <td>{{ od.order.phone }}</td>
+                                                    <td>{{ od.order.email }}</td>
+                                                    <td>{{ od.totalPrice + " "| currency:",":"":"6.0"}} VNĐ</td>
+                                                    <td>
+                                                        <button class="btn mx-2" style="background-color: cornflowerblue;" data-toggle="modal" data-target="#updateModal1" (click)="onUpdate(od.id)">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger" (click)="fnDeleteDetailOrder(od.id)">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="7">
+                                                        Totail Price
+                                                    </td>
+                                                    <td colspan="2">
+                                                        {{getTotalPrice()| currency:".":"":"6.0"}} VNĐ
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
                                         </table>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="updateModal1" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateModalLabel">Update Quantity Order Dteail</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form [formGroup]="orderDetailForm">
+                                            <label for="orderDetailQuantity" class="form-label ">Quantity</label>
+                                            <input formControlName="quantity" type="number" class="form-control mb-2" name="quantity" id="quantity" ngModel min="1" placeholder="Enter Product Quantity" />
+                                            <div *ngIf="orderDetailForm.controls['quantity'].invalid && orderDetailForm.controls['quantity'].touched" class="text-danger">
+                                                Quantity is required.
+                                            </div>
+                                            <div *ngIf="orderDetailForm.controls['quantity'].invalid && orderDetailForm.controls['quantity'].errors.min" class="text-danger">
+                                                Quantity min 1
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="modal-footer ">
-                                        <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
-
+                                        <button type="button " class="btn" style="background-color: cornflowerblue;" [disabled]="!orderDetailForm.valid" (click)="fnUpdateQuantityOrderDetail() "><i class="fa fa-pencil"></i></button>
                                     </div>
                                 </div>
                             </div>
