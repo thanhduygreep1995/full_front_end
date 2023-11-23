@@ -70,7 +70,7 @@ export class CategoryEditionComponent implements OnInit {
       const nameControl = this.infoCategory.controls['name'].invalid;
       const descriptionControl =
         this.infoCategory.controls['description'].invalid;
-      this.ButtonSave = nameControl || descriptionControl;
+      this.ButtonSave = nameControl;
       // this.ButtonSave = this.infoCategory.invalid; validate thất cả
     });
     this.infoCategory.valueChanges.subscribe(() => {
@@ -80,7 +80,7 @@ export class CategoryEditionComponent implements OnInit {
       const nameControl = this.infoCategory.controls['name'].invalid;
       const descriptionControl =
         this.infoCategory.controls['description'].invalid;
-      this.ButtonUpdate  = nameControl || descriptionControl;
+      this.ButtonUpdate  = nameControl;
     });
   }
 

@@ -38,7 +38,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
-                                    <th>Description</th>
+                                    <!-- <th>Description</th> -->
                                     <th>Status</th>
                                     <th class="col-2">Action</th>
                                 </tr>
@@ -47,7 +47,7 @@
                                 <tr *ngFor="let c of categories; let i = index">
                                     <td>{{ i + 1 }}</td>
                                     <td>{{ c.name }}</td>
-                                    <td>{{ c.description }}</td>
+                                    <!-- <td>{{ c.description }}</td> -->
                                     <td>{{ c.status }}</td>
                                     <td class="col-2">
                                         <button class="btn mx-2" style="background-color: cornflowerblue;" (click)="onUpdate(c.id)">
