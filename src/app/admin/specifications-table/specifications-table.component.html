@@ -46,6 +46,7 @@
                                     <th>display</th>
                                     <th>operatingSystem</th>
                                     <th>camera</th>
+                                    <th>Product</th>
                                     <th class="col-2">Action</th>
                                 </tr>
                             </thead>
@@ -60,6 +61,7 @@
                                     <td>{{ s.display }}</td>
                                     <td>{{ s.operatingSystem }}</td>
                                     <td>{{ s.camera }}</td>
+                                    <td>{{ s.product.name }}</td>
                                     <td class="col-2">
                                         <button class="btn mx-2" style="background-color: cornflowerblue;" (click)="onUpdate(s.id)">
                                             <i class="fa fa-pencil"></i>

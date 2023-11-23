@@ -77,6 +77,7 @@ export class ProductTableComponent implements OnInit {
       model: [''],
       price: [''],
       stockQuantity: [''],
+      thumbnail:[''],
       description: [''],
       discountPercentage: [''],
       discountPrice: [''],

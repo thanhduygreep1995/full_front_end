@@ -25,6 +25,7 @@ interface ProductResponse {
   model: any;
   price: any;
   stockQuantity: any;
+  thumbnail: any;
   description: any;
   discountPercentage: any;
   discountPrice: any;
@@ -93,6 +94,7 @@ export class ProductEditionComponent implements OnInit {
       model: ['', Validators.required],
       price: ['', Validators.required],
       stockQuantity: ['', Validators.required, Validators.min(1)],
+      thumbnail:['',Validators.required],
       description: ['', Validators.required],
       discountPercentage: ['', Validators.required],
       discountPrice: ['', Validators.required],
@@ -184,6 +186,7 @@ export class ProductEditionComponent implements OnInit {
       model: this.productForm.value.model,
       price: this.productForm.value.price,
       stockQuantity: this.productForm.value.stockQuantity,
+      thumbnail: this.productForm.value.thumbnail,
       description: this.productForm.value.description,
       discountPercentage: this.productForm.value.discountPercentage,
       discountPrice: this.productForm.value.discountPrice,
@@ -258,6 +261,7 @@ fnUpdateProduct() {
     model: this.productForm.value.model,
     price: this.productForm.value.price,
     stockQuantity: this.productForm.value.stockQuantity,
+    thumbnail: this.productForm.value.thumbnail,
     description: this.productForm.value.description,
     discountPercentage: this.productForm.value.discountPercentage,
     discountPrice: this.productForm.value.discountPrice,
@@ -267,23 +271,6 @@ fnUpdateProduct() {
     origin_id:this.selectedOriginId
   };
   this.isSpinning = true;
-  this.pS.getAllProduct().subscribe((data) => {
-    console.log(data);
-    this.products = data;
-    for (let p of this.products) {          
-      if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
-        setTimeout(() => {
-          this.isSpinning = false;
-          Swal.fire({
-            icon: 'error',
-            title: 'Name and Model of Product is existed already',
-            showConfirmButton: false,
-            timer: 2000
-          })
-        }, this.progressTimerOut);
-        return;
-      }
-    }
     this.pS.updateProduct(this.id, productinfo).subscribe(
       (response) => {
         console.log('Successfully updated poduct!'),
@@ -306,9 +293,8 @@ fnUpdateProduct() {
         console.error('Failed to update product:', error);
       }
     );
-  });
+  };
 
 
 }
 
-}
