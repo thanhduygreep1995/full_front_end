@@ -7,14 +7,12 @@ import { registerLocaleData } from '@angular/common';
 import { WishService } from 'src/app/components/services/wish.service';
 import { ProductService } from '../services/products.service';
 import { SearchService } from '../services/search.service';
-import { Pipe } from '@angular/core';
-registerLocaleData(localeFr, 'fr');
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
-export class HomeComponent  {
+export class ProductListComponent {
   listSP:any;
   products: any[] = [];
   filteredProducts: any[] = [];
@@ -54,7 +52,7 @@ this.listSP= res.body;
         this.filteredProducts = this.products;
       },
       error => {
-        console.error("Error fetching products:", error);
+        console.error('Error fetching products:', error);
       }
     );
   }
@@ -67,8 +65,4 @@ this.listSP= res.body;
     });
   }
 
-  
-}
-export class Product{
-  
 }

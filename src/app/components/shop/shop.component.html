@@ -23,15 +23,14 @@
        <!-- ---- End Sidebar --->
  
  <!-- ---- Product --->
- <div class="col-span-3">
+ <div class="col-span-3" >
       <!-- ---- Shorting --->
-      <div class="mb-4 flex items-center ">
-          <select class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary " >
-               <option>Default sorting</option>
-               <option>Price low-high</option>
-               <option>Price high-low</option>
-               <option>Latest product</option> 
-          </select>
+      <div class="mb-4 flex items-center " >
+          <select (click)=" onTypeSelect()" class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
+               <ng-container *ngFor="let loai of listTypePro">
+                 <option [value]="loai.id">{{ loai.name | uppercase }}</option>
+               </ng-container>
+             </select>
           <div class="flex gap-2 ml-auto ">
                <div class="border border-primary w-10 h-9 flex items-center justify-center text-white hover:text-gray-600  rounded cursor-pointer focus: bg-primary" >
                     <i (click)="showGridView()" class="fas fa-th"></i>

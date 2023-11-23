@@ -18,6 +18,7 @@ import { RatingService } from '../services/rating.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
+  
   rating: any = 0;
   products: any;
   infoProduct: any;

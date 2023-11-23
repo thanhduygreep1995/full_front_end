@@ -33,13 +33,15 @@ import { UserComponent } from './components/user/user.component';
 import { CommonModule } from '@angular/common';
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { FilterPipe } from './components/pipes/filter.pipe';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 registerLocaleData(localeVi);
 
 
 @NgModule({
   declarations: [
     AppComponent,
-
     ShopComponent,
     HomeComponent,
     AccountComponent,
@@ -61,7 +63,10 @@ registerLocaleData(localeVi);
     CategoriesComponent,
     AccountSidebarComponent,
     OrderHistoryComponent,
-    UserComponent
+    UserComponent,
+    FilterPipe,
+    ProductListComponent,
+    NavbarComponent
 
   ],
   imports: [
