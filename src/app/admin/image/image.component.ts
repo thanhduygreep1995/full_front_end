@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import 'datatables.net';
 import 'datatables.net-buttons/js/dataTables.buttons.js';
 import 'datatables.net-buttons/js/buttons.html5.js';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GoogleDriveService } from '../service/google-drive/google-drive.service';
 import { ProductService } from '../service/product/product.service';
@@ -52,7 +52,7 @@ export class ImageComponent {
   images: any;
   imageForm: any;
   dtOptions: any = {};
-  data: any[] = []; // Mảng dữ liệu cho DataTables
+  // data: any[] = []; // Mảng dữ liệu cho DataTables
   product: any;
   isSpinning: boolean = false;
   progressTimerOut: number = 1200;
@@ -66,13 +66,17 @@ export class ImageComponent {
   form: any;
   initialImageFormState: any;
   initialSelectedImage: string | ArrayBuffer | null = null; 
+  productId: any;
+  model: any;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private iS: GoogleDriveService,
     private router: Router,
     private pS: ProductService,
-    public buttonService: ButtonService
+    public buttonService: ButtonService,
+    private cdRef: ChangeDetectorRef
   ) 
   {
     this.imageForm = this.formBuilder.group({
@@ -131,7 +135,7 @@ export class ImageComponent {
 
     this.pS.getAllProduct().subscribe((data) => {
       console.log(data);
-      this.product = data.map((product, index) =>({...product, index: index + 1}));
+      this.product = data;
     });
     
     this.iS.getAllImage().subscribe((data) => {
@@ -145,92 +149,33 @@ export class ImageComponent {
 
 
 
-openImage(imageId: number): void {
+openImage(imageId: number) {
     this.iS.getImageById(imageId).subscribe((data) => {
       this.selectedImageId = data;
+      // console.log('Selected Image ID:',data)
     },
     (error) => {
       console.error('Error', error);
   });
 }
 
-openProduct(productId: number): void {
-  this.pS.getProductById(productId).subscribe((data) => {
-    this.seclectedProductId = data;
-  },
-  (error) => {
-    console.error('Error', error);
-});
-}
-
-  onUpdate(id: number): void {
-    this.router.navigate(['/image-edition', id]);
-    this.buttonService.setShowButton2(true)
+  openProduct(productId: number) {
+    this.pS.getProductById(productId).subscribe((data) => {
+      const productData = JSON.parse(data);
+      this.seclectedProductId = productData;
+      // console.log('Selected Product ID:', productData)
+      // for(let i of this.seclectedProductId){
+      //   this.setProduct(i.id, i.model);
+      // }
+    },
+    (error) => {
+      console.error('Error', error);
+  });
   }
 
-  fnDeleteImage(id: any) {
-    const imageToDelete = this.images.find((image: {id: any;}) => image.id == id);
-    if (imageToDelete) {
-      swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: false
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Gửi yêu cầu xóa đến backend
-          this.iS.deleteImage(id).subscribe(() => {
-            this.isSpinning = true;
-            setTimeout(() => {
-              this.isSpinning = false;
-              Swal.fire({
-                title: 'Deleted!',
-                text: 'Your data has been deleted.',
-                icon: 'success',
-                confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
-                timer: 2000
-              })
-              console.log('Ảnh đã được xóa thành công');
-              window.location.reload();
-            },this.progressTimerOut);
-            this.refreshTable();
-          }, (error) => {
-            this.isSpinning = false;
-            Swal.fire({
-              title: 'Error',
-              text: 'Something went wrong. Please try again!',
-              icon: 'error',
-              confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
-              timer: 2000
-            });
-            console.error('Đã xảy ra lỗi khi xóa ảnh:', error);
-          });
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          this.isSpinning = true;
-          setTimeout(() => {
-            this.isSpinning = false;
-            Swal.fire({
-              title: 'Cancelled!',
-              text: 'Your data is safe :)',
-              icon: 'success',
-              confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
-              timer: 2000
-            });
-          },this.progressTimerOut);
-        }
-      });
-    } else {
-      // Hiển thị thông báo lỗi khi id không tồn tại trong danh sách
-      swalWithBootstrapButtons.fire(
-        'Error',
-        'Image with the specified ID does not exist!',
-        'error'
-      );
-      setTimeout(() => this.isSpinning = false,this.progressTimerOut);
-    } 
+  setProduct(productId: any, model: any){
+    this.productId = productId;
+    this.model = model;
   }
 
   refreshImageTable() {
@@ -271,16 +216,13 @@ openProduct(productId: number): void {
     }
   }
 
-  uploadImage(): void {
-    if (this.seclectedProductId && this.seclectedProductId.id !== undefined) {
-      this.imageForm.value.productId = this.seclectedProductId.id;
-    }
+  uploadImage() {
     if (!this.selectedImage) {
       console.log('Image cant find');
       return;
     }
-    const fileInput = document.getElementById('imageFile') as HTMLInputElement;
-    const productId = this.imageForm.value.productId; 
+    const fileInput = document.getElementById('imageCreate') as HTMLInputElement;
+    const productId = this.seclectedProductId.id; 
     const statusImage = this.imageForm.value.statusImage; 
     const file = (fileInput.files as FileList)[0];
     this.iS.createImage(file, productId, statusImage).subscribe(
@@ -292,7 +234,7 @@ openProduct(productId: number): void {
         console.error('Error uploading image', error);
       }
     );
-    window.location.reload();
+    // window.location.reload();
   }
 
   deleteImage(id: any){
@@ -307,7 +249,7 @@ openProduct(productId: number): void {
       }
     );
     this.handleClose();
-    window.location.reload();
+    // window.location.reload();
   }
 
   updateImage(id: any){
@@ -319,7 +261,7 @@ openProduct(productId: number): void {
       return;
     }
 
-    const fileInput = document.getElementById('imageCreate') as HTMLInputElement;
+    const fileInput = document.getElementById('imageUpdate') as HTMLInputElement;
     const statusImage = this.imageForm.value.statusImage; 
     const file = (fileInput.files as FileList)[0];
     this.iS.updateImage(file, statusImage, id).subscribe(
@@ -332,7 +274,7 @@ openProduct(productId: number): void {
       }
     );
     this.handleClose();
-    window.location.reload();
+    // window.location.reload();
   }
 
   enableInputs() {
@@ -358,8 +300,8 @@ openProduct(productId: number): void {
       this.allowInputEdit = true;
   }
 
-  resetFormAndImage(): void {
-    this.imageForm.setValue(this.initialImageFormState);
-    this.selectedImage = this.initialSelectedImage;
-  }
+  // resetFormAndImage(): void {
+  //   this.imageForm.setValue(this.initialImageFormState);
+  //   this.selectedImage = this.initialSelectedImage;
+  // }
 }

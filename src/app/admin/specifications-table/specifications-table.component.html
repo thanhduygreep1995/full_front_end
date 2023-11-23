@@ -53,13 +53,70 @@
                                 <tr *ngFor="let s of specs; let i = index">
                                     <!-- <td hidden>{{ s.id }}</td> -->
                                     <td class="col-2">{{ i + 1 }}</td>
-                                    <td>{{ s.processor }}</td>
-                                    <td>{{ s.graphicsCard }}</td>
-                                    <td>{{ s.ram }}</td>
-                                    <td>{{ s.storage }}</td>
-                                    <td>{{ s.display }}</td>
-                                    <td>{{ s.operatingSystem }}</td>
-                                    <td>{{ s.camera }}</td>
+                                    <td>
+                                        <div *ngIf="s.processor; else defaultImage">
+                                            {{ s.processor }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+
+                                    <td>
+                                        <div *ngIf="s.graphicsCard; else defaultImage">
+                                            {{ s.graphicsCard }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.ram; else defaultImage">
+                                            {{ s.ram }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.storage; else defaultImage">
+                                            {{ s.storage }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.display; else defaultImage">
+                                            {{ s.display }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.operatingSystem; else defaultImage">
+                                            {{ s.operatingSystem }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.camera; else defaultImage">
+                                            {{ s.camera }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
                                     <td class="col-2">
                                         <button class="btn mx-2" style="background-color: cornflowerblue;" (click)="onUpdate(s.id)">
                                             <i class="fa fa-pencil"></i>

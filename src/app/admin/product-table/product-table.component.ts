@@ -60,7 +60,7 @@ export class ProductTableComponent implements OnInit {
   categories: any;
   isSpinning: boolean = false;
   progressTimerOut: number = 1200;
-  seclectedProductId: any;
+  seclectedId: any;
   selectedImage: string | ArrayBuffer | null = null;
 
   constructor(
@@ -245,7 +245,7 @@ export class ProductTableComponent implements OnInit {
   }
 
   openProduct(productId: number): void {
-    this.seclectedProductId= productId;
+    this.seclectedId= productId;
   }
 
   updateThumbImage(id: any){

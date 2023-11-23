@@ -19,7 +19,7 @@ export class OrderDetailService {
     return this.http.get(this.baseUrl + '/' + id);
   }
   getOrderDetailByOrderId(id: any) {
-    return this.http.get(this.baseUrl + '/getorderdetailbyorderid/' + id);
+    return this.http.get(this.baseUrl + '/getByOrder/' + id);
   }
   updateQuantityOrderDetail(id: number, order: any): Observable<any> {
     const url = `${this.baseUrl}/quantity/${id}`;

@@ -116,7 +116,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="form-group">
-                            <input type="text" id="productId" name="productId" class="form-control" value="{{ seclectedProductId }}" hidden>
+                            <input type="text" id="productId" name="productId" class="form-control" value="{{ seclectedId }}" hidden>
                         </div>
                         <div class="form-group">
                             <label for="imageFile">Select Image:</label>
@@ -128,7 +128,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateThumbImage(seclectedProductId)">Update Image</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateThumbImage(seclectedId)">Update Image</button>
             </div>
         </div>
     </div>
