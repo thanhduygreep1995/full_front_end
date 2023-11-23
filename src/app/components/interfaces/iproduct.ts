@@ -17,6 +17,10 @@ export interface IProduct {
         price:number;
         updateDate:string;
         categoryId: number;
-        Images: [];
+
+
+
+
+        
     
 }

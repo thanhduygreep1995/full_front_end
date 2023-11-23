@@ -20,6 +20,7 @@ import { ProductService } from '../services/product/product.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
+  
   rating: any = 0;
   products: any;
   infoProduct: any;

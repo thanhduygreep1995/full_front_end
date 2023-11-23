@@ -128,35 +128,36 @@
 
 
           <div class="ml-auto md:ml-0">
-               <p class="text-primary text-sm font-semibold ">{{item.tongTien |currency:".":"":"6.0"}} </p>
+               <p class="text-primary text-sm font-semibold ">{{item.tongTien |currency:".":"":"6.0"}} VNĐ </p>
           </div>
 
 
      </div>
+     <div class="lg:col-span-2">
      <div class="flex justify-between my-3 text-gray-800 font-semibold uppercase">
           <h4>Total:</h4>
           <h4>{{ getTotal() | currency:".":"":"6.0"}} VNĐ</h4>
-
+     
      </div>
-                          <!-- Coupon  -->
-                         <div class="flex mb-4" style="margin-top: 10px;">
-                              
-                              <input type="text"
-                                   class="pl-4 w-full border border-r-0 border-primary py-2 px-3 rounded-l-md focus:ring-primary focus:border-primary text-sm "
-                                   placeholder="Coupon" />
-               
-                              <button type="submit"
-                                   class="bg-primary border border-primary text-white px-5 font-medium rounded-r-md hover\:bg-transparent hover\:text-primary transition text-sm w-full block text-center ">Apply</button>
-               
-                         </div>
-                         <!-- ---- End Coupon--->
-          <a (click)="taodonhang()" routerLink="/oder-complete"
-               class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm w-full block text-center ">
-               Place Order
-          </a>
-
+     <!-- Coupon  -->
+     <div class="flex mb-4" style="margin-top: 10px;">
+     
+          <input type="text"
+               class="pl-4 w-full border border-r-0 border-primary py-2 px-3 rounded-l-md focus:ring-primary focus:border-primary text-sm "
+               placeholder="Coupon" />
+     
+          <button type="submit"
+               class="bg-primary border border-primary text-white px-5 font-medium rounded-r-md hover\:bg-transparent hover\:text-primary transition text-sm w-full block text-center ">Apply</button>
+     
      </div>
-
+     <!-- ---- End Coupon--->
+     <a (click)="taodonhang()" routerLink="/oder-complete"
+          class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm w-full block text-center ">
+          Place Order
+     </a>
+     
+     </div>
+     </div>
 
      <!-- ---- End Order Summary--->
 
