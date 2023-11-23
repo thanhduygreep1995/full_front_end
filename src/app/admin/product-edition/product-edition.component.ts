@@ -229,9 +229,7 @@ export class ProductEditionComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 2000
               })
-            }, this.progressTimerOut)
-      
-            ;
+            }, this.progressTimerOut);
           },
           (error) => {
             setTimeout(() => {
