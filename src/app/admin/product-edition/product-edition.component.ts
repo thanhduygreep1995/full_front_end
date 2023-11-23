@@ -271,6 +271,35 @@ fnUpdateProduct() {
     origin_id:this.selectedOriginId
   };
   this.isSpinning = true;
+  this.pS.getAllProduct().subscribe((data) => {
+    console.log(data);
+    this.products = data;
+    for (let p of this.products) { 
+      if(this.productForm.value.price != p.price 
+        && this.productForm.value.stockQuantity != p.stockQuantity
+        && this.productForm.value.description != p.description
+        && this.productForm.value.discountPercentage != p.discountPercentage
+        && this.productForm.value.discountPrice != p.discountPrice
+        && this.productForm.value.status != ""
+        && this.selectedCategoryId != 0
+        && this.selectedBrandId != 0
+        && this.selectedOriginId != 0
+        ) {
+          break;
+      } 
+      if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
+        setTimeout(() => {
+          this.isSpinning = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Name and Model of Product is existed already',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }, this.progressTimerOut);
+        return;
+      }
+    }
     this.pS.updateProduct(this.id, productinfo).subscribe(
       (response) => {
         console.log('Successfully updated poduct!'),
@@ -293,8 +322,6 @@ fnUpdateProduct() {
         console.error('Failed to update product:', error);
       }
     );
-  };
 
-
+  });
 }
-
