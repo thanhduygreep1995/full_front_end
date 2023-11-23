@@ -7,6 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import { WishService } from 'src/app/components/services/wish.service';
 import { ProductService } from '../services/products.service';
 import { SearchService } from '../services/search.service';
+import { Pipe } from '@angular/core';
 registerLocaleData(localeFr, 'fr');
 @Component({
   selector: 'app-home',
@@ -53,7 +54,7 @@ this.listSP= res.body;
         this.filteredProducts = this.products;
       },
       error => {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
       }
     );
   }
