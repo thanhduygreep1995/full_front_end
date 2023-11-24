@@ -17,9 +17,8 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
 </div>
 <!-- Main content -->
 <section class="content" *ngIf="!isSpinning" [@fadeInOut]="!isSpinning">
@@ -42,7 +41,7 @@
                                         Category Name is required.
                                     </div>
 
-                                    <label for="description" class="form-label">Description</label
+                                    <!-- <label for="description" class="form-label">Description</label
                   >
                   <input
                     formControlName="description"
@@ -60,9 +59,9 @@
                     class="text-danger"
                   >
                     Category Description is required.
-                  </div>
+                  </div> -->
 
-                  <label for="categoryStatus" class="form-label">Status</label>
+                                    <label for="categoryStatus" class="form-label">Status</label>
                                     <select formControlName="status" class="form-control select2" style="width: 100%">
                     <option value="ACTIVE">ACTIVE</option>
                     <option value="INACTIVE">INACTIVE</option>

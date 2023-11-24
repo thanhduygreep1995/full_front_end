@@ -70,7 +70,7 @@ export class CategoryEditionComponent implements OnInit {
       const nameControl = this.infoCategory.controls['name'].invalid;
       const descriptionControl =
         this.infoCategory.controls['description'].invalid;
-      this.ButtonSave = nameControl || descriptionControl;
+      this.ButtonSave = nameControl;
       // this.ButtonSave = this.infoCategory.invalid; validate thất cả
     });
     this.infoCategory.valueChanges.subscribe(() => {
@@ -80,7 +80,7 @@ export class CategoryEditionComponent implements OnInit {
       const nameControl = this.infoCategory.controls['name'].invalid;
       const descriptionControl =
         this.infoCategory.controls['description'].invalid;
-      this.ButtonUpdate  = nameControl || descriptionControl;
+      this.ButtonUpdate  = nameControl;
     });
   }
 
@@ -165,7 +165,6 @@ export class CategoryEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated category!');
-          window.location.reload();
           this.infoCategory.reset();
           this.defaultComboBox();
           Swal.fire({
@@ -173,6 +172,8 @@ export class CategoryEditionComponent implements OnInit {
             title: 'Successfully updated category!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
+            window.location.reload();
           })
         }, this.progressTimerOut);
       },

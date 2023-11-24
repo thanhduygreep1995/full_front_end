@@ -220,8 +220,10 @@ fnUpdateCustomer() {
             title: 'Successfully updated Order!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
+            window.location.reload();
           })
-        }, this.progressTimerOut),window.location.reload();
+        }, this.progressTimerOut)
       },
       (error) => {
         console.error('Failed to update Order:', error);

@@ -135,13 +135,14 @@ export class BrandEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated brand!');
-          window.location.reload();
           this.infoBrand.reset();
           Swal.fire({
             icon: 'success',
             title: 'Successfully updated brand!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
+            window.location.reload();
           })
         }, this.progressTimerOut);
       },
@@ -153,7 +154,7 @@ export class BrandEditionComponent implements OnInit {
             title: 'Your work has not been updated',
             showConfirmButton: false,
             timer: 2000
-          });
+          })
         }, this.progressTimerOut);
         console.error('Failed to update Brand:', error);
       }

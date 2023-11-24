@@ -25,6 +25,7 @@ interface ProductResponse {
   model: any;
   price: any;
   stockQuantity: any;
+  thumbnail: any;
   description: any;
   discountPercentage: any;
   discountPrice: any;
@@ -63,6 +64,7 @@ export class ProductEditionComponent implements OnInit {
   ButtonSave: boolean = true;
   ButtonDelete: boolean = true;
   ButtonUpdate: boolean = true;
+
   categories!: any[];
   Origin!: any[];
   brands!: any[];
@@ -93,6 +95,7 @@ export class ProductEditionComponent implements OnInit {
       model: ['', Validators.required],
       price: ['', Validators.required],
       stockQuantity: ['', Validators.required, Validators.min(1)],
+      thumbnail:['',Validators.required],
       description: ['', Validators.required],
       discountPercentage: ['', Validators.required],
       discountPrice: ['', Validators.required],
@@ -184,6 +187,7 @@ export class ProductEditionComponent implements OnInit {
       model: this.productForm.value.model,
       price: this.productForm.value.price,
       stockQuantity: this.productForm.value.stockQuantity,
+      thumbnail: this.productForm.value.thumbnail,
       description: this.productForm.value.description,
       discountPercentage: this.productForm.value.discountPercentage,
       discountPrice: this.productForm.value.discountPrice,
@@ -197,40 +201,59 @@ export class ProductEditionComponent implements OnInit {
       origin: {
         id: this.selectedOriginId
       }
-  };
+  }; 
   this.isSpinning = true;
-  this.pS.createProduct(productinfo).subscribe(
-    (response) => {
-      console.log('Successfully Create Product!');
-      this.router.navigate(['/product-table']);
-      setTimeout(() => {
-        this.isSpinning = false;
-        console.log('Successfully Create Product!');
-        this.productForm.reset();
-        this.defaultStatus();
-        Swal.fire({
-          icon: 'success',
-          title: 'Successfully Create Product!',
-          showConfirmButton: false,
-          timer: 2000
-        })
-      }, this.progressTimerOut)
-
-      ;
-    },
-    (error) => {
-      setTimeout(() => {
-        this.isSpinning = false;
-        Swal.fire({
-          icon: 'error',
-          title: 'Your work has not been saved',
-          showConfirmButton: false,
-          timer: 2000
-        })
-      }, this.progressTimerOut);
-      console.error('Failed to Create Product:', error);
+  this.pS.getAllProduct().subscribe((data) => {
+    console.log(data);
+    this.products = data;
+    for (let p of this.products) {
+      if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
+        setTimeout(() => {
+          this.isSpinning = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Name and Model of Product is existed already',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }, this.progressTimerOut);
+        return;
+      } 
     }
-  );
+    this.pS.createProduct(productinfo).subscribe(
+      (response) => {
+        console.log('Successfully Create Product!');
+        this.router.navigate(['/product-table']);
+        setTimeout(() => {
+          this.isSpinning = false;
+          console.log('Successfully Create Product!');
+          this.productForm.reset();
+          this.defaultStatus();
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully Create Product!',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }, this.progressTimerOut);
+      },
+      (error) => {
+        setTimeout(() => {
+          this.isSpinning = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Your work has not been saved',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }, this.progressTimerOut);
+        console.error('Failed to Create Product:', error);
+      }
+    );
+  }, (err) => {
+    console.log(err);
+  });
+
 }
 fnUpdateProduct() {
   const productinfo = {
@@ -238,6 +261,7 @@ fnUpdateProduct() {
     model: this.productForm.value.model,
     price: this.productForm.value.price,
     stockQuantity: this.productForm.value.stockQuantity,
+    thumbnail: this.productForm.value.thumbnail,
     description: this.productForm.value.description,
     discountPercentage: this.productForm.value.discountPercentage,
     discountPrice: this.productForm.value.discountPrice,
@@ -247,28 +271,63 @@ fnUpdateProduct() {
     origin_id:this.selectedOriginId
   };
   this.isSpinning = true;
-  this.pS.updateProduct(this.id, productinfo).subscribe(
-    (response) => {
-      console.log('Successfully updated poduct!'),
-      setTimeout(() => {
-        this.isSpinning = false;
-        console.log('Successfully updated product!');
-        window.location.reload();
-        this.productForm.reset();
-        this.defaultStatus();
-        Swal.fire({
-          icon: 'success',
-          title: 'Successfully updated product!',
-          showConfirmButton: false,
-          timer: 2000
-        })
-      }, this.progressTimerOut),window.location.reload();
-
-    },
-    (error) => {
-      console.error('Failed to update product:', error);
+  this.pS.getAllProduct().subscribe((data) => {
+    console.log(data);
+    this.products = data;
+    for (let p of this.products) { 
+      if((this.productForm.value.name == p.name 
+        && this.productForm.value.model == p.model)
+        && (this.productForm.value.price != p.price 
+        || this.productForm.value.stockQuantity != p.stockQuantity
+        || this.productForm.value.description != p.description
+        || this.productForm.value.discountPercentage != p.discountPercentage
+        || this.productForm.value.discountPrice != p.discountPrice
+        || this.productForm.value.status != p.status
+        || this.selectedCategoryId != p.category.id
+        || this.selectedBrandId != p.brand.id
+        || this.selectedOriginId != p.origin.id)
+        ) {
+          break;
+      } 
+      if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
+        setTimeout(() => {
+          this.isSpinning = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Name and Model of Product is existed already',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }, this.progressTimerOut);
+        return;
+      }
     }
-  );
-}
+    this.pS.updateProduct(this.id, productinfo).subscribe(
+      (response) => {
+        setTimeout(() => {
+          this.isSpinning = false;
+          console.log('Successfully updated product!');
+          
+          this.productForm.reset();
+          this.defaultStatus();
 
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully updated product!',
+            showConfirmButton: false,
+            timer: 2000
+          }).then(() => {
+            window.location.reload();
+          })
+        }, this.progressTimerOut);
+        
+        console.log('Successfully updated product!');
+      },
+      (error) => {
+        console.error('Failed to update product:', error);
+      }
+    );
+
+  });
+    }
 }
