@@ -1,0 +1,107 @@
+<div class="container py-4 flex justify-between">
+    <div class="flex gap-3 items-center">
+        <a href="index.html" class="text-primary text-base">
+            <i class="fas fa-home"></i>
+        </a>
+        <span class="text-sm text-gray-500">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <p class="text-gray-500 font-medium uppercase">My Account</p>
+    </div>
+</div>
+<!-- ---- End BreadCrum --->
+<!-- ---- Account Wrapper--->
+
+<div class="container lg:grid grid-cols-12 items-start gap-6 pt-4 pb-16">
+    <!-- ---- Sidebar --->
+    <div class="col-span-3">
+        <app-account-sidebar></app-account-sidebar>
+    </div>
+    <!-- ----End Sidebar--->
+
+    <!-- ----Account Content --->
+    <div class="col-span-9 gap-4 mt-6 lg:mt-0">
+        <div class="max-w-3xl mx-auto bg-white p-8 shadow">
+            <h1 class="text-2xl font-semibold mb-4">Voucher Page</h1>
+
+            <!-- Input to add a new voucher -->
+            <form [formGroup]="addVoucherForm">
+                <div class="mb-4">
+                    <label for="voucherValue" class="block text-sm font-medium text-gray-600">Enter Code
+                        Voucher:</label>
+                    <input type="text" id="codeVoucher" name="codeVoucher" formControlName="codeVoucher"
+                        placeholder="Enter discount code" autocomplete="off"
+                        class="mt-1 p-2 w-full rounded-md border border-gray-300" />
+                    <button (click)="addMyVoucher()"
+                        class="mt-2 bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark transition uppercase font-roboto font-medium">Apply</button>
+                </div>
+            </form>
+            <!-- List of vouchers -->
+            <h2 class="text-xl font-semibold mb-2">My Vouchers</h2>
+            <div *ngIf="vouchers.length > 0" class="mt-4">
+                <ul>
+                    <li *ngFor="let voucher of currentVouchers" [class.active-voucher]="voucher.status === 'ACTIVE'"
+                        [class.inactive-voucher]="voucher.status === 'INACTIVE'"
+                        [class.used-voucher]="voucher.status === 'USED'"
+                        [ngClass]="{'bg-gray-300': voucher.status !== 'ACTIVE'}" class="mb-2">
+                        <div class="grid grid-cols-12 gap-4 border-dashed border-2 border-gray-400 rounded-md">
+                            <div class="col-span-4 p-5 text-center">
+                                <div class="row-span-1 p-1 ">
+                                    <p>{{ voucher.value | number: '1.0-0' }} VND</p>
+                                </div>
+                                <div class="row-span-1 bg-red-400 text-white p-1">
+                                    <p>{{ voucher.codeVoucher }}</p>
+                                </div>
+                            </div>
+                            <div class="col-span-8 p-3">
+                                <div class="flex justify-between">
+                                    <span class="text-green-700">
+                                        Discount code {{ voucher.value | number: '1.0-0' }} VND for all products.
+                                    </span>
+                                    <button (click)="copyContent(voucher.codeVoucher)"
+                                        class="copy-button text-gray-500 py-2 px-4 rounded-md font-medium flex items-center">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <hr>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500">
+                                        Can only be applied at the Egu_Store app.
+                                        <p>Expired: {{ voucher.expiredDate | date: 'HH:mm dd/MM/yyyy' }}</p>
+                                    </span>
+                                    <span *ngIf="voucher.status === 'ACTIVE'" class="text-green-700">Use it now</span>
+                                    <span *ngIf="voucher.status === 'INACTIVE' || voucher.status === 'EXPIRED'" class="text-red-700">Can not use</span>
+                                    <span *ngIf="voucher.status === 'USED'" class="text-red-700">Used</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="pagination flex items-center justify-between mt-4">
+                    <div>
+                        <button (click)="previousPage()" [disabled]="currentPage === 1"
+                            class="px-3 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Previous
+                        </button>
+                    </div>
+                    <div class="text-gray-700">
+                        Page {{ currentPage }} of {{ totalPages }}
+                    </div>
+                    <div>
+                        <button (click)="nextPage()" [disabled]="currentPage === totalPages"
+                            class="px-3 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="vouchers.length === 0" class="mt-8">
+                <p class="text-gray-700">No vouchers available.</p>
+            </div>
+            <div *ngIf="loading"
+                class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+                <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-primary"></div>
+            </div>
+        </div>
+    </div>
+</div>
