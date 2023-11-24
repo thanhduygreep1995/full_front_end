@@ -16,7 +16,7 @@ import { OderCompleteComponent } from '../oder-complete/oder-complete.component'
 })
 export class CheckoutComponent {
   cartItems: any[] = [];
-
+  tt: number = this.cartService.tongtien();
   cities!: any[];
   districts!: any[];
   wards!: any[];
@@ -128,9 +128,7 @@ export class CheckoutComponent {
   }
   applyDiscount() {
     if (this.voucher && this.voucher.value) {
-      let tongtien = this.getTotal(); // Lấy tổng số tiền từ cartService
-      tongtien -= this.voucher.value; // Áp dụng giảm giá
-      this.cartService.setTongTien(tongtien);
+      this.tt -= this.voucher.value;
     }
     this.applied = true;
   }
@@ -179,12 +177,12 @@ export class CheckoutComponent {
       this.router.navigate(['/oder-complete']);
     } else if (this.paymentMethod === 'VnPay') {
       this.receiveCode(this.formCoupon.value.codeVoucher);
-      this.createPayment(this.getTotal());
+      this.createPayment(this.tt);
     }
   }
-  getTotal(): number {
-    return this.cartService.tongtien();
-  }
+  // getTotal(): number {
+  //   return this.tt;
+  // }
 
   processPayment() {
     // Implement payment processing logic here
