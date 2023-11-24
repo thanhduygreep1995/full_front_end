@@ -287,19 +287,6 @@ fnUpdateProduct() {
         || this.selectedBrandId != p.brand.id
         || this.selectedOriginId != p.origin.id)
         ) {
-                  setTimeout(() => {
-          this.isSpinning = false;
-          console.log('Successfully updated product!');
-          
-          this.productForm.reset();
-          this.defaultStatus();
-          Swal.fire({
-            icon: 'success',
-            title: 'Successfully updated product!',
-            showConfirmButton: false,
-            timer: 2000
-          })
-        }, this.progressTimerOut);
           break;
       } 
       if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
@@ -317,7 +304,23 @@ fnUpdateProduct() {
     }
     this.pS.updateProduct(this.id, productinfo).subscribe(
       (response) => {
-        window.location.reload();
+        setTimeout(() => {
+          this.isSpinning = false;
+          console.log('Successfully updated product!');
+          
+          this.productForm.reset();
+          this.defaultStatus();
+          window.location.reload();
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully updated product!',
+            showConfirmButton: false,
+            timer: 2000
+          }).then(() => {
+
+          })
+        }, this.progressTimerOut);
+        
         console.log('Successfully updated product!');
       },
       (error) => {
