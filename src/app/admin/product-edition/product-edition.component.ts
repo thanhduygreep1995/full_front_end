@@ -275,15 +275,17 @@ fnUpdateProduct() {
     console.log(data);
     this.products = data;
     for (let p of this.products) { 
-      if(this.productForm.value.price != p.price 
-        && this.productForm.value.stockQuantity != p.stockQuantity
-        && this.productForm.value.description != p.description
-        && this.productForm.value.discountPercentage != p.discountPercentage
-        && this.productForm.value.discountPrice != p.discountPrice
-        && this.productForm.value.status != ""
-        && this.selectedCategoryId != 0
-        && this.selectedBrandId != 0
-        && this.selectedOriginId != 0
+      if((this.productForm.value.name == p.name 
+        && this.productForm.value.model == p.model)
+        && ((this.productForm.value.price != p.price 
+        || this.productForm.value.stockQuantity != p.stockQuantity
+        || this.productForm.value.description != p.description
+        || this.productForm.value.discountPercentage != p.discountPercentage
+        || this.productForm.value.discountPrice != p.discountPrice)
+        || (this.productForm.value.status != p.status
+        && this.selectedCategoryId != p.category.id
+        && this.selectedBrandId != p.brand.id
+        && this.selectedOriginId != p.origin.id))
         ) {
           break;
       } 
