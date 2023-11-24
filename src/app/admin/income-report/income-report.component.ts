@@ -292,7 +292,7 @@ export class IncomeReportComponent implements OnInit {
           this.chartRevenue.splice(0, this.chartRevenue.length);
           this.IncomeReports = report;
           for (let b of this.IncomeReports) {
-            b.date =  moment.default(b.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+            // b.date =  moment.default(b.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
             this.chartDate.push(b.date);
             this.chartRevenue.push(b.revenue);
             this.chartOrder.push(b.orders);
@@ -341,17 +341,19 @@ export class IncomeReportComponent implements OnInit {
     return tableData;
   }
 
+
   drawChart(): void {
     const ctx = document.getElementById('lineChart') as HTMLCanvasElement;
     if (this.lineChart) {
       this.lineChart.destroy(); // Hủy biểu đồ cũ nếu đã được vẽ trước đó
     }
+    const formattedDates = this.chartDate.map((date) => moment.default(date).format('DD/MM/YYYY'));
     console.log('Chart Dates:', this.chartDate);
     console.log('Chart Revenue:', this.chartRevenue);
     this.lineChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: this.chartDate,
+        labels: formattedDates,
         datasets: [
           // Dataset cho bar chart
           {
@@ -377,7 +379,7 @@ export class IncomeReportComponent implements OnInit {
       },
       options: {
         scales: {
-          
+
           yAxes: [
             {
               id: 'y',
@@ -429,7 +431,7 @@ export class IncomeReportComponent implements OnInit {
           this.chartRevenue.splice(0, this.chartRevenue.length);   
           this.IncomeReports = report;   
           for (let b of this.IncomeReports) {
-            b.date =  moment.default(b.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+            // b.date =  moment.default(b.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
             this.chartDate.push(b.date);
             this.chartRevenue.push(b.revenue);
             this.chartOrder.push(b.orders);

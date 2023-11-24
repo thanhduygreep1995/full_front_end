@@ -12,9 +12,9 @@ export class AppComponent implements OnInit{
   switchUICondtion = true;
   ngOnInit(): void {
     initFlowbite();
-    setInterval(()=>{
-      this.switchUICondtion = !this.switchUICondtion
-    },5000)
+    // setInterval(()=>{
+    //   this.switchUICondtion = !this.switchUICondtion
+    // },5000)
   }
   
 }

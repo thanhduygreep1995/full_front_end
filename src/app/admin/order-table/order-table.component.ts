@@ -83,6 +83,7 @@ export class OrderTableComponent implements OnInit {
   selectedOrderId!: any;
   selectedStatus!: 'PENDING';
   orderdetails: any;
+  order: any;
   constructor(
     private formBuilder: FormBuilder,
     private oS: OrderService,
@@ -114,6 +115,7 @@ export class OrderTableComponent implements OnInit {
       phone: [''],
       email: [''],
       totalPrice: [''],
+      productPrice: [''], // Thêm trường này
       customer: this.formBuilder.group({
         id: [""],
       }),
@@ -132,7 +134,9 @@ export class OrderTableComponent implements OnInit {
         this.id = params['id'];
         this.oS.getOrderById(this.id).subscribe(
           (response: Object) => {
+
             this.orderForm.patchValue(response as orderResponse);
+            console.log('orderdetails:', response);
           },
           (error) => {
             console.log(error);
@@ -159,6 +163,11 @@ export class OrderTableComponent implements OnInit {
       });
     });
 
+
+  }
+
+
+  onAddress(){
 
   }
 
@@ -281,7 +290,13 @@ export class OrderTableComponent implements OnInit {
     this.dtOp = this.getDTOptions();
     this.DS.getOrderDetailByOrderId(id).subscribe((data) => {
       this.orderdetails = data;
+      console.log('orderdetails:', data);
+
+      if (this.orderdetails && this.orderdetails.length > 0) {
+        this.orderDetailForm.get('productPrice').setValue(this.orderdetails[0].product.price);
+      }
     })
+    this.updateTotalPriceProduct();
   }
   onDetail(id: number): void {
     this.router.navigate(['/orders-detail-table', id]);
@@ -295,9 +310,9 @@ export class OrderTableComponent implements OnInit {
     this.oS.getOrder().subscribe(
       (newData) => {
         this.orders = newData;
-        for (let o of this.orders) {
-          o.orderDate =  moment.default(o.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
-        };
+        // for (let o of this.orders) {
+        //   o.orderDate =  moment.default(o.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        // };
         console.log('Dữ liệu mới đã được cập nhật:', this.orders);
       },
       (error) => {
@@ -305,6 +320,8 @@ export class OrderTableComponent implements OnInit {
       }
     );
   }
+
+
 
   fnUpdateOrder() {
     if (this.selectedOrderId) { // Kiểm tra xem selectedOrderId có tồn tại
@@ -316,7 +333,6 @@ export class OrderTableComponent implements OnInit {
         (response) => {
           console.log('Successfully updated Order!');
           this.refreshTable(); // Tải lại dữ liệu sau khi cập nhật thành công
-          window.location.reload();
           setTimeout(() => {
             this.isSpinning = false;
             this.orderForm.reset();
@@ -326,8 +342,10 @@ export class OrderTableComponent implements OnInit {
               title: 'Successfully updated Order!',
               showConfirmButton: false,
               timer: 2000
+            }).then(() => {
+              window.location.reload();
             })
-          }, this.progressTimerOut),window.location.reload();
+          }, this.progressTimerOut)
         },
         (error) => {
           console.error('Failed to update Order:', error);
@@ -337,17 +355,19 @@ export class OrderTableComponent implements OnInit {
       console.error('Không có id hợp lệ để cập nhật đơn hàng.');
     }
   }
+
+
   fnUpdateQuantityOrderDetail() {
     if (this.selectedOrderId) { // Kiểm tra xem selectedOrderId có tồn tại
       const orderdetailinfo = {
-        quantity: this.orderDetailForm.value.quantity 
+        quantity: this.orderDetailForm.value.quantity,
+        totalPrice: this.orderDetailForm.value.totalPrice 
       }; 
       this.isSpinning = true;
       this.oD.updateQuantityOrderDetail(this.selectedOrderId, orderdetailinfo).subscribe(
         (response) => {
           console.log('Successfully updated Quantity Order Detail!');
           this.refreshTable(); // Tải lại dữ liệu sau khi cập nhật thành công
-          window.location.reload();
           setTimeout(() => {
             this.isSpinning = false;
             this.orderForm.reset();
@@ -357,8 +377,10 @@ export class OrderTableComponent implements OnInit {
               title: 'Successfully updated Order!',
               showConfirmButton: false,
               timer: 2000
+            }).then(() => {
+              window.location.reload();
             })
-          }, this.progressTimerOut),window.location.reload();
+          }, this.progressTimerOut)
         },
         (error) => {
           console.error('Failed to update Order:', error);
@@ -440,6 +462,28 @@ export class OrderTableComponent implements OnInit {
     };
     return TotalPrice;
   }
+
+  updateTotalPriceProduct() {
+    const quantity = this.orderDetailForm.get('quantity').value;
+    const productPrice = this.orderDetailForm.get('productPrice').value;
   
+    // Đảm bảo cả hai giá trị là số trước khi thực hiện tính toán
+    if (!isNaN(quantity) && !isNaN(productPrice)) {
+      const totalPriceProduct = quantity * productPrice;
+      this.orderDetailForm.get('totalPrice').setValue(totalPriceProduct);
+    } else {
+      console.error('Quantity or product price is not a valid number.');
+    }
+  }
+
+    getTotalPriceProduct(): any {
+    let TotalPriceProduct = 0;
+    for (let o of this.orderdetails) {
+      TotalPriceProduct += o.product.price * o.quantity;
+    };
+    return TotalPriceProduct;
+  }
+
+
   
 }

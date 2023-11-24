@@ -40,9 +40,7 @@ export class ProductService {
   
 
   updateThumbImage(id: any, files: File){
-    const formData: FormData = new FormData();
-    formData.append('thumbImage', files, files.name);
     const url = `${this.baseUrl + '/image'}/${id}`;
-    return this.http.put(url, formData, { responseType: 'text' });
+    return this.http.put(url, files, { responseType: 'text' });
   }
 }

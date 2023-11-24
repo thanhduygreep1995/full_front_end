@@ -55,11 +55,11 @@
                                 <tr *ngFor="let b of CustomerReports; let i = index" class="print-hide">
                                     <td>{{ i + 1 }}</td>
                                     <td>{{ b.name }}</td>
-                                    <td>{{ b.revenue+" "| currency:",":"":"6.0"}} VNĐ</td>
+                                    <td>{{ b.revenue+" "| currency:",":"":"1.0"}} VNĐ</td>
                                     <td>{{ b.email }}</td>
                                     <td>{{ b.phone}}</td>
-                                    <td>{{ b.birth_date}}</td>
-                                    <td>{{ b.day_created }}</td>
+                                    <td>{{ b.birth_date| date:'dd/MM/yyyy'}}</td>
+                                    <td>{{ b.day_created| date:'dd/MM/yyyy' }}</td>
                                     <td>{{ b.status }}</td>
                                 </tr>
                             </tbody>

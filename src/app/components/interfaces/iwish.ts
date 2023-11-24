@@ -6,7 +6,7 @@ export interface IWish extends IProduct {
     price: number;
     soluong: number;
     hinh: string;
-    images: string;
+    thumbImage: string;
 
     solanxem: number;
     hot: number;

@@ -306,8 +306,8 @@ export class CustomerReportComponent implements OnInit {
           // this.chartRevenue.splice(0, this.chartRevenue.length);
           this.CustomerReports = report;
           for (let b of this.CustomerReports) {
-            b.birth_date =  moment.default(b.birth_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
-            b.day_created =  moment.default(b.day_created, 'YYYY-MM-DD').format('DD/MM/YYYY');
+            // b.birth_date =  moment.default(b.birth_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+            // b.day_created =  moment.default(b.day_created, 'YYYY-MM-DD').format('DD/MM/YYYY');
             if (b.revenue == 0) {
               this.countNoneBuyings++;
             }else{
@@ -462,8 +462,8 @@ export class CustomerReportComponent implements OnInit {
         if (report != null && Array.isArray(report) && report.length > 0) {
           this.CustomerReports = report;   
           for (let b of this.CustomerReports) {
-            b.birth_date =  moment.default(b.birth_date, 'YYYY-MM-DD').format('DD-MM-YYYY');
-            b.day_created =  moment.default(b.day_created, 'YYYY-MM-DD').format('DD-MM-YYYY');
+            // b.birth_date =  moment.default(b.birth_date, 'YYYY-MM-DD').format('DD-MM-YYYY');
+            // b.day_created =  moment.default(b.day_created, 'YYYY-MM-DD').format('DD-MM-YYYY');
             this.chartCustomerLabels.push(b.name);
             this.chartRevenue.push(b.revenue);
           };
@@ -498,8 +498,8 @@ export class CustomerReportComponent implements OnInit {
         this.countLocked = 0;
   
         for (let b of this.CustomerReports) {
-          b.birth_date = moment.default(b.birth_date, 'YYYY-MM-DD').format('DD-MM-YYYY');
-          b.day_created = moment.default(b.day_created, 'YYYY-MM-DD').format('DD-MM-YYYY');
+          // b.birth_date = moment.default(b.birth_date, 'YYYY-MM-DD').format('DD-MM-YYYY');
+          // b.day_created = moment.default(b.day_created, 'YYYY-MM-DD').format('DD-MM-YYYY');
   
           if (b.status == status) {
             this.countActive++;
