@@ -8,3 +8,9 @@
 .lx {
     display: flex;
 }
+.lg\:col-span-4 {
+    grid-column: span 5 / span 5;
+}
+.lg\:col-span-8 {
+    grid-column: span 7 / span 7;
+}
