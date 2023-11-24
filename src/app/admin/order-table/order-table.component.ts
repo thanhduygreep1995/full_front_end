@@ -316,7 +316,6 @@ export class OrderTableComponent implements OnInit {
         (response) => {
           console.log('Successfully updated Order!');
           this.refreshTable(); // Tải lại dữ liệu sau khi cập nhật thành công
-          window.location.reload();
           setTimeout(() => {
             this.isSpinning = false;
             this.orderForm.reset();
@@ -326,8 +325,10 @@ export class OrderTableComponent implements OnInit {
               title: 'Successfully updated Order!',
               showConfirmButton: false,
               timer: 2000
+            }).then(() => {
+              window.location.reload();
             })
-          }, this.progressTimerOut),window.location.reload();
+          }, this.progressTimerOut)
         },
         (error) => {
           console.error('Failed to update Order:', error);
@@ -347,7 +348,6 @@ export class OrderTableComponent implements OnInit {
         (response) => {
           console.log('Successfully updated Quantity Order Detail!');
           this.refreshTable(); // Tải lại dữ liệu sau khi cập nhật thành công
-          window.location.reload();
           setTimeout(() => {
             this.isSpinning = false;
             this.orderForm.reset();
@@ -357,8 +357,10 @@ export class OrderTableComponent implements OnInit {
               title: 'Successfully updated Order!',
               showConfirmButton: false,
               timer: 2000
+            }).then(() => {
+              window.location.reload();
             })
-          }, this.progressTimerOut),window.location.reload();
+          }, this.progressTimerOut)
         },
         (error) => {
           console.error('Failed to update Order:', error);
