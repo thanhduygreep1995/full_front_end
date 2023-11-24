@@ -165,7 +165,6 @@ export class CategoryEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated category!');
-          window.location.reload();
           this.infoCategory.reset();
           this.defaultComboBox();
           Swal.fire({
@@ -173,6 +172,8 @@ export class CategoryEditionComponent implements OnInit {
             title: 'Successfully updated category!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
+            window.location.reload();
           })
         }, this.progressTimerOut);
       },

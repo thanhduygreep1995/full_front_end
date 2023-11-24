@@ -189,13 +189,14 @@ export class SpecificationsEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated specification!');
-          window.location.reload();
           this.specForm.reset();
           Swal.fire({
             icon: 'success',
             title: 'Successfully updated specification!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
+            window.location.reload();
           })
         }, this.progressTimerOut);
       },
