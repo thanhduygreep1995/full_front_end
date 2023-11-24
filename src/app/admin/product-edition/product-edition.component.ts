@@ -30,9 +30,9 @@ interface ProductResponse {
   discountPercentage: any;
   discountPrice: any;
   status: any;
-  brand_id: any;  
-  category_id: any;  
-  origin_id: any;  
+  brandId: any;  
+  categoryId: any;  
+  originId: any;  
 }
 
 @Component({
@@ -100,13 +100,13 @@ export class ProductEditionComponent implements OnInit {
       discountPercentage: ['', Validators.required],
       discountPrice: ['', Validators.required],
       status: [''],
-      category: this.formBuilder.group({
+      categoryId: this.formBuilder.group({
         id: ["", Validators.required],
       }),
-      brand: this.formBuilder.group({
+      brandId: this.formBuilder.group({
         id: ["", Validators.required],
       }),
-      origin: this.formBuilder.group({
+      originId: this.formBuilder.group({
         id: ["", Validators.required],
       }),
   
@@ -187,18 +187,18 @@ export class ProductEditionComponent implements OnInit {
       model: this.productForm.value.model,
       price: this.productForm.value.price,
       stockQuantity: this.productForm.value.stockQuantity,
-      thumbnail: this.productForm.value.thumbnail,
+      // thumbnail: this.productForm.value.thumbnail,
       description: this.productForm.value.description,
       discountPercentage: this.productForm.value.discountPercentage,
       discountPrice: this.productForm.value.discountPrice,
       status: this.productForm.value.status,
-      category: {
+      categoryId: {
         id: this.selectedCategoryId,
       },
-      brand: {
+      brandId: {
         id: this.selectedBrandId
       },
-      origin: {
+      originId: {
         id: this.selectedOriginId
       }
   }; 
@@ -214,7 +214,7 @@ export class ProductEditionComponent implements OnInit {
             icon: 'error',
             title: 'Name and Model of Product is existed already',
             showConfirmButton: false,
-            timer: 2000
+            timer: 7000
           })
         }, this.progressTimerOut);
         return;
@@ -261,14 +261,20 @@ fnUpdateProduct() {
     model: this.productForm.value.model,
     price: this.productForm.value.price,
     stockQuantity: this.productForm.value.stockQuantity,
-    thumbnail: this.productForm.value.thumbnail,
+    // thumbnail: this.productForm.value.thumbnail,
     description: this.productForm.value.description,
     discountPercentage: this.productForm.value.discountPercentage,
     discountPrice: this.productForm.value.discountPrice,
     status: this.productForm.value.status,
-    category_id: this.selectedCategoryId,
-    brand_id:this.selectedBrandId,
-    origin_id:this.selectedOriginId
+    categoryId: {
+      id: this.selectedCategoryId,
+    },
+    brandId: {
+      id: this.selectedBrandId
+    },
+    originId: {
+      id: this.selectedOriginId
+    }
   };
   this.isSpinning = true;
   this.pS.getAllProduct().subscribe((data) => {
@@ -316,8 +322,6 @@ fnUpdateProduct() {
             title: 'Successfully updated product!',
             showConfirmButton: false,
             timer: 2000
-          }).then(() => {
-            window.location.reload();
           })
         }, this.progressTimerOut);
         

@@ -85,9 +85,9 @@ export class ProductTableComponent implements OnInit {
       discountPercentage: [''],
       discountPrice: [''],
       status: [''],
-      origin: [''],
-      brand: [''],
-      category: [''],
+      originId: [''],
+      brandId: [''],
+      categoryId: [''],
     });
   }
 
@@ -181,7 +181,7 @@ export class ProductTableComponent implements OnInit {
                 timer: 2000
               })
               console.log('Sản phẩm đã được xóa thành công');
-              window.location.reload();
+              this.refreshTable();
             },this.progressTimerOut);
             this.refreshTable();
           }, (error) => {
@@ -250,7 +250,7 @@ export class ProductTableComponent implements OnInit {
     this.pS.getProductById(productId).subscribe((data) => {
       const productData = JSON.parse(data);
       this.seclectedProductId = productData;
-      // console.log('Selected Product ID:', productData)
+      console.log('Selected Product ID:', data)
       // for(let i of this.seclectedProductId){
       //   this.setProduct(i.id, i.model);
       // }

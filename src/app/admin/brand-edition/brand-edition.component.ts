@@ -141,8 +141,6 @@ export class BrandEditionComponent implements OnInit {
             title: 'Successfully updated brand!',
             showConfirmButton: false,
             timer: 2000
-          }).then(() => {
-            window.location.reload();
           })
         }, this.progressTimerOut);
       },

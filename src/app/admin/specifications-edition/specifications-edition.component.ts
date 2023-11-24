@@ -61,7 +61,7 @@ export class SpecificationsEditionComponent implements OnInit {
 
   isSpinning: boolean = false;
   selectedProductId!: any;
-  Product!: any[];
+  product: any;
   progressTimerOut: number = 1200;
 
   constructor(
@@ -120,7 +120,8 @@ export class SpecificationsEditionComponent implements OnInit {
       this.Specs = data;
     });
     this.ps.getAllProduct().subscribe((data) =>{
-      this.Product = data;
+      this.product = data;
+      console.log('products', data);
     });
 
 
@@ -134,7 +135,7 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
-      product: {
+      productId: {
         id: this.selectedProductId
       }
     };
@@ -180,7 +181,9 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
-      product_id: this.selectedProductId
+      productId: {
+        id: this.selectedProductId
+      }
     };
     this.isSpinning = true;
     this.ss.updateSpec(this.id, Specinfo).subscribe(

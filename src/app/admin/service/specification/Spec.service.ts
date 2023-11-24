@@ -15,7 +15,7 @@ export class SpecService {
   }
 
   createSpec(spec: any): Observable<any> {
-    const url = `${this.baseUrl + '/create'}`;
+    const url = `${this.baseUrl}`;
     return this.http.post(url, spec, { responseType: 'text' });
   }
 

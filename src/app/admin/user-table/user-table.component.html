@@ -55,10 +55,10 @@
                                     <td>{{ i + 1 }}</td>
                                     <td>{{ c.firstName }}</td>
                                     <td>{{ c.lastName }}</td>
-                                    <td>{{ c.dateOfBirth }}</td>
+                                    <td>{{ c.dateOfBirth | date:'dd/MM/yyyy' }}</td>
                                     <td>{{ c.email }}</td>
                                     <td>{{ c.phoneNumber }}</td>
-                                    <td>{{ c.createDate }}</td>
+                                    <td>{{ c.createDate | date:'dd/MM/yyyy' }}</td>
                                     <td>{{ c.status }}</td>
                                     <td>{{ c.role.name }}</td>
                                     <td>

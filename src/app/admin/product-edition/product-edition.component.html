@@ -46,7 +46,7 @@
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedCategoryId">
                                             <option value="" selected disabled>Danh mục</option>
 
-                                      <option  *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                                      <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
                                     </select>
                                     </div>
                                     <div [formGroup]="productForm">
@@ -54,7 +54,7 @@
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedBrandId">
                                             <option value="" selected disabled>Hãng</option>
 
-                                      <option  *ngFor="let brand of brands"  [value]="brand.id">{{brand.name}}</option>
+                                      <option  *ngFor="let brand of brands"  value="{{brand.id}}">{{brand.name}}</option>
                                     </select>
                                     </div>
                                     <div [formGroup]="productForm">
@@ -62,7 +62,7 @@
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedOriginId">
                                             <option value="" selected disabled>Xuất Xứ</option>
 
-                                            <option  *ngFor="let origin of Origin" [value]="origin.id">{{origin.country}}</option>
+                                            <option  *ngFor="let origin of Origin" value="{{origin.id}}">{{origin.country}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -87,74 +87,37 @@
                                         Price min 1.
                                     </div>
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <label for="thumbnail" class="form-label">
                                         Thumb Nail</label>
                                     <input formControlName="thumbnail" type="text" class="form-control mb-2" name="thumbnail" id="thumbnail" placeholder="Enter Thumb Nail" />
                                     <div *ngIf="productForm.controls['thumbnail'].invalid && productForm.controls['thumbnail'].touched" class="text-danger">
                                         Thumb Nail is required.
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <label for="description" class="form-label">Description</label
-                              >
-                              <input
-                                  formControlName="description"
-                                  type="text"
-                                  class="form-control mb-2"
-                                  name="description"
-                                  id="description"
-                                  placeholder="Enter your Description"
-                              />
-                              <div
-                                  *ngIf="productForm.controls['description'].invalid && productForm.controls['description'].touched"
-                                  class="text-danger"
-                              >
-                                  Description is required.
-                              </div>
-                              <label for="discountPercentage" class="form-label"
-                                  >Discount</label
-                              >
-                              <input
-                                  formControlName="discountPercentage"
-                                  type="number"
-                                  class="form-control"
-                                  name="discountPercentage"
-                                  id="discountPercentage"
-                                  ngModel min="1"
-                                  placeholder="Enter Discount"
-                              />
-                              <div
-                                  *ngIf="productForm.controls['discountPercentage'].invalid && productForm.controls['discountPercentage'].touched"
-                                  class="text-danger"
-                              >
-                                  Discount is required.
-                              </div>
-                              <div *ngIf="productForm.controls['discountPercentage'].invalid && productForm.controls['discountPercentage'].errors.min" class="text-danger">
-                                Discount min 1.
-                            </div>
-                              <label for="discountPrice" class="form-label"
-                                  >Discount Price</label
-                              >
-                              <input
-                                  formControlName="discountPrice"
-                                  type="number"
-                                  class="form-control mb-2"
-                                  name="discountPrice"
-                                  id="discountPrice"
-                                  ngModel min="1" ngModel min="1"
-                                  placeholder="Enter Discount Price"
-                              />
-                              <div
-                                  *ngIf="productForm.controls['discountPrice'].invalid && productForm.controls['discountPrice'].touched"
-                                  class="text-danger"
-                              >
-                                  Discount is required.
-                              </div>
-                              <div *ngIf="productForm.controls['discountPrice'].invalid && productForm.controls['discountPrice'].errors.min" class="text-danger">
-                                Discount Price min 1.
-                            </div>
-                              <label for="categoryStatus" class="form-label">Status</label>
+                                <label for="description" class="form-label">Description</label>
+                                <input formControlName="description" type="text" class="form-control mb-2" name="description" id="description" placeholder="Enter your Description" />
+                                <div *ngIf="productForm.controls['description'].invalid && productForm.controls['description'].touched" class="text-danger">
+                                    Description is required.
+                                </div>
+                                <label for="discountPercentage" class="form-label">Discount</label>
+                                <input formControlName="discountPercentage" type="number" class="form-control" name="discountPercentage" id="discountPercentage" ngModel min="1" placeholder="Enter Discount" />
+                                <div *ngIf="productForm.controls['discountPercentage'].invalid && productForm.controls['discountPercentage'].touched" class="text-danger">
+                                    Discount is required.
+                                </div>
+                                <div *ngIf="productForm.controls['discountPercentage'].invalid && productForm.controls['discountPercentage'].errors.min" class="text-danger">
+                                    Discount min 1.
+                                </div>
+                                <label for="discountPrice" class="form-label">Discount Price</label>
+                                <input formControlName="discountPrice" type="number" class="form-control mb-2" name="discountPrice" id="discountPrice" ngModel min="1" ngModel min="1" placeholder="Enter Discount Price" />
+                                <div *ngIf="productForm.controls['discountPrice'].invalid && productForm.controls['discountPrice'].touched" class="text-danger">
+                                    Discount is required.
+                                </div>
+                                <div *ngIf="productForm.controls['discountPrice'].invalid && productForm.controls['discountPrice'].errors.min" class="text-danger">
+                                    Discount Price min 1.
+                                </div>
+                                <label for="categoryStatus" class="form-label">Status</label>
                                 <select formControlName="status" class="form-control select2" style="width: 100%">
                                   <option value="AVAILABLE">AVAILABLE</option>
                                   <option value="OUT_OF_STOCK">OUT OF STOCK</option>

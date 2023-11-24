@@ -118,6 +118,7 @@ ngOnInit(): void {
   this.getCustomer();
   this.rS.getRole().subscribe((data) => {
     this.roles = data;
+    console.log('Role', data);
   });
   
 }
@@ -127,10 +128,10 @@ getCustomer(): any {
       if (customers != null && Array.isArray(customers) && customers.length > 0) {
         this.customers =  customers;
         // Thêm dữ liệu mới vào mảng chartDate và chartRevenue
-        for (let c of this.customers) {
-          c.createDate =  moment.default(c.createDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
-          c.dateOfBirth =  moment.default(c.dateOfBirth, 'YYYY-MM-DD').format('DD/MM/YYYY');
-        };
+        // for (let c of this.customers) {
+        //   c.createDate =  moment.default(c.createDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        //   c.dateOfBirth =  moment.default(c.dateOfBirth, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        // };
       }   
   },(error) => {
     console.error(error);
