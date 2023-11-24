@@ -310,14 +310,14 @@ fnUpdateProduct() {
           
           this.productForm.reset();
           this.defaultStatus();
-          window.location.reload();
+
           Swal.fire({
             icon: 'success',
             title: 'Successfully updated product!',
             showConfirmButton: false,
             timer: 2000
           }).then(() => {
-
+            window.location.reload();
           })
         }, this.progressTimerOut);
         
