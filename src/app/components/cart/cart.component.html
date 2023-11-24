@@ -54,7 +54,7 @@
 
 
                     <div class="ml-auto md:ml-0">
-                         <p class="text-primary text-lg font-semibold ">{{item.tongTien |currency:".":"":"6.0"}} VNĐ</p>
+                         <p class="text-primary text-lg font-semibold ">{{item.tongTien |currency:".":"":"1.0"}} VNĐ</p>
                     </div>
 
                     <div class="text-gray-600 hover:text-primary cursor-pointer ">
@@ -72,7 +72,7 @@
           
                     <div class="flex justify-between my-3 text-gray-800 font-semibold uppercase">
                          <h4>Total</h4>
-                         <h4>{{ tongtien() | currency:".":"":"6.0"}} VNĐ</h4>
+                         <h4>{{ tongtien() | currency:".":"":"1.0"}} VNĐ</h4>
           
                     </div>
                     <a routerLink="/checkout" 
