@@ -1,4 +1,5 @@
-.half-circle-spinner, .half-circle-spinner * {
+.half-circle-spinner,
+.half-circle-spinner * {
     box-sizing: border-box;
 }
 
@@ -34,9 +35,8 @@
 @keyframes half-circle-spinner-animation {
     0% {
         transform: rotate(0deg);
-
     }
-    100%{
+    100% {
         transform: rotate(360deg);
     }
 }
