@@ -277,16 +277,29 @@ fnUpdateProduct() {
     for (let p of this.products) { 
       if((this.productForm.value.name == p.name 
         && this.productForm.value.model == p.model)
-        && ((this.productForm.value.price != p.price 
+        && (this.productForm.value.price != p.price 
         || this.productForm.value.stockQuantity != p.stockQuantity
         || this.productForm.value.description != p.description
         || this.productForm.value.discountPercentage != p.discountPercentage
-        || this.productForm.value.discountPrice != p.discountPrice)
-        || (this.productForm.value.status != p.status
-        && this.selectedCategoryId != p.category.id
-        && this.selectedBrandId != p.brand.id
-        && this.selectedOriginId != p.origin.id))
+        || this.productForm.value.discountPrice != p.discountPrice
+        || this.productForm.value.status != p.status
+        || this.selectedCategoryId != p.category.id
+        || this.selectedBrandId != p.brand.id
+        || this.selectedOriginId != p.origin.id)
         ) {
+                  setTimeout(() => {
+          this.isSpinning = false;
+          console.log('Successfully updated product!');
+          
+          this.productForm.reset();
+          this.defaultStatus();
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully updated product!',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }, this.progressTimerOut);
           break;
       } 
       if (this.productForm.value.name == p.name && this.productForm.value.model == p.model) {
@@ -304,21 +317,8 @@ fnUpdateProduct() {
     }
     this.pS.updateProduct(this.id, productinfo).subscribe(
       (response) => {
-        console.log('Successfully updated poduct!'),
-        setTimeout(() => {
-          this.isSpinning = false;
-          console.log('Successfully updated product!');
-          window.location.reload();
-          this.productForm.reset();
-          this.defaultStatus();
-          Swal.fire({
-            icon: 'success',
-            title: 'Successfully updated product!',
-            showConfirmButton: false,
-            timer: 2000
-          })
-        }, this.progressTimerOut),window.location.reload();
-  
+        window.location.reload();
+        console.log('Successfully updated product!');
       },
       (error) => {
         console.error('Failed to update product:', error);
