@@ -6,7 +6,7 @@ import { Observable, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class OrderDetailService {
-  private baseUrl = 'http://localhost:8080/api/v0/orderdetail';
+  private baseUrl = 'http://localhost:8080/api/v0/order-detail';
 
   constructor(private http: HttpClient) {}
 

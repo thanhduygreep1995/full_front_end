@@ -83,6 +83,7 @@ export class OrderTableComponent implements OnInit {
   selectedOrderId!: any;
   selectedStatus!: 'PENDING';
   orderdetails: any;
+  order: any;
   constructor(
     private formBuilder: FormBuilder,
     private oS: OrderService,
@@ -133,7 +134,9 @@ export class OrderTableComponent implements OnInit {
         this.id = params['id'];
         this.oS.getOrderById(this.id).subscribe(
           (response: Object) => {
+
             this.orderForm.patchValue(response as orderResponse);
+            console.log('orderdetails:', response);
           },
           (error) => {
             console.log(error);
@@ -478,5 +481,7 @@ export class OrderTableComponent implements OnInit {
     };
     return TotalPriceProduct;
   }
+
+
   
 }

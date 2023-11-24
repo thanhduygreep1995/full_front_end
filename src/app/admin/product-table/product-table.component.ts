@@ -62,6 +62,7 @@ export class ProductTableComponent implements OnInit {
   progressTimerOut: number = 1200;
   seclectedId: any;
   selectedImage: string | ArrayBuffer | null = null;
+  seclectedProductId: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -244,8 +245,18 @@ export class ProductTableComponent implements OnInit {
     }
   }
 
-  openProduct(productId: number): void {
-    this.seclectedId= productId;
+  openProduct(productId: number) {
+    this.pS.getProductById(productId).subscribe((data) => {
+      const productData = JSON.parse(data);
+      this.seclectedProductId = productData;
+      // console.log('Selected Product ID:', productData)
+      // for(let i of this.seclectedProductId){
+      //   this.setProduct(i.id, i.model);
+      // }
+    },
+    (error) => {
+      console.error('Error', error);
+  });
   }
 
   updateThumbImage(id: any){

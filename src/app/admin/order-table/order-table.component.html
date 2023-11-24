@@ -47,8 +47,8 @@
                                     <th>Payment Method</th>
                                     <th>Discount Price</th>
                                     <!-- <th hidden>Product Name</th>
-                                    <th hidden>Quantity</th>
-                                    <th hidden>Total Price</th> -->
+                                    <th hidden>Quantity</th> -->
+                                    <!-- <th>Total Price Has discount</th> -->
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -68,8 +68,8 @@
                                     <td>{{ o.paymentMethod }}</td>
                                     <td>{{ o.discountPrice+""| currency:",":"":"1.0"}} VNĐ</td>
                                     <!-- <td hidden>{{ o.orderDetail.product.name }}</td>
-                                    <td hidden>{{ o.orderDetail.quantity }}</td>
-                                    <td hidden>{{ o.orderDetail.totalPrice }}</td> -->
+                                    <td hidden>{{ o.orderDetail.quantity }}</td> -->
+                                    <!-- <td>VNĐ</td> -->
                                     <td>
                                         <button class="btn mb-2" style="background-color: cornflowerblue;" data-toggle="modal" data-target="#updateModal" (click)="onUpdate(o.id)">
                                             <i class="fa fa-pencil"></i>

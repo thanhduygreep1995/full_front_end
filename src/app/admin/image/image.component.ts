@@ -148,6 +148,13 @@ export class ImageComponent {
   }
 
 
+  // defaultStatus() {
+  //   // selected status Active
+  //   this.imageForm.patchValue({
+  //     statusImage: 'ACTIVE', // hoặc 'INACTIVE'
+  //   });
+  // }
+
 
 openImage(imageId: number) {
     this.iS.getImageById(imageId).subscribe((data) => {
@@ -173,10 +180,7 @@ openImage(imageId: number) {
   });
   }
 
-  setProduct(productId: any, model: any){
-    this.productId = productId;
-    this.model = model;
-  }
+
 
   refreshImageTable() {
     // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới
@@ -216,6 +220,20 @@ openImage(imageId: number) {
     }
   }
 
+  // uploadImage() {
+
+  //   this.iS.createImage(file, productId, statusImage).subscribe(
+  //     (response) => {
+  //       console.log('Image uploaded successfully', response);
+  //       this.refreshTable();
+  //     },
+  //     (error) => {
+  //       console.error('Error uploading image', error);
+  //     }
+  //   );
+  //   // window.location.reload();
+  // }
+
   uploadImage() {
     if (!this.selectedImage) {
       console.log('Image cant find');
@@ -225,31 +243,106 @@ openImage(imageId: number) {
     const productId = this.seclectedProductId.id; 
     const statusImage = this.imageForm.value.statusImage; 
     const file = (fileInput.files as FileList)[0];
+    this.isSpinning = true;
     this.iS.createImage(file, productId, statusImage).subscribe(
-      (response) => {
-        console.log('Image uploaded successfully', response);
+    (response) => {
+      console.log('Successfully Create Image!');
+      setTimeout(() => {
+        this.isSpinning = false;
+        console.log('Successfully Create Image!');
+        this.imageForm.reset();
         this.refreshTable();
-      },
-      (error) => {
-        console.error('Error uploading image', error);
-      }
-    );
-    // window.location.reload();
-  }
+        Swal.fire({
+          icon: 'success',
+          title: 'Successfully Create Image!',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }, this.progressTimerOut)
 
-  deleteImage(id: any){
-    this.iS.deleteImage(id).subscribe(
-      (response) => {
-        console.log('Image delete successfully', response);
-        this.refreshTable();
-        
-      },
-      (error) => {
-        console.error('Error delete image', error);
-      }
-    );
-    this.handleClose();
-    // window.location.reload();
+      ;
+    },
+    (error) => {
+      setTimeout(() => {
+        this.isSpinning = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Your work has not been saved',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }, this.progressTimerOut);
+      console.error('Failed to Create Image:', error);
+    }
+  );
+}
+
+
+  deleteImage(id: any) {
+    const imageToDelete = this.images.find((image: { id: any; }) => image.id == id);
+    if (imageToDelete) {
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Gửi yêu cầu xóa đến backend
+          this.iS.deleteImage(id).subscribe(() => {
+            this.isSpinning = true;
+            console.log('The image has been deleted.');
+            setTimeout(() => {
+              this.isSpinning = false;
+              console.log('The image has been deleted.');
+              this.imageForm.reset();
+              this.refreshTable();
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your image has been deleted.',
+                icon: 'success',
+                confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
+                timer: 2000
+              });
+              this.handleClose()
+            },this.progressTimerOut);
+          }, (error) => {
+            this.isSpinning = false;
+            Swal.fire({
+              title: 'Error',
+              text: 'Something went wrong. Please try again!',
+              icon: 'error',
+              confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
+              timer: 2000
+            });
+            console.error('An error occurred while deleting the image:', error);
+          });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          this.isSpinning = true;
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              title: 'Cancelled!',
+              text: 'Your data is safe :)',
+              icon: 'success',
+              confirmButtonColor: '#007BFF', // Màu khác bạn muốn sử dụng
+              timer: 2000
+            });
+          },this.progressTimerOut);
+        }
+      });
+    } else {
+      // Hiển thị thông báo lỗi khi id không tồn tại trong danh sách
+      swalWithBootstrapButtons.fire(
+        'Error',
+        'The image with the specified ID does not exist!',
+        'error'
+      );
+      setTimeout(() => this.isSpinning = false,this.progressTimerOut);
+    } 
   }
 
   updateImage(id: any){
@@ -266,16 +359,30 @@ openImage(imageId: number) {
     const file = (fileInput.files as FileList)[0];
     this.iS.updateImage(file, statusImage, id).subscribe(
       (response) => {
-        console.log('Image update successfully', response);
-        this.refreshTable();
+        console.log('Successfully updated image!'),
+        setTimeout(() => {
+          this.isSpinning = false;
+          console.log('Successfully updated image!');
+          window.location.reload();
+          this.imageForm.reset();
+          this.refreshTable();
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully updated image!',
+            showConfirmButton: false,
+            timer: 2000
+          });
+          this.handleClose()
+        }, this.progressTimerOut);
+  
       },
       (error) => {
-        console.error('Error update image', error);
+        console.error('Failed to update image:', error);
       }
     );
-    this.handleClose();
-    // window.location.reload();
   }
+
+
 
   enableInputs() {
     var inputs = document.querySelectorAll('#staticBackdrop input');
@@ -298,6 +405,10 @@ openImage(imageId: number) {
       this.enableInputsClicked = false;
       this.understoodButtonVisible = false;
       this.allowInputEdit = true;
+      const statusImageInput = document.getElementById('statusImage') as HTMLInputElement;
+      if (statusImageInput) {
+          statusImageInput.setAttribute('hidden', 'true');
+      }
   }
 
   // resetFormAndImage(): void {

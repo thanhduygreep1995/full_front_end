@@ -3,4 +3,5 @@ export interface Itypeprd {
     name:string;
     thumbImage:string;
     price:number;
+    images:any;
 }

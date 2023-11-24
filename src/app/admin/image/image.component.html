@@ -18,8 +18,9 @@
     <!-- /.container-fluid -->
 </section>
 <div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
 </div>
 <!-- Main content -->
 <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
@@ -49,8 +50,8 @@
                                     <td>{{ p.model }}</td>
                                     <td>
                                         <div class="container">
-                                            <div *ngFor="let i of p.images" class="row align-items-start">
-                                                <div class="col-6">
+                                            <div class="row align-items-start">
+                                                <div *ngFor="let i of p.images" class="col-3">
                                                     <img src="{{ i.imageUrl }}" height="100" width="100" (click)="openImage(i.id)" type="button" data-toggle="modal" data-target="#updateImage">
                                                 </div>
                                             </div>
@@ -109,11 +110,11 @@
                         <input type="text" value="{{ selectedImageId?.id }}" hidden>
                         <div class="col-6 form-group">
                             <label>Create Date</label>
-                            <input type="text" class="form-control" value="{{ selectedImageId?.createDate | date: 'dd-MM-yyyy__hh:mm:ss'}}" disabled>
+                            <input type="text" class="form-control" value="{{ selectedImageId?.createDate | date: 'dd/MM/yyyy'}}" disabled>
                         </div>
                         <div class="col-6 form-group">
                             <label>Update Date</label>
-                            <input type="text" class="form-control" id="updateDateInput" value="{{ selectedImageId?.updateDate | date: 'dd/MM/yyyy__hh:mm:ss'}}" disabled>
+                            <input type="text" class="form-control" id="updateDateInput" value="{{ selectedImageId?.updateDate | date: 'dd/MM/yyyy'}}" disabled>
                         </div>
                         <div class="col-6 form-group">
                             <label>Status</label>
@@ -161,11 +162,15 @@
                         <div class="form-group">
                             <input type="number" id="productId" [(ngModel)]="imageForm.value.productId" name=" productId" class="form-control" hidden>
                         </div>
-                        <div class="form-group">
-                            <label for="">Status</label>
-                            <input type="text" id="statusImage" [(ngModel)]="imageForm.value.statusImage" name="statusImage" class="form-control">
+                        <div class="form-group col-6" [ngClass]="{'has-error': statusImage.invalid}">
+                            <label>Status</label>
+                            <select class="form-control" id="statusImage" name="statusImage" [(ngModel)]="imageForm.value.statusImage" required #statusImage="ngModel">
+                                <option value="ACTIVE">ACTIVE</option>
+                                <option value="INACTIVE">INACTIVE</option>
+                              </select>
+                            <div *ngIf="statusImage.invalid" class="help-block">Please select a status.</div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-6">
                             <label for="imageFile">Select Image:</label>
                             <img *ngIf="selectedImage" [src]="selectedImage" width="200" height="150" alt="">
                             <input id="imageCreate" class="form-control-file" type="file" (change)="onFileChange($event)" name="">

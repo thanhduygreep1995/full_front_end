@@ -8,7 +8,7 @@ import { WishService } from 'src/app/components/services/wish.service';
 import { ProductService } from '../services/products.service';
 import { SearchService } from '../services/search.service';
 import { Pipe } from '@angular/core';
-
+import { Router } from '@angular/router';
 registerLocaleData(localeFr, 'fr');
 @Component({
   selector: 'app-home',
@@ -20,7 +20,13 @@ export class HomeComponent  {
   products: any[] = [];
   filteredProducts: any[] = [];
 
-  constructor( private h: HttpClient, private cart: CartService ,private wish: WishService, private productService: ProductService, private searchService:SearchService){
+  constructor( private h: HttpClient,
+     private cart: CartService ,
+     private wish: WishService, 
+     private productService: ProductService, 
+     private searchService:SearchService,
+     private router:Router,
+     ){
     this.h.get("http://localhost:8080/api/v0/products",
     {observe: 'response'}
     ).subscribe(
@@ -35,6 +41,9 @@ export class HomeComponent  {
 
   }
 
+  onChangeView(id: number): void {
+    this.router.navigate(['/view.component', id]);
+  }
 
 
   addToCart(product:IProduct){
