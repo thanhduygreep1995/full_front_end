@@ -13,7 +13,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { AddressComponent } from './components/address/address.component';
 import { ViewComponent } from './components/view/view.component';
-import { ChangepasswordComponent } from './components/changepassword/changepassword.component';
 import { OderCompleteComponent } from './components/oder-complete/oder-complete.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,8 +33,17 @@ import { CommonModule } from '@angular/common';
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FilterPipe } from './components/pipes/filter.pipe';
-import { ProductListComponent } from './components/product-list/product-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { VoucherComponent } from './components/voucher/voucher.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { MyReviewComponent } from './components/my-review/my-review.component';
+import { ClipboardModule } from 'ngx-clipboard';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { PersonalProfileComponent } from './components/personal-profile/personal-profile.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { OderFailureComponent } from './components/oder-failure/oder-failure.component';
+
 registerLocaleData(localeVi);
 
 
@@ -51,7 +59,6 @@ registerLocaleData(localeVi);
     WishlistComponent,
     AddressComponent,
     ViewComponent,
-    ChangepasswordComponent,
     OderCompleteComponent,
     CheckoutComponent,
     NewProductComponent,
@@ -66,7 +73,14 @@ registerLocaleData(localeVi);
     UserComponent,
     FilterPipe,
     ProductListComponent,
-    NavbarComponent
+    NavbarComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    VoucherComponent,
+    MyReviewComponent,
+    ChangePasswordComponent,
+    PersonalProfileComponent,
+    OderFailureComponent,
 
   ],
   imports: [
@@ -75,8 +89,9 @@ registerLocaleData(localeVi);
     HttpClientModule,
     CommonModule,
     FormsModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    ClipboardModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'vi' },],
 

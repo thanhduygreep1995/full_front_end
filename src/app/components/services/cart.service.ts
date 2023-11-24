@@ -70,11 +70,14 @@ export class CartService {
   //   if (cartStr) {
   //     this.itemts = JSON.parse(cartStr);
   //   }
+  tt: number = 700000;
   tongtien() {
-    let tt: number = 0;
-    this.itemts.forEach(item => tt = tt + Number(item.tongTien));
-    return tt;
-    console.log(tt)
+    this.itemts.forEach(item => this.tt = this.tt + Number(item.tongTien));
+    return this.tt;
+    console.log(this.tt)
+  }
+  setTongTien(tt: number): void {
+    this.tt = tt;
   }
   clearCart() {
     this.itemts = [];

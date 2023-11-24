@@ -22,7 +22,7 @@
                <h3 class="text-lg font-medium capitalize mb-4"> Checkout </h3>
 
                <div class="space-y-4">
-                    <div class="grid sm:grid-cols-2 gap-4 ">
+                    <div class="space-y-4">
                          <div>
                               <label class="text-gray-600 mb-2 block">Full Name <span class="text-primary">*</span>
                               </label>
@@ -30,77 +30,97 @@
                                    class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" />
                          </div>
-
                     </div>
 
                     <!-- ----Single Input --->
-
+                    <div class="space-y-4">
+                         <div>
+                              <label class="text-gray-600 mb-2 block">Street Address <span class="text-primary">*</span>
+                              </label>
+                              <input [(ngModel)]="address" name="ad" type="text" placeholder="Enter number, street"
+                                   class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" />
+                         </div>
+                    </div>
+                    <div class="space-y-4 mt-4">
+                         <div class="flex space-x-4" >
+                              <div class="flex-1">
+                                   <select id="city" [(ngModel)]="city" name="city" (change)="onCityChange()"
+                                        class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                                         dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary">
+                                         <option selected value="0">Select Provices</option>
+                                         <option *ngFor="let city of cities" [value]="city.Id">{{ city.Name }}</option>
+                                   </select>
+                              </div>
+     
+                              <div class="flex-1">
+                                   <select id="district" [(ngModel)]="district" name="district" (change)="onDistrictChange()"
+                                        class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                                         dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary">
+                                        <option selected value="0">Select District</option>
+                                        <option *ngFor="let district of districts" [value]="district.Id">{{ district.Name }}
+                                        </option>
+                                   </select>
+                              </div>
+     
+                              <div class="flex-1">
+                                   <select id="ward" [(ngModel)]="ward" name="ward" 
+                                        class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                                         dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary">
+                                        <option value="0" selected>Select Ward</option>
+                                        <option *ngFor="let ward of wards" [value]="ward.Id">{{ ward.Name }}</option>
+                                   </select>
+                              </div>
+                         </div>
+                    </div>
                     <!-- ---- End Single Input--->
-
-
-                    <!-- ----Single Input --->
-                    <!-- ---- End Single Input--->
-
 
                     <!-- ----Single Input --->
                     <div class="space-y-4">
-                         <div class="grid sm:grid-cols-2 gap-4 ">
-                              <div>
-                                   <label class="text-gray-600 mb-2 block">Street Address <span
-                                             class="text-primary">*</span>
-                                   </label>
-                                   <input [(ngModel)]="address" name="ad" type="text"
-                                        class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                         <div>
+                              <label class="text-gray-600 mb-2 block">Phone Number <span class="text-primary">*</span>
+                              </label>
+                              <input [(ngModel)]="phone" name="ph" type="text"
+                                   class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" />
-                              </div>
                          </div>
                     </div>
                     <!-- ---- End Single Input--->
 
 
                     <!-- ----Single Input --->
-
-                    <!-- ---- End Single Input--->
-
-
-                    <!-- ----Single Input --->
-
-
-                    <!-- ---- End Single Input--->
-
-
-                    <!-- ----Single Input --->
                     <div class="space-y-4">
-                         <div class="grid sm:grid-cols-2 gap-4 ">
-                              <div>
-                                   <label class="text-gray-600 mb-2 block">Phone Number <span
-                                             class="text-primary">*</span>
-                                   </label>
-                                   <input [(ngModel)]="phone" name="ph" type="text"
-                                        class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                         <div>
+                              <label class="text-gray-600 mb-2 block">Email Address <span class="text-primary">*</span>
+                              </label>
+                              <input [(ngModel)]="email" name="em" type="email"
+                                   class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" />
-                              </div>
                          </div>
                     </div>
-                    <!-- ---- End Single Input--->
-
-
-                    <!-- ----Single Input --->
-                    <div class="space-y-4">
-                         <div class="grid sm:grid-cols-2 gap-4 ">
-                              <div>
-                                   <label class="text-gray-600 mb-2 block">Email Address <span
-                                             class="text-primary">*</span>
-                                   </label>
-                                   <input [(ngModel)]="email" name="em" type="email"
-                                        class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
-                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" />
+                    <div class="space-y-4 mt-2">
+                         <div>
+                              <label class="text-gray-600 mb-2 block">Payment Method <span
+                                        class="text-primary">*</span></label>
+                              <div class="flex items-center">
+                                   <input id="creditCard" type="radio" [(ngModel)]="paymentMethod" name="paymentMethod" value="Credit Card"
+                                        class="h-4 w-4 text-indigo-600 focus:ring-primary border-gray-300">
+                                   <label for="creditCard" class="ml-2 text-gray-700 cursor-pointer">Credit Card</label>
+                              </div>
+                              <div class="flex items-center">
+                                   <input id="vnPay" type="radio" [(ngModel)]="paymentMethod" name="paymentMethod" value="VnPay"
+                                        class="h-4 w-4 text-indigo-600 focus:ring-primary border-gray-300">
+                                   <label for="vnPay" class="ml-2 text-gray-700 cursor-pointer">VnPay</label>
                               </div>
                          </div>
                     </div>
                     <!-- ---- End Single Input--->
                </div>
           </form>
+          <div *ngIf="loading"
+               class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+               <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-primary"></div>
+          </div>
      </div>
      <!-- ---- End Checkout Form--->
 
@@ -140,18 +160,18 @@
      
      </div>
      <!-- Coupon  -->
-     <div class="flex mb-4" style="margin-top: 10px;">
+     <form [formGroup]="formCoupon" class="flex mb-4" style="margin-top: 10px;">
      
-          <input type="text"
+          <input type="text"  formControlName="codeVoucher"
                class="pl-4 w-full border border-r-0 border-primary py-2 px-3 rounded-l-md focus:ring-primary focus:border-primary text-sm "
                placeholder="Coupon" />
      
-          <button type="submit"
+          <button type="submit" (click)="discount()"
                class="bg-primary border border-primary text-white px-5 font-medium rounded-r-md hover\:bg-transparent hover\:text-primary transition text-sm w-full block text-center ">Apply</button>
      
-     </div>
+     </form>
      <!-- ---- End Coupon--->
-     <a (click)="taodonhang()" routerLink="/oder-complete"
+     <a (click)="taodonhang();placeOrder()" 
           class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm w-full block text-center ">
           Place Order
      </a>
