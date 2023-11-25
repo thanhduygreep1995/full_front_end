@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CustomerService } from '../services/customer/customer.service';
 import { DatePipe } from '@angular/common';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-personal-profile',
@@ -10,7 +11,7 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe],
 })
 export class PersonalProfileComponent implements OnInit {
-  id: any = 1;
+  id: any = this.tokenService.getCustomerId();
   changeProForm: FormGroup;
   ButtonSave: any;
   originalData: any;
@@ -18,7 +19,8 @@ export class PersonalProfileComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
-    private cS: CustomerService
+    private cS: CustomerService,
+    private tokenService: TokenService
   ) {
     this.changeProForm = this.formBuilder.group({
       fullName: [''],
