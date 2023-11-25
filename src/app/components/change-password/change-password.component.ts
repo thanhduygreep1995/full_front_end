@@ -3,13 +3,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../services/customer/customer.service';
 import Swal from 'sweetalert2';
+import { TokenService } from '../services/token.service';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css'],
 })
 export class ChangePasswordComponent implements OnInit {
-  id: any = 1;
+  id: any = this.tokenService.getCustomerId();
   changePasswordForm: FormGroup;
   loading: boolean = false;
   showSuccessMessage: boolean = false;
@@ -17,7 +18,8 @@ export class ChangePasswordComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private customerS: CustomerService
+    private customerS: CustomerService,
+    private tokenService: TokenService
   ) {
     this.changePasswordForm = this.formBuilder.group(
       {

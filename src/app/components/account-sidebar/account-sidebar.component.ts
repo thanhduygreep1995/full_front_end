@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer/customer.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-account-sidebar',
@@ -8,9 +9,9 @@ import { CustomerService } from '../services/customer/customer.service';
 })
 export class AccountSidebarComponent implements OnInit {
   fullName: any;
-  id: any = 1;
+  id: any = this.tokenService.getCustomerId();
 
-  constructor(private customerS: CustomerService) {}
+  constructor(private customerS: CustomerService,private tokenService: TokenService) {}
   ngOnInit() {
     // Gọi hàm getCustomerById với ID của khách hàng cụ thể (ví dụ: 123)
     this.customerS.getCustomerById(this.id).subscribe((data: any) => {

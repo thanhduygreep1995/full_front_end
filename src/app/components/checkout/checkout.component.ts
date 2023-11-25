@@ -9,6 +9,7 @@ import { LocationService } from '../services/location/location.service';
 import { PaymentService } from '../services/payment/payment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OderCompleteComponent } from '../oder-complete/oder-complete.component';
+import { TokenService } from '../services/token.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -20,7 +21,7 @@ export class CheckoutComponent {
   cities!: any[];
   districts!: any[];
   wards!: any[];
-  id: any = 1;
+  id: any = this.tokenService.getCustomerId();;
   applied = false;
   loading: boolean = false;
   voucher: any;
@@ -32,7 +33,8 @@ export class CheckoutComponent {
     private router: Router,
     private locationService: LocationService,
     private checkoutService: CheckoutService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private tokenService: TokenService
   ) {
     this.route.queryParams.subscribe((params) => {
       let vnpResponseCode = params['vnp_ResponseCode'];

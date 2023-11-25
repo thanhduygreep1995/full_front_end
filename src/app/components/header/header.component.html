@@ -10,10 +10,10 @@
                <span class="absolute left-4 top-3 text-lg text-gray-400 ">
                     <i class="fas fa-search"></i>
                </span>
-               <input type="text" [(ngModel)]="searchTerm" (keyup.enter)="search()"  
+               <input type="text"
                     class="pl-12 w-full border border-r-0 border-primary  py-3 px-3 rounded-l-md focus:ring-primary "
                     placeholder="Search" />
-               <button   (click)="search()" 
+               <button type="submit"
                     class="bg-primary border border-primary text-white px-8 font-medium rounded-r-md hover:bg-transparent hover:text-primary transition  ">
                     Search
                </button>
@@ -49,7 +49,7 @@
 
 
                <a href="#" class="block text-center text-gray-700 hover:text-primary transition relative "
-                    routerLink="/account/personal-profile">
+                    routerLink="/account">
 
                     <div class="text-2xl">
                          <i class="fas fa-user "></i>
@@ -59,5 +59,175 @@
 
           </div>
           <!-- NavIcons End  -->
+
+
      </div>
+
 </header>
+<!-- ---- End Header ----- -->
+
+
+<!-- ---- Start NavBar ----- -->
+<nav class="bg-gray-800 hidden lg:block ">
+     <div class="container">
+          <div class="flex">
+               <!-- ---- All Category ----- -->
+               <div class="px-8 py-4 bg-primary flex items-center cursor-pointer group relative ">
+                    <span class="text-white ">
+                         <i class="fas fa-bars"></i>
+                    </span>
+                    <span class="capitalize ml-2 text-white font-semibold">All categories</span>
+
+
+                    <div
+                         class="absolute left-0 top-full w-full bg-white shadow-md py-3 invisible opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
+                         <!-- ---- Start single category ----- -->
+                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                              <img src="../assets/images/icons/bed.svg" class="w-5 h-5 object-contain " />
+                              <span class="ml-6 text-gray-700 text-sm font-semibold "> BedRoom</span>
+                         </a>
+                         <!-- ---- single category End ----- -->
+
+                         <!-- ---- Start single category ----- -->
+                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                              <img src="../assets/images/icons/sofa.svg" class="w-5 h-5 object-contain " />
+                              <span class="ml-6 text-gray-700 text-sm font-semibold "> Sofa</span>
+                         </a>
+                         <!-- ---- single category End ----- -->
+
+
+                         <!-- ---- Start single category ----- -->
+                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                              <img src="../assets/images/icons/office.svg" class="w-5 h-5 object-contain " />
+                              <span class="ml-6 text-gray-700 text-sm font-semibold "> Office</span>
+                         </a>
+                         <!-- ---- single category End ----- -->
+
+
+                         <!-- ---- Start single category ----- -->
+                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                              <img src="../assets/images/icons/outdoor-cafe.svg" class="w-5 h-5 object-contain " />
+                              <span class="ml-6 text-gray-700 text-sm font-semibold "> OutDoor</span>
+                         </a>
+                         <!-- ---- single category End ----- -->
+
+
+                         <!-- ---- Start single category ----- -->
+                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                              <img src="../assets/images/icons/terrace.svg" class="w-5 h-5 object-contain " />
+                              <span class="ml-6 text-gray-700 text-sm font-semibold "> Mattress</span>
+                         </a>
+                         <!-- ---- single category End ----- -->
+
+
+                         <!-- ---- Start single category ----- -->
+                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                              <img src="../assets/images/icons/sofa.svg" class="w-5 h-5 object-contain " />
+                              <span class="ml-6 text-gray-700 text-sm font-semibold "> Sofa</span>
+                         </a>
+                         <!-- ---- single category End ----- -->
+
+                    </div>
+
+               </div>
+
+               <!-- ---- All Category End ----- -->
+
+               <!-- ---- Nav Menu ----- -->
+
+               <div class="flex items-center justify-between flex-grow pl-12 ">
+                    <div class="flex items-center space-x-6 text-base capitalize ">
+                         <a href="index.html" routerLink="/"
+                              class="text-gray-200 hover:text-yellow-400 transition font-semibold "> Home </a>
+                         <a href="shop.html" class="text-gray-200 hover:text-yellow-400 transition font-semibold "
+                              routerLink="/shop"> Shop </a>
+                         <a href="index.html" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
+                              About Us </a>
+                         <a href="index.html" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
+                              Contact Us </a>
+                    </div>
+                    <div class="  flex items-center cursor-pointer group relative ">
+                         <ng-container *ngIf="!customerResponse">
+                              <a href="login.html"
+                                   class="text-gray-200 hover:bg-primary  font-bold px-5 py-4   ml-auto  hover:text-white transition font-semibold "
+                                   routerLink="/login"> Login </a>
+
+                              <a href="login.html"
+                                   class=" text-gray-200 hover:bg-primary  font-bold px-3 py-4  ml-auto text-gray-200 hover:text-white transition font-semibold "
+                                   routerLink="/register"> Register </a>
+                         </ng-container>
+
+                         <ng-container *ngIf="customerResponse">
+                              <div class="px-8  hover:bg-primary flex items-center cursor-pointer group relative ">
+                                   <a href=""
+                                        class="text-gray-200 font-bold px-3 py-4   ml-auto  hover:text-white transition font-semibold "
+                                       >Hello, {{customerResponse.first_name}}
+                                        {{customerResponse.last_name}} </a>
+
+                                   <div class="absolute left-0 top-full w-full bg-white shadow-md py-3 invisible opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
+                                        <!-- ---- Start single category ----- -->
+                                        <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                                             <img src="../assets/images/icons/bed.svg"
+                                                  class="w-5 h-5 object-contain " />
+                                             <span class="ml-6 text-gray-700 text-sm font-semibold "> BedRoom</span>
+                                        </a>
+                                        <!-- ---- single category End ----- -->
+
+                                        <!-- ---- Start single category ----- -->
+                                        <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                                             <img src="../assets/images/icons/sofa.svg"
+                                                  class="w-5 h-5 object-contain " />
+                                             <span class="ml-6 text-gray-700 text-sm font-semibold "> Sofa</span>
+                                        </a>
+                                        <!-- ---- single category End ----- -->
+
+
+                                        <!-- ---- Start single category ----- -->
+                                        <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                                             <img src="../assets/images/icons/office.svg"
+                                                  class="w-5 h-5 object-contain " />
+                                             <span class="ml-6 text-gray-700 text-sm font-semibold "> Office</span>
+                                        </a>
+                                        <!-- ---- single category End ----- -->
+
+
+                                        <!-- ---- Start single category ----- -->
+                                        <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                                             <img src="../assets/images/icons/outdoor-cafe.svg"
+                                                  class="w-5 h-5 object-contain " />
+                                             <span class="ml-6 text-gray-700 text-sm font-semibold "> OutDoor</span>
+                                        </a>
+                                        <!-- ---- single category End ----- -->
+
+
+                                        <!-- ---- Start single category ----- -->
+                                        <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                                             <img src="../assets/images/icons/terrace.svg"
+                                                  class="w-5 h-5 object-contain " />
+                                             <span class="ml-6 text-gray-700 text-sm font-semibold "> Mattress</span>
+                                        </a>
+                                        <!-- ---- single category End ----- -->
+
+
+                                        <!-- ---- Start single category ----- -->
+                                        <a href="/login" class="px-6 py-3 flex items-center hover:bg-gray-100 transition " (click)="logout()">
+                                             <img src="../assets/images/icons/sofa.svg"
+                                                  class="w-5 h-5 object-contain " />
+                                             <span class="ml-6 text-gray-700 text-sm font-semibold ">Logout</span>
+                                        </a>
+                                        <!-- ---- single category End ----- -->
+                                   </div>
+                              </div>
+                         </ng-container>
+
+                    </div>
+
+               </div>
+
+               <!-- ---- Nav Menu End ----- -->
+
+          </div>
+
+     </div>
+
+</nav>

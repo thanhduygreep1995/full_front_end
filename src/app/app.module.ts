@@ -15,7 +15,7 @@ import { AddressComponent } from './components/address/address.component';
 import { ViewComponent } from './components/view/view.component';
 import { OderCompleteComponent } from './components/oder-complete/oder-complete.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NewProductComponent } from './components/new-product/new-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LOCALE_ID } from '@angular/core';
@@ -33,7 +33,7 @@ import { CommonModule } from '@angular/common';
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FilterPipe } from './components/pipes/filter.pipe';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar-bo/navbar.component';
 import { VoucherComponent } from './components/voucher/voucher.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -43,6 +43,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { PersonalProfileComponent } from './components/personal-profile/personal-profile.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { OderFailureComponent } from './components/oder-failure/oder-failure.component';
+import { TokenInterceptor } from './components/interceptors/token.interceptor';
 
 registerLocaleData(localeVi);
 
@@ -93,7 +94,13 @@ registerLocaleData(localeVi);
     ReactiveFormsModule,
     ClipboardModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'vi' },],
+  providers: [{ provide: LOCALE_ID, useValue: 'vi' },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true, 
+  }
+],
 
   bootstrap:
     [AppComponent]
