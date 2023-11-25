@@ -172,9 +172,10 @@ export class CheckoutComponent {
     this.checkoutService.setVoucherCode(code);
   }
   placeOrder() {
-    if (this.paymentMethod === 'Credit Card') {
+    if (this.paymentMethod === 'Cash') {
       this.voucherStatus();
-      this.router.navigate(['/oder-complete']);
+      this.createNewOrder();
+      // this.router.navigate(['/oder-complete']);
     } else if (this.paymentMethod === 'VnPay') {
       this.receiveCode(this.formCoupon.value.codeVoucher);
       this.createPayment(this.tt);
@@ -183,7 +184,47 @@ export class CheckoutComponent {
   // getTotal(): number {
   //   return this.tt;
   // }
-
+  isDiscount(): any{
+    if(this.voucher && this.voucher.value){
+      return this.voucher.value;
+    }else{
+      return 0;
+    }
+  }
+  
+  createNewOrder(): void {
+    // Tạo một đối tượng order từ các biến đã khai báo
+    const orderData = {
+      name: this.name,
+      email: this.email,
+      address: this.address+', '+this.ward+', '+this.district+', '+this.city,
+      phone: this.phone,
+      paymentMethod: this.paymentMethod,
+      discountPrice: this.isDiscount(),
+      totalAmount: this.tt,
+      customer: {
+        id: this.id
+      }
+    };
+    this.checkoutService.createOrder(orderData)
+      .subscribe(
+        (response) => {
+          const orderId = response.id;
+          console.log(orderId);
+      // const orderDetailData = {
+      //     quantity: 1,
+      //     total_price: 1111111,
+      //     order:{
+      //       id:32
+      //     }, 
+      //     product: {
+      //       id:1
+      //     }
+      // };
+      // this.checkoutService.createOrderDetail(orderDetailData).subscribe(
+      //   (detailResponse) => {});
+      });
+  }
   processPayment() {
     // Implement payment processing logic here
     // ...
