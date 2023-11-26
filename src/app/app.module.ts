@@ -19,7 +19,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NewProductComponent } from './components/new-product/new-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LOCALE_ID } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
 import localeVi from '@angular/common/locales/vi';
 import { TypeProductComponent } from './components/type-product/type-product.component';
 import { CheckCartComponent } from './components/check-cart/check-cart.component';
@@ -46,7 +46,6 @@ import { OderFailureComponent } from './components/oder-failure/oder-failure.com
 import { TokenInterceptor } from './components/interceptors/token.interceptor';
 
 registerLocaleData(localeVi);
-
 
 @NgModule({
   declarations: [
@@ -82,7 +81,6 @@ registerLocaleData(localeVi);
     ChangePasswordComponent,
     PersonalProfileComponent,
     OderFailureComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -94,18 +92,16 @@ registerLocaleData(localeVi);
     ReactiveFormsModule,
     ClipboardModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'vi' },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true, 
-  }
-],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'vi' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    DatePipe,
+  ],
 
-  bootstrap:
-    [AppComponent]
-
+  bootstrap: [AppComponent],
 })
-
-
-export class AppModule { }
+export class AppModule {}
