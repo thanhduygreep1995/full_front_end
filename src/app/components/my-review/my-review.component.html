@@ -31,14 +31,19 @@
                     <div class="flex justify-between">
                         <h2 class="text-xl font-semibold">{{feedback.products.name}}</h2>
                         <div class="flex items-center">
-                            <span class="text-gray-500">Create date: {{ feedback.createDate }}</span>
+                            <span class="text-gray-500">{{ feedback.createDate }}</span>
                             <span class="ml-2 text-gray-600">
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >= 1}">&#9733;</span>
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >= 2}">&#9733;</span>
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >= 3}">&#9733;</span>
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >= 4}">&#9733;</span>
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >=5}">&#9733;</span>
-                            </span>
+                                <ng-container *ngIf="feedback.ratings">
+                                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                    <span [ngClass]="{'text-yellow-500': star <= feedback.ratings.rating}">&#9733;</span>
+                                  </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="!feedback.ratings">
+                                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                    <span>&#9733;</span>
+                                  </ng-container>
+                                </ng-container>
+                              </span>
                         </div>
                     </div>
                     <p class="text-gray-600 mt-2">{{feedback.comment}}.</p>

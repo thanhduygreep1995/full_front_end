@@ -3,7 +3,7 @@ import { FeedbackService } from '../services/feedback/feedback.service';
 import { RatingService } from '../services/rating/rating.service';
 import { TokenService } from '../services/token.service';
 import { DatePipe } from '@angular/common';
-
+import { forkJoin, Observable } from 'rxjs';
 @Component({
   selector: 'app-my-review',
   templateUrl: './my-review.component.html',
@@ -23,6 +23,15 @@ export class MyReviewComponent implements OnInit {
   ngOnInit(): void {
     this.feedbackService.getAllByCustomerId(this.id).subscribe((data) => {
       this.feedbacks = data;
+      console.log(data)
+      const ratingObservables: Observable<number>[] = this.feedbacks.map((feedback) =>
+      this.getRating(feedback.productId)
+    );
+    forkJoin(ratingObservables).subscribe((ratings: number[]) => {
+      ratings.forEach((rating, index) => {
+        this.feedbacks[index].ratings = rating 
+      });
+    });
       for (let feedback of this.feedbacks) {
         const dateArray = feedback.createDate;
         const dateObject = new Date(
@@ -36,8 +45,8 @@ export class MyReviewComponent implements OnInit {
         console.log(feedback.createDate);
       }
     });
-    this.ratingService.getAllByCustomerId(this.id).subscribe((data) => {
-      this.ratings = data;
-    });
+  }
+  getRating(productId: any): Observable<number> {
+    return this.ratingService.getMyRating(productId, this.id);
   }
 }
