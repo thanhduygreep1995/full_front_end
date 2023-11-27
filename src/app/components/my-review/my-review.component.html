@@ -29,21 +29,21 @@
                 <!-- Sample feedback item -->
                 <li *ngFor="let feedback of feedbacks" class="border rounded-md p-4">
                     <div class="flex justify-between">
-                        <h2 class="text-xl font-semibold">{{feedback.product.name}}</h2>
+                        <h2 class="text-xl font-semibold">{{feedback.products.name}}</h2>
                         <div class="flex items-center">
                             <span class="text-gray-500">Create date: {{ feedback.createDate | date:'dd-MM-yyyy'
                                 }}</span>
                             <span class="ml-2 text-gray-600">
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >= 1}">&#9733;</span>
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >= 2}">&#9733;</span>
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >= 3}">&#9733;</span>
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >= 4}">&#9733;</span>
-                                <span [ngClass]="{'text-yellow-500': feedback.rating >=5}">&#9733;</span>
+                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[0].filled, 'half-filled': starsInfo[0].half, 'no-fill': starsInfo[0].noFill}"></span>
+                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[1].filled, 'half-filled': starsInfo[1].half, 'no-fill': starsInfo[1].noFill}"></span>
+                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[2].filled, 'half-filled': starsInfo[2].half, 'no-fill': starsInfo[2].noFill}"></span>
+                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[3].filled, 'half-filled': starsInfo[3].half, 'no-fill': starsInfo[3].noFill}"></span>
+                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[4].filled, 'half-filled': starsInfo[4].half, 'no-fill': starsInfo[4].noFill}"></span>
                             </span>
                         </div>
                     </div>
                     <p class="text-gray-600 mt-2">{{feedback.comment}}.</p>
-                    <a routerLink="/detail/{{feedback.product.id}}"
+                    <a routerLink="/view/{{feedback.products.id}}"
                         class="text-primary font-medium hover:underline">View</a>
                 </li>
             </ul>

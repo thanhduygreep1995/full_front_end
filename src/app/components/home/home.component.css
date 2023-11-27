@@ -3,3 +3,22 @@
 }
 /* @import "/src/assets/output/css/tailwind/tailwind.css"; */
 .border-primary{border-color: red;}
+
+.star {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    background-size: contain;
+}
+
+.filled {
+    background-image: url('/assets/img/filled-star.svg');
+}
+
+.half-filled {
+    background-image: url('/assets/img/half-filled-star.svg');
+}
+
+.no-fill {
+    background-image: url('/assets/img/no-filled-star.svg');
+}
