@@ -33,8 +33,7 @@ export class HomeComponent  {
      private router:Router
      ){
     this.h.get("http://localhost:8080/api/v0/home",
-    {observe: 'response'}
-    ).subscribe(res => { 
+    {observe: 'response'}).subscribe(res => { 
       console.log("ok=", res.ok);
       console.log("body=", res.body);
       console.log("res=", res);
