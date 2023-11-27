@@ -35,12 +35,12 @@
                             <span class="ml-2 text-gray-600">
                                 <ng-container *ngIf="feedback.ratings">
                                   <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-                                    <span [ngClass]="{'text-yellow-500': star <= feedback.ratings.rating}">&#9733;</span>
+                                    <span class="star" [ngClass]="{'text-yellow-400': star <= feedback.ratings.rating}">&#9733;</span>
                                   </ng-container>
                                 </ng-container>
                                 <ng-container *ngIf="!feedback.ratings">
                                   <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
-                                    <span>&#9733;</span>
+                                    <span class="star">&#9733;</span>
                                   </ng-container>
                                 </ng-container>
                               </span>
