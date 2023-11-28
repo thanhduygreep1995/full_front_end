@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProduct } from 'src/app/components/interfaces/iproduct';
 import { CartService } from 'src/app/components/services/cart.service';
@@ -33,10 +33,6 @@ export class HomeComponent  {
   products: any[] = [];
   filteredProducts: any[] = [];
   starsInfo: { filled: boolean, half: boolean , noFill: boolean}[] = [];
-  rating: any = 0;
-  @Input() averageNumber: any;
-  getRateElement: number = 0;
-  totalRate: any[] = [];
 
   constructor( private h: HttpClient,
      private cart: CartService ,
@@ -162,19 +158,24 @@ export class HomeComponent  {
     );
     this.responsiveOptions = [
       {
-          breakpoint: '1199px',
+          breakpoint: '1200px',
           numVisible: 5,
           numScroll: 1
       },
       {
-          breakpoint: '991px',
+          breakpoint: '992px',
           numVisible: 5,
           numScroll: 1
       },
       {
-          breakpoint: '767px',
+          breakpoint: '768px',
           numVisible: 5,
           numScroll: 1
+      },
+      {
+        breakpoint: '576px',
+        numVisible: 5,
+        numScroll: 1
       }
     ];
     this.updateVisibleItems();
