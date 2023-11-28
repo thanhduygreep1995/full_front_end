@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProduct } from 'src/app/components/interfaces/iproduct';
 import { CartService } from 'src/app/components/services/cart.service';
@@ -9,13 +9,26 @@ import { ProductService } from '../services/products.service';
 import { SearchService } from '../services/search.service';
 import { Pipe } from '@angular/core';
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
 registerLocaleData(localeFr, 'fr');
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate(300)),
+    ])
+  ]
 })
 export class HomeComponent  {
+  visibleItems: any[] = [];
+  selectedIndex: number = 0;
+  responsiveOptions: any[] | undefined;
   listSP:any;
   products: any[] = [];
   filteredProducts: any[] = [];
@@ -40,8 +53,6 @@ export class HomeComponent  {
       console.log("Content-Type=", res.headers.get('Content-Type'));
       this.listSP= res.body;
     })
-
-
   }
 
   onChangeView(id: number): void {
@@ -108,6 +119,17 @@ export class HomeComponent  {
     this.wish.addToWish(product);
     alert("Like")
   }
+
+  updateVisibleItems(): void {
+    const numVisible = 5; // Adjust this based on your design
+    const startIndex = Math.max(0, this.selectedIndex - Math.floor(numVisible / 2));
+    this.visibleItems = this.listSP.slice(startIndex, startIndex + numVisible);
+  }
+
+  goToItem(index: number): void {
+    this.selectedIndex = index;
+    this.updateVisibleItems();
+  }
   
   ngOnInit() {
     this.h.get("http://localhost:8080/api/v0/home",
@@ -138,6 +160,24 @@ export class HomeComponent  {
         console.error("Error fetching products:", error);
       }
     );
+    this.responsiveOptions = [
+      {
+          breakpoint: '1199px',
+          numVisible: 5,
+          numScroll: 1
+      },
+      {
+          breakpoint: '991px',
+          numVisible: 5,
+          numScroll: 1
+      },
+      {
+          breakpoint: '767px',
+          numVisible: 5,
+          numScroll: 1
+      }
+    ];
+    this.updateVisibleItems();
   }
 
   filterProducts(searchTerm: string) {

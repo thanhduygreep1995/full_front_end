@@ -22,3 +22,30 @@
 .no-fill {
     background-image: url('/assets/img/no-filled-star.svg');
 }
+
+.dot-buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dot-buttons button {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .dot-buttons button.active {
+    background-color: #555;
+  }
+
+  .truncate-overflow-20 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2; /* Number of lines to show */
+  }
