@@ -46,7 +46,7 @@
     <!-- ---- Product Content  --->
     <div>
         <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2">{{infoProduct.name}}</h2>
-        <!-- <div class="flex items-center mb-4">
+        <div class="flex items-center mb-4">
             <div class="flex gap-1 text-sm ">
                 <div class="flex items-center ">
                     <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[0].filled, 'half-filled': starsInfo[0].half, 'no-fill': starsInfo[0].noFill}"></span>
@@ -58,7 +58,7 @@
             </div>
             <div class="text-xs text-gray-500 ml-3">({{ count }} Reviews)</div>
 
-        </div> -->
+        </div>
 
         <div class="space-y-2">
             <p class="text-gray-800 font-semibold space-x-2 ">
@@ -229,7 +229,10 @@
 </div>
 
 <!-- ---- End Product View --->
-
+<div *ngIf="loading"
+        class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-primary"></div>
+</div>
 
 <!-- ---- Product Details  --->
 

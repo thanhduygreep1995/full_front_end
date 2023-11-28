@@ -44,6 +44,10 @@ import { PersonalProfileComponent } from './components/personal-profile/personal
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { OderFailureComponent } from './components/oder-failure/oder-failure.component';
 import { TokenInterceptor } from './components/interceptors/token.interceptor';
+import { CarouselModule } from 'primeng/carousel';
+import { TagModule } from 'primeng/tag';
+import { ButtonModule } from 'primeng/button';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 registerLocaleData(localeVi);
 
@@ -93,6 +97,10 @@ registerLocaleData(localeVi);
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ClipboardModule,
+    CarouselModule,
+    TagModule,
+    ButtonModule,
+    ScrollTopModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'vi' },
   {
