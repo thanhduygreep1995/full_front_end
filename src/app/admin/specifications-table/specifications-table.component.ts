@@ -147,7 +147,6 @@ export class SpecificationsTableComponent implements OnInit {
             setTimeout(() => {
               this.isSpinning = false;
               console.log('Danh mục đã được xóa thành công');
-              window.location.reload();
               this.SpecForm.reset();
               this.refreshTable();
               Swal.fire({

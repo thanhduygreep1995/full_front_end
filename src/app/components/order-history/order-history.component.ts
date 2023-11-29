@@ -35,12 +35,12 @@ export class OrderHistoryComponent {
       paymentMethod: [''],
       discountPrice: [''],
       orderDetail: [''],
-      customer: 5
+      customer: ['']
     });
    }
 
    ngOnInit(): void {
-    const customer = 1;
+    const customer = 5;
     this.oH.getAllByCustomerId(customer).subscribe((data) => {
       console.log(data);  
       this.orders = data;

@@ -178,7 +178,7 @@ export class CategoryTableComponent implements OnInit {
                 timer: 2000
               })
               console.log('Danh mục đã được xóa thành công');
-              window.location.reload();
+              this.refreshTable();
             },this.progressTimerOut);
             this.refreshTable();
           }, (error) => {

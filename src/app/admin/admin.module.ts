@@ -35,6 +35,7 @@ import { IncomeReportComponent } from './income-report/income-report.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ImageComponent } from './image/image.component';
 
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 
@@ -62,7 +63,8 @@ import { CustomerReportComponent } from './customer-report/customer-report.compo
     OriginEditionComponent,
     OriginTableComponent,
     IncomeReportComponent,
-    CustomerReportComponent
+    CustomerReportComponent,
+    ImageComponent
   ],
 
   imports: [

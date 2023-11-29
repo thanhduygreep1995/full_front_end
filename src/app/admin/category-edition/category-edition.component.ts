@@ -70,7 +70,7 @@ export class CategoryEditionComponent implements OnInit {
       const nameControl = this.infoCategory.controls['name'].invalid;
       const descriptionControl =
         this.infoCategory.controls['description'].invalid;
-      this.ButtonSave = nameControl || descriptionControl;
+      this.ButtonSave = nameControl;
       // this.ButtonSave = this.infoCategory.invalid; validate thất cả
     });
     this.infoCategory.valueChanges.subscribe(() => {
@@ -80,7 +80,7 @@ export class CategoryEditionComponent implements OnInit {
       const nameControl = this.infoCategory.controls['name'].invalid;
       const descriptionControl =
         this.infoCategory.controls['description'].invalid;
-      this.ButtonUpdate  = nameControl || descriptionControl;
+      this.ButtonUpdate  = nameControl;
     });
   }
 
@@ -116,8 +116,8 @@ export class CategoryEditionComponent implements OnInit {
   fnAddCategory() {
     const categoryInfo = {
       name: this.infoCategory.value.name,
-      description: this.infoCategory.value.description,
-      status: this.infoCategory.value.status,
+      // description: this.infoCategory.value.description,
+      categoryStatus: this.infoCategory.value.status,
     };
     this.isSpinning = true;
     this.cate.createCategory(categoryInfo).subscribe(
@@ -157,7 +157,7 @@ export class CategoryEditionComponent implements OnInit {
     const categoryInfo = {
       name: this.infoCategory.value.name,
       description: this.infoCategory.value.description,
-      status: this.infoCategory.value.status,
+      categoryStatus: this.infoCategory.value.status,
     };
     this.isSpinning = true;
     this.cate.updateCategory(this.id, categoryInfo).subscribe(
@@ -165,7 +165,6 @@ export class CategoryEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated category!');
-          window.location.reload();
           this.infoCategory.reset();
           this.defaultComboBox();
           Swal.fire({
@@ -173,6 +172,7 @@ export class CategoryEditionComponent implements OnInit {
             title: 'Successfully updated category!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
           })
         }, this.progressTimerOut);
       },

@@ -33,6 +33,13 @@ getTenLoaiSanPham(idType:Number=0){
   var url = `http://localhost:8080/api/v0/categories/${idType}`;
   return this.h.get<Itypeprd[]>(url);
 }
+
+getFeedBackProduct(id: number){
+  const url = `http://localhost:8080/api/v0/feedbacks/list/${id}`;
+  return this.h.get(url);
+}
+
+
 }
 
 

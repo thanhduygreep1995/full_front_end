@@ -29,7 +29,7 @@ export class CartService {
       const item: Icart = {
         id: sp.id,
         hinh: sp.hinh,
-        images:sp.images,
+        images: sp.thumbImage,
         soluong: 1,
         solanxem: 0,
         hot: 1,
@@ -43,9 +43,11 @@ export class CartService {
         discountPrice: sp.discountPrice,
         model: sp.model,
         name: sp.name,
-        price: sp.price ,
+        price: sp.price,
         updateDate: sp.updateDate,
-        categoryId: sp.categoryId
+        categoryId: sp.categoryId,
+        thumbImage: '',
+        Images: []
       }
       this.itemts.push(item)
     }
@@ -70,14 +72,11 @@ export class CartService {
   //   if (cartStr) {
   //     this.itemts = JSON.parse(cartStr);
   //   }
-  tt: number = 700000;
   tongtien() {
-    this.itemts.forEach(item => this.tt = this.tt + Number(item.tongTien));
-    return this.tt;
-    console.log(this.tt)
-  }
-  setTongTien(tt: number): void {
-    this.tt = tt;
+    let tt: number = 0;
+    this.itemts.forEach(item => tt = tt + Number(item.tongTien));
+    return tt;
+    console.log(tt)
   }
   clearCart() {
     this.itemts = [];

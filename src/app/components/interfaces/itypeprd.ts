@@ -1,6 +1,7 @@
 export interface Itypeprd {
     id:number;
     name:string;
-    images:string;
+    thumbImage:string;
     price:number;
+    images:any;
 }
