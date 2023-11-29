@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:8080/api/products';
+  private baseUrl = 'http://localhost:8080/api/v0/products';
 
   constructor(private http: HttpClient) { }
   getProducts(): Observable<any[]> {
@@ -22,6 +22,8 @@ export class ProductService {
     this.searchTermSource.next(term);
   }
 
-  
+  updateProductStock(productDTO:any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/stock-quantity`,productDTO,{ responseType: 'text' });
+  }
   
 }
