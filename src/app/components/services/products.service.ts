@@ -22,6 +22,8 @@ export class ProductService {
     this.searchTermSource.next(term);
   }
 
-  
+  getProductTop(): Observable<any> {
+    return this.http.get(`${this.baseUrl + '/top'}`);
+  }
   
 }

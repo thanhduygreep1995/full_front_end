@@ -19,6 +19,10 @@ export class RatingService {
     return this.http.get<any[]>(this.baseRatingUrl + "/" + id);
   }
   
+  getTotalByProductId(id: number): Observable<any[]> {
+    return this.http.get<any[]>(this.baseRatingUrl + "/total/"+ id);
+  }
+
   sendDBRequest(rating: any): Observable<any> {
     return this.http.post(this.baseRatingUrl, rating, { responseType: 'text' });
   }

@@ -75,6 +75,7 @@ export class HomeComponent  {
       console.error('listSP is undefined or null.');
       return;
     }
+
     this.listSP.forEach((item: any) => {
       console.log('Product:', item); // Kiểm tra xem dữ liệu sản phẩm có đúng không
   

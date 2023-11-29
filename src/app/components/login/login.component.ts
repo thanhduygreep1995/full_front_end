@@ -32,7 +32,7 @@ export class LoginComponent {
     const message = `email: ${this.email}` +
     `password: ${this.password}`;
   //alert(message);
-  debugger
+  // debugger
     const loginDTO: LoginDTO = {
       "email": this.email,
       "password": this.password,
@@ -40,12 +40,12 @@ export class LoginComponent {
 
     this.customerService.login(loginDTO).subscribe({
       next: (response: LoginResponse) => {
-        debugger;
+        // debugger;
         const { token } = response;  
         this.tokenService.setToken(token); 
         this.customerService.getCustomerDetail(token).subscribe({
           next: (response: any) => {
-            debugger;
+            // debugger;
             this.customerResponse = {
               ...response, 
               // date_of_birth: new Date(customerResponse.date_of_birth),
@@ -57,19 +57,19 @@ export class LoginComponent {
             })
           },
           complete: () => {
-            debugger;
+            // debugger;
           },
           error: (error: any) => {
-            debugger;
+            // debugger;
             alert(error.error.message);
           }
         });         
       },
       complete: () => {
-        debugger;
+        // debugger;
       },
       error: (error: any) => {
-        debugger;
+        // debugger;
         alert(error.error.message);
       }
     });

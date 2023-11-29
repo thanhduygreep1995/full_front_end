@@ -48,6 +48,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { TopProductComponent } from './components/top-product/top-product.component';
+
 
 registerLocaleData(localeVi);
 
@@ -86,6 +88,8 @@ registerLocaleData(localeVi);
     ChangePasswordComponent,
     PersonalProfileComponent,
     OderFailureComponent,
+    TopProductComponent,
+    
 
   ],
   imports: [
