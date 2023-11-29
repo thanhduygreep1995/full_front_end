@@ -1,5 +1,3 @@
-
-
 <!-- ---- End Mobile Side Bar ----- -->
 
 
@@ -27,22 +25,19 @@
 <div class="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
     <!-- ---- Product Image  --->
     <div>
-        <div>
-            <img id="main-img" src="{{infoProduct.images}}" class="w-full" />
+        <div *ngFor="let i of infoProduct.images" class="row">
+            <img id="main-img" src="{{i.imageUrl}}" width="200" height="400" />
         </div>
+
 
         <div class="grid grid-cols-5 gap-4 mt-4 ">
 
-            <div
-                (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg')">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg"
-                    class="single-img w-full cursor-pointer border hover:border-primary " />
+            <div (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg')">
+                <img src="https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg" class="single-img w-full cursor-pointer border hover:border-primary " />
             </div>
 
-            <div
-                (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg')">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg"
-                    class="single-img file:w-full cursor-pointer bhover:border-primary   " />
+            <div (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg')">
+                <img src="https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg" class="single-img file:w-full cursor-pointer bhover:border-primary   " />
             </div>
         </div>
     </div>
@@ -62,28 +57,28 @@
                 </div>
             </div>
             <div class="text-xs text-gray-500 ml-3">({{ count }} Reviews)</div>
-            
+
         </div>
 
         <div class="space-y-2">
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Availability : </span>
-                <span class="text-green-600"> {{infoProduct.productStatus}} </span>
+                <span class="text-green-600"></span>
             </p>
 
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Brand : </span>
-                <span class="text-gray-600"> {{infoProduct.brandId.name}} </span>
+                <span class="text-gray-600"></span>
             </p>
 
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Category : </span>
-                <span class="text-gray-600"> {{infoProduct.categoryId.name}} </span>
+                <span class="text-gray-600"></span>
             </p>
 
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>SKU : </span>
-                <span class="text-gray-600">AKHASFD34 </span>
+                <span class="text-gray-600"></span>
             </p>
         </div>
 
@@ -106,16 +101,14 @@
                 <!-- ---- Single Size --->
                 <div class="size-selector">
                     <input type="radio" name="size" class="hidden" id="size-s" />
-                    <label for="size-s"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">S</label>
+                    <label for="size-s" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">S</label>
                 </div>
                 <!-- ---- End Single Size --->
 
                 <!-- ---- Single Size --->
                 <div class="size-selector">
                     <input type="radio" name="size" class="hidden" id="size-m" />
-                    <label for="size-m"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">M</label>
+                    <label for="size-m" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">M</label>
                 </div>
                 <!-- ---- End Single Size --->
 
@@ -123,8 +116,7 @@
                 <!-- ---- Single Size --->
                 <div class="size-selector">
                     <input type="radio" name="size" class="hidden" id="size-l" />
-                    <label for="size-l"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">L</label>
+                    <label for="size-l" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">L</label>
                 </div>
                 <!-- ---- End Single Size --->
 
@@ -132,8 +124,7 @@
                 <!-- ---- Single Size --->
                 <div class="size-selector">
                     <input type="radio" name="size" class="hidden" id="size-xs" />
-                    <label for="size-xs"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">XS</label>
+                    <label for="size-xs" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">XS</label>
                 </div>
                 <!-- ---- End Single Size --->
 
@@ -141,8 +132,7 @@
                 <!-- ---- Single Size --->
                 <div class="size-selector">
                     <input type="radio" name="size" class="hidden" id="size-xl" />
-                    <label for="size-xl"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">XL</label>
+                    <label for="size-xl" class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">XL</label>
                 </div>
                 <!-- ---- End Single Size --->
 
@@ -158,8 +148,7 @@
                 <!-- ---- Single Color --->
                 <div class="color-selector">
                     <input type="radio" name="color" class="hidden" id="color-red" checked />
-                    <label for="color-red" style="background-color: brown;"
-                        class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
+                    <label for="color-red" style="background-color: brown;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
 
                 </div>
                 <!-- ----  End Single Color --->
@@ -167,8 +156,7 @@
                 <!-- ---- Single Color --->
                 <div class="color-selector">
                     <input type="radio" name="color" class="hidden" id="color-white" />
-                    <label for="color-white" style="background-color:blueviolet;"
-                        class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
+                    <label for="color-white" style="background-color:blueviolet;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
 
                 </div>
                 <!-- ----  End Single Color --->
@@ -177,8 +165,7 @@
                 <!-- ---- Single Color --->
                 <div class="color-selector">
                     <input type="radio" name="color" class="hidden" id="color-black" />
-                    <label for="color-black" style="background-color: #000000;"
-                        class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
+                    <label for="color-black" style="background-color: #000000;" class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
 
                 </div>
                 <!-- ----  End Single Color --->
@@ -207,32 +194,27 @@
                 <span class="mr-2"><i class="fas fa-shopping-bag"></i> </span> Add to Cart
             </a>
 
-            <a href="#"
-                class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center ">
+            <a href="#" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center ">
                 <span class="mr-2"><i class="fas fa-heart"></i> </span> Whishlist
             </a>
 
-        <a (click)="onClick()"
-        class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center cursor-pointer">
-            <span class="mr-2"><i class="fas fa-star"></i> </span> RATING
-        </a>
+            <a (click)="onClick()" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center cursor-pointer">
+                <span class="mr-2"><i class="fas fa-star"></i> </span> RATING
+            </a>
         </div>
         <!-- ---- End ADD TO CART BUTTON --->
 
         <!-- ---- Product Share Icon --->
 
         <div class="flex space-x-3 mt-4 ">
-            <a href="#"
-                class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
+            <a href="#" class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#"
-                class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
+            <a href="#" class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
                 <i class="fab fa-twitter"></i>
             </a>
 
-            <a href="#"
-                class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
+            <a href="#" class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
                 <i class="fab fa-instagram"></i>
             </a>
 
@@ -247,7 +229,10 @@
 </div>
 
 <!-- ---- End Product View --->
-
+<div *ngIf="loading"
+        class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+<div class="animate-spin rounded-full h-32 w-32 border-t-2 border-primary"></div>
+</div>
 
 <!-- ---- Product Details  --->
 
@@ -281,7 +266,51 @@
         </table>
     </div>
 
+    <!-- component -->
+    <div class="grid grid-cols-2 gap-8 mt-4">
+        <div class="row d-flex justify-content-start m-3 ">
+            <div class="antialiased mx-auto max-w-screen-sm col-6 ">
+                <h3 class="mb-4 text-lg font-semibold text-gray-900 ">Comments</h3>
+                <form class="mb-6 ">
+                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
+                        <label for="comment " class="sr-only ">Name</label>
+                        <input id="nameCustomer" name="nameCustomer" [(ngModel)]="infoProduct.nameCustomer" rows="6 " class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 " placeholder="Your name "
+                            required>
+                    </div>
+                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
+                        <label for="comment " class="sr-only ">Your comment</label>
+                        <textarea id="comment" name="comment" [(ngModel)]="infoProduct.comment" rows="6 " class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800 " placeholder="Write a comment... "
+                            required></textarea>
+                    </div>
+                    <button type="button" (click)="createFeedback()" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 ">
+                         Post comment
+                     </button>
+                </form>
+                <div class="space-y-4 " *ngFor="let f of feedBacks">
+                    <div class="flex ">
+                        <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed mt-3 bg-white">
+                            <footer class="flex justify-between items-center mb-2">
+                                <div class="flex items-center">
+                                    <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold"><img class="mr-2 w-6 h-6 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough"><strong>{{f.nameCustomer}}</strong></p>
+                                    <p class="text-sm  text-gray-600 dark:text-gray-400">{{f.updateDate}}</p>
+                                </div>
+                            </footer>
+                            <p class="text-sm ">
+                                {{f.comment}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
+
+
+
 
 <!-- ---- End Product Details --->
 
@@ -291,6 +320,3 @@
 
 
 <!-- ---- End  Related Product --->
-
-
-

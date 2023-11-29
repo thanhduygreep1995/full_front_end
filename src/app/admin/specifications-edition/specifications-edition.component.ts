@@ -6,6 +6,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ButtonService } from '../service/button/buttonservice';
+import { ProductService } from '../service/product/product.service';
 
 interface SpecResponse {
   id: any;
@@ -16,6 +17,7 @@ interface SpecResponse {
   display: any;
   operatingSystem: any;
   camera: any;
+  product_id: any;
 }
 
 const swalWithBootstrapButtons = Swal.mixin({
@@ -56,17 +58,23 @@ export class SpecificationsEditionComponent implements OnInit {
   ButtonSave: boolean = true;
   ButtonDelete: boolean = true;
   ButtonUpdate: boolean = true;
+
   isSpinning: boolean = false;
+  selectedProductId!: any;
+  product: any;
   progressTimerOut: number = 1200;
 
   constructor(
     private formBuilder: FormBuilder,
     private ss: SpecService,
+    private ps: ProductService,
     private route: ActivatedRoute,
     private router: Router,
     public buttonService: ButtonService
   ) {
     this.specForm = this.formBuilder.group({
+      selectedProduct: ['', Validators.required],
+      id: ['', Validators.required],
       processor: ['', Validators.required],
       graphicsCard: ['', Validators.required],
       ram: ['', Validators.required],
@@ -74,16 +82,19 @@ export class SpecificationsEditionComponent implements OnInit {
       display: ['', Validators.required],
       operatingSystem: ['', Validators.required],
       camera: ['', Validators.required],
+      product: this.formBuilder.group({
+        id: ["", Validators.required],
+      }),
     });
     this.specForm.valueChanges.subscribe(() => {
-      
       const nameControl = this.specForm.controls['processor'].invalid;
-      const descriptionControl =
-        this.specForm.controls['graphicsCard'].invalid;
-      this.ButtonSave = nameControl || descriptionControl;
+      this.specForm.controls['graphicsCard'].invalid;
+      this.ButtonSave = nameControl;
     });
+
     this.specForm.valueChanges.subscribe(() => {
-      this.ButtonUpdate = this.specForm.invalid;
+      const nameControl = this.specForm.controls['processor'].invalid;
+      this.ButtonUpdate = nameControl;
     });
   }
 
@@ -104,6 +115,16 @@ export class SpecificationsEditionComponent implements OnInit {
         // Xử lý trường hợp không tìm thấy `id`, ví dụ chuyển hướng người dùng đến trang khác hoặc hiển thị thông báo lỗi
       }
     });
+
+    this.ss.getAllSpec().subscribe((data) => {
+      this.Specs = data;
+    });
+    this.ps.getAllProduct().subscribe((data) =>{
+      this.product = data;
+      console.log('products', data);
+    });
+
+
   }
   fnAddSpec() {
     const Specinfo = {
@@ -114,6 +135,9 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
+      productId: {
+        id: this.selectedProductId
+      }
     };
     this.isSpinning = true;
     this.ss.createSpec(Specinfo).subscribe(
@@ -157,6 +181,9 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
+      productId: {
+        id: this.selectedProductId
+      }
     };
     this.isSpinning = true;
     this.ss.updateSpec(this.id, Specinfo).subscribe(
@@ -165,13 +192,14 @@ export class SpecificationsEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated specification!');
-          window.location.reload();
           this.specForm.reset();
           Swal.fire({
             icon: 'success',
             title: 'Successfully updated specification!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
+            window.location.reload();
           })
         }, this.progressTimerOut);
       },

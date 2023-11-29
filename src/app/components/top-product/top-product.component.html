@@ -1,0 +1,70 @@
+<div class="container pb-16 " style="border: 1px solid #ebe9e9; border-radius: 5px;margin-bottom: 25px; padding: 20px;">
+    <h2 class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6  ">Top Sale </h2>
+
+    <!-- ---- Start Single Product  ----- -->
+    <div class="card">
+        <p-carousel [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
+            <ng-template let-pro pTemplate="item">
+                <div class="surface-border border-round px-4 py-2 custom-carousel-item">
+                    <div class="group rounded bg-white shadow overflow-hidden px-5">
+                        <div>
+                            <div class="relative group">
+                                <div style="height: 220px; display: flex; align-items: center; justify-content: center;" class="align-text-center">
+                                    <img src="{{pro.thumbnail}}" class="w-full" />
+                                </div>
+
+
+                                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                                    <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                    <a href="#" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                                        <i class="fas fa-heart"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Rest of your content -->
+                        </div>
+
+
+                        <div class="pt-5 pb-3">
+                            <div style="display: flex; flex-direction: column;  height: 3rem ">
+                                <a href="/view/{{pro.id}}">
+                                    <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition truncate-overflow-20" style="word-wrap: break-word; overflow-wrap: break-word;">
+                                        {{pro.model}}
+                                    </h6>
+                                </a>
+                            </div>
+
+                            <div class="flex items-baseline mb-1 space-x-2 ">
+                                <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discountPrice | currency:".":"":"1.0"}} VNĐ</p>
+                            </div>
+                            <div class="flex items-baseline mb-1 space-x-2 ">
+                                <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"1.0"}} VNĐ </p>
+                            </div>
+                            <div>
+                                <div class="flex items-center" class="flex items-center">
+                                    <div class="flex gap-1 text-md">
+                                        <div *ngFor="let starInfo of pro.starsInfo">
+                                            <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="text-xs text-center text-gray-500 ml-3">{{ pro.ratingProduct.length }} Reviews</div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <a (click)="addToCart(pro)" class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium hover:bg-transparent hover:text-primary transition ">
+                            Add To Cart
+                        </a>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+    <!-- ---- End Single Product  ----- -->
+    <!-- commnent -->
+</div>

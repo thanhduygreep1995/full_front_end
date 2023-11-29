@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FeedbackService } from '../services/feedback/feedback.service';
 import { RatingService } from '../services/rating/rating.service';
 import { TokenService } from '../services/token.service';

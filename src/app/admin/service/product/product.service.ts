@@ -34,6 +34,15 @@ export class ProductService {
   // }
 
   getProductById(id: any) {
-    return this.http.get(this.baseUrl + '/' + id);
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get(url, { responseType: 'text' });
+  }
+  
+
+  updateThumbImage(id: any, files: File){
+    const formData: FormData = new FormData();
+    formData.append('thumbImage', files, files.name);
+    const url = `${this.baseUrl + '/image'}/${id}`;
+    return this.http.put(url, formData, { responseType: 'text' });
   }
 }

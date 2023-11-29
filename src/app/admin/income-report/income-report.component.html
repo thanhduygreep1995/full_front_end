@@ -50,7 +50,7 @@
                             <tbody>
                                 <tr *ngFor="let b of IncomeReports; let i = index" class="print-hide">
                                     <td class="col-2">{{ i + 1 }}</td>
-                                    <td>{{ b.date }}</td>
+                                    <td>{{ b.date | date:'dd/MM/yyyy'}}</td>
                                     <td>{{ b.orders}}</td>
                                     <td>{{ b.revenue+" "| currency:",":"":"6.0"}} VNĐ</td>
                                 </tr>

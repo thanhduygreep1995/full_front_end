@@ -25,5 +25,8 @@ export class ProductService {
   updateProductStock(productDTO:any): Observable<any> {
     return this.http.put(`${this.baseUrl}/stock-quantity`,productDTO,{ responseType: 'text' });
   }
+  getProductTop(): Observable<any> {
+    return this.http.get(`${this.baseUrl + '/top'}`);
+  }
   
 }

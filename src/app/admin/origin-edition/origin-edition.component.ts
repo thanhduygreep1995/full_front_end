@@ -137,7 +137,6 @@ export class OriginEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated Origin!');
-          window.location.reload();
           this.infoOrigin.reset();
           Swal.fire({
             icon: 'success',

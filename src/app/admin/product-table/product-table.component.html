@@ -17,9 +17,8 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
 </div>
 <!-- Main content -->
 <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
@@ -39,8 +38,10 @@
                                     <th class="col-2">No</th>
                                     <th>Name</th>
                                     <th>Model</th>
+                                    <th>Image</th>
                                     <th>Price</th>
                                     <th>Stock Quantity</th>
+                                    <!-- <th>ThumbNail</th> -->
                                     <th>Description</th>
                                     <th>Discount Percentage</th>
                                     <th>Discount Price</th>
@@ -57,15 +58,25 @@
                                     <td class="col-2">{{ i + 1 }}</td>
                                     <td>{{ p.name }}</td>
                                     <td>{{ p.model }}</td>
-                                    <td>{{ p.price+" "| currency:",":"":"6.0"}} VNĐ</td>
+                                    <td>
+                                        <div *ngIf="p.thumbImage; else defaultImage">
+                                            <img src="{{ p.thumbImage }}" type="button" height="300" width="300" data-toggle="modal" data-target="#thumbImage" (click)="openProduct(p.id)">
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=13RxBgoxnq_AUz_IPmo3UP0rZNWijLTIo&export=view" height="300" width="300" type="button" data-toggle="modal" data-target="#thumbImage" (click)="openProduct(p.id)">
+                                        </ng-template>
+                                    </td>
+                                    <td>{{ p.price+" "| currency:",":"":"1.0"}} VNĐ</td>
                                     <td>{{ p.stockQuantity }}</td>
+                                    <!-- <td>{{ p.thumbnail }}</td> -->
                                     <td>{{ p.description }}</td>
                                     <td>{{ p.discountPercentage }}</td>
-                                    <td>{{ p.discountPrice+" "| currency:",":"":"6.0"}} VNĐ</td>
+                                    <td>{{ p.discountPrice+" "| currency:",":"":"1.0"}} VNĐ</td>
                                     <td>{{ p.status }}</td>
-                                    <td>{{ p.category.name}}</td>
-                                    <td>{{ p.origin.country}}</td>
-                                    <td>{{ p.brand.name}}</td>
+                                    <td>{{ p.categoryId.name}}</td>
+                                    <td>{{ p.originId.country}}</td>
+                                    <td>{{ p.brandId.name}}</td>
                                     <td class="col-2">
                                         <button class="btn mb-2" style="background-color: cornflowerblue;" (click)="onUpdate(p.id)">
                                             <i class="fa fa-pencil"></i>
@@ -92,3 +103,34 @@
 <!-- /.content -->
 <!-- </div> -->
 <!-- /.content-wrapper -->
+
+<div class="modal fade" id="thumbImage" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Update Image {{seclectedProductId?.model}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group">
+                            <input type="text" id="productId" name="productId" class="form-control" value="{{ seclectedProductId?.id }}" hidden>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageFile">Select Image:</label>
+                            <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected Image" width="300" height="200">
+                            <input type="file" id="imageFile" (change)="onFileChange($event)" class="form-control-file">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="updateThumbImage(seclectedProductId?.id)">Update Image</button>
+            </div>
+        </div>
+    </div>
+</div>
