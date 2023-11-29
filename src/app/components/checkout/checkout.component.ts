@@ -10,6 +10,7 @@ import { PaymentService } from '../services/payment/payment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OderCompleteComponent } from '../oder-complete/oder-complete.component';
 import { TokenService } from '../services/token.service';
+import { ProductService } from '../services/products.service';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -21,7 +22,7 @@ export class CheckoutComponent {
   cities!: any[];
   districts!: any[];
   wards!: any[];
-  id: any = this.tokenService.getCustomerId();;
+  id: any = this.tokenService.getCustomerId();
   applied = false;
   loading: boolean = false;
   voucher: any;
@@ -34,7 +35,8 @@ export class CheckoutComponent {
     private locationService: LocationService,
     private checkoutService: CheckoutService,
     private route: ActivatedRoute,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private productService: ProductService
   ) {
     this.route.queryParams.subscribe((params) => {
       let vnpResponseCode = params['vnp_ResponseCode'];
@@ -48,6 +50,7 @@ export class CheckoutComponent {
             .subscribe();
           }
           console.log('Giá trị của vnp_ResponseCode00:', vnpResponseCode);
+          this.createOrderVNP();
           break;
         case '05':
         case '06':
@@ -90,6 +93,13 @@ export class CheckoutComponent {
   district: any;
   ward: any;
 
+  createOrderVNP(){
+    const retrievedOrderData = this.checkoutService.getOrderData();
+    this.checkoutService.createOrder(retrievedOrderData).subscribe((response) => {
+    this.createOrderDetail(response.id)
+    });
+    this.checkoutService.clearOrderData();
+  }
   clearAddress() {
     this.city = [0];
     this.district = [0];
@@ -177,55 +187,105 @@ export class CheckoutComponent {
     if (this.paymentMethod === 'Cash') {
       this.voucherStatus();
       this.createNewOrder();
-      // this.router.navigate(['/oder-complete']);
+      this.router.navigate(['/oder-complete']);
     } else if (this.paymentMethod === 'VnPay') {
       this.receiveCode(this.formCoupon.value.codeVoucher);
       this.createPayment(this.tt);
+      this.onOrder();
     }
   }
   // getTotal(): number {
   //   return this.tt;
   // }
-  isDiscount(): any{
-    if(this.voucher && this.voucher.value){
+  isDiscount(): any {
+    if (this.voucher && this.voucher.value) {
       return this.voucher.value;
-    }else{
+    } else {
       return 0;
     }
   }
-  
-  createNewOrder(): void {
-    // Tạo một đối tượng order từ các biến đã khai báo
-    const orderData = {
+  createOrderData(): any {
+    return {
       name: this.name,
       email: this.email,
-      address: this.address+', '+this.ward+', '+this.district+', '+this.city,
+      address: this.address + ', ' + this.ward + ', ' + this.district + ', ' + this.city,
       phone: this.phone,
+      status: 'PENDING',
       paymentMethod: this.paymentMethod,
       discountPrice: this.isDiscount(),
       totalAmount: this.tt,
       customer: {
-        id: this.id
-      }
+        id: this.id,
+      },
     };
-    this.checkoutService.createOrder(orderData)
-      .subscribe(
-        (response) => {
-          const orderId = response.id;
-          console.log(orderId);
-      // const orderDetailData = {
-      //     quantity: 1,
-      //     total_price: 1111111,
-      //     order:{
-      //       id:32
-      //     }, 
-      //     product: {
-      //       id:1
-      //     }
-      // };
-      // this.checkoutService.createOrderDetail(orderDetailData).subscribe(
-      //   (detailResponse) => {});
+  }
+
+  onOrder(){
+    // const orderData = {
+    //   name: this.name,
+    //   email: this.email,
+    //   address: this.address+', '+this.ward+', '+this.district+', '+this.city,
+    //   phone: this.phone,
+    //   status: 'PENDING',
+    //   paymentMethod: this.paymentMethod,
+    //   discountPrice: this.isDiscount(),
+    //   totalAmount: this.tt,
+    //   customer: {
+    //     id: this.id,
+    //   },
+    // };
+    const orderData = this.createOrderData();
+    this.checkoutService.setOrderData(orderData)
+  }
+  createNewOrder(): void {
+    // Tạo một đối tượng order từ các biến đã khai báo
+    // const orderData = {
+    //   name: this.name,
+    //   email: this.email,
+    //   address: this.address+', '+this.ward+', '+this.district+', '+this.city,
+    //   phone: this.phone,
+    //   status: 'PENDING',
+    //   paymentMethod: this.paymentMethod,
+    //   discountPrice: this.isDiscount(),
+    //   totalAmount: this.tt,
+    //   customer: {
+    //     id: this.id,
+    //   },
+    // };
+    const orderData = this.createOrderData();
+    this.checkoutService.createOrder(orderData).subscribe((response) => {
+      console.log('create success order');
+      this.createOrderDetail(response.id);
+    });
+  }
+  createOrderDetail(id: number){
+    this.cartItems.forEach((item) => {
+        const orderDetailData = {
+          quantity: item.soluong,
+          totalPrice: item.tongTien,
+          order: {
+            id: id, // Assuming you have orderId from somewhere
+          },
+          product: {
+            id: item.id, // Assuming 'id' in your data refers to product ID
+          },
+        };
+        this.checkoutService
+          .createOrderDetail(orderDetailData)
+          .subscribe((detailResponse) => {
+            console.log('create success orderdetail');
+          });
+        this.updateStockQuantity(item.id, item.soluong);
       });
+  }
+  updateStockQuantity(id: number, quantity: number) {
+    const productDTO = {
+      id: id,
+      stockQuantity: quantity,
+    };
+    this.productService.updateProductStock(productDTO).subscribe((response) => {
+      console.log('Stock updated successfully', response);
+    });
   }
   processPayment() {
     // Implement payment processing logic here

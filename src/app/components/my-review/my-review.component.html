@@ -31,15 +31,19 @@
                     <div class="flex justify-between">
                         <h2 class="text-xl font-semibold">{{feedback.products.name}}</h2>
                         <div class="flex items-center">
-                            <span class="text-gray-500">Create date: {{ feedback.createDate | date:'dd-MM-yyyy'
-                                }}</span>
+                            <span class="text-gray-500">{{ feedback.createDate }}</span>
                             <span class="ml-2 text-gray-600">
-                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[0].filled, 'half-filled': starsInfo[0].half, 'no-fill': starsInfo[0].noFill}"></span>
-                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[1].filled, 'half-filled': starsInfo[1].half, 'no-fill': starsInfo[1].noFill}"></span>
-                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[2].filled, 'half-filled': starsInfo[2].half, 'no-fill': starsInfo[2].noFill}"></span>
-                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[3].filled, 'half-filled': starsInfo[3].half, 'no-fill': starsInfo[3].noFill}"></span>
-                                <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[4].filled, 'half-filled': starsInfo[4].half, 'no-fill': starsInfo[4].noFill}"></span>
-                            </span>
+                                <ng-container *ngIf="feedback.ratings">
+                                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                    <span class="star" [ngClass]="{'text-yellow-400': star <= feedback.ratings.rating}">&#9733;</span>
+                                  </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="!feedback.ratings">
+                                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                    <span class="star">&#9733;</span>
+                                  </ng-container>
+                                </ng-container>
+                              </span>
                         </div>
                     </div>
                     <p class="text-gray-600 mt-2">{{feedback.comment}}.</p>

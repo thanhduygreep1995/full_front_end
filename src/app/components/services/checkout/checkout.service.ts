@@ -15,7 +15,7 @@ export class CheckoutService {
   }
   useVoucherByCode(codeVoucher: string): Observable<any> {
     const url = `${this.baseUrl}/use/${codeVoucher}`;
-    return this.http.put(url, { responseType: 'text' });
+    return this.http.put(url, null, { responseType: 'text' });
   }
   createOrder(orderDTO: any): Observable<any> {
     return this.http.post<any>('http://localhost:8080/api/v0/orders/create', orderDTO);
@@ -28,5 +28,15 @@ export class CheckoutService {
   }
   getVoucherCode(storageType: 'localStorage' | 'sessionStorage' = 'localStorage'): string | null {
     return window[storageType].getItem('codeVoucher');
+  }
+   setOrderData(data: any) {
+    localStorage.setItem('orderData', JSON.stringify(data));
+  }
+  getOrderData(): any {
+    const data = localStorage.getItem('orderData');
+    return data ? JSON.parse(data) : null;
+  } 
+  clearOrderData(): void {
+    localStorage.removeItem('orderData');
   }
 }
