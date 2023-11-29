@@ -74,7 +74,7 @@ export class ViewComponent {
     this.d.getTakeProduct(this.id).subscribe ( 
       res => { 
         this.infoProduct  = res[this.id - 1];
-        // this.getRatingListByProduct(this.id);
+        this.getRatingListByProduct(this.id);
 
       });
 
@@ -115,8 +115,8 @@ export class ViewComponent {
           rating: selectedValue,
           createDate: new Date(),
           updateDate: new Date(),
-          customer: { id: 1 },
-          product: { id: this.id }
+          customers: { id: 1 },
+          products: { id: this.id }
         };
         this.loading = true;
         this.rate.sendDBRequest(ratingForm).subscribe(
