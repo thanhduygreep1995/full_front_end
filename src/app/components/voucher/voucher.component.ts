@@ -4,6 +4,7 @@ import { VoucherService } from '../services/voucher/voucher.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { TokenService } from '../services/token.service';
 @Component({
   selector: 'app-voucher',
   templateUrl: './voucher.component.html',
@@ -17,11 +18,12 @@ export class VoucherComponent implements OnInit {
   totalPages: number = 0; // Tổng số trang
   loading: boolean = false;
   addVoucherForm: FormGroup;
-  id: any = 1;
+  id: any = this.tokenService.getCustomerId();
   constructor(
     private clipboardService: ClipboardService,
     private voucherService: VoucherService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private tokenService: TokenService
   ) {
     this.addVoucherForm = this.formBuilder.group({
       codeVoucher: ['', Validators.required],

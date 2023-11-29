@@ -26,7 +26,7 @@
                          <div>
                               <label class="text-gray-600 mb-2 block">Full Name <span class="text-primary">*</span>
                               </label>
-                              <input [(ngModel)]="name" name="n" minlength="6" type="text"
+                              <input [(ngModel)]="name" name="n" minlength="6" type="text" placeholder="Enter Name"
                                    class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" />
                          </div>
@@ -80,7 +80,7 @@
                          <div>
                               <label class="text-gray-600 mb-2 block">Phone Number <span class="text-primary">*</span>
                               </label>
-                              <input [(ngModel)]="phone" name="ph" type="text"
+                              <input [(ngModel)]="phone" name="ph" type="text" placeholder="Enter Phone Number"
                                    class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" />
                          </div>
@@ -93,7 +93,7 @@
                          <div>
                               <label class="text-gray-600 mb-2 block">Email Address <span class="text-primary">*</span>
                               </label>
-                              <input [(ngModel)]="email" name="em" type="email"
+                              <input [(ngModel)]="email" name="em" type="email" placeholder="Enter Email Address"
                                    class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" />
                          </div>
@@ -103,9 +103,9 @@
                               <label class="text-gray-600 mb-2 block">Payment Method <span
                                         class="text-primary">*</span></label>
                               <div class="flex items-center">
-                                   <input id="creditCard" type="radio" [(ngModel)]="paymentMethod" name="paymentMethod" value="Credit Card"
+                                   <input id="creditCard" type="radio" [(ngModel)]="paymentMethod" name="paymentMethod" value="Cash"
                                         class="h-4 w-4 text-indigo-600 focus:ring-primary border-gray-300">
-                                   <label for="creditCard" class="ml-2 text-gray-700 cursor-pointer">Credit Card</label>
+                                   <label for="creditCard" class="ml-2 text-gray-700 cursor-pointer">Pay in cash</label>
                               </div>
                               <div class="flex items-center">
                                    <input id="vnPay" type="radio" [(ngModel)]="paymentMethod" name="paymentMethod" value="VnPay"

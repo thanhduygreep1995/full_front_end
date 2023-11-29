@@ -76,7 +76,7 @@
         <!-- ---- End Categories  ----- -->
 
         <!-- ---- Start Top New Arrival  ----- -->
-
+        <app-top-product></app-top-product>
 
 
         <!-- ---- End Top New Arrival  ----- -->
@@ -116,10 +116,10 @@
                                             </a>
                                         </div>
                                     </div>
-            
+
                                     <!-- Rest of your content -->
                                 </div>
-            
+
                                 <div class="pt-5 pb-3">
                                     <div style="display: flex; flex-direction: column;  height: 3rem ">
                                         <a href="/view/{{pro.id}}" (click)="onChangeView(pro.id)">
@@ -128,7 +128,7 @@
                                             </h6>
                                         </a>
                                     </div>
-            
+
                                     <div class="flex items-baseline mb-1 space-x-2 ">
                                         <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discount | currency:".":"":"6.0"}} VNĐ</p>
                                     </div>
@@ -136,17 +136,17 @@
                                         <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"6.0"}} VNĐ </p>
                                     </div>
                                     <div>
-                                        <div class="flex items-center"  class="flex items-center">
+                                        <div class="flex items-center" class="flex items-center">
                                             <div class="flex gap-1 text-md">
                                                 <div *ngFor="let starInfo of pro.starsInfo">
                                                     <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
                                                 </div>
                                             </div>
                                             <div class="text-xs text-center text-gray-500 ml-3">{{ pro.count }} Reviews</div>
-            
+
                                         </div>
                                     </div>
-            
+
                                     <a (click)="addToCart(pro)" class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium hover:bg-transparent hover:text-primary transition ">
                                         Add To Cart
                                     </a>
@@ -163,4 +163,3 @@
     <div class="card flex flex-column align-items-center">
         <p-scrollTop></p-scrollTop>
     </div>
-    

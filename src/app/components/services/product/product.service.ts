@@ -39,6 +39,11 @@ export class ProductService {
   }
   
 
+  getProductTopOrder(id: any) {
+    const url = `${this.baseUrl + '/top'}`;
+    return this.http.get(url, { responseType: 'text' });
+  }
+
   updateThumbImage(id: any, files: File){
     const url = `${this.baseUrl + '/image'}/${id}`;
     return this.http.put(url, files, { responseType: 'text' });
