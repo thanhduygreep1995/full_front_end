@@ -5,11 +5,11 @@
     <div class="card">
         <p-carousel [value]="products" [numVisible]="4" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
             <ng-template let-pro pTemplate="item">
-                <div class="product-container">
-                    <div class="surface-border border-round px-5 py-5">
-                        <div class="product-container mx-2">
-                            <div class="relative w-52 group">
-                                <div style="width: 200px; height: 220px; display: flex; align-items: center; justify-content: center;" class="align-text-center">
+                <div class="surface-border border-round px-4 py-2 custom-carousel-item">
+                    <div class="group rounded bg-white shadow overflow-hidden px-5">
+                        <div>
+                            <div class="relative group">
+                                <div style="height: 220px; display: flex; align-items: center; justify-content: center;" class="align-text-center">
                                     <img src="{{pro.thumbnail}}" class="w-full" />
                                 </div>
 
@@ -28,7 +28,7 @@
                         </div>
 
 
-                        <div class="pt-4 pb-3 px-4 ">
+                        <div class="pt-5 pb-3">
                             <div style="display: flex; flex-direction: column;  height: 3rem ">
                                 <a href="/view/{{pro.id}}">
                                     <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition truncate-overflow-20" style="word-wrap: break-word; overflow-wrap: break-word;">
