@@ -14,6 +14,7 @@ import { RatingService } from '../services/rating.service';
 import { FeedbackService } from '../services/feedback/feedback.service';
 import { ProductService } from '../services/product/product.service';
 import { TokenService } from '../services/token.service';
+import { WishService } from '../services/wish.service';
 
 @Component({
   selector: 'app-view',
@@ -26,7 +27,7 @@ export class ViewComponent {
   products: any;
   infoProduct: any;
   id: any;
-  // customerId: any =  this.tokenService.getCustomerId();  ;
+  customerId: any =  this.tokenService.getCustomerId();
   checkData: any[] = [];
   count: number = 0;
   @Input() averageNumber: any;
@@ -50,7 +51,8 @@ export class ViewComponent {
     private cartService: CartService,
     private fB: FeedbackService,
     private pS: ProductService,
-    // private tokenService: TokenService,
+    private tokenService: TokenService,
+    private wish: WishService,
     // private snackBar: MatSnackBar
 
   ) {
@@ -72,6 +74,15 @@ export class ViewComponent {
       images: [''],
     });
    }
+  addToWish(product:IProduct){
+    this.wish.addToWish(product);
+    Swal.fire({
+      icon:'success',
+      title: 'Add To Wishlist Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
+  }
 
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.params['id']);  
@@ -245,6 +256,12 @@ export class ViewComponent {
   }
   addToCart(product: any) {
     this.cartService.addToCart(product);
+    Swal.fire({
+      icon:'success',
+      title: 'Added To Cart Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
   }
   
   createFeedback(){
