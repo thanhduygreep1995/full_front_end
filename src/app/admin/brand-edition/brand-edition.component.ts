@@ -93,6 +93,24 @@ export class BrandEditionComponent implements OnInit {
       name: this.infoBrand.value.name,
     };
     this.isSpinning = true;
+    this.isSpinning = true;
+    this.bS.getAllBrands().subscribe((data) => {
+      console.log(data);
+      this.brands = data;
+      for (let o of this.brands) {
+        if (this.infoBrand.value.name == o.name) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Name Brand already in the data',
+              showConfirmButton: false,
+              timer: 7000
+            })
+          }, this.progressTimerOut);
+          return;
+        } 
+      }
     this.bS.createBrand(brandInfo).subscribe(
       (response) => {
         console.log('Successfully Create Brand!');  
@@ -119,9 +137,11 @@ export class BrandEditionComponent implements OnInit {
             timer: 2000
           })
         }, this.progressTimerOut);
-        console.error('Failed to Create Brand:', error);
       }
-    );
+      );
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   fnUpdateBrand() {
@@ -129,6 +149,27 @@ export class BrandEditionComponent implements OnInit {
       name: this.infoBrand.value.name,
     };
     this.isSpinning = true;
+    this.bS.getAllBrands().subscribe((data) => {
+      console.log(data);
+      this.brands = data;
+      for (let o of this.brands) { 
+        if((this.infoBrand.value.name != o.name )
+        ) {
+            break;
+        } 
+        if (this.infoBrand.value.name == o.name) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Name Brand already in the data',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          }, this.progressTimerOut);
+          return;
+        }
+      }
     this.bS.updateBrand(this.id, brandInfo).subscribe(
       (response) => {
         console.log('Successfully updated Brand!');
@@ -156,8 +197,10 @@ export class BrandEditionComponent implements OnInit {
         }, this.progressTimerOut);
         console.error('Failed to update Brand:', error);
       }
-    );
-  }
+      );
+  
+    });
+      }
 
   refreshTable() {
     // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới

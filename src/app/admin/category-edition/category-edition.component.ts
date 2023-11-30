@@ -120,6 +120,23 @@ export class CategoryEditionComponent implements OnInit {
       categoryStatus: this.infoCategory.value.status,
     };
     this.isSpinning = true;
+    this.cate.getAllCategories().subscribe((data) => {
+      console.log(data);
+      this.categories = data;
+      for (let o of this.categories) {
+        if (this.infoCategory.value.name == o.name) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Name Category already in the data',
+              showConfirmButton: false,
+              timer: 7000
+            })
+          }, this.progressTimerOut);
+          return;
+        } 
+      }
     this.cate.createCategory(categoryInfo).subscribe(
       (response) => {
 
@@ -150,7 +167,10 @@ export class CategoryEditionComponent implements OnInit {
           })
         }, this.progressTimerOut);
       }
-    );
+      );
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   fnUpdateCategory() {
@@ -160,6 +180,27 @@ export class CategoryEditionComponent implements OnInit {
       categoryStatus: this.infoCategory.value.status,
     };
     this.isSpinning = true;
+    this.cate.getAllCategories().subscribe((data) => {
+      console.log(data);
+      this.categories = data;
+      for (let o of this.categories) { 
+        if((this.infoCategory.value.country != o.country )
+        ) {
+            break;
+        } 
+        if (this.infoCategory.value.name == o.name) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Name Category already in the data',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          }, this.progressTimerOut);
+          return;
+        }
+      }
     this.cate.updateCategory(this.id, categoryInfo).subscribe(
       (response) => {
         setTimeout(() => {
@@ -187,8 +228,10 @@ export class CategoryEditionComponent implements OnInit {
           });
         }, this.progressTimerOut);
       }
-    );
-  }
+      );
+  
+    });
+      }
 
   refreshTable() {
       // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới
