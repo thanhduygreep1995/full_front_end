@@ -54,7 +54,7 @@
                                     <!-- <td hidden>{{ s.id }}</td> -->
                                     <td class="col-2">{{ i + 1 }}</td>
                                     <td>
-                                        <div *ngIf="s.processor; else defaultImage">
+                                        <div *ngIf="s.processor != 'Trống'; else defaultImage">
                                             {{ s.processor }}
                                         </div>
 
@@ -64,7 +64,7 @@
                                     </td>
 
                                     <td>
-                                        <div *ngIf="s.graphicsCard; else defaultImage">
+                                        <div *ngIf="s.graphicsCard != 'Trống'; else defaultImage">
                                             {{ s.graphicsCard }}
                                         </div>
 
@@ -73,7 +73,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.ram; else defaultImage">
+                                        <div *ngIf="s.ram != 'Trống'; else defaultImage">
                                             {{ s.ram }}
                                         </div>
 
@@ -82,7 +82,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.storage; else defaultImage">
+                                        <div *ngIf="s.storage != 'Trống'; else defaultImage">
                                             {{ s.storage }}
                                         </div>
 
@@ -91,7 +91,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.display; else defaultImage">
+                                        <div *ngIf="s.display != 'Trống'; else defaultImage">
                                             {{ s.display }}
                                         </div>
 
@@ -100,7 +100,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.operatingSystem; else defaultImage">
+                                        <div *ngIf="s.operatingSystem != 'Trống'; else defaultImage">
                                             {{ s.operatingSystem }}
                                         </div>
 
@@ -109,7 +109,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.camera; else defaultImage">
+                                        <div *ngIf="s.camera != 'Trống'; else defaultImage">
                                             {{ s.camera }}
                                         </div>
 
@@ -128,7 +128,7 @@
                                             <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
                                         </ng-template>
                                     </td> -->
-                                    <td>{{ s.productId.model }}</td>
+                                    <td>{{ s.products.model}}</td>
                                     <td class="col-2">
                                         <button class="btn mx-2" style="background-color: cornflowerblue;" (click)="onUpdate(s.id)">
                                             <i class="fa fa-pencil"></i>

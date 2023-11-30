@@ -82,7 +82,7 @@ export class SpecificationsEditionComponent implements OnInit {
       display: ['', Validators.required],
       operatingSystem: ['', Validators.required],
       camera: ['', Validators.required],
-      product: this.formBuilder.group({
+      products: this.formBuilder.group({
         id: ["", Validators.required],
       }),
     });
@@ -135,7 +135,7 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
-      productId: {
+      products: {
         id: this.selectedProductId
       }
     };
@@ -181,7 +181,7 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
-      productId: {
+      products: {
         id: this.selectedProductId
       }
     };
