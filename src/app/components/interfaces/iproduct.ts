@@ -8,7 +8,7 @@ export interface IProduct {
         hinh:string;
         ngay:string;
         idType:number;
-        thumbImage: string;
+        thumbnail: string;
         description: string;
         discount: number;
         discountPrice: number;
