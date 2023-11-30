@@ -22,6 +22,9 @@ export class ProductService {
     this.searchTermSource.next(term);
   }
 
+  updateProductStock(productDTO:any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/stock-quantity`,productDTO,{ responseType: 'text' });
+  }
   getProductTop(): Observable<any> {
     return this.http.get(`${this.baseUrl + '/top'}`);
   }

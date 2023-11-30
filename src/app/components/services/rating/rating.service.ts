@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 export class RatingService {
   private baseUrl = 'http://localhost:8080/api/v0/rating-products';
   constructor(private http: HttpClient) {}
-  getAllByCustomerId(customerId: any): Observable<any> {
-    return this.http.get(`${this.baseUrl}/my-rating/${customerId}`);
+  getMyRating(productId: number, customerId: number): Observable<any> {
+    const url = `${this.baseUrl}/my-rating?productId=${productId}&customerId=${customerId}`;
+    return this.http.get<any>(url);
   }
 }
