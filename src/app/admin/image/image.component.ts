@@ -101,35 +101,6 @@ export class ImageComponent {
           className: 'btn-primary',
           columns: ':not(:last-child)',
         },
-
-        {
-          extend: 'copy',
-          title: 'Admin - Product',
-          exportOptions: {
-            columns: ':not(:last-child)', // Ẩn cột cuối cùng
-          },
-        },
-        {
-          extend: 'print',
-          title: 'Admin - Product',
-          exportOptions: {
-            columns: ':not(:last-child)', // Ẩn cột cuối cùng
-          },
-        },
-        {
-          extend: 'excel',
-          title: 'Admin - Product',
-          exportOptions: {
-            columns: ':not(:last-child)', // Ẩn cột cuối cùng
-          },
-        },
-        {
-          extend: 'csvHtml5',
-          title: 'Admin - Product',
-          exportOptions: {
-            columns: ':not(:last-child)', // Ẩn cột cuối cùng
-          },
-        },
       ],
     };
 
@@ -180,7 +151,7 @@ openImage(imageId: number) {
   });
   }
 
-
+  
 
   refreshImageTable() {
     // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới
