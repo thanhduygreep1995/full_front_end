@@ -129,7 +129,7 @@ export class CategoryEditionComponent implements OnInit {
             this.isSpinning = false;
             Swal.fire({
               icon: 'error',
-              title: 'Name Category already in the data',
+              title: 'Name of category is exíted already',
               showConfirmButton: false,
               timer: 7000
             })
@@ -193,7 +193,7 @@ export class CategoryEditionComponent implements OnInit {
             this.isSpinning = false;
             Swal.fire({
               icon: 'error',
-              title: 'Name Category already in the data',
+              title: 'Name of category is exíted already',
               showConfirmButton: false,
               timer: 2000
             })

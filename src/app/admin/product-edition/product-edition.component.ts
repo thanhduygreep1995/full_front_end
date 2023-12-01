@@ -212,7 +212,7 @@ export class ProductEditionComponent implements OnInit {
           this.isSpinning = false;
           Swal.fire({
             icon: 'error',
-            title: 'Name and Model of Product already in the data',
+            title: 'Name and Model of product is existed already',
             showConfirmButton: false,
             timer: 7000
           })
@@ -300,7 +300,7 @@ fnUpdateProduct() {
           this.isSpinning = false;
           Swal.fire({
             icon: 'error',
-            title: 'Name and Model already in the data',
+            title: 'Name and Model of product is existed already',
             showConfirmButton: false,
             timer: 2000
           })
