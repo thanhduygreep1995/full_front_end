@@ -55,3 +55,10 @@
     -webkit-line-clamp: 2;
     /* Number of lines to show */
 }
+
+.custom-carousel-item {
+    margin-left: -5px;
+    /* Adjust this value as needed */
+    margin-right: 4px;
+    /* Adjust this value as needed */
+}
