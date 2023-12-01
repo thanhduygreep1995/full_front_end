@@ -105,7 +105,7 @@ export class OriginEditionComponent implements OnInit {
             this.isSpinning = false;
             Swal.fire({
               icon: 'error',
-              title: 'Country of origins is exíted already',
+              title: 'Country of origins is existed already',
               showConfirmButton: false,
               timer: 7000
             })
@@ -162,7 +162,7 @@ export class OriginEditionComponent implements OnInit {
             this.isSpinning = false;
             Swal.fire({
               icon: 'error',
-              title: 'Country of origins is exíted already',
+              title: 'Country of origins is existed already',
               showConfirmButton: false,
               timer: 2000
             })

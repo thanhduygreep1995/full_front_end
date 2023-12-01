@@ -103,7 +103,7 @@ export class BrandEditionComponent implements OnInit {
             this.isSpinning = false;
             Swal.fire({
               icon: 'error',
-              title: 'Name of brand is exíted already',
+              title: 'Name of brand is existed already',
               showConfirmButton: false,
               timer: 7000
             })
@@ -162,7 +162,7 @@ export class BrandEditionComponent implements OnInit {
             this.isSpinning = false;
             Swal.fire({
               icon: 'error',
-              title: 'Name of brand is exíted already',
+              title: 'Name of brand is existed already',
               showConfirmButton: false,
               timer: 2000
             })
