@@ -205,7 +205,7 @@ export class CheckoutComponent {
     }
   }
   createOrderData(): any {
-    return {
+    const orderData: any =  {
       name: this.name,
       email: this.email,
       address: this.address + ', ' + this.ward + ', ' + this.district + ', ' + this.city,
@@ -218,40 +218,14 @@ export class CheckoutComponent {
         id: this.id,
       },
     };
+    return orderData;
   }
 
   onOrder(){
-    // const orderData = {
-    //   name: this.name,
-    //   email: this.email,
-    //   address: this.address+', '+this.ward+', '+this.district+', '+this.city,
-    //   phone: this.phone,
-    //   status: 'PENDING',
-    //   paymentMethod: this.paymentMethod,
-    //   discountPrice: this.isDiscount(),
-    //   totalAmount: this.tt,
-    //   customer: {
-    //     id: this.id,
-    //   },
-    // };
     const orderData = this.createOrderData();
     this.checkoutService.setOrderData(orderData)
   }
   createNewOrder(): void {
-    // Tạo một đối tượng order từ các biến đã khai báo
-    // const orderData = {
-    //   name: this.name,
-    //   email: this.email,
-    //   address: this.address+', '+this.ward+', '+this.district+', '+this.city,
-    //   phone: this.phone,
-    //   status: 'PENDING',
-    //   paymentMethod: this.paymentMethod,
-    //   discountPrice: this.isDiscount(),
-    //   totalAmount: this.tt,
-    //   customer: {
-    //     id: this.id,
-    //   },
-    // };
     const orderData = this.createOrderData();
     this.checkoutService.createOrder(orderData).subscribe((response) => {
       console.log('create success order');

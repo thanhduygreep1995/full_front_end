@@ -117,7 +117,7 @@ export class CategoryEditionComponent implements OnInit {
     const categoryInfo = {
       name: this.infoCategory.value.name,
       // description: this.infoCategory.value.description,
-      categoryStatus: this.infoCategory.value.status,
+      status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
     this.cate.createCategory(categoryInfo).subscribe(
@@ -156,8 +156,8 @@ export class CategoryEditionComponent implements OnInit {
   fnUpdateCategory() {
     const categoryInfo = {
       name: this.infoCategory.value.name,
-      description: this.infoCategory.value.description,
-      categoryStatus: this.infoCategory.value.status,
+      // description: this.infoCategory.value.description,
+      status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
     this.cate.updateCategory(this.id, categoryInfo).subscribe(

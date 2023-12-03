@@ -102,7 +102,7 @@ export class OrderTableComponent implements OnInit {
       phone: [''],
       orderDate: [''],
       note: [''],
-      status: [],
+      status: ['',Validators.required],
       paymentMethod: [''],
       discountPrice: [''],
       customer: this.formBuilder.group({

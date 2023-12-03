@@ -16,8 +16,15 @@ export class TokenService {
         localStorage.setItem(this.TOKEN_KEY, token);
     }
     getCustomerId(): number {
-        let customerObject = this.jwtHelperService.decodeToken(this.getToken() ?? '');
-        return 'id' in customerObject ? parseInt(customerObject['id']) : 0;
+        const token = this.getToken() ?? '';
+        const customerObject = this.jwtHelperService.decodeToken(token);
+    
+        if (customerObject && 'id' in customerObject) {
+            const customerId = parseInt(customerObject['id']);
+            return isNaN(customerId) ? 0 : customerId;
+        }
+    
+        return 0;
     }
     removeToken(): void {
         localStorage.removeItem(this.TOKEN_KEY);

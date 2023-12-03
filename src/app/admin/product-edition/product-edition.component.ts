@@ -141,8 +141,9 @@ export class ProductEditionComponent implements OnInit {
       if (params && params['id']) {
         this.id = params['id'];
         this.pS.getProductById(this.id).subscribe(
-          (response: Object) => {
-            this.productForm.patchValue(response as ProductResponse);
+          (response: any) => {
+            console.log(response)
+            this.productForm.patchValue(response);
           },
           (error) => {
             console.log(error);
@@ -170,6 +171,9 @@ export class ProductEditionComponent implements OnInit {
   }
 
   defaultStatus() {
+    this.selectedCategoryId = "0"
+    this.selectedBrandId = "0"
+    this.selectedOriginId= "0"
     // selected status Active
     this.productForm.patchValue({
       status: 'AVAILABLE', // hoặc 'INACTIVE'
