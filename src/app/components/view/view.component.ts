@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Directive, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/components/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Data } from '@angular/router';
@@ -12,9 +12,11 @@ import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { RatingService } from '../services/rating.service';
 import { FeedbackService } from '../services/feedback/feedback.service';
-import { ProductService } from '../services/product/product.service';
+import { ProductService } from '../services/products.service';
 import { TokenService } from '../services/token.service';
 import { WishService } from '../services/wish.service';
+
+
 
 @Component({
   selector: 'app-view',
@@ -22,7 +24,8 @@ import { WishService } from '../services/wish.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
-  
+  Images: any;
+  Spec: any;
   rating: any = 0;
   products: any;
   infoProduct: any;
@@ -39,20 +42,21 @@ export class ViewComponent {
   nameCustomer: any;
   comment: any;
   data: any[]=[];
+  responsiveOptions: any[] | undefined;
+  selectedImageUrl: string = '';
+  selectedIndex: number = 0;
 
   constructor( 
     private rate:RatingService,
     private d:DataService,  
     private route:ActivatedRoute, 
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
     private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef,
     private cartService: CartService,
     private fB: FeedbackService,
     private pS: ProductService,
     private tokenService: TokenService,
     private wish: WishService,
+    private el: ElementRef,
     // private snackBar: MatSnackBar
 
   ) {
@@ -74,6 +78,15 @@ export class ViewComponent {
       images: [''],
     });
    }
+
+   imageChange(imageUrl: string, index: number) {
+    this.selectedImageUrl = imageUrl;
+    this.selectedIndex = index;
+    console.log(this.selectedImageUrl);
+}
+
+
+
   addToWish(product:IProduct){
     this.wish.addToWish(product);
     Swal.fire({
@@ -91,13 +104,45 @@ export class ViewComponent {
       res => { 
         this.infoProduct  = res[this.id - 1];
         this.getRatingListByProduct(this.id);
-
+        console.log('Dữ liệu mới đã được cập nhật:', this.infoProduct);
       });
+    
+    this.pS.getImagePro(this.id).subscribe((data) => {
+        this.Images = data;
+        this.selectedImageUrl = this.Images[0].imageUrl;
+        console.log('Dữ liệu mới đã được cập nhật:', this.Images);
+      });  
+
+    this.pS.getSpecPro(this.id).subscribe((data) => {
+      this.Spec = data;
+      console.log('Dữ liệu mới đã được cập nhật:', this.Spec);
+    });
 
     this.fB.getFeedBackProduct(this.id).subscribe((data) => {
         this.feedBacks = data;
       });
-    
+      this.responsiveOptions = [
+        {
+            breakpoint: '1199px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '991px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '767px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+          breakpoint: '576px',
+          numVisible: 1,
+          numScroll: 1
+        }
+      ];
       
   }
 
