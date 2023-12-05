@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 import { RatingService } from '../services/rating.service';
 import { FeedbackService } from '../services/feedback/feedback.service';
 import { ProductService } from '../services/product/product.service';
+import { TokenService } from '../services/token.service';
+import { WishService } from '../services/wish.service';
 
 @Component({
   selector: 'app-view',
@@ -25,6 +27,8 @@ export class ViewComponent {
   products: any;
   infoProduct: any;
   id: any;
+  customerId: any =  this.tokenService.getCustomerId();
+  checkData: any[] = [];
   count: number = 0;
   @Input() averageNumber: any;
   getRateElement: number[] = [];
@@ -47,6 +51,8 @@ export class ViewComponent {
     private cartService: CartService,
     private fB: FeedbackService,
     private pS: ProductService,
+    private tokenService: TokenService,
+    private wish: WishService,
     // private snackBar: MatSnackBar
 
   ) {
@@ -68,9 +74,19 @@ export class ViewComponent {
       images: [''],
     });
    }
+  addToWish(product:IProduct){
+    this.wish.addToWish(product);
+    Swal.fire({
+      icon:'success',
+      title: 'Add To Wishlist Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
+  }
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.params['id']);    
+    this.id = Number(this.route.snapshot.params['id']);  
+    
     this.d.getTakeProduct(this.id).subscribe ( 
       res => { 
         this.infoProduct  = res[this.id - 1];
@@ -118,34 +134,54 @@ export class ViewComponent {
           customers: { id: 1 },
           products: { id: this.id }
         };
-        this.loading = true;
-        this.rate.sendDBRequest(ratingForm).subscribe(
-          (response) => {
-            setTimeout(() => {
-              this.loading = false;
+        this.rate.getAllRatingList().subscribe((ratingData) => {
+          this.loading = true;
+          this.checkData = ratingData;
+          for (let r of this.checkData) {
+            if (r.rating != null 
+              && (r.customers.id == 1 && r.customers.id > 0) 
+              && r.products.id == this.id) {
               Swal.fire({
-                icon:'success',
-                title: 'Rate Successfully',
+                icon: 'info',
+                title: 'You had rated this product',
                 showConfirmButton: false,
                 timer: 1000
               })
-            },1000)
-            console.log('response: ', response);
-            this.getRatingListByProduct(this.id);
-          },
-          (err) => {
-            setTimeout(() => {
-              this.loading = false;
-              Swal.fire({
-                icon:'error',
-                title: 'Rate Failure',
-                showConfirmButton: false,
-                timer: 1000
-              })
-            },1000)
-            console.log('error: ', err);
+              return;
+            } 
+            else {
+              this.rate.sendDBRequest(ratingForm).subscribe(
+                (response) => {
+                  setTimeout(() => {
+                    this.loading = false;
+                    Swal.fire({
+                      icon:'success',
+                      title: 'Rate Successfully',
+                      showConfirmButton: false,
+                      timer: 1000
+                    })
+                  },1000)
+                  console.log('response: ', response);
+                  this.getRatingListByProduct(this.id);
+                },
+                (err) => {
+                  setTimeout(() => {
+                    this.loading = false;
+                    Swal.fire({
+                      icon:'error',
+                      title: 'Rate Failure',
+                      showConfirmButton: false,
+                      timer: 2000
+                    })
+                  },4000)
+                  console.log('error: ', err);
+                }
+              );
+            }
           }
-        );
+
+
+        })
       }
     });
     
@@ -220,6 +256,12 @@ export class ViewComponent {
   }
   addToCart(product: any) {
     this.cartService.addToCart(product);
+    Swal.fire({
+      icon:'success',
+      title: 'Added To Cart Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
   }
   
   createFeedback(){
