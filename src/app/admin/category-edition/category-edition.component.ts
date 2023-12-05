@@ -117,7 +117,7 @@ export class CategoryEditionComponent implements OnInit {
     const categoryInfo = {
       name: this.infoCategory.value.name,
       // description: this.infoCategory.value.description,
-      categoryStatus: this.infoCategory.value.status,
+      status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
     this.cate.getAllCategories().subscribe((data) => {
@@ -176,19 +176,19 @@ export class CategoryEditionComponent implements OnInit {
   fnUpdateCategory() {
     const categoryInfo = {
       name: this.infoCategory.value.name,
-      description: this.infoCategory.value.description,
-      categoryStatus: this.infoCategory.value.status,
+      // description: this.infoCategory.value.description,
+      status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
     this.cate.getAllCategories().subscribe((data) => {
       console.log(data);
       this.categories = data;
       for (let o of this.categories) { 
-        if((this.infoCategory.value.country != o.country )
+        if((this.infoCategory.value.name != o.name && this.infoCategory.value.status == o.status )
         ) {
             break;
         } 
-        if (this.infoCategory.value.name == o.name) {
+        if (this.infoCategory.value.name == o.name&& this.infoCategory.value.status == o.status) {
           setTimeout(() => {
             this.isSpinning = false;
             Swal.fire({

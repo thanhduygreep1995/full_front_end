@@ -3,6 +3,7 @@ import { OrderHistoryService } from '../services/order-history/order-history.ser
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-order-history',
@@ -12,7 +13,7 @@ import { FormBuilder } from '@angular/forms';
 export class OrderHistoryComponent {
   products: any;
   infoOrder: any;
-  id: any;
+  id: any = this.tokenS.getCustomerId();
   feedBacks: any;
   data: [] = [];
   nameCustomer: any;
@@ -24,6 +25,7 @@ export class OrderHistoryComponent {
   constructor( 
     private formBuilder: FormBuilder,
     private oH: OrderHistoryService,
+    private tokenS: TokenService
   ) {
     this.infoOrder = this.formBuilder.group({
       id: [''],
@@ -40,8 +42,7 @@ export class OrderHistoryComponent {
    }
 
    ngOnInit(): void {
-    const customer = 5;
-    this.oH.getAllByCustomerId(customer).subscribe((data) => {
+    this.oH.getAllByCustomerId(this.id).subscribe((data) => {
       console.log(data);  
       this.orders = data;
 

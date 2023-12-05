@@ -44,7 +44,7 @@
                                     <div [formGroup]="productForm">
                                         <label for="">Category</label>
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedCategoryId">
-                                            <option value="" selected disabled>Danh mục</option>
+                                            <option value="0" selected disabled>Select Category</option>
 
                                       <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
                                     </select>
@@ -52,7 +52,7 @@
                                     <div [formGroup]="productForm">
                                         <label for="">Brand</label><br>
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedBrandId">
-                                            <option value="" selected disabled>Hãng</option>
+                                            <option value="0" selected disabled>Select Brand</option>
 
                                       <option  *ngFor="let brand of brands"  value="{{brand.id}}">{{brand.name}}</option>
                                     </select>
@@ -60,7 +60,7 @@
                                     <div [formGroup]="productForm">
                                         <label for="">Origin</label><br>
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedOriginId">
-                                            <option value="" selected disabled>Xuất Xứ</option>
+                                            <option value="0" selected disabled>Select Origin</option>
 
                                             <option  *ngFor="let origin of Origin" value="{{origin.id}}">{{origin.country}}</option>
                                         </select>
