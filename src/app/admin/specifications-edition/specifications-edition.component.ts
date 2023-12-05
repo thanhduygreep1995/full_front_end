@@ -8,17 +8,6 @@ import { Router } from '@angular/router';
 import { ButtonService } from '../service/button/buttonservice';
 import { ProductService } from '../service/product/product.service';
 
-interface SpecResponse {
-  id: any;
-  processor: any;
-  graphicsCard: any;
-  ram: any;
-  storage: any;
-  display: any;
-  operatingSystem: any;
-  camera: any;
-  product_id: any;
-}
 
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -103,8 +92,9 @@ export class SpecificationsEditionComponent implements OnInit {
       if (params && params['id']) {
         this.id = params['id'];
         this.ss.getSpecById(this.id).subscribe(
-          (response: Object) => {
-            this.specForm.patchValue(response as SpecResponse);
+          (response: any) => {
+            console.log(response)
+            this.specForm.patchValue(response);
           },
           (error) => {
             console.log(error);
@@ -123,7 +113,7 @@ export class SpecificationsEditionComponent implements OnInit {
       this.product = data;
       console.log('products', data);
     });
-
+    this.selectedProductId = '0';
 
   }
   fnAddSpec() {

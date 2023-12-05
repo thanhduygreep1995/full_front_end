@@ -30,6 +30,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { PersonalProfileComponent } from './components/personal-profile/personal-profile.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { OderFailureComponent } from './components/oder-failure/oder-failure.component';
+import { AuthGuard } from './components/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -52,19 +53,19 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'address', component: AddressComponent },
-      { path: 'checkout', component: CheckoutComponent },
+      { path: 'checkout', component: CheckoutComponent,canActivate: [AuthGuard] },
       { path: 'oder-complete', component: OderCompleteComponent },
       { path: 'newproduct', component: NewProductComponent },
       { path: 'typeproduct', component: TypeProductComponent },
       { path: 'checkcart', component: CheckCartComponent },
-      { path: 'account/order-history', component: OrderHistoryComponent },
+      { path: 'account/order-history', component: OrderHistoryComponent,canActivate: [AuthGuard] },
       { path: 'listproduct', component: ProductListComponent },
-      { path: 'account/personal-profile', component: PersonalProfileComponent },
-      { path: 'account/change-password', component: ChangePasswordComponent },
+      { path: 'account/personal-profile', component: PersonalProfileComponent,canActivate: [AuthGuard]},
+      { path: 'account/change-password', component: ChangePasswordComponent,canActivate: [AuthGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
-      { path: 'account/vouchers', component: VoucherComponent },
-      { path: 'account/myreview', component: MyReviewComponent },
+      { path: 'account/vouchers', component: VoucherComponent,canActivate: [AuthGuard] },
+      { path: 'account/myreview', component: MyReviewComponent,canActivate: [AuthGuard] },
       { path: 'oder-failure', component: OderFailureComponent },
       { path: 'top-product', component: TopProductComponent },
 

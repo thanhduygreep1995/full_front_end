@@ -105,12 +105,18 @@
                               <div class="flex items-center">
                                    <input id="creditCard" type="radio" [(ngModel)]="paymentMethod" name="paymentMethod" value="Cash"
                                         class="h-4 w-4 text-indigo-600 focus:ring-primary border-gray-300">
-                                   <label for="creditCard" class="ml-2 text-gray-700 cursor-pointer">Pay in cash</label>
+                                   <label for="creditCard" class="ml-2 text-gray-700 cursor-pointer flex items-center">
+                                        <img src="../assets/images/cod.png" alt="Cash Image" class="w-6 h-6 ml-2">
+                                        <span class="ml-2">Pay in cash</span>
+                                   </label>
                               </div>
                               <div class="flex items-center">
                                    <input id="vnPay" type="radio" [(ngModel)]="paymentMethod" name="paymentMethod" value="VnPay"
                                         class="h-4 w-4 text-indigo-600 focus:ring-primary border-gray-300">
-                                   <label for="vnPay" class="ml-2 text-gray-700 cursor-pointer">VnPay</label>
+                                   <label for="vnPay" class="ml-2 text-gray-700 cursor-pointer flex items-center">
+                                        <img src="../assets/images/vnpay.png" alt="VnPay Image" class="w-6 h-6 ml-2">
+                                        <span class="ml-2">VnPay</span>
+                                   </label>
                               </div>
                          </div>
                     </div>
