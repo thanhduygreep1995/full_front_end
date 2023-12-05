@@ -184,11 +184,11 @@ export class CategoryEditionComponent implements OnInit {
       console.log(data);
       this.categories = data;
       for (let o of this.categories) { 
-        if((this.infoCategory.value.country != o.country )
+        if((this.infoCategory.value.name != o.name && this.infoCategory.value.status == o.status )
         ) {
             break;
         } 
-        if (this.infoCategory.value.name == o.name) {
+        if (this.infoCategory.value.name == o.name&& this.infoCategory.value.status == o.status) {
           setTimeout(() => {
             this.isSpinning = false;
             Swal.fire({

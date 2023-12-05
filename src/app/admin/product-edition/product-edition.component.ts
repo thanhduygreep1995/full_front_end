@@ -94,7 +94,7 @@ export class ProductEditionComponent implements OnInit {
       name: ['', Validators.required],
       model: ['', Validators.required],
       price: ['', Validators.required],
-      stockQuantity: ['', Validators.required, Validators.min(1)],
+      stockQuantity: ['', [Validators.required, Validators.min(1)]],
       thumbnail:['',Validators.required],
       description: ['', Validators.required],
       discountPercentage: ['', Validators.required],
