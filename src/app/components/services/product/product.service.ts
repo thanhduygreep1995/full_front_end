@@ -37,7 +37,7 @@ export class ProductService {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get(url, { responseType: 'text' });
   }
-  
+
 
   getProductTopOrder(id: any) {
     const url = `${this.baseUrl + '/top'}`;

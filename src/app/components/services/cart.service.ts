@@ -8,7 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class CartService {
   itemts: Icart[] = [];
-  private cartSubject = new BehaviorSubject<Icart[]>([]);
+
+   cartSubject = new BehaviorSubject<Icart[]>([]);
    constructor(private h: HttpClient) { 
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -29,7 +30,7 @@ export class CartService {
       const item: Icart = {
         id: sp.id,
         hinh: sp.hinh,
-        images: sp.thumbImage,
+        images: sp.thumbnail,
         soluong: 1,
         solanxem: 0,
         hot: 1,
@@ -46,8 +47,11 @@ export class CartService {
         price: sp.price,
         updateDate: sp.updateDate,
         categoryId: sp.categoryId,
-        thumbImage: '',
-        Images: []
+
+        Images: [],
+        starsInfo: undefined,
+        count: undefined,
+        thumbnail: ''
       }
       this.itemts.push(item)
     }

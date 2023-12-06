@@ -65,6 +65,7 @@ export class ViewComponent {
       categoryId: [''],
       brandId: [''],
       OriginsId: [''],
+      hinh: [''],
       images: [''],
     });
    }
@@ -216,7 +217,12 @@ export class ViewComponent {
 
   // Hàm để thay đổi hình ảnh khi người dùng chọn
   changeImage(imageUrl: string): void {
-    this.infoProduct.images = imageUrl;
+
+    // this.infoProduct.images = imageUrl;
+
+    this.infoProduct.thumbnail = imageUrl;
+    console.log(this.infoProduct.hinh)
+
   }
   addToCart(product: any) {
     this.cartService.addToCart(product);

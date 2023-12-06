@@ -25,20 +25,27 @@
 <div class="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
     <!-- ---- Product Image  --->
     <div>
-        <div *ngFor="let i of infoProduct.images" class="row">
-            <img id="main-img" src="{{i.imageUrl}}" width="200" height="400" />
-        </div>
+
+
+        <!-- <div *ngFor="let i of infoProduct.images" class="row"> -->
+            <img id="main-img" src="{{infoProduct.thumbnail}}" width="200" height="400" />
+        <!-- </div> -->
 
 
         <div class="grid grid-cols-5 gap-4 mt-4 ">
 
-            <div (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg')">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg" class="single-img w-full cursor-pointer border hover:border-primary " />
-            </div>
+            <div  (click)="changeImage(infoProduct.hinh)">
+                <img src="{{infoProduct.hinh}}" class="single-img w-full cursor-pointer border hover:border-primary" />
+                
+              </div>
+              <div  (click)="changeImage(infoProduct.thumbnail)">
+                <img src="{{infoProduct.thumbnail}}" class="single-img w-full cursor-pointer border hover:border-primary" />
+                
+              </div>
 
-            <div (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg')">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg" class="single-img file:w-full cursor-pointer bhover:border-primary   " />
-            </div>
+            <!-- <div (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg')">
+                <img src="https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg" class="single-img file:w-full cursor-pointer border hover:border-primary   " />
+            </div> -->
         </div>
     </div>
     <!-- ---- End Product Image  --->

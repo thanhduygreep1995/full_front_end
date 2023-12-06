@@ -5,6 +5,7 @@ import { CustomerService } from '../services/customer.service';
 import { TokenService } from '../services/token.service';
 import { WishService } from '../services/wish.service';
 import { CartService } from '../services/cart.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,8 @@ export class HeaderComponent implements OnInit {
     private tokenService: TokenService,
     private router: Router,
     private wish: WishService, 
-    private cart:CartService
+    private cart:CartService,
+    private searchService: SearchService
   ){}
   
   ngOnInit() {
@@ -39,6 +41,19 @@ export class HeaderComponent implements OnInit {
     this.customerService.removeCustomerResponseFromLocalStorage();
     this.tokenService.removeToken();
   }
+
+
+
+  searchTerm: string = '';
+
+
+
+  search() {
+    this.searchService.setSearchTerm(this.searchTerm);
+    this.router.navigate(['/listproduct']); 
+  }
+
+  
 
   
 }

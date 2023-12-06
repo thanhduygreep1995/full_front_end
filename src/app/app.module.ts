@@ -33,7 +33,7 @@ import { CommonModule } from '@angular/common';
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FilterPipe } from './components/pipes/filter.pipe';
-import { NavbarComponent } from './components/navbar-bo/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { VoucherComponent } from './components/voucher/voucher.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';

@@ -22,6 +22,7 @@ import { TopProductComponent } from './components/top-product/top-product.compon
 
 
 
+
 import { MyReviewComponent } from './components/my-review/my-review.component';
 import { VoucherComponent } from './components/voucher/voucher.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -67,6 +68,7 @@ const routes: Routes = [
       { path: 'account/myreview', component: MyReviewComponent },
       { path: 'oder-failure', component: OderFailureComponent },
       { path: 'top-product', component: TopProductComponent },
+      { path: 'product-by', component: ProByTypeComponent  },
 
     ],
   },
