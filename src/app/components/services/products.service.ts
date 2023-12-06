@@ -6,14 +6,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:8080/api/v0/products';
+  private baseProductUrl = 'http://localhost:8080/api/v0/products';
+
+  private baseSpecUrl = 'http://localhost:8080/api/v0/specifications';
+
+  private baseImageUrl = 'http://localhost:8080/api/v0/images';
 
   constructor(private http: HttpClient) { }
   getProducts(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+    return this.http.get<any[]>(this.baseProductUrl);
   }
   getProductById(productId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${productId}`);
+    return this.http.get(`${this.baseProductUrl}/${productId}`);
   }
   private searchTermSource = new BehaviorSubject<string>('');
   currentSearchTerm = this.searchTermSource.asObservable();
@@ -23,10 +27,17 @@ export class ProductService {
   }
 
   updateProductStock(productDTO:any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/stock-quantity`,productDTO,{ responseType: 'text' });
+    return this.http.put(`${this.baseProductUrl}/stock-quantity`,productDTO,{ responseType: 'text' });
   }
   getProductTop(): Observable<any> {
-    return this.http.get(`${this.baseUrl + '/top'}`);
+    return this.http.get(`${this.baseProductUrl + '/top'}`);
   }
-  
+
+  getSpecPro(id: number): Observable<any> {
+    return this.http.get(`${this.baseSpecUrl}/products/${id}`);
+  }
+
+  getImagePro(imageId: number): Observable<any> {
+    return this.http.get(`${this.baseImageUrl}/products/${imageId}`);
+  }
 }
