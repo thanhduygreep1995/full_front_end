@@ -10,6 +10,7 @@ import { SearchService } from '../services/search.service';
 import { Pipe } from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 registerLocaleData(localeFr, 'fr');
 @Component({
@@ -110,11 +111,23 @@ export class HomeComponent  {
 
   addToCart(product:IProduct){
     this.cart.addToCart(product);
-    alert("Đã thêm vào giỏ hàng")
+
+    Swal.fire({
+      icon:'success',
+      title: 'Added To Cart Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
   }
   addToWish(product:IProduct){
     this.wish.addToWish(product);
-    alert("Like")
+    Swal.fire({
+      icon:'success',
+      title: 'Add To Wishlist Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
+
   }
 
   updateVisibleItems(): void {

@@ -27,7 +27,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh Sách Sản Phẩm</h3>
+                        <!-- <h3 class="card-title">Danh Sách Sản Phẩm</h3> -->
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -59,8 +59,8 @@
                                     <td>{{ p.name }}</td>
                                     <td>{{ p.model }}</td>
                                     <td>
-                                        <div *ngIf="p.thumbImage; else defaultImage">
-                                            <img src="{{ p.thumbImage }}" type="button" height="300" width="300" data-toggle="modal" data-target="#thumbImage" (click)="openProduct(p.id)">
+                                        <div *ngIf="p.thumbnail; else defaultImage">
+                                            <img src="{{ p.thumbnail }}" type="button" height="300" width="300" data-toggle="modal" data-target="#thumbImage" (click)="openProduct(p.id)">
                                         </div>
 
                                         <ng-template #defaultImage>

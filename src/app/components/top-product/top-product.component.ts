@@ -57,6 +57,13 @@ export class TopProductComponent {
           breakpoint: '767px',
           numVisible: 5,
           numScroll: 1
+
+      },
+      {
+        breakpoint: '576px',
+        numVisible: 5,
+        numScroll: 1
+
       }
     ];
 

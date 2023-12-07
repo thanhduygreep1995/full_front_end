@@ -71,10 +71,10 @@
                                     <div *ngIf="specForm.controls['camera'].invalid &&
                                     specForm.controls['camera'].touched" class="text-danger"> Camera is required.
                                     </div>
-                                    <div [formGroup]="specForm">
+                                    <div formGroupName="products">
                                         <label for="">Product</label><br>
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedProductId">
-                                            <option value="" selected disabled>Tên sản phẩm</option>
+                                            <option value="0" selected disabled>Select Product</option>
                                             <option  *ngFor="let p of product" value="{{p.id}}">{{p.model}}</option>
                                         </select>
                                     </div>

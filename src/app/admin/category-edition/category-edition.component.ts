@@ -117,9 +117,26 @@ export class CategoryEditionComponent implements OnInit {
     const categoryInfo = {
       name: this.infoCategory.value.name,
       // description: this.infoCategory.value.description,
-      categoryStatus: this.infoCategory.value.status,
+      status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
+    this.cate.getAllCategories().subscribe((data) => {
+      console.log(data);
+      this.categories = data;
+      for (let o of this.categories) {
+        if (this.infoCategory.value.name == o.name) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Name of category is existed already',
+              showConfirmButton: false,
+              timer: 7000
+            })
+          }, this.progressTimerOut);
+          return;
+        } 
+      }
     this.cate.createCategory(categoryInfo).subscribe(
       (response) => {
 
@@ -150,16 +167,40 @@ export class CategoryEditionComponent implements OnInit {
           })
         }, this.progressTimerOut);
       }
-    );
+      );
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   fnUpdateCategory() {
     const categoryInfo = {
       name: this.infoCategory.value.name,
-      description: this.infoCategory.value.description,
-      categoryStatus: this.infoCategory.value.status,
+      // description: this.infoCategory.value.description,
+      status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
+    this.cate.getAllCategories().subscribe((data) => {
+      console.log(data);
+      this.categories = data;
+      for (let o of this.categories) { 
+        if((this.infoCategory.value.name != o.name && this.infoCategory.value.status == o.status )
+        ) {
+            break;
+        } 
+        if (this.infoCategory.value.name == o.name&& this.infoCategory.value.status == o.status) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Name of category is existed already',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          }, this.progressTimerOut);
+          return;
+        }
+      }
     this.cate.updateCategory(this.id, categoryInfo).subscribe(
       (response) => {
         setTimeout(() => {
@@ -187,8 +228,10 @@ export class CategoryEditionComponent implements OnInit {
           });
         }, this.progressTimerOut);
       }
-    );
-  }
+      );
+  
+    });
+      }
 
   refreshTable() {
       // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới

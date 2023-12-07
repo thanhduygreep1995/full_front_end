@@ -1,5 +1,5 @@
 export interface IProduct {
-count: any;
+
 [x: string]: any;
 id:number;
 solanxem:number;
@@ -19,5 +19,5 @@ updateDate:string;
 categoryId: number;
 Images: [];
 
-    
+ 
 }

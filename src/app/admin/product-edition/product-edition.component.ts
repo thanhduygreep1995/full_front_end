@@ -94,7 +94,7 @@ export class ProductEditionComponent implements OnInit {
       name: ['', Validators.required],
       model: ['', Validators.required],
       price: ['', Validators.required],
-      stockQuantity: ['', Validators.required, Validators.min(1)],
+      stockQuantity: ['', [Validators.required, Validators.min(1)]],
       thumbnail:['',Validators.required],
       description: ['', Validators.required],
       discountPercentage: ['', Validators.required],
@@ -141,8 +141,9 @@ export class ProductEditionComponent implements OnInit {
       if (params && params['id']) {
         this.id = params['id'];
         this.pS.getProductById(this.id).subscribe(
-          (response: Object) => {
-            this.productForm.patchValue(response as ProductResponse);
+          (response: any) => {
+            console.log(response)
+            this.productForm.patchValue(response);
           },
           (error) => {
             console.log(error);
@@ -170,6 +171,9 @@ export class ProductEditionComponent implements OnInit {
   }
 
   defaultStatus() {
+    this.selectedCategoryId = "0"
+    this.selectedBrandId = "0"
+    this.selectedOriginId= "0"
     // selected status Active
     this.productForm.patchValue({
       status: 'AVAILABLE', // hoặc 'INACTIVE'
@@ -212,7 +216,7 @@ export class ProductEditionComponent implements OnInit {
           this.isSpinning = false;
           Swal.fire({
             icon: 'error',
-            title: 'Name and Model of Product is existed already',
+            title: 'Name and Model of product is existed already',
             showConfirmButton: false,
             timer: 7000
           })
@@ -300,7 +304,7 @@ fnUpdateProduct() {
           this.isSpinning = false;
           Swal.fire({
             icon: 'error',
-            title: 'Name and Model of Product is existed already',
+            title: 'Name and Model of product is existed already',
             showConfirmButton: false,
             timer: 2000
           })

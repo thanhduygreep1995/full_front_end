@@ -33,9 +33,9 @@ export class ProductService {
   //   return this.http.get(this.baseUrl + '/active');
   // }
 
-  getProductById(id: any) {
+  getProductById(id: any): Observable<any> {
     const url = `${this.baseUrl}/${id}`;
-    return this.http.get(url, { responseType: 'text' });
+    return this.http.get<any>(url);
   }
   
 

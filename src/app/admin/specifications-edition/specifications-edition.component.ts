@@ -8,17 +8,6 @@ import { Router } from '@angular/router';
 import { ButtonService } from '../service/button/buttonservice';
 import { ProductService } from '../service/product/product.service';
 
-interface SpecResponse {
-  id: any;
-  processor: any;
-  graphicsCard: any;
-  ram: any;
-  storage: any;
-  display: any;
-  operatingSystem: any;
-  camera: any;
-  product_id: any;
-}
 
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -82,7 +71,7 @@ export class SpecificationsEditionComponent implements OnInit {
       display: ['', Validators.required],
       operatingSystem: ['', Validators.required],
       camera: ['', Validators.required],
-      product: this.formBuilder.group({
+      products: this.formBuilder.group({
         id: ["", Validators.required],
       }),
     });
@@ -103,8 +92,9 @@ export class SpecificationsEditionComponent implements OnInit {
       if (params && params['id']) {
         this.id = params['id'];
         this.ss.getSpecById(this.id).subscribe(
-          (response: Object) => {
-            this.specForm.patchValue(response as SpecResponse);
+          (response: any) => {
+            console.log(response)
+            this.specForm.patchValue(response);
           },
           (error) => {
             console.log(error);
@@ -123,7 +113,7 @@ export class SpecificationsEditionComponent implements OnInit {
       this.product = data;
       console.log('products', data);
     });
-
+    this.selectedProductId = '0';
 
   }
   fnAddSpec() {
@@ -135,7 +125,7 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
-      productId: {
+      products: {
         id: this.selectedProductId
       }
     };
@@ -181,7 +171,7 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
-      productId: {
+      products: {
         id: this.selectedProductId
       }
     };

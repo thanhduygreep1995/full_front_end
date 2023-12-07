@@ -27,7 +27,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh Sách Orders</h3>
+                        <!-- <h3 class="card-title">Danh Sách Orders</h3> -->
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -102,7 +102,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn" style="background-color: cornflowerblue;" (click)="fnUpdateOrder()"><i class="fa fa-pencil"></i></button>
+                                        <button type="button" class="btn"  [disabled]="!orderForm.valid" style="background-color: cornflowerblue;" (click)="fnUpdateOrder()"><i class="fa fa-pencil"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                                     <!-- <td>{{ od.order.email }}</td> -->
                                                     <td>{{ od.totalPrice +""| currency:",":"":"1.0"}} VNĐ</td>
                                                     <td>
-                                                        <button class="btn mx-2" style="background-color: cornflowerblue;" data-toggle="modal" data-target="#updateModal1" (click)="onUpdate(od.id)">
+                                                        <button class="btn mx-2" style="background-color: cornflowerblue;" data-dismiss="modal" data-toggle="modal" data-target="#updateModal1" (click)="onUpdate(od.id)">
                                                             <i class="fa fa-pencil"></i>
                                                         </button>
                                                         <button class="btn btn-danger" (click)="fnDeleteDetailOrder(od.id)">

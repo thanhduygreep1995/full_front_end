@@ -23,19 +23,19 @@ const swalWithBootstrapButtons = Swal.mixin({
   timer: 2000
 });
 
-interface orderResponse {
-  id: any;
-  email: any;
-  phone: any;
-  orderDate: any;
-  note: any;
-  status: any;
-  paymentMethod: any;
-  discountPrice: any;
-  customer_id: any;
-  product_id:any;
-  orderdetail_id:any;  
-}
+// interface orderResponse {
+//   id: any;
+//   email: any;
+//   phone: any;
+//   orderDate: any;
+//   note: any;
+//   status: any;
+//   paymentMethod: any;
+//   discountPrice: any;
+//   customer_id: any;
+//   product_id:any;
+//   orderdetail_id:any;  
+// }
 declare var require: any;
 const jszip: any = require('jszip');
 const pdfMake: any = require('pdfmake/build/pdfmake.js');
@@ -102,7 +102,7 @@ export class OrderTableComponent implements OnInit {
       phone: [''],
       orderDate: [''],
       note: [''],
-      status: [],
+      status: ['',Validators.required],
       paymentMethod: [''],
       discountPrice: [''],
       customer: this.formBuilder.group({
@@ -129,24 +129,24 @@ export class OrderTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      if (params && params['id']) {
-        this.id = params['id'];
-        this.oS.getOrderById(this.id).subscribe(
-          (response: Object) => {
+    // this.route.params.subscribe((params) => {
+    //   if (params && params['id']) {
+    //     this.id = params['id'];
+    //     this.oS.getOrderById(this.id).subscribe(
+    //       (response: Object) => {
 
-            this.orderForm.patchValue(response as orderResponse);
-            console.log('orderdetails:', response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      } else {
-      }
-    });
+    //         this.orderForm.patchValue(response as orderResponse);
+    //         console.log('orderdetails:', response);
+    //       },
+    //       (error) => {
+    //         console.log(error);
+    //       }
+    //     );
+    //   } else {
+    //   }
+    // });
 
-    this.defaultStatus();
+    // this.defaultStatus();
     this.refreshTable();
     this.dtOptions = this.getDTOptions();
     
@@ -274,17 +274,17 @@ export class OrderTableComponent implements OnInit {
     };
   }   
   
-  defaultStatus() {
-    // selected status Active
-  // const selectedStatus = 'PROCESSING'; // You can set this based on some condition or user input
-  // if (this.selectedStatus === 'PROCESSING' || this.selectedStatus === 'PENDING' || this.selectedStatus === 'DELIVERED' || this.selectedStatus === 'CANCELLED') {
-    // this.orderForm.patchValue({
-    //   status: this.selectedStatus
-    // });
-  // } else {
-  //   // Handle the case where the selectedStatus is not one of the four options
+  // defaultStatus() {
+  //   // selected status Active
+  // // const selectedStatus = 'PROCESSING'; // You can set this based on some condition or user input
+  // // if (this.selectedStatus === 'PROCESSING' || this.selectedStatus === 'PENDING' || this.selectedStatus === 'DELIVERED' || this.selectedStatus === 'CANCELLED') {
+  //   // this.orderForm.patchValue({
+  //   //   status: this.selectedStatus
+  //   // });
+  // // } else {
+  // //   // Handle the case where the selectedStatus is not one of the four options
+  // // }
   // }
-  }
   onUpdate(id: number): void {
     this.selectedOrderId = id;
     this.dtOp = this.getDTOptions();
@@ -298,10 +298,10 @@ export class OrderTableComponent implements OnInit {
     })
     this.updateTotalPriceProduct();
   }
-  onDetail(id: number): void {
-    this.router.navigate(['/orders-detail-table', id]);
-    console.log('id:', id);
-  }
+  // onDetail(id: number): void {
+  //   this.router.navigate(['/orders-detail-table', id]);
+  //   console.log('id:', id);
+  // }
 
 
   refreshTable() {
@@ -336,7 +336,7 @@ export class OrderTableComponent implements OnInit {
           setTimeout(() => {
             this.isSpinning = false;
             this.orderForm.reset();
-            this.defaultStatus();
+            // this.defaultStatus();
             Swal.fire({
               icon: 'success',
               title: 'Successfully updated Order!',
@@ -371,7 +371,7 @@ export class OrderTableComponent implements OnInit {
           setTimeout(() => {
             this.isSpinning = false;
             this.orderForm.reset();
-            this.defaultStatus();
+            // this.defaultStatus();
             Swal.fire({
               icon: 'success',
               title: 'Successfully updated Order!',

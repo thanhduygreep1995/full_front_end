@@ -5,6 +5,7 @@ import { CustomerService } from '../services/customer.service';
 import { TokenService } from '../services/token.service';
 import { WishService } from '../services/wish.service';
 import { CartService } from '../services/cart.service';
+
 import { SearchService } from '../services/search.service';
 
 @Component({
@@ -14,6 +15,7 @@ import { SearchService } from '../services/search.service';
 })
 export class HeaderComponent implements OnInit {
   count: any; 
+  wishItem: any[] = [];
   cartItems: any;
   customerResponse?:customerResponse | null
   constructor(
@@ -21,8 +23,10 @@ export class HeaderComponent implements OnInit {
     private tokenService: TokenService,
     private router: Router,
     private wish: WishService, 
+
     private cart:CartService,
     private searchService: SearchService
+
   ){}
   
   ngOnInit() {
@@ -34,12 +38,15 @@ export class HeaderComponent implements OnInit {
 
       this.wish.getWishItems().subscribe((items) => {
         this.count = items;
+        this.wishItem = items;
         console.log(this.count)
+        console.log(this.cartItems)
       });
   }
   logout(){
     this.customerService.removeCustomerResponseFromLocalStorage();
     this.tokenService.removeToken();
+
   }
 
 
@@ -56,6 +63,10 @@ export class HeaderComponent implements OnInit {
   
 
   
-}
+
+  }
+
+
+
   
 

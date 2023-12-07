@@ -25,11 +25,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-
-
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh Sách User</h3>
+                        <!-- <h3 class="card-title">Danh Sách User</h3> -->
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -38,13 +36,13 @@
                                 <tr>
                                     <!-- <th hidden>Id</th> -->
                                     <th class="col-2">No</th>
-                                    <th>processor</th>
-                                    <th>graphicsCard</th>
-                                    <th>ram</th>
-                                    <th>storage</th>
-                                    <th>display</th>
-                                    <th>operatingSystem</th>
-                                    <th>camera</th>
+                                    <th>Processor</th>
+                                    <th>Graphics Card</th>
+                                    <th>Ram</th>
+                                    <th>Storage</th>
+                                    <th>Display</th>
+                                    <th>Operating System</th>
+                                    <th>Camera</th>
                                     <th>Product</th>
                                     <th class="col-2">Action</th>
                                 </tr>
@@ -54,7 +52,7 @@
                                     <!-- <td hidden>{{ s.id }}</td> -->
                                     <td class="col-2">{{ i + 1 }}</td>
                                     <td>
-                                        <div *ngIf="s.processor; else defaultImage">
+                                        <div *ngIf="s.processor != 'Trống'; else defaultImage">
                                             {{ s.processor }}
                                         </div>
 
@@ -64,7 +62,7 @@
                                     </td>
 
                                     <td>
-                                        <div *ngIf="s.graphicsCard; else defaultImage">
+                                        <div *ngIf="s.graphicsCard != 'Trống'; else defaultImage">
                                             {{ s.graphicsCard }}
                                         </div>
 
@@ -73,7 +71,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.ram; else defaultImage">
+                                        <div *ngIf="s.ram != 'Trống'; else defaultImage">
                                             {{ s.ram }}
                                         </div>
 
@@ -82,7 +80,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.storage; else defaultImage">
+                                        <div *ngIf="s.storage != 'Trống'; else defaultImage">
                                             {{ s.storage }}
                                         </div>
 
@@ -91,7 +89,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.display; else defaultImage">
+                                        <div *ngIf="s.display != 'Trống'; else defaultImage">
                                             {{ s.display }}
                                         </div>
 
@@ -100,7 +98,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.operatingSystem; else defaultImage">
+                                        <div *ngIf="s.operatingSystem != 'Trống'; else defaultImage">
                                             {{ s.operatingSystem }}
                                         </div>
 
@@ -109,7 +107,7 @@
                                         </ng-template>
                                     </td>
                                     <td>
-                                        <div *ngIf="s.camera; else defaultImage">
+                                        <div *ngIf="s.camera != 'Trống'; else defaultImage">
                                             {{ s.camera }}
                                         </div>
 

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Directive, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/components/services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Data } from '@angular/router';
@@ -12,7 +12,11 @@ import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { RatingService } from '../services/rating.service';
 import { FeedbackService } from '../services/feedback/feedback.service';
-import { ProductService } from '../services/product/product.service';
+import { ProductService } from '../services/products.service';
+import { TokenService } from '../services/token.service';
+import { WishService } from '../services/wish.service';
+
+
 
 @Component({
   selector: 'app-view',
@@ -20,11 +24,14 @@ import { ProductService } from '../services/product/product.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
-  
+  Images: any;
+  Spec: any;
   rating: any = 0;
   products: any;
   infoProduct: any;
   id: any;
+  customerId: any =  this.tokenService.getCustomerId();
+  checkData: any[] = [];
   count: number = 0;
   @Input() averageNumber: any;
   getRateElement: number[] = [];
@@ -35,18 +42,21 @@ export class ViewComponent {
   nameCustomer: any;
   comment: any;
   data: any[]=[];
+  responsiveOptions: any[] | undefined;
+  selectedImageUrl: string = '';
+  selectedIndex: number = 0;
 
   constructor( 
     private rate:RatingService,
     private d:DataService,  
     private route:ActivatedRoute, 
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
     private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef,
     private cartService: CartService,
     private fB: FeedbackService,
     private pS: ProductService,
+    private tokenService: TokenService,
+    private wish: WishService,
+    private el: ElementRef,
     // private snackBar: MatSnackBar
 
   ) {
@@ -70,19 +80,59 @@ export class ViewComponent {
     });
    }
 
+   imageChange(imageUrl: string, index: number) {
+    this.selectedImageUrl = imageUrl;
+    this.selectedIndex = index;
+    console.log(this.selectedImageUrl);
+}
+
+
+
+  addToWish(product:IProduct){
+    this.wish.addToWish(product);
+    Swal.fire({
+      icon:'success',
+      title: 'Add To Wishlist Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
+  }
+
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.params['id']);    
+    this.id = Number(this.route.snapshot.params['id']);  
+    
     this.d.getTakeProduct(this.id).subscribe ( 
       res => { 
         this.infoProduct  = res[this.id - 1];
-        this.getRatingListByProduct(this.id);
+        // this.getRatingListByProduct(this.id);
 
       });
 
     this.fB.getFeedBackProduct(this.id).subscribe((data) => {
         this.feedBacks = data;
       });
-    
+      this.responsiveOptions = [
+        {
+            breakpoint: '1199px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '991px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '767px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+          breakpoint: '576px',
+          numVisible: 1,
+          numScroll: 1
+        }
+      ];
       
   }
 
@@ -119,34 +169,54 @@ export class ViewComponent {
           customers: { id: 1 },
           products: { id: this.id }
         };
-        this.loading = true;
-        this.rate.sendDBRequest(ratingForm).subscribe(
-          (response) => {
-            setTimeout(() => {
-              this.loading = false;
+        this.rate.getAllRatingList().subscribe((ratingData) => {
+          this.loading = true;
+          this.checkData = ratingData;
+          for (let r of this.checkData) {
+            if (r.rating != null 
+              && (r.customers.id == 1 && r.customers.id > 0) 
+              && r.products.id == this.id) {
               Swal.fire({
-                icon:'success',
-                title: 'Rate Successfully',
+                icon: 'info',
+                title: 'You had rated this product',
                 showConfirmButton: false,
                 timer: 1000
               })
-            },1000)
-            console.log('response: ', response);
-            this.getRatingListByProduct(this.id);
-          },
-          (err) => {
-            setTimeout(() => {
-              this.loading = false;
-              Swal.fire({
-                icon:'error',
-                title: 'Rate Failure',
-                showConfirmButton: false,
-                timer: 1000
-              })
-            },1000)
-            console.log('error: ', err);
+              return;
+            } 
+            else {
+              this.rate.sendDBRequest(ratingForm).subscribe(
+                (response) => {
+                  setTimeout(() => {
+                    this.loading = false;
+                    Swal.fire({
+                      icon:'success',
+                      title: 'Rate Successfully',
+                      showConfirmButton: false,
+                      timer: 1000
+                    })
+                  },1000)
+                  console.log('response: ', response);
+                  this.getRatingListByProduct(this.id);
+                },
+                (err) => {
+                  setTimeout(() => {
+                    this.loading = false;
+                    Swal.fire({
+                      icon:'error',
+                      title: 'Rate Failure',
+                      showConfirmButton: false,
+                      timer: 2000
+                    })
+                  },4000)
+                  console.log('error: ', err);
+                }
+              );
+            }
           }
-        );
+
+
+        })
       }
     });
     
@@ -217,15 +287,16 @@ export class ViewComponent {
 
   // Hàm để thay đổi hình ảnh khi người dùng chọn
   changeImage(imageUrl: string): void {
-
-    // this.infoProduct.images = imageUrl;
-
-    this.infoProduct.thumbnail = imageUrl;
-    console.log(this.infoProduct.hinh)
-
+    this.infoProduct.images = imageUrl;
   }
   addToCart(product: any) {
     this.cartService.addToCart(product);
+    Swal.fire({
+      icon:'success',
+      title: 'Added To Cart Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
   }
   
   createFeedback(){
