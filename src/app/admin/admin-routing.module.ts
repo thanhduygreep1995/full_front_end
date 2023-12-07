@@ -19,6 +19,7 @@ import { IncomeReportComponent } from './income-report/income-report.component';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 import { ImageComponent } from './image/image.component';
 import { TopSoldReportComponent } from './top-sold-report/top-sold-report.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
   { path: '', component: AdminComponent,
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'customer-report', component:CustomerReportComponent },
   { path: 'image', component:ImageComponent },
   { path: 'top-sold-report', component:TopSoldReportComponent },
+  { path: 'category', component:CategoryComponent },
 ]
 },
 

@@ -37,6 +37,10 @@ export class ReportService {
     return this.http.get<any[]>(this.baseProductUrl);
   }
 
+  getCategoryQunatityReport(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseProductUrl}/category`);
+  }
+
   getStatus(): Observable<string> {
     return this.http.get<string>(`${this.baseCustomerUrl}/status`);
   }
