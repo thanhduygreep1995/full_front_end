@@ -139,8 +139,8 @@ openImage(imageId: number) {
 
   openProduct(productId: number) {
     this.pS.getProductById(productId).subscribe((data) => {
-      const productData = JSON.parse(data);
-      this.seclectedProductId = productData;
+      // const productData = JSON.parse(data);
+      this.seclectedProductId = data;
       // console.log('Selected Product ID:', productData)
       // for(let i of this.seclectedProductId){
       //   this.setProduct(i.id, i.model);
