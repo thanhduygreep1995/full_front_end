@@ -24,6 +24,7 @@ import { WishService } from '../services/wish.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
+  
   Images: any;
   Spec: any;
   rating: any = 0;
@@ -45,7 +46,11 @@ export class ViewComponent {
   responsiveOptions: any[] | undefined;
   selectedImageUrl: string = '';
   selectedIndex: number = 0;
+  interval: any;
+  startIndex = 0;
+  displayedImg: any[] = [];
 
+ 
   constructor( 
     private rate:RatingService,
     private d:DataService,  
@@ -75,12 +80,11 @@ export class ViewComponent {
       categoryId: [''],
       brandId: [''],
       OriginsId: [''],
-      hinh: [''],
       images: [''],
     });
    }
 
-   imageChange(imageUrl: string, index: number) {
+   imageChange(imageUrl: string, index: number): void{
     this.selectedImageUrl = imageUrl;
     this.selectedIndex = index;
     console.log(this.selectedImageUrl);
@@ -97,16 +101,45 @@ export class ViewComponent {
       timer: 1000
     })
   }
+  prevSlide() {
+    if (this.startIndex > 0) {
+      this.startIndex -= 4;
+    }
+  }
 
+  nextSlide() {
+    // Check if moving to the next set of 3 images won't go beyond the array length
+    if (this.startIndex + 4 < this.Images.length) {
+      this.startIndex += 4;
+    } else {
+      // If moving to the next set would go beyond, reset to the first set
+      this.startIndex = 0;
+    }
+  }
+  
   ngOnInit(): void {
+    // this.updateDisplayedImages();
+    // this.startInterval();
+
     this.id = Number(this.route.snapshot.params['id']);  
     
     this.d.getTakeProduct(this.id).subscribe ( 
       res => { 
         this.infoProduct  = res[this.id - 1];
-        // this.getRatingListByProduct(this.id);
-
+        this.getRatingListByProduct(this.id);
+        console.log('Dữ liệu mới đã được cập nhật:', this.infoProduct);
       });
+    
+    this.pS.getImagePro(this.id).subscribe((data) => {
+        this.Images = data;
+        this.selectedImageUrl = this.Images[0].imageUrl;
+        console.log('Dữ liệu mới đã được cập nhật:', this.Images);
+      });  
+
+    this.pS.getSpecPro(this.id).subscribe((data) => {
+      this.Spec = data;
+      console.log('Dữ liệu mới đã được cập nhật:', this.Spec);
+    });
 
     this.fB.getFeedBackProduct(this.id).subscribe((data) => {
         this.feedBacks = data;
