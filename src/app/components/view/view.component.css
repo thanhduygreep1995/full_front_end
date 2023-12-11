@@ -60,4 +60,15 @@
     opacity: 1;
 }
 
-
+.arrow-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .arrow-buttons button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
