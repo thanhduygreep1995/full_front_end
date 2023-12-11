@@ -24,6 +24,7 @@ import { WishService } from '../services/wish.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
+  
   Images: any;
   Spec: any;
   rating: any = 0;
@@ -45,7 +46,11 @@ export class ViewComponent {
   responsiveOptions: any[] | undefined;
   selectedImageUrl: string = '';
   selectedIndex: number = 0;
+  interval: any;
+  startIndex = 0;
+  displayedImg: any[] = [];
 
+ 
   constructor( 
     private rate:RatingService,
     private d:DataService,  
@@ -79,7 +84,7 @@ export class ViewComponent {
     });
    }
 
-   imageChange(imageUrl: string, index: number) {
+   imageChange(imageUrl: string, index: number): void{
     this.selectedImageUrl = imageUrl;
     this.selectedIndex = index;
     console.log(this.selectedImageUrl);
@@ -96,8 +101,26 @@ export class ViewComponent {
       timer: 1000
     })
   }
+  prevSlide() {
+    if (this.startIndex > 0) {
+      this.startIndex -= 4;
+    }
+  }
 
+  nextSlide() {
+    // Check if moving to the next set of 3 images won't go beyond the array length
+    if (this.startIndex + 4 < this.Images.length) {
+      this.startIndex += 4;
+    } else {
+      // If moving to the next set would go beyond, reset to the first set
+      this.startIndex = 0;
+    }
+  }
+  
   ngOnInit(): void {
+    // this.updateDisplayedImages();
+    // this.startInterval();
+
     this.id = Number(this.route.snapshot.params['id']);  
     
     this.d.getTakeProduct(this.id).subscribe ( 
