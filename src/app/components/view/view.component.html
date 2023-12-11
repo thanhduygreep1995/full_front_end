@@ -15,7 +15,7 @@
         <span class="text-sm text-gray-500 ">
             <i class="fas fa-chevron-right"></i>
         </span>
-        <p class="text-gray-500 font-medium uppercase">ITALIAN L SHAPE SOFA</p>
+        <p class="text-gray-500 font-medium uppercase">{{infoProduct.name}}</p>
     </div>
 
 </div>
@@ -25,7 +25,7 @@
 <div class="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
     <!-- ---- Product Image  --->
 
-    <section class="gallerry">
+    <!-- <section class="gallerry">
         <div class="container">
             <div class="img-container" class="Image">
                 <img [src]="selectedImageUrl" alt="" id="preview">
@@ -36,10 +36,30 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
-
+    <section class="gallery">
+        <div class="container">
+            <p-carousel  >
+                <ng-template pTemplate="header">
+                  <div>
+                    <img [src]="Images[selectedIndex].imageUrl" alt=" " style="height: 410px;"  >
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="footer" class="container">
+                  <div class="img-prev text-center">
+                    <button (click)="prevSlide()">❮</button>
+                    <div class="img-slide" *ngFor="let i of displayedImages; let in = index">
+                        <img (click)="imageChange(i.imageUrl, startIndex + in)" [src]="i.imageUrl" alt="Image{{ startIndex + in + 1 }}" app-view  style="height: 110px;">
+                      </div>
+                      
+                    <button (click)="nextSlide()">❯</button>
+                  </div>
+                </ng-template>
+              </p-carousel>
+        </div>
+      </section>
 
 
 

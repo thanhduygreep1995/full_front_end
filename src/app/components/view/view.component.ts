@@ -24,6 +24,7 @@ import { WishService } from '../services/wish.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
+  
   Images: any;
   Spec: any;
   rating: any = 0;
@@ -45,7 +46,9 @@ export class ViewComponent {
   responsiveOptions: any[] | undefined;
   selectedImageUrl: string = '';
   selectedIndex: number = 0;
-
+  interval: any;
+  startIndex = 0;
+  displayedImg: any[] = [];
   constructor( 
     private rate:RatingService,
     private d:DataService,  
@@ -79,7 +82,7 @@ export class ViewComponent {
     });
    }
 
-   imageChange(imageUrl: string, index: number) {
+   imageChange(imageUrl: string, index: number): void{
     this.selectedImageUrl = imageUrl;
     this.selectedIndex = index;
     console.log(this.selectedImageUrl);
@@ -96,8 +99,41 @@ export class ViewComponent {
       timer: 1000
     })
   }
+  prevSlide() {
+    this.selectedIndex = (this.selectedIndex - 1 + this.Images.length) % this.Images.length;
+    this.updateDisplayedImages();
+  }
 
+  nextSlide() {
+    this.selectedIndex = (this.selectedIndex + 1) % this.Images.length;
+    this.updateDisplayedImages();
+  }
+  get displayedImages(): any[] {
+    return this.Images.slice(this.selectedIndex, this.selectedIndex + 4);
+  }
+  ngOnDestroy() {
+    clearInterval(this.interval);
+  }
+
+  startInterval() {
+    // Khởi tạo slideshow tự động (có thể điều chỉnh thời gian dựa vào nhu cầu)
+    this.interval = setInterval(() => {
+      this.nextSlide();
+    }, 6000); // Chuyển slide mỗi 3 giây (3000 milliseconds)
+  }
+
+  updateDisplayedImages() {
+    this.displayedImg = [];
+    for (let i = 0; i < 4; i++) {
+      const index = (this.startIndex + i) % this.Images.length;
+      this.displayedImages.push(this.Images[index]);
+    }
+  }
+  
   ngOnInit(): void {
+    // this.updateDisplayedImages();
+    this.startInterval();
+
     this.id = Number(this.route.snapshot.params['id']);  
     
     this.d.getTakeProduct(this.id).subscribe ( 
