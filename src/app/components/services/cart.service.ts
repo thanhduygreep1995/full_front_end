@@ -29,7 +29,11 @@ export class CartService {
       const item: Icart = {
         id: sp.id,
         hinh: sp.hinh,
+// <<<<<<< luan01
         thumbnail: sp.thumbnail,
+// =======
+        images: sp.thumbnail,
+// >>>>>>> test_luan_branch
         soluong: 1,
         solanxem: 0,
         hot: 1,
@@ -46,7 +50,11 @@ export class CartService {
         price: sp.price,
         updateDate: sp.updateDate,
         categoryId: sp.categoryId,
+// <<<<<<< luan01
         // thumbnail: '',
+// =======
+        thumbnail: '',
+// >>>>>>> test_luan_branch
         Images: []
       }
       this.items.push(item)

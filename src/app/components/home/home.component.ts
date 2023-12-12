@@ -111,7 +111,6 @@ export class HomeComponent  {
 
   addToCart(product:IProduct){
     this.cart.addToCart(product);
-
     Swal.fire({
       icon:'success',
       title: 'Added To Cart Successfully',
@@ -127,7 +126,6 @@ export class HomeComponent  {
       showConfirmButton: false,
       timer: 1000
     })
-
   }
 
   updateVisibleItems(): void {

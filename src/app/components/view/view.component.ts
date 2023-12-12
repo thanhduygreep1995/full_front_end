@@ -24,7 +24,6 @@ import { WishService } from '../services/wish.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
-  
   Images: any;
   Spec: any;
   rating: any = 0;
@@ -49,6 +48,7 @@ export class ViewComponent {
   interval: any;
   startIndex = 0;
   displayedImg: any[] = [];
+
 
  
   constructor( 
@@ -101,6 +101,7 @@ export class ViewComponent {
       timer: 1000
     })
   }
+  
   prevSlide() {
     if (this.startIndex > 0) {
       this.startIndex -= 4;

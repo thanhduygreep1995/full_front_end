@@ -19,5 +19,4 @@ updateDate:string;
 categoryId: number;
 Images: [];
 
- 
 }

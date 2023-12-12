@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ReportService } from '../service/report/report.service';
@@ -6,7 +6,6 @@ import 'datatables.net';
 import 'datatables.net-buttons/js/dataTables.buttons.js';
 import 'datatables.net-buttons/js/buttons.html5.js';
 import { Router } from '@angular/router';
-
 
 const Toast = Swal.mixin({
   toast: true,
@@ -20,12 +19,10 @@ const Toast = Swal.mixin({
   }
 })
 
-
-
 @Component({
-  selector: 'app-top-sold-report',
-  templateUrl: './top-sold-report.component.html',
-  styleUrls: ['./top-sold-report.component.css'],
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css'],
   animations: [
     trigger('fadeIn', [
       state('void', style({ opacity: 0 })), // Ẩn khi khởi tạo
@@ -33,13 +30,13 @@ const Toast = Swal.mixin({
     ]),
   ]
 })
-export class TopSoldReportComponent{
+export class CategoryComponent {
   data: any;
-  product: any;
+  category: any;
   isSpinning: boolean = false;
   options: any;
   dtOptions: any = {};
-  infoProduct: any[]=[];
+  infoCategory: any[]=[];
   constructor( 
     private router: Router,
     private rP: ReportService,
@@ -55,39 +52,26 @@ export class TopSoldReportComponent{
         {
           extend: 'colvis',
           className: 'btn-primary',
-          columns: ':not(:last-child)',
         },
 
         {
           extend: 'copy',
           title: 'Admin - Product',
-          exportOptions: {
-            columns: ':not(:last-child)', // Ẩn cột cuối cùng
-          },
         },
         {
           extend: 'print',
           title: 'Admin - Product',
-          exportOptions: {
-            columns: ':not(:last-child)', // Ẩn cột cuối cùng
-          },
         },
         {
           extend: 'excel',
           title: 'Admin - Product',
-          exportOptions: {
-            columns: ':not(:last-child)', // Ẩn cột cuối cùng
-          },
         },
         {
           extend: 'csvHtml5',
           title: 'Admin - Product',
-          exportOptions: {
-            columns: ':not(:last-child)', // Ẩn cột cuối cùng
-          },
         },
         {
-          text: 'Category',
+          text: 'Top Sold',
           className: 'btn-default',
           action: () => {
             this.onCategory();
@@ -95,79 +79,67 @@ export class TopSoldReportComponent{
         },
       ],
     };
-    this.rP.getTopSoldReport().subscribe((d) => {
-      this.product = d;
-      console.log(this.product);
+    this.rP.getCategoryQunatityReport().subscribe((d) => {
+      this.category = d;
+      console.log(this.category);
       this.drawChart();
     });
 
   }
 
   onCategory(): void {
-    this.router.navigate(['admin/category'])
+    this.router.navigate(['admin/top-sold-report'])
   }
 
 drawChart(): void{
   const documentStyle = getComputedStyle(document.documentElement);
   const textColor = documentStyle.getPropertyValue('--text-color');
-  const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-  const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-  const categories = this.product.map((item: { model: any; }) => item.model);
-  const totalPrices = this.product.map((item: { totalPrice: any; }) => item.totalPrice);
+  const categories = this.category.map((item: { name: any; }) => item.name);
+  const totalPrices = this.category.map((item: { totalPrice: any; }) => item.totalPrice);
   this.data = {
-      labels: categories, 
+      labels: categories,
       datasets: [
           {
               label: 'Total Price(VNĐ)',
               data: totalPrices,
-              backgroundColor: ['rgba(255, 159, 64, 0.2)'],
-              borderColor: ['rgb(255, 159, 64)'],
-              borderWidth: 2
+              backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--yellow-500'), documentStyle.getPropertyValue('--green-500')],
+              hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--yellow-400'), documentStyle.getPropertyValue('--green-400')]
           }
       ]
   };
 
   this.options = {
-      plugins: {
-          legend: {
-              labels: {
-                  color: textColor
-              }
-          }
-      },
-      scales: {
-          y: {
-              beginAtZero: true,
-              ticks: {
-                  color: textColorSecondary
-              },
-              grid: {
-                  color: surfaceBorder,
-                  drawBorder: false
-              }
-          },
-          x: {
-              ticks: {
-                  color: textColorSecondary
-              },
-              grid: {
-                  color: surfaceBorder,
-                  drawBorder: false
-              }
-          }
-      }
-  };
+    plugins: {
+        legend: {
+            labels: {
+                usePointStyle: true,
+                color: textColor
+            }
+        }
+    },
+    layout: {
+        padding: {
+            left: 5, // Thêm khoảng đệm bên trái
+            right: 5 // Thêm khoảng đệm bên phải
+        }
+    },
+    responsive: true, // Cho phép biểu đồ tự động điều chỉnh kích thước
+    maintainAspectRatio: false // Loại bỏ tỷ lệ giữa chiều rộng và chiều cao để biểu đồ tự động điều chỉnh kích thước
+};
+
 }
   formatNumber(price: any) {
     throw new Error('Method not implemented.');
   }
 
+
   getTotalRevenue(): any {
     let totalRevenue = 0;
-    for (let p of this.product) {
-        totalRevenue += p.totalPrice;
+    for (let b of this.category) {
+        totalRevenue += b.totalPrice;
     };
     return totalRevenue;
   }
+
 
 }

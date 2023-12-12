@@ -39,6 +39,8 @@ import { ImageComponent } from './image/image.component';
 import { ChartModule } from 'primeng/chart';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 import { TopSoldReportComponent } from './top-sold-report/top-sold-report.component';
+import { CategoryComponent } from './category/category.component';
+
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { TopSoldReportComponent } from './top-sold-report/top-sold-report.compon
     IncomeReportComponent,
     CustomerReportComponent,
     ImageComponent,
-    TopSoldReportComponent
+    TopSoldReportComponent,
+    CategoryComponent
   ],
 
   imports: [

@@ -11,7 +11,6 @@ export class WishService {
 
 
    items: IWish[] = [];
-
    private cartSubject = new BehaviorSubject<IWish[]>([]);
    constructor(private h: HttpClient) { 
     const saveWish = localStorage.getItem('wish');
@@ -35,11 +34,8 @@ export class WishService {
         id: sp.id,
         hinh: sp.hinh,
 
-
         // images: sp.thumbnail,
         thumbnail: sp.thumbnail,
-
-
         soluong: 1,
         solanxem: 0,
         hot: 1,
@@ -56,12 +52,11 @@ export class WishService {
         categoryId: sp.categoryId,
 
 
+
         // thumbnail: '',
         Images: [],
         starsInfo: undefined,
         count: undefined
-
-
       }
       
       this.items.push(item)
