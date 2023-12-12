@@ -58,4 +58,7 @@ this.listSP= res.body;
     // Use the selectedTypeId to construct the route or perform other navigation logic
     this.router.navigate(['/your-path']);
   }
+
+
+  
 }

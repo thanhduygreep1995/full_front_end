@@ -30,13 +30,11 @@
             </div>
             <div class="flex items-center ">
                 <div class="flex gap-1 text-sm text-yellow-400 ">
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
+                    <div *ngFor="let starInfo of pro.starsInfo">
+                        <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
+                    </div>
                 </div>
-                <div class="text-xs text-gray-500 ml-3 ">(120)</div>
+                <div class="text-xs text-center text-gray-500 ml-3">{{ pro.count }} Reviews</div>
 
             </div>
         </div>

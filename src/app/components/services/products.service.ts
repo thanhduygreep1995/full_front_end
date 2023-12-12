@@ -40,4 +40,5 @@ export class ProductService {
   getImagePro(imageId: number): Observable<any> {
     return this.http.get(`${this.baseImageUrl}/products/${imageId}`);
   }
+
 }
