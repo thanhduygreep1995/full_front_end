@@ -29,7 +29,11 @@ export class CartService {
       const item: Icart = {
         id: sp.id,
         hinh: sp.hinh,
+// <<<<<<< luan01
+        thumbnail: sp.thumbnail,
+// =======
         images: sp.thumbnail,
+// >>>>>>> test_luan_branch
         soluong: 1,
         solanxem: 0,
         hot: 1,
@@ -46,7 +50,11 @@ export class CartService {
         price: sp.price,
         updateDate: sp.updateDate,
         categoryId: sp.categoryId,
+// <<<<<<< luan01
+        // thumbnail: '',
+// =======
         thumbnail: '',
+// >>>>>>> test_luan_branch
         Images: []
       }
       this.items.push(item)
@@ -63,6 +71,7 @@ export class CartService {
           this.saveCartToLocalStorage();
     }
   }
+  
   private saveCartToLocalStorage() {
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
@@ -72,11 +81,18 @@ export class CartService {
   //   if (cartStr) {
   //     this.items = JSON.parse(cartStr);
   //   }
+
   tongtien() {
     let tt: number = 0;
     this.items.forEach(item => tt = tt + Number(item.tongTien));
     return tt;
-    console.log(tt)
+
+  }
+  xoaTatCaSanPhamKhoiGioHang() {
+    // Xóa tất cả sản phẩm trong giỏ hàng (items) và lưu vào localStorage
+
+    localStorage.removeItem('items');
+    localStorage.removeItem('cart');
   }
   clearCart() {
     this.items = [];

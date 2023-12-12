@@ -18,8 +18,7 @@ import { ProByTypeComponent } from './components/pro-by-type/pro-by-type.compone
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { UserComponent } from './components/user/user.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
-import { TopProductComponent } from './components/top-product/top-product.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 import { MyReviewComponent } from './components/my-review/my-review.component';
@@ -67,7 +66,6 @@ const routes: Routes = [
       { path: 'account/vouchers', component: VoucherComponent,canActivate: [AuthGuard] },
       { path: 'account/myreview', component: MyReviewComponent,canActivate: [AuthGuard] },
       { path: 'oder-failure', component: OderFailureComponent },
-      { path: 'top-product', component: TopProductComponent },
 
     ],
   },

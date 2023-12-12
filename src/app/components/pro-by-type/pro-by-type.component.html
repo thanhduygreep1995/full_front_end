@@ -1,5 +1,5 @@
 <div class="grid lg:grid-cols-4 sm:grid-cols-3 gap-6">
-    <div class="group rounded bg-white shadow overflow-hidden product-list " *ngFor="let pro of listProduct">
+    <div class="group rounded bg-white shadow overflow-hidden product-list " *ngFor="let pro of listSP">
         <div class="relative ">
             <img src="{{pro.thumbnail}}" class="w-full" />
 
@@ -23,20 +23,21 @@
             </div>
 
             <div class="flex items-baseline mb-1 space-x-2 ">
+
+
                 <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discountPrice | currency:".":"":"1.0"}} VNĐ</p>
+
             </div>
             <div class="flex items-baseline mb-1 space-x-2 ">
                 <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"1.0"}} VNĐ </p>
             </div>
             <div class="flex items-center ">
                 <div class="flex gap-1 text-sm text-yellow-400 ">
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
+                    <div *ngFor="let starInfo of pro.starsInfo">
+                        <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
+                    </div>
                 </div>
-                <div class="text-xs text-gray-500 ml-3 ">(120)</div>
+                <div class="text-xs text-center text-gray-500 ml-3">{{ pro.count }} Reviews</div>
 
             </div>
         </div>

@@ -6,7 +6,7 @@ export interface Icart extends IProduct {
     price: number;
     soluong: number;
     hinh: string;
-    images: string;
+    thumbnail: string;
     tongTien: number;
     solanxem: number;
     hot: number;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/components/services/cart.service';
 import { IProduct } from 'src/app/components/interfaces/iproduct';
 import localeFr from '@angular/common/locales/fr';
@@ -9,7 +9,7 @@ registerLocaleData(localeFr, 'fr');
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent {
+export class CartComponent implements OnInit  {
   private item: any[] = [];
   constructor(private cart: CartService) {
     const savedCart = localStorage.getItem('cart');
@@ -20,7 +20,11 @@ export class CartComponent {
 
   items = this.cart.getItems();
   ngOnInit() {
-    this.items = this.cart.getItems();
+    const storedItems = localStorage.getItem('items');
+    if (storedItems) {
+      this.items = JSON.parse(storedItems);
+    }
+
   }
   tongtien() {
     let tt: number = 0;
@@ -32,9 +36,11 @@ export class CartComponent {
     if (item != undefined && item.soluong > 0) {
       item.soluong--;
       item.tongTien -= item.price;
+      this.saveToLocalStorage();
     }
     if(item?.soluong==0){
       this.removeFromCart(item1)
+      this.saveToLocalStorage();
     }
 
   }
@@ -44,6 +50,7 @@ export class CartComponent {
     if (item != undefined) {
       item.soluong++;
       item.tongTien = item.soluong * item.price;
+      this.saveToLocalStorage();
     }
   }
   tongsoluong(item1: any) {
@@ -53,7 +60,7 @@ export class CartComponent {
       if (item.id == item1.id) {
         
         tsl += item.soluong
-
+        this.saveToLocalStorage();
       }
       
     })
@@ -73,9 +80,11 @@ export class CartComponent {
 
   }
 
-  // private saveCartToLocalStorage() {
-  //   localStorage.setItem('cart', JSON.stringify(this.item));
-  // }
+
+  private saveToLocalStorage() {
+    // Lưu giá trị items vào localStorage
+    localStorage.setItem('items', JSON.stringify(this.items));
+  }
 }
 
 

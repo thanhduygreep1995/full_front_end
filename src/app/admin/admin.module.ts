@@ -42,6 +42,7 @@ import { TopSoldReportComponent } from './top-sold-report/top-sold-report.compon
 import { CategoryComponent } from './category/category.component';
 
 
+
 @NgModule({
   declarations: [
     AdminComponent,

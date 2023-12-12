@@ -16,6 +16,7 @@ export class TokenService {
         localStorage.setItem(this.TOKEN_KEY, token);
     }
     getCustomerId(): number {
+
         // let customerObject = this.jwtHelperService.decodeToken(this.getToken() ?? '');
         // return 'id' in customerObject ? parseInt(customerObject['id']) : 0;
         const token = this.getToken() ?? '';
@@ -27,6 +28,7 @@ export class TokenService {
         }
       
         return 0;
+
     }
     removeToken(): void {
         localStorage.removeItem(this.TOKEN_KEY);

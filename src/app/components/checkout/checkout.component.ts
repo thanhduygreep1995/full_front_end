@@ -197,6 +197,7 @@ export class CheckoutComponent {
   // getTotal(): number {
   //   return this.tt;
   // }
+
   isDiscount(): any {
     if (this.voucher && this.voucher.value) {
       return this.voucher.value;
@@ -204,6 +205,23 @@ export class CheckoutComponent {
       return 0;
     }
   }
+
+  // createOrderData(): any {
+  //   return {
+  //     name: this.name,
+  //     email: this.email,
+  //     address: this.address + ', ' + this.ward + ', ' + this.district + ', ' + this.city,
+  //     phone: this.phone,
+  //     status: 'PENDING',
+  //     paymentMethod: this.paymentMethod,
+  //     discountPrice: this.isDiscount(),
+  //     totalAmount: this.tt,
+  //     customer: {
+  //       id: this.id,
+  //     },
+  //   };
+  // }
+
   createOrderData(): any {
     const orderData: any =  {
       name: this.name,
@@ -220,6 +238,7 @@ export class CheckoutComponent {
     };
     return orderData;
   }
+
 
   onOrder(){
     const orderData = this.createOrderData();
@@ -261,10 +280,76 @@ export class CheckoutComponent {
       console.log('Stock updated successfully', response);
     });
   }
-  processPayment() {
-    // Implement payment processing logic here
-    // ...
 
-    this.cartService.clearCart();
+
+  processPayment(){
+    this.cartService.xoaTatCaSanPhamKhoiGioHang();
+
   }
+
+  // isDiscount(): any {
+  //   if (this.voucher && this.voucher.value) {
+  //     return this.voucher.value;
+  //   } else {
+  //     return 0;
+  //   }
+  // }
+  createOrderData(): any {
+    const orderData: any =  {
+      name: this.name,
+      email: this.email,
+      address: this.address + ', ' + this.ward + ', ' + this.district + ', ' + this.city,
+      phone: this.phone,
+      status: 'PENDING',
+      paymentMethod: this.paymentMethod,
+      discountPrice: this.isDiscount(),
+      totalAmount: this.tt,
+      customer: {
+        id: this.id,
+      },
+    };
+    return orderData;
+  }
+
+  // onOrder(){
+  //   const orderData = this.createOrderData();
+  //   this.checkoutService.setOrderData(orderData)
+  // }
+  // createNewOrder(): void {
+  //   const orderData = this.createOrderData();
+  //   this.checkoutService.createOrder(orderData).subscribe((response) => {
+  //     console.log('create success order');
+  //     this.createOrderDetail(response.id);
+  //   });
+  // }
+  // createOrderDetail(id: number){
+  //   this.cartItems.forEach((item) => {
+  //       const orderDetailData = {
+  //         quantity: item.soluong,
+  //         totalPrice: item.tongTien,
+  //         order: {
+  //           id: id, // Assuming you have orderId from somewhere
+  //         },
+  //         product: {
+  //           id: item.id, // Assuming 'id' in your data refers to product ID
+  //         },
+  //       };
+  //       this.checkoutService
+  //         .createOrderDetail(orderDetailData)
+  //         .subscribe((detailResponse) => {
+  //           console.log('create success orderdetail');
+  //         });
+  //       this.updateStockQuantity(item.id, item.soluong);
+  //     });
+  // }
+  // updateStockQuantity(id: number, quantity: number) {
+  //   const productDTO = {
+  //     id: id,
+  //     stockQuantity: quantity,
+  //   };
+  //   this.productService.updateProductStock(productDTO).subscribe((response) => {
+  //     console.log('Stock updated successfully', response);
+  //   });
+  // }
+
 }

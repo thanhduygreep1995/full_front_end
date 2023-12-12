@@ -7,6 +7,7 @@ import 'datatables.net-buttons/js/dataTables.buttons.js';
 import 'datatables.net-buttons/js/buttons.html5.js';
 import { Router } from '@angular/router';
 
+
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -160,6 +161,7 @@ drawChart(): void{
   formatNumber(price: any) {
     throw new Error('Method not implemented.');
   }
+
   getTotalRevenue(): any {
     let totalRevenue = 0;
     for (let p of this.product) {
@@ -167,4 +169,5 @@ drawChart(): void{
     };
     return totalRevenue;
   }
+
 }

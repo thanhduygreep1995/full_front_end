@@ -9,6 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class WishService {
 
+
    items: IWish[] = [];
    private cartSubject = new BehaviorSubject<IWish[]>([]);
    constructor(private h: HttpClient) { 
@@ -32,6 +33,7 @@ export class WishService {
       const item: IWish = {
         id: sp.id,
         hinh: sp.hinh,
+
         // images: sp.thumbnail,
         thumbnail: sp.thumbnail,
         soluong: 1,
@@ -48,8 +50,13 @@ export class WishService {
         price: sp.price,
         updateDate: sp.updateDate,
         categoryId: sp.categoryId,
+
+
+
         // thumbnail: '',
-        Images: []
+        Images: [],
+        starsInfo: undefined,
+        count: undefined
       }
       
       this.items.push(item)

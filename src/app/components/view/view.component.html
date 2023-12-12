@@ -15,7 +15,7 @@
         <span class="text-sm text-gray-500 ">
             <i class="fas fa-chevron-right"></i>
         </span>
-        <p class="text-gray-500 font-medium uppercase">ITALIAN L SHAPE SOFA</p>
+        <p class="text-gray-500 font-medium uppercase">{{infoProduct.name}}</p>
     </div>
 
 </div>
@@ -25,30 +25,44 @@
 <div class="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
     <!-- ---- Product Image  --->
 
-    <section class="gallerry">
+    <section class="gallery">
         <div class="container">
-            <div class="img-container" class="Image">
-                <img [src]="selectedImageUrl" alt="" id="preview">
-                <div class="img-prev text-center">
-                    <div class="img-slide" [class.active]="in === selectedIndex" *ngFor="let i of Images;let in = index">
-                        <img (click)="imageChange(i.imageUrl,in)" src="{{i.imageUrl}}" alt="Image{{in+1}}" app-view>
-                    </div>
-                </div>
+          <div class="img-container" class="Image">
+            <img [src]="selectedImageUrl" alt="" id="preview">
+          </div>
+          <div class="arrow-buttons">
+            <button (click)="prevSlide()">❮</button>
+            <div class="img-prev text-center">
+              <div class="img-slide" [class.active]="in === selectedIndex" *ngFor="let i of Images.slice(startIndex, startIndex + 4); let in = index">
+                <img style="width: 109px; height: 110px;" (click)="imageChange(i.imageUrl, in + startIndex)" src="{{i.imageUrl}}" alt="Image{{in + startIndex + 1}}" app-view>
+              </div>
             </div>
+            <button (click)="nextSlide()">❯</button>
+          </div>
         </div>
-    </section>
+      </section>
 
-
-
-
-
-
-
-
-
-
-
-
+    <!-- <section class="gallery">
+        <div class="container">
+            <p-carousel  >
+                <ng-template pTemplate="header">
+                  <div>
+                    <img [src]="Images[selectedIndex].imageUrl" alt=" " style="height: 410px;"  >
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="footer" class="container">
+                  <div class="img-prev text-center">
+                    <button (click)="prevSlide()">❮</button>
+                    <div class="img-slide" *ngFor="let i of displayedImages; let in = index">
+                        <img (click)="imageChange(i.imageUrl, startIndex + in)" [src]="i.imageUrl" alt="Image{{ startIndex + in + 1 }}" app-view  style="height: 110px;">
+                      </div>
+                      
+                    <button (click)="nextSlide()">❯</button>
+                  </div>
+                </ng-template>
+              </p-carousel>
+        </div>
+      </section> -->
 
     <!-- <div class=" card ">
         <p-carousel [value]="Images " [numVisible]="5 " [numScroll]="5 " [circular]="true " [responsiveOptions]="responsiveOptions ">
@@ -75,11 +89,13 @@
         <div class="flex items-center mb-4 ">
             <div class="flex gap-1 text-sm ">
                 <div class="flex items-center ">
+
                     <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[0].filled, 'half-filled': starsInfo[0].half, 'no-fill': starsInfo[0].noFill} "></span>
                     <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[1].filled, 'half-filled': starsInfo[1].half, 'no-fill': starsInfo[1].noFill} "></span>
                     <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[2].filled, 'half-filled': starsInfo[2].half, 'no-fill': starsInfo[2].noFill} "></span>
                     <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[3].filled, 'half-filled': starsInfo[3].half, 'no-fill': starsInfo[3].noFill} "></span>
                     <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[4].filled, 'half-filled': starsInfo[4].half, 'no-fill': starsInfo[4].noFill} "></span>
+
                 </div>
             </div>
             <div class="text-xs text-gray-500 ml-3 ">({{ count }} Reviews)</div>
@@ -104,9 +120,11 @@
         </div>
 
         <div class="mt-4 flex items-baseline gap-3 ">
+
             <span class="text-primary font-semibold text-xl ">{{infoProduct.discountPrice| currency:". ":" ":"1.0"}} VNĐ</span>
             <span class="text-gray-500 text-base line-through ">{{infoProduct.price| currency:". ":" ":"1.0"}} VNĐ</span>
             <span class="text-white font-semibold text-sm bg-primary p-2 rounded-full ">-{{infoProduct.discountPercentage|number:'1.0-0':'fr'}}%</span>
+
         </div>
         <p class="mt-4 text-gray-600 ">
             {{infoProduct.description}}
@@ -162,6 +180,7 @@
         <!-- ---- ADD TO CART BUTTON --->
 
         <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
+
             <a (click)="addToCart(infoProduct) " class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent cursor-pointer hover:text-primary transition text-sm flex items-center ">
                 <span class="mr-2 "><i class="fas fa-shopping-bag "></i> </span> Add to Cart
             </a>
@@ -179,6 +198,7 @@
         <!-- ---- Product Share Icon --->
 
         <div class="flex space-x-3 mt-4 ">
+
             <a href="# " class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center ">
                 <i class="fab fa-facebook-f "></i>
             </a>
@@ -201,6 +221,7 @@
 </div>
 
 <!-- ---- End Product View --->
+
 <div *ngIf="loading " class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 ">
     <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-primary "></div>
 </div>
@@ -277,12 +298,14 @@
             <div class="antialiased mx-auto max-w-screen-sm col-6 ">
                 <h3 class="mb-4 text-lg font-semibold text-gray-900 ">Comments</h3>
                 <form class="mb-6 ">
-                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
+                    <div
+                        class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
                         <label for="comment " class="sr-only ">Name</label>
                         <input id="nameCustomer " name="nameCustomer " [(ngModel)]="infoProduct.nameCustomer " rows="6 " class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800
         " placeholder="Your name " required>
                     </div>
-                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
+                    <div
+                        class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
                         <label for="comment " class="sr-only ">Your comment</label>
                         <textarea id="comment " name="comment " [(ngModel)]="infoProduct.comment " rows="6 " class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800
         " placeholder="Write a comment... " required></textarea>
