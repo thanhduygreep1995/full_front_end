@@ -49,6 +49,10 @@ export class ViewComponent {
   interval: any;
   startIndex = 0;
   displayedImg: any[] = [];
+  currentFeedbacks: any[] = []; // Danh sách vouchers trên trang hiện tại
+  itemsPerPage: number = 4; // Số lượng mục trên mỗi trang
+  currentPage: number = 1; // Trang hiện tại
+  totalPages: number = 0; // Tổng số trang
 
  
   constructor( 
@@ -141,10 +145,9 @@ export class ViewComponent {
       console.log('Dữ liệu mới đã được cập nhật:', this.Spec);
     });
 
-    this.fB.getFeedBackProduct(this.id).subscribe((data) => {
-        this.feedBacks = data;
-      });
-      this.responsiveOptions = [
+    this.loadFeedback();
+
+    this.responsiveOptions = [
         {
             breakpoint: '1199px',
             numVisible: 1,
@@ -356,7 +359,36 @@ export class ViewComponent {
   );
   }
 
-
+  loadFeedback() {
+     this.fB.getFeedBackProduct(this.id).subscribe((data) => {
+      this.feedBacks = data;
+      this.calculateTotalPages();
+      this.updateOrders();
+    });
+  }
+  
+  calculateTotalPages() {
+    this.totalPages = Math.ceil(this.feedBacks.length / this.itemsPerPage);
+  }
+  // Hàm để cập nhật danh sách vouchers trên trang hiện tại
+  updateOrders() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.currentFeedbacks = this.feedBacks.slice(startIndex, endIndex);
+  }
+  
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updateOrders();
+    }
+  }
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateOrders();
+    }
+  }
 }
 
 
