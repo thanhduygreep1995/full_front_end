@@ -41,7 +41,7 @@
                                     <div *ngIf="productForm.controls['model'].invalid && productForm.controls['model'].touched" class="text-danger">
                                         Model is required.
                                     </div>
-                                    <div [formGroup]="productForm">
+                                    <div formGroupName="categoryId">
                                         <label for="">Category</label>
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedCategoryId">
                                             <option value="0" selected disabled>Select Category</option>
@@ -49,7 +49,7 @@
                                       <option  *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
                                     </select>
                                     </div>
-                                    <div [formGroup]="productForm">
+                                    <div formGroupName="brandId">
                                         <label for="">Brand</label><br>
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedBrandId">
                                             <option value="0" selected disabled>Select Brand</option>
@@ -57,7 +57,7 @@
                                       <option  *ngFor="let brand of brands"  value="{{brand.id}}">{{brand.name}}</option>
                                     </select>
                                     </div>
-                                    <div [formGroup]="productForm">
+                                    <div formGroupName="originId">
                                         <label for="">Origin</label><br>
                                         <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedOriginId">
                                             <option value="0" selected disabled>Select Origin</option>
@@ -109,14 +109,14 @@
                                 <div *ngIf="productForm.controls['discountPercentage'].invalid && productForm.controls['discountPercentage'].errors.min" class="text-danger">
                                     Discount min 1.
                                 </div>
-                                <label for="discountPrice" class="form-label">Discount Price</label>
+                                <!-- <label for="discountPrice" class="form-label">Discount Price</label>
                                 <input formControlName="discountPrice" type="number" class="form-control mb-2" name="discountPrice" id="discountPrice" ngModel min="1" ngModel min="1" placeholder="Enter Discount Price" />
                                 <div *ngIf="productForm.controls['discountPrice'].invalid && productForm.controls['discountPrice'].touched" class="text-danger">
                                     Discount is required.
                                 </div>
                                 <div *ngIf="productForm.controls['discountPrice'].invalid && productForm.controls['discountPrice'].errors.min" class="text-danger">
                                     Discount Price min 1.
-                                </div>
+                                </div> -->
                                 <label for="categoryStatus" class="form-label">Status</label>
                                 <select formControlName="status" class="form-control select2" style="width: 100%">
                                   <option value="AVAILABLE">AVAILABLE</option>

@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, Directive, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Directive, ElementRef, EventEmitter, HostListener, Injector, Input, Output, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/components/services/data.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Data } from '@angular/router';
 import { IProduct } from 'src/app/components/interfaces/iproduct';
 import { CartService } from 'src/app/components/services/cart.service';
@@ -15,6 +15,7 @@ import { FeedbackService } from '../services/feedback/feedback.service';
 import { ProductService } from '../services/products.service';
 import { TokenService } from '../services/token.service';
 import { WishService } from '../services/wish.service';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 
@@ -30,23 +31,25 @@ export class ViewComponent {
   products: any;
   infoProduct: any;
   id: any;
-  customerId: any =  this.tokenService.getCustomerId();
+  customerId: any = this.tokenService.getCustomerId();
   checkData: any[] = [];
   count: number = 0;
   @Input() averageNumber: any;
   getRateElement: number[] = [];
   totalRate: any[] = [];
-  starsInfo: { filled: boolean, half: boolean , noFill: boolean}[] = [];
+  starsInfo: { filled: boolean; half: boolean; noFill: boolean }[] = [];
   loading: boolean = false;
   feedBacks: any;
   nameCustomer: any;
   comment: any;
-  data: any[]=[];
+  data: any[] = [];
   responsiveOptions: any[] | undefined;
   selectedImageUrl: string = '';
   selectedIndex: number = 0;
+  checkList: boolean = false;
+  qrCodeImage: any;
 
-  constructor( 
+  constructor(
     private rate:RatingService,
     private d:DataService,  
     private route:ActivatedRoute, 
@@ -57,9 +60,12 @@ export class ViewComponent {
     private tokenService: TokenService,
     private wish: WishService,
     private el: ElementRef,
-    // private snackBar: MatSnackBar
+    private authGuard: AuthGuard,
+    private injector: Injector,
+    private router: Router
+  ) // private snackBar: MatSnackBar
 
-  ) {
+  {
     this.infoProduct = this.formBuilder.group({
       id: [''],
       name: [''],
@@ -77,41 +83,46 @@ export class ViewComponent {
       OriginsId: [''],
       images: [''],
     });
-   }
+  }
 
-   imageChange(imageUrl: string, index: number) {
+  imageChange(imageUrl: string, index: number) {
     this.selectedImageUrl = imageUrl;
     this.selectedIndex = index;
     console.log(this.selectedImageUrl);
-}
-
-
-
-  addToWish(product:IProduct){
-    this.wish.addToWish(product);
-    Swal.fire({
-      icon:'success',
-      title: 'Add To Wishlist Successfully',
-      showConfirmButton: false,
-      timer: 1000
-    })
   }
 
+  addToWish(product: IProduct) {
+    this.wish.addToWish(product);
+    Swal.fire({
+      icon: 'success',
+      title: 'Add To Wishlist Successfully',
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }
+  isModalOpen = false;
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.params['id']);  
-    
-    this.d.getTakeProduct(this.id).subscribe ( 
-      res => { 
-        this.infoProduct  = res[this.id - 1];
-        this.getRatingListByProduct(this.id);
-        console.log('Dữ liệu mới đã được cập nhật:', this.infoProduct);
-      });
-    
+    this.id = Number(this.route.snapshot.params['id']);
+
+    this.d.getTakeProduct(this.id).subscribe((res) => {
+      this.infoProduct = res[this.id - 1];
+      this.getRatingListByProduct(this.id);
+      console.log('Dữ liệu mới đã được cập nhật:', this.infoProduct);
+    });
+
     this.pS.getImagePro(this.id).subscribe((data) => {
-        this.Images = data;
-        this.selectedImageUrl = this.Images[0].imageUrl;
-        console.log('Dữ liệu mới đã được cập nhật:', this.Images);
-      });  
+      this.Images = data;
+      this.selectedImageUrl = this.Images[0].imageUrl;
+      console.log('Dữ liệu mới đã được cập nhật:', this.Images);
+    });
 
     this.pS.getSpecPro(this.id).subscribe((data) => {
       this.Spec = data;
@@ -119,34 +130,38 @@ export class ViewComponent {
     });
 
     this.fB.getFeedBackProduct(this.id).subscribe((data) => {
-        this.feedBacks = data;
-      });
-      this.responsiveOptions = [
-        {
-            breakpoint: '1199px',
-            numVisible: 1,
-            numScroll: 1
-        },
-        {
-            breakpoint: '991px',
-            numVisible: 1,
-            numScroll: 1
-        },
-        {
-            breakpoint: '767px',
-            numVisible: 1,
-            numScroll: 1
-        },
-        {
-          breakpoint: '576px',
-          numVisible: 1,
-          numScroll: 1
-        }
-      ];
-      
+      this.feedBacks = data;
+    });
+    this.responsiveOptions = [
+      {
+        breakpoint: '1199px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+      {
+        breakpoint: '991px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+      {
+        breakpoint: '767px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+      {
+        breakpoint: '576px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+    ];
   }
 
   onClick() {
+    const canActivate = this.authGuard.canActivate(
+      {} as ActivatedRouteSnapshot,
+      this.router.routerState.snapshot
+    );
+    if (canActivate) {
     Swal.fire({
       title: 'Please Rate This Product',
       html: `
@@ -169,43 +184,55 @@ export class ViewComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         // Lấy giá trị từ select khi người dùng xác nhận
-        const selectedValue = (document.getElementById('rating') as HTMLSelectElement).value;
+        const selectedValue = (
+          document.getElementById('rating') as HTMLSelectElement
+        ).value;
         console.log('User rated:', selectedValue);
-        const ratingForm = {
-          nameCustomer: 'John Doe',
-          rating: selectedValue,
-          createDate: new Date(),
-          updateDate: new Date(),
-          customers: { id: 1 },
-          products: { id: this.id }
-        };
         this.rate.getAllRatingList().subscribe((ratingData) => {
           this.loading = true;
           this.checkData = ratingData;
-          for (let r of this.checkData) {
-            if (r.rating != null 
-              && (r.customers.id == 1 && r.customers.id > 0) 
-              && r.products.id == this.id) {
-              Swal.fire({
-                icon: 'info',
-                title: 'You had rated this product',
-                showConfirmButton: false,
-                timer: 1000
-              })
-              return;
-            } 
-            else {
+          console.log('Customer Id: ', this.customerId);
+          for (let i of ratingData) {
+            for (let r of this.checkData) {
+              if (
+                r.rating != null &&
+                r.customers.id === this.customerId &&
+                r.products.id === this.id
+              ) {
+                setTimeout(() => {
+                  this.loading = false;
+                  Swal.fire({
+                    icon: 'info',
+                    title: 'You had rated this product',
+                    showConfirmButton: false,
+                    timer: 1000,
+                  });
+                }, 1200);
+                this.checkList = true;
+                break;
+              }
+            }
+            if (this.customerId === i.customers.id && this.checkList == false) {
+              const ratingForm = {
+                nameCustomer:
+                  i.customers.firstName + ' ' + i.customers.lastName,
+                rating: selectedValue,
+                createDate: new Date(),
+                updateDate: new Date(),
+                customers: { id: this.customerId },
+                products: { id: this.id },
+              };
               this.rate.sendDBRequest(ratingForm).subscribe(
                 (response) => {
                   setTimeout(() => {
                     this.loading = false;
                     Swal.fire({
-                      icon:'success',
+                      icon: 'success',
                       title: 'Rate Successfully',
                       showConfirmButton: false,
-                      timer: 1000
-                    })
-                  },1000)
+                      timer: 1000,
+                    });
+                  }, 1200);
                   console.log('response: ', response);
                   this.getRatingListByProduct(this.id);
                 },
@@ -213,30 +240,36 @@ export class ViewComponent {
                   setTimeout(() => {
                     this.loading = false;
                     Swal.fire({
-                      icon:'error',
+                      icon: 'error',
                       title: 'Rate Failure',
                       showConfirmButton: false,
-                      timer: 2000
-                    })
-                  },4000)
+                      timer: 2000,
+                    });
+                  }, 4000);
                   console.log('error: ', err);
                 }
               );
+              break;
             }
           }
-
-
-        })
+        });
       }
     });
-    
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Please log in first',
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
   }
 
-  calculateAverage(): number{
+  calculateAverage(): number {
     if (this.getRateElement.length === 0) {
       return 0; // Tránh chia cho 0
     }
-  
+
     let sum = 0;
 
     for (const rating of this.getRateElement) {
@@ -244,7 +277,7 @@ export class ViewComponent {
         sum += rating;
       }
     }
-    console.log("Sum Type:", typeof sum);
+    console.log('Sum Type:', typeof sum);
     return sum / this.getRateElement.length;
   }
 
@@ -253,9 +286,9 @@ export class ViewComponent {
     const decimalPart = value - floorValue;
 
     if (decimalPart < 0.5) {
-        return floorValue;
+      return floorValue;
     } else {
-        return floorValue + 0.5;
+      return floorValue + 0.5;
     }
   }
 
@@ -267,7 +300,7 @@ export class ViewComponent {
       console.log('Product Id rated:', id);
       for (let i of this.totalRate){
         this.getRateElement.push(i.rating);
-        console.log('rating: ', i.rating);  
+        console.log('rating: ', i.rating);
         this.count++;
       }
       this.averageNumber = this.customRound(this.calculateAverage());
@@ -279,9 +312,11 @@ export class ViewComponent {
       
     });
   }
-  calculateStars(average: number): { filled: boolean, half: boolean, noFill: boolean }[] {
+  calculateStars(
+    average: number
+  ): { filled: boolean; half: boolean; noFill: boolean }[] {
     const stars = [];
-  
+
     for (let i = 1; i <= 5; i++) {
       const filled = i <= Math.floor(average);
       const half = !filled && i === Math.ceil(average);
@@ -289,11 +324,12 @@ export class ViewComponent {
       // const no = !filled && !half &&  i ===
       stars.push({ filled, half, noFill });
     }
-  
+
     return stars;
   }
-  
-  image1: string = 'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg';
+
+  image1: string =
+    'https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg';
 
   // Hàm để thay đổi hình ảnh khi người dùng chọn
   changeImage(imageUrl: string): void {
@@ -302,38 +338,78 @@ export class ViewComponent {
   addToCart(product: any) {
     this.cartService.addToCart(product);
     Swal.fire({
-      icon:'success',
+      icon: 'success',
       title: 'Added To Cart Successfully',
       showConfirmButton: false,
-      timer: 1000
-    })
+      timer: 1000,
+    });
   }
-  
-  createFeedback(){
-    this.id = Number(this.route.snapshot.params['id']);    
+
+  createFeedback() {
+    this.id = Number(this.route.snapshot.params['id']);
     const feedback = {
-      nameCustomer:this.infoProduct.nameCustomer,
+      nameCustomer: this.infoProduct.nameCustomer,
       comment: this.infoProduct.comment,
       status: '',
       createDate: new Date(),
       updateDate: new Date(),
-      customers: { id: 5 },
-      products: { id: this.id }
-  };
+      customers: { id: this.customerId },
+      products: { id: this.id },
+    };
 
-  this.fB.createFeedBackProduct(feedback).subscribe(
-    (response) => {
-      console.log('Successfully Create Feedback!',response);
-    },
-    (error) => {
-      console.error('Failed to Create Feedback:', error);
-      window.location.reload();
-    }
-
-  );
+    this.fB.createFeedBackProduct(feedback).subscribe(
+      (response) => {
+        console.log('Successfully Create Feedback!', response);
+      },
+      (error) => {
+        console.error('Failed to Create Feedback:', error);
+        window.location.reload();
+      }
+    );
+  }
+  generateQRCode() {
+    const modifiedInfoProduct = this.modifyInfoProduct(this.infoProduct,this.Spec);
+    this.d.getQRCode(modifiedInfoProduct).subscribe(
+      (data: Blob) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.qrCodeImage = reader.result;
+        };
+        reader.readAsDataURL(data);
+      },
+      (error) => {
+        console.error('Error fetching QR code:', error);
+      }
+    );
+  }
+  modifyInfoProduct(infoProduct: any, spec : any): String {
+    return  "Tên sản phẩm: " + infoProduct.name + 
+    ", Giá đang bán: " + infoProduct.discountPercentage +
+    ", Mô tả sản phẩm: " + infoProduct.description +
+    ", Đang được giảm giá: " + infoProduct.discountPrice +
+    ", Loại sản phẩm: " + infoProduct.categoryId.name +
+    ", Hãng sản xuất: " + infoProduct.brandId.name +
+    ", Sản phẩm được xuất xứ: " + infoProduct.originId.country +
+    ", Số lượng còn lại: " + infoProduct.stockQuantity +
+    ", Bộ xử lý con chip: " + spec.processor +
+    ", Card đồ họa: " + spec.graphicsCard +
+    ", Bộ nhớ xử lý: " + spec.ram +
+    ", Bộ nhớ thiết bị: " + spec.storage +
+    ", Kích thước chất lượng màn hình: " + spec.display +
+    ", Hệ điều hành & nhà sản xuất: " + spec.operatingSystem +
+    ", Chất lượng camera: " + spec.camera ;
   }
 
-
+  shareOnFacebook(id: string) {
+    let urlToShare = `http://localhost:4200/view/${id}`; // Replace with your actual URL
+    window.open('https://www.facebook.com/sharer/sharer.php?u=' + urlToShare,'facebook-share-dialog','width=626,height=436');
+  }
+  shareOnTwitter(id: string) {
+    let urlToShare = `http://localhost:4200/view/${id}`;
+    window.open(`https://twitter.com/intent/tweet?url=${urlToShare}`, '_blank');
+  }
+  shareOnInstagram(imageUrl: string) {
+  let urlToShare = `https://www.instagram.com/sharer/sharer.php?u=${imageUrl}`;
+  window.open(urlToShare, '_blank');
+  }
 }
-
-

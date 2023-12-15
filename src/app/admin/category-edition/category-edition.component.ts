@@ -143,7 +143,7 @@ export class CategoryEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create category!');
-          this.router.navigate(['/category-table']);
+          this.router.navigate(['/admin/category-table']);
           this.infoCategory.reset();
           this.defaultComboBox();
           Swal.fire({

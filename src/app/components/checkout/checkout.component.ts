@@ -51,6 +51,7 @@ export class CheckoutComponent {
           }
           console.log('Giá trị của vnp_ResponseCode00:', vnpResponseCode);
           this.createOrderVNP();
+          this.processPayment();
           break;
         case '05':
         case '06':
@@ -187,6 +188,7 @@ export class CheckoutComponent {
     if (this.paymentMethod === 'Cash') {
       this.voucherStatus();
       this.createNewOrder();
+      this.processPayment();
       this.router.navigate(['/oder-complete']);
     } else if (this.paymentMethod === 'VnPay') {
       this.receiveCode(this.formCoupon.value.codeVoucher);

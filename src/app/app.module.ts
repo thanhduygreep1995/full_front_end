@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { TranslateLoader,TranslateModule} from '@ngx-translate/core' ;
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ShopComponent } from './components/shop/shop.component';
@@ -15,7 +17,7 @@ import { AddressComponent } from './components/address/address.component';
 import { ViewComponent } from './components/view/view.component';
 import { OderCompleteComponent } from './components/oder-complete/oder-complete.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NewProductComponent } from './components/new-product/new-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LOCALE_ID } from '@angular/core';
@@ -49,10 +51,16 @@ import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { TopProductComponent } from './components/top-product/top-product.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 registerLocaleData(localeVi);
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +96,10 @@ registerLocaleData(localeVi);
     PersonalProfileComponent,
     OderFailureComponent,
     TopProductComponent,
+    ContactComponent,
+    TermsOfUseComponent,
+    NotFoundComponent,
+    AboutComponent,
     
 
   ],
@@ -103,7 +115,14 @@ registerLocaleData(localeVi);
     CarouselModule,
     TagModule,
     ButtonModule,
-    ScrollTopModule
+    ScrollTopModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps:[HttpClient]
+      }
+    })
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'vi' },

@@ -5,6 +5,7 @@ import { CustomerService } from '../services/customer.service';
 import { TokenService } from '../services/token.service';
 import { WishService } from '../services/wish.service';
 import { CartService } from '../services/cart.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
     private tokenService: TokenService,
     private router: Router,
     private wish: WishService, 
-    private cart:CartService
+    private cart:CartService,
+    private languageService: LanguageService
   ){}
   
   ngOnInit() {
@@ -37,12 +39,17 @@ export class HeaderComponent implements OnInit {
         console.log(this.count)
         console.log(this.cartItems)
       });
+    this.languageService.setInitialAppLanguage();
   }
   logout(){
     this.customerService.removeCustomerResponseFromLocalStorage();
     this.tokenService.removeToken();
   }
-
+  selectedLanguage : string=this.languageService.getCurrentLanguage();
+  changeLanguage(lang :string ) {
+    this.languageService.changeLanguage(lang);
+    location.reload();
+  }
   
 }
   

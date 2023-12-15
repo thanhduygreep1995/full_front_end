@@ -80,6 +80,8 @@ export class CartService {
   }
   clearCart() {
     this.items = [];
+    this.cartSubject.next(this.items); // Cập nhật Subject hoặc Observable nếu cần thiết
+    this.saveCartToLocalStorage();
   }
   // countPro(){
   //   const count= this.items.length;

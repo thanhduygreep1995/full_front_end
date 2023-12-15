@@ -19,21 +19,6 @@ const swalWithBootstrapButtons = Swal.mixin({
   buttonsStyling: false,
 })
 
-interface ProductResponse {
-  id: any;
-  name: any;
-  model: any;
-  price: any;
-  stockQuantity: any;
-  thumbnail: any;
-  description: any;
-  discountPercentage: any;
-  discountPrice: any;
-  status: any;
-  brandId: any;  
-  categoryId: any;  
-  originId: any;  
-}
 
 @Component({
   selector: 'app-product-edition',
@@ -98,7 +83,7 @@ export class ProductEditionComponent implements OnInit {
       thumbnail:['',Validators.required],
       description: ['', Validators.required],
       discountPercentage: ['', Validators.required],
-      discountPrice: ['', Validators.required],
+      // discountPrice: ['', Validators.required],
       status: [''],
       categoryId: this.formBuilder.group({
         id: ["", Validators.required],
@@ -108,19 +93,17 @@ export class ProductEditionComponent implements OnInit {
       }),
       originId: this.formBuilder.group({
         id: ["", Validators.required],
-      }),
-  
-      }) ,
-
+      })
+    });
 
     this.productForm.valueChanges.subscribe(() => {
       const nameControl = this.productForm.controls['name'].invalid;
       const priceControl = this.productForm.controls['price'].invalid;
       const quantityControl = this.productForm.controls['stockQuantity'].invalid;
       const discountPercentageControl = this.productForm.controls['discountPercentage'].invalid;
-      const discountPriceControl = this.productForm.controls['discountPrice'].invalid;
+      // const discountPriceControl = this.productForm.controls['discountPrice'].invalid;
       const descriptionControl = this.productForm.controls['description'].invalid;
-      this.ButtonSave = nameControl || descriptionControl || priceControl || quantityControl ||  discountPercentageControl || discountPriceControl ;
+      this.ButtonSave = nameControl || descriptionControl || priceControl || quantityControl ||  discountPercentageControl  ;
     });
     this.productForm.valueChanges.subscribe(() => {
       this.ButtonDelete = this.productForm.controls['id'].invalid;
@@ -130,9 +113,9 @@ export class ProductEditionComponent implements OnInit {
       const priceControl = this.productForm.controls['price'].invalid;
       const quantityControl = this.productForm.controls['stockQuantity'].invalid;
       const discountPercentageControl = this.productForm.controls['discountPercentage'].invalid;
-      const discountPriceControl = this.productForm.controls['discountPrice'].invalid;
+      // const discountPriceControl = this.productForm.controls['discountPrice'].invalid;
       const descriptionControl = this.productForm.controls['description'].invalid;
-      this.ButtonUpdate = nameControl || descriptionControl || priceControl || quantityControl ||  discountPercentageControl || discountPriceControl ;
+      this.ButtonUpdate = nameControl || descriptionControl || priceControl || quantityControl ||  discountPercentageControl  ;
     });
 
   };
@@ -194,7 +177,7 @@ export class ProductEditionComponent implements OnInit {
       // thumbnail: this.productForm.value.thumbnail,
       description: this.productForm.value.description,
       discountPercentage: this.productForm.value.discountPercentage,
-      discountPrice: this.productForm.value.discountPrice,
+      discountPrice: Math.round(this.productForm.value.price - (this.productForm.value.price  * (this.productForm.value.discountPercentage / 100)) ),
       status: this.productForm.value.status,
       categoryId: {
         id: this.selectedCategoryId,
@@ -227,7 +210,7 @@ export class ProductEditionComponent implements OnInit {
     this.pS.createProduct(productinfo).subscribe(
       (response) => {
         console.log('Successfully Create Product!');
-        this.router.navigate(['/product-table']);
+        this.router.navigate(['/admin/product-table']);
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create Product!');

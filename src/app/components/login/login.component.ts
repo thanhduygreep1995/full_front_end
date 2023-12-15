@@ -6,6 +6,7 @@ import { LoginResponse } from '../response/login.response';
 import { LoginDTO } from '../dtos/login.dto';
 import { customerResponse } from '../response/customer.response';
 import {CustomerService} from'../services/customer.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -40,6 +41,7 @@ export class LoginComponent {
 
     this.customerService.login(loginDTO).subscribe({
       next: (response: LoginResponse) => {
+        const mess = response.message;
         // debugger;
         const { token } = response;  
         this.tokenService.setToken(token); 
@@ -51,17 +53,31 @@ export class LoginComponent {
               // date_of_birth: new Date(customerResponse.date_of_birth),
             };
             this.customerService.saveCustomerResponseToLocalStorage(this.customerResponse);
-            this.router.navigate(['/']).then(() => 
-            {
-              window.location.reload();
-            })
+            Swal.fire({
+              icon: 'success',
+              title: mess,
+              showConfirmButton: false,
+              timer: 1000,
+            });
+            setTimeout(() => {
+              this.router.navigate(['/']).then(() => 
+              {
+                window.location.reload();
+              })
+              }, 1500);
           },
           complete: () => {
             // debugger;
           },
           error: (error: any) => {
+            Swal.fire({
+              icon: 'error',
+              title: error.error.message,
+              showConfirmButton: false,
+              timer: 1000,
+            });
             // debugger;
-            alert(error.error.message);
+            // alert(error.error.message);
           }
         });         
       },
@@ -69,8 +85,14 @@ export class LoginComponent {
         // debugger;
       },
       error: (error: any) => {
+        Swal.fire({
+          icon: 'error',
+          title: error.error.message,
+          showConfirmButton: false,
+          timer: 1000,
+        });
         // debugger;
-        alert(error.error.message);
+        // alert(error.error.message);
       }
     });
   }

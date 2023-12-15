@@ -118,7 +118,7 @@ export class OriginEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create Origin!');
-          this.router.navigate(['/origin-table']);
+          this.router.navigate(['/admin/origin-table']);
           this.infoOrigin.reset();
           Swal.fire({
             icon: 'success',

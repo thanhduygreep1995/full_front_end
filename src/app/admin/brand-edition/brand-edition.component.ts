@@ -114,7 +114,7 @@ export class BrandEditionComponent implements OnInit {
     this.bS.createBrand(brandInfo).subscribe(
       (response) => {
         console.log('Successfully Create Brand!');  
-        this.router.navigate(['/brand-table']);
+        this.router.navigate(['admin/brand-table']);
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create Brand!');

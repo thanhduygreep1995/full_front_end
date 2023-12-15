@@ -137,7 +137,7 @@ export class SpecificationsEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create Specification!');
-          this.router.navigate(['/specifications-table']);
+          this.router.navigate(['/admin/specifications-table']);
           this.specForm.reset();
           Swal.fire({
             icon: 'success',

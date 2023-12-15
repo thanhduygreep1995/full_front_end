@@ -31,6 +31,10 @@ import { PersonalProfileComponent } from './components/personal-profile/personal
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { OderFailureComponent } from './components/oder-failure/oder-failure.component';
 import { AuthGuard } from './components/guards/auth.guard';
+import { ContactComponent } from './components/contact/contact.component';
+import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   {
@@ -68,7 +72,12 @@ const routes: Routes = [
       { path: 'account/myreview', component: MyReviewComponent,canActivate: [AuthGuard] },
       { path: 'oder-failure', component: OderFailureComponent },
       { path: 'top-product', component: TopProductComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'terms-of-use', component: TermsOfUseComponent },
 
+      
+      { path: '**', component: NotFoundComponent },
     ],
   },
 ];

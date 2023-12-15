@@ -7,7 +7,7 @@
         <span class="text-sm text-gray-500 ">
                <i class="fas fa-chevron-right"></i>
           </span>
-        <p class="text-gray-500 font-medium uppercase">My Wishlist</p>
+        <p class="text-gray-500 font-medium uppercase">{{'wishlistProduct.my_wishlist'|translate}}</p>
     </div>
 
 </div>
@@ -31,11 +31,11 @@
                 <div class="mb-8 w-16  inline-block" >
                  <i class="fa fa-cart-arrow-down"  style="    color: #fd3d57; font-size: 70px;"  ></i>        
                 </div>
-                <h2 class="text-gray-800 font-medium text-3xl mb-3">THERE IS NO PRODUCT IN WISHLIST</h2>
-                <p class="text-gray-600">Thank you for coming to our website</p>
+                <h2 class="text-gray-800 font-medium text-3xl mb-3">{{'wishlistProduct.title'|translate}}</h2>
+                <p class="text-gray-600">{{'wishlistProduct.message'|translate}}</p>
              
                 <div class="mt-10">
-                     <a href="index.html" class="bg-primary border border-primary text-white px-6 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-center " >CONTINUE SHOPPING 
+                     <a routerLink="/" class="bg-primary border border-primary text-white px-6 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-center " >{{'wishlistProduct.continueShoppingButtonText'|translate}}
                      </a>
              
                 </div>
@@ -58,8 +58,7 @@
                 <div>
                     <p class="text-primary text-lg font-semibold">{{item.price | currency:".":"":"1.0"}} VNĐ</p>
                 </div>
-                <a (click)="addToCart(item)" class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium cursor-pointer">Add
-                    to Cart
+                <a (click)="addToCart(item)" class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium cursor-pointer">{{'wishlistProduct.addToCartButtonText'|translate}}
 
                </a>
                 <div class="text-gray-700 hover:text-primary cursor-pointer">

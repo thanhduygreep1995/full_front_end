@@ -7,50 +7,76 @@
              </h2>
              <p class="text-gray-600 mb-6 text-sm">Register here if you don't have account </p>
  
-     <form method="" action="">
+     <form [formGroup]="infoCustomer">
      <div class="space-y-4">
  
           <div>
                <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > First Name <span class="text-primary">*</span> </label>
-               <input type="text" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+               <input formControlName="firstName" type="text" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Duy" />
+               <!-- <div *ngIf="infoCustomer.get('firstName')?.invalid && infoCustomer.get('firstName').touched">
+                    <div *ngIf="infoCustomer.get('firstName')?.errors?.required">First name is required</div>
+                  </div> -->
           </div>
  
           <div>
                 <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > Last Name <span class="text-primary">*</span> </label>
-                <input type="text" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                <input formControlName="lastName" type="text" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Pham" />
+                <!-- <div *ngIf="infoCustomer.get('lastName')?.invalid && infoCustomer.get('lastName')?.touched">
+                    <div *ngIf="infoCustomer.get('lastName')?.errors?.required">Last name is required</div>
+                  </div> -->
            </div>
  
            <div>
                 <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > Phone Number <span class="text-primary">*</span> </label>
-                <input type="number" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                <input formControlName="phoneNumber" type="number" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Pham" />
+                <!-- <div *ngIf="infoCustomer.get('phoneNumber')?.invalid && infoCustomer.get('phoneNumber')?.touched">
+                    <div *ngIf="infoCustomer.get('phoneNumber')?.errors?.required">Phone number is required</div>
+                    <div *ngIf="infoCustomer.get('phoneNumber')?.errors?.pattern">Invalid phone number</div>
+                  </div> -->
            </div>
  
            <div>
                 <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" >Date Of Birth <span class="text-primary">*</span> </label>
-                <input type="date" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                <input formControlName="dateOfBirth" type="date" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Confirm your password" />
+                <!-- <div *ngIf="infoCustomer.get('dateOfBirth')?.invalid && infoCustomer.get('dateOfBirth')?.touched">
+                    <div *ngIf="infoCustomer.get('dateOfBirth')?.errors?.required">Date of birth is required.</div>
+                  </div> -->
            </div>
  
           <div>
                <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > Email Address <span class="text-primary">*</span> </label>
-               <input type="email" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+               <input formControlName="email" type="email" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="example@mail.com" />
+               <!-- <div *ngIf="infoCustomer.get('email')?.invalid && infoCustomer.get('email')?.touched">
+                    <div *ngIf="infoCustomer.get('email')?.errors?.required">Confirm password is required</div>
+                    <div *ngIf="infoCustomer.get('email')?.errors?.email">Please enter a valid email address.</div>
+                  </div> -->
           </div>
  
           <div>
                <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > Password <span class="text-primary">*</span> </label>
-               <input type="password" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+               <input formControlName="password" type="password" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Type Password" />
+               <!-- <div *ngIf="infoCustomer.get('password')?.invalid && infoCustomer.get('password')?.touched">
+                    <div *ngIf="infoCustomer.get('password')?.errors?.required">Password is required</div>
+                    <div *ngIf="infoCustomer.get('password')?.errors?.minlength">Password must be at least 6 characters</div>
+                  </div> -->
           </div>
  
  
           <div>
                <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" >Confirm Password <span class="text-primary">*</span> </label>
-               <input type="password" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+               <input formControlName="confirmPassword" type="password" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Confirm your password" />
+               <!-- <div *ngIf="infoCustomer.get('confirmPassword')?.invalid && infoCustomer.get('confirmPassword')?.touched">
+                    <div *ngIf="infoCustomer.get('confirmPassword')?.errors?.required">Confirm password is required</div>
+                    <div *ngIf="infoCustomer.get('confirmPassword')?.errors?.minlength">Password must be at least 6 characters</div>
+                    <div *ngIf="infoCustomer.get('confirmPassword')?.errors?.mismatch">Confirm passwords do not match</div>
+                  </div> -->
           </div>
  
      </div>
@@ -64,7 +90,7 @@
      </div>
  
      <div class="mt-4">
-          <button type="submit" class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium ">Create account </button> 
+          <button type="submit" (click)="register()" class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium ">Create account </button> 
      </div>
  
  

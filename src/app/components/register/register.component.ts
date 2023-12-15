@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { CustomerService } from '../services/customer/customer.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +12,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class RegisterComponent  {
   infoCustomer: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
+  loading: boolean = false
+  constructor(private formBuilder: FormBuilder,private customerS: CustomerService,private router: Router) {
     this.infoCustomer = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -33,9 +37,29 @@ export class RegisterComponent  {
     }
   }
   
-  onSubmit() {
-    // Xử lý dữ liệu khi form được submit
+  register() {
+    if (this.infoCustomer.valid) {
+      this.loading = true; // Hiển thị spinner
+      const formData = this.infoCustomer.value;
+      this.customerS.createCustomer(formData).subscribe(
+        (response) => {
+          this.router.navigate(['/login']);
+        },
+        (error: HttpErrorResponse) => {
+          if (error && error.error) {
+            setTimeout(() => {
+              this.loading = false; // Ẩn spinner khi xảy ra lỗi
+              Swal.fire({
+                icon: 'error',
+                title: error.error,
+                showConfirmButton: false,
+                timer: 2500,
+              });
+            }, 1500);
+          }
+        }
+      );
+    }
   }
-  
 
 }

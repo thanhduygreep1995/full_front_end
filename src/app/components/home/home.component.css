@@ -51,6 +51,25 @@
   }
 
   .custom-carousel-item {
-    margin-left: -5px; /* Adjust this value as needed */
-    margin-right: 4px; /* Adjust this value as needed */
+    margin-right: 1.25rem;
+    transition: transform 0.3s ease; /* Thêm transition để tạo hiệu ứng mượt mà */
+    width: 239px; /* Mặc định cho màn hình nhỏ hơn md */
+    @media (min-width: 768px) {
+      width: 217px; /* Thiết lập kích thước cho màn hình md */
+    }
+    @media (min-width: 992px) {
+      width: 167px; /* Thiết lập kích thước cho màn hình lg */
+    }
+    @media (min-width: 1200px) {
+      width: 209px; /* Thiết lập kích thước cho màn hình lg */
+    }
   }
+
+.custom-carousel-item:hover {
+    transform: scale(1.015); /* Scale lớn hơn khi hover */
+    z-index: 1; /* Đẩy phần tử lên trên để che phủ các phần tử khác */
+}
+  a:hover {
+    cursor: pointer;
+  }
+  
