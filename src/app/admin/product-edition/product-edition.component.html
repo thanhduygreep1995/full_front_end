@@ -34,7 +34,7 @@
                                     <label for="name" class="form-label">Name</label>
                                     <input formControlName="name" type="text" class="form-control mb-2" name="name" id="name" placeholder="Enter Product Name" />
                                     <div *ngIf="productForm.controls['name'].invalid && productForm.controls['name'].touched" class="text-danger">
-                                        Product Name is required.
+                                        Product name is required.
                                     </div>
                                     <label for="model" class="form-label">Model</label>
                                     <input formControlName="model" type="text" class="form-control mb-2" name="model" id="model" placeholder="Enter model" />
@@ -81,7 +81,7 @@
                                         Stock Quantity</label>
                                     <input formControlName="stockQuantity" type="number" class="form-control mb-2" name="stockQuantity" id="stockQuantity" ngModel min="1" placeholder="Enter Stock Quantity" />
                                     <div *ngIf="productForm.controls['stockQuantity'].invalid && productForm.controls['stockQuantity'].touched" class="text-danger">
-                                        Stock Quantity is required.
+                                        Stock quantity is required.
                                     </div>
                                     <div *ngIf="productForm.controls['stockQuantity'].invalid && productForm.controls['stockQuantity'].errors.min" class="text-danger">
                                         Price min 1.
@@ -115,7 +115,7 @@
                                     Discount is required.
                                 </div>
                                 <div *ngIf="productForm.controls['discountPrice'].invalid && productForm.controls['discountPrice'].errors.min" class="text-danger">
-                                    Discount Price min 1.
+                                    Discount price min 1.
                                 </div> -->
                                 <label for="categoryStatus" class="form-label">Status</label>
                                 <select formControlName="status" class="form-control select2" style="width: 100%">
