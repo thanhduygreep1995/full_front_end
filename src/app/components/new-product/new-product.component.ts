@@ -23,13 +23,15 @@ export class NewProductComponent {
   listProduct: any[] = [];
   ngOnInit(): void {
     this.d.getNewProduct().subscribe((d) => {
-      d.sort((a: any, b: any) => {
+      const availableProducts = d.filter((product: any) => product.status === 'AVAILABLE');
+      availableProducts.sort((a: any, b: any) => {
         // Assuming your products have a 'createDate' field to sort by
         const dateA = new Date(a['createDate']).getTime();
         const dateB = new Date(b['createDate']).getTime();
         return dateB - dateA; // Sort in descending order (latest first)
       });
-      this.listProduct = d.slice(0, 10);
+
+      this.listProduct = availableProducts.slice(0, 10);
       this.listProduct.forEach((d: any) => {
         const productId = d.id;
         this.rP.getTotalByProductId(productId).subscribe((ratingData) => {

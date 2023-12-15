@@ -162,17 +162,29 @@
         <!-- ---- ADD TO CART BUTTON --->
 
         <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
-            <a (click)="addToCart(infoProduct) " class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent cursor-pointer hover:text-primary transition text-sm flex items-center ">
+            <!-- <button (click)="addToCart(infoProduct)" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent cursor-pointer hover:text-primary transition text-sm flex items-center ">
                 <span class="mr-2 "><i class="fas fa-shopping-bag "></i> </span> Add to Cart
-            </a>
-
-            <a (click)="addToWish(infoProduct) " class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary cursor-pointer transition text-sm flex items-center ">
+            </button>
+            <button (click)="addToWish(infoProduct)" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary cursor-pointer transition text-sm flex items-center ">
                 <span class="mr-2 "><i class="fas fa-heart "></i> </span> Wishlist
-            </a>
+            </button>
 
-            <a (click)="onClick() " class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center cursor-pointer ">
+            <button (click)="onClick()" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center cursor-pointer ">
                 <span class="mr-2 "><i class="fas fa-star "></i> </span> RATING
-            </a>
+            </button> -->
+
+            <button (click)="addToCart(infoProduct)" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" [class.disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent cursor-pointer hover:text-primary transition text-sm flex items-center">
+                <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to Cart
+            </button>
+            
+            <button (click)="addToWish(infoProduct)" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" [class.disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary cursor-pointer transition text-sm flex items-center">
+                <span class="mr-2"><i class="fas fa-heart"></i></span> Wishlist
+            </button>
+            
+            <button (click)="onClick()" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" [class.disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center cursor-pointer">
+                <span class="mr-2"><i class="fas fa-star"></i></span> RATING
+            </button>
+            
         </div>
         <!-- ---- End ADD TO CART BUTTON --->
 
