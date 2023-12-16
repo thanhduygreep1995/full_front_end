@@ -15,9 +15,10 @@ import Swal from 'sweetalert2';
 export class LoginComponent {
   @ViewChild('loginForm') loginForm!: NgForm;
 
-  email: string = 'haonvps24050@fpt.edu.vn';
-  password: string = '1111111';
- customerResponse?: customerResponse
+  email: string = '';
+  password: string = '';
+  rememberMe: boolean = false;
+  customerResponse?: customerResponse
 
 
   constructor(
@@ -27,8 +28,14 @@ export class LoginComponent {
   ) { }
 
   ngOnInit() {
+    const rememberedEmail = this.customerService.getRememberedEmail();
+    if (rememberedEmail) {
+      this.email = rememberedEmail; // Nếu có email được nhớ, gán vào trường email
+    }
   }
-
+  changeRemember(): void{
+    this.rememberMe = !this.rememberMe
+  }
   login() {
     const message = `email: ${this.email}` +
     `password: ${this.password}`;
@@ -53,6 +60,7 @@ export class LoginComponent {
               // date_of_birth: new Date(customerResponse.date_of_birth),
             };
             this.customerService.saveCustomerResponseToLocalStorage(this.customerResponse);
+            this.customerService.saveLoginInfoToLocalStorage(this.email, this.rememberMe);
             Swal.fire({
               icon: 'success',
               title: mess,

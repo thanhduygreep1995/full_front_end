@@ -13,17 +13,22 @@ import { Router } from '@angular/router';
 export class RegisterComponent  {
   infoCustomer: FormGroup;
   loading: boolean = false
+  btnCreate: boolean = true;
   constructor(private formBuilder: FormBuilder,private customerS: CustomerService,private router: Router) {
     this.infoCustomer = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+      phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]{9}')]],
       dateOfBirth: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+      isAgreed: [false, Validators.requiredTrue]
     },
     {validator: this.passwordMatchValidator});
+    this.infoCustomer.valueChanges.subscribe(() => {
+      this.btnCreate = this.infoCustomer.invalid;
+    });
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -38,12 +43,22 @@ export class RegisterComponent  {
   }
   
   register() {
-    if (this.infoCustomer.valid) {
+    // if (this.infoCustomer.valid) {
       this.loading = true; // Hiển thị spinner
       const formData = this.infoCustomer.value;
-      this.customerS.createCustomer(formData).subscribe(
-        (response) => {
-          this.router.navigate(['/login']);
+      this.customerS.createCustomer(formData)
+      .subscribe(
+        response => {
+          setTimeout(() => {
+            this.loading = false; // Ẩn spinner khi xảy ra lỗi
+            this.router.navigate(["/login"]);
+            Swal.fire({
+              icon: 'success',
+              title: " Create successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }, 2000);
         },
         (error: HttpErrorResponse) => {
           if (error && error.error) {
@@ -59,7 +74,7 @@ export class RegisterComponent  {
           }
         }
       );
-    }
+    // }
   }
 
 }

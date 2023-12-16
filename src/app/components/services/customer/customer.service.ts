@@ -18,18 +18,8 @@ export class CustomerService {
     const url = `${this.baseUrl}/profile/${id}`;
     return this.http.put(url, category, { responseType: 'text' });
   }
-  // createCustomer(customerData: any): Observable<any> {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json'
-  //     })
-  //   };
-  //   const url = `${this.baseUrl}/register`;
-  //   return this.http.post<any>(url, customerData, httpOptions);
-  // }
   createCustomer(customerData: any): Observable<any> {
-    const url = `${this.baseUrl}/register`;
-    return this.http.post<any>(url, customerData);
+    return this.http.post(`${this.baseUrl}/register`, customerData, { responseType: 'text' });
   }
   changepassword(id:any,customerChangePassword: any): Observable<any> {
     const url = `${this.baseUrl}/change-password/${id}`;

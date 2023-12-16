@@ -130,6 +130,31 @@ export class SpecificationsEditionComponent implements OnInit {
       }
     };
     this.isSpinning = true;
+    this.ss.getAllSpec().subscribe((data) => {
+      console.log(data);
+      this.Specs = data;
+      for (let s of this.Specs) {
+        if (this.specForm.value.products.id == s.products.id &&
+          this.specForm.value.processor === s.processor &&
+          this.specForm.value.graphicsCard === s.graphicsCard &&
+          this.specForm.value.ram === s.ram &&
+          this.specForm.value.storage === s.storage &&
+          this.specForm.value.display === s.display &&
+          this.specForm.value.operatingSystem === s.operatingSystem &&
+          this.specForm.value.camera === s.camera
+          ) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Product of specifications is existed already',
+              showConfirmButton: false,
+              timer: 7000
+            })
+          }, this.progressTimerOut);
+          return;
+        } 
+      }
     this.ss.createSpec(Specinfo).subscribe(
       (response) => {
         console.log('Successfully Create Specification!');
@@ -159,7 +184,11 @@ export class SpecificationsEditionComponent implements OnInit {
         }, this.progressTimerOut);
         console.error('Failed to Create Specification:', error);
       }
-    );
+      );
+    }, (err) => {
+      console.log(err);
+    });
+  
   }
 
   fnUpdateSpec() {
