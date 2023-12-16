@@ -21,13 +21,13 @@ export class MyReviewComponent implements OnInit {
     private datePipe: DatePipe
   ) {}
   ngOnInit(): void {
-    this.feedbackService.getAllByCustomerId(this.id).subscribe((data) => {
+    this.feedbackService.getAllByCustomerId(this.id).subscribe((data) => {  
       this.feedbacks = data;
       console.log(data)
       const ratingObservables: Observable<number>[] = this.feedbacks.map((feedback) =>
       this.getRating(feedback.productId)
     );
-    forkJoin(ratingObservables).subscribe((ratings: number[]) => {
+  forkJoin(ratingObservables).subscribe((ratings: number[]) => {
       ratings.forEach((rating, index) => {
         this.feedbacks[index].ratings = rating 
       });

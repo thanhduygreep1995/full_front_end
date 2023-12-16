@@ -66,6 +66,12 @@ calculateTotal(order: any): number {
 loadOrder() {
   this.oH.getAllByCustomerId(this.id).subscribe((data) => {
     this.orders = data;
+    this.orders.sort((a: any, b: any) => {
+      const dateA = new Date(a['orderDate']).getTime();
+      const dateB = new Date(b['orderDate']).getTime();
+      return dateB - dateA;
+    });
+    console.log(this.orders);
     this.calculateTotalPages();
     this.updateOrders();
   });
