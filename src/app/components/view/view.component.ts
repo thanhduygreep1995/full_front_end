@@ -73,7 +73,8 @@ export class ViewComponent {
     private el: ElementRef,
     private authGuard: AuthGuard,
     private injector: Injector,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) // private snackBar: MatSnackBar
 
   {
@@ -439,7 +440,7 @@ export class ViewComponent {
     let urlToShare = `http://localhost:4200/view/${id}`;
     window.open(`https://twitter.com/intent/tweet?url=${urlToShare}`, '_blank');
   }
-  
+
   shareOnInstagram(imageUrl: string) {
     let urlToShare = `https://www.instagram.com/sharer/sharer.php?u=${imageUrl}`;
     window.open(urlToShare, '_blank');
@@ -448,6 +449,19 @@ export class ViewComponent {
   loadFeedback() {
      this.fB.getFeedBackProduct(this.id).subscribe((data) => {
       this.feedBacks = data;
+      for (let i of this.feedBacks) {
+        
+        const dateArray = i.updateDate;
+        const dateObject = new Date(
+          dateArray[0],
+          dateArray[1] - 1,
+          dateArray[2],
+          dateArray[3],
+          dateArray[4]
+        );
+        i.updateDate = this.datePipe.transform(dateObject, 'dd/MM/yyyy');
+        console.log(i.updateDate);
+      }
       this.calculateTotalPages();
       this.updateOrders();
     });
