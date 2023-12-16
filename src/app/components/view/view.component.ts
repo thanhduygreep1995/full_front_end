@@ -25,6 +25,7 @@ import { AuthGuard } from '../guards/auth.guard';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent {
+  
   Images: any;
   Spec: any;
   rating: any = 0;
@@ -49,7 +50,17 @@ export class ViewComponent {
   checkList: boolean = false;
   qrCodeImage: any;
 
-  constructor(
+
+  interval: any;
+  startIndex = 0;
+  displayedImg: any[] = [];
+  currentFeedbacks: any[] = []; // Danh sách vouchers trên trang hiện tại
+  itemsPerPage: number = 4; // Số lượng mục trên mỗi trang
+  currentPage: number = 1; // Trang hiện tại
+  totalPages: number = 0; // Tổng số trang
+
+ 
+  constructor( 
     private rate:RatingService,
     private d:DataService,  
     private route:ActivatedRoute, 
@@ -85,10 +96,15 @@ export class ViewComponent {
     });
   }
 
-  imageChange(imageUrl: string, index: number) {
+   imageChange(imageUrl: string, index: number): void{
     this.selectedImageUrl = imageUrl;
     this.selectedIndex = index;
     console.log(this.selectedImageUrl);
+  }
+  prevSlide() {
+    if (this.startIndex > 0) {
+      this.startIndex -= 4;
+    }
   }
 
   addToWish(product: IProduct) {
@@ -109,15 +125,30 @@ export class ViewComponent {
   closeModal() {
     this.isModalOpen = false;
   }
+
+  nextSlide() {
+    // Check if moving to the next set of 3 images won't go beyond the array length
+    if (this.startIndex + 4 < this.Images.length) {
+      this.startIndex += 4;
+    } else {
+      // If moving to the next set would go beyond, reset to the first set
+      this.startIndex = 0;
+    }
+  }
+  
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.params['id']);
+    // this.updateDisplayedImages();
+    // this.startInterval();
 
-    this.d.getTakeProduct(this.id).subscribe((res) => {
-      this.infoProduct = res[this.id - 1];
-      this.getRatingListByProduct(this.id);
-      console.log('Dữ liệu mới đã được cập nhật:', this.infoProduct);
-    });
-
+    this.id = Number(this.route.snapshot.params['id']);  
+    
+    this.d.getTakeProduct(this.id).subscribe ( 
+      res => { 
+        this.infoProduct  = res[this.id - 1];
+        this.getRatingListByProduct(this.id);
+        console.log('Dữ liệu mới đã được cập nhật:', this.infoProduct);
+      });
+    
     this.pS.getImagePro(this.id).subscribe((data) => {
       this.Images = data;
       this.selectedImageUrl = this.Images[0].imageUrl;
@@ -129,31 +160,31 @@ export class ViewComponent {
       console.log('Dữ liệu mới đã được cập nhật:', this.Spec);
     });
 
-    this.fB.getFeedBackProduct(this.id).subscribe((data) => {
-      this.feedBacks = data;
-    });
+    this.loadFeedback();
+
     this.responsiveOptions = [
-      {
-        breakpoint: '1199px',
-        numVisible: 1,
-        numScroll: 1,
-      },
-      {
-        breakpoint: '991px',
-        numVisible: 1,
-        numScroll: 1,
-      },
-      {
-        breakpoint: '767px',
-        numVisible: 1,
-        numScroll: 1,
-      },
-      {
-        breakpoint: '576px',
-        numVisible: 1,
-        numScroll: 1,
-      },
-    ];
+        {
+            breakpoint: '1199px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '991px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '767px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+          breakpoint: '576px',
+          numVisible: 1,
+          numScroll: 1
+        }
+      ];
+      
   }
 
   onClick() {
@@ -408,8 +439,40 @@ export class ViewComponent {
     let urlToShare = `http://localhost:4200/view/${id}`;
     window.open(`https://twitter.com/intent/tweet?url=${urlToShare}`, '_blank');
   }
+  
   shareOnInstagram(imageUrl: string) {
-  let urlToShare = `https://www.instagram.com/sharer/sharer.php?u=${imageUrl}`;
-  window.open(urlToShare, '_blank');
+    let urlToShare = `https://www.instagram.com/sharer/sharer.php?u=${imageUrl}`;
+    window.open(urlToShare, '_blank');
+  }
+
+  loadFeedback() {
+     this.fB.getFeedBackProduct(this.id).subscribe((data) => {
+      this.feedBacks = data;
+      this.calculateTotalPages();
+      this.updateOrders();
+    });
+  }
+  
+  calculateTotalPages() {
+    this.totalPages = Math.ceil(this.feedBacks.length / this.itemsPerPage);
+  }
+  // Hàm để cập nhật danh sách vouchers trên trang hiện tại
+  updateOrders() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.currentFeedbacks = this.feedBacks.slice(startIndex, endIndex);
+  }
+  
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updateOrders();
+    }
+  }
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateOrders();
+    }
   }
 }

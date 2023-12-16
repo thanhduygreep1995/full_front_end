@@ -75,3 +75,15 @@ button.disabled:hover {
   color: #666; /* Ví dụ: đổi màu chữ */
   border: 1px solid #999; /* Ví dụ: đổi màu viền */
 }
+.arrow-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .arrow-buttons button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
