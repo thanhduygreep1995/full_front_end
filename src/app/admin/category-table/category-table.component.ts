@@ -72,6 +72,8 @@ export class CategoryTableComponent implements OnInit {
   data: any[] = []; // Mảng dữ liệu cho DataTables
   isSpinning: boolean = false;
   progressTimerOut: number = 1200;
+  seclectedCategoryId: any;
+  selectedImage: string | ArrayBuffer | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -227,6 +229,50 @@ export class CategoryTableComponent implements OnInit {
       },
       (error) => {
         console.error('Lỗi khi lấy dữ liệu mới:', error);
+      }
+    );
+  }
+
+  onFileChange(event: any) {
+    const reader = new FileReader();
+  
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+  
+      reader.onload = () => {
+        this.selectedImage = reader.result;
+      };
+    }
+  }
+
+  openProduct(categoryId: number) {
+    this.cate.getCategoryById(categoryId).subscribe((data) => {
+      this.seclectedCategoryId = data;
+      console.log('Selected Product ID:', data)
+      // for(let i of this.seclectedProductId){
+      //   this.setProduct(i.id, i.model);
+      // }
+    },
+    (error) => {
+      console.error('Error', error);
+  });
+  }
+
+  updateThumbImage(id: any){
+    if (!this.selectedImage) {
+      console.log('Image cant find');
+      return;
+    }
+    const fileInput = document.getElementById('imageFile') as HTMLInputElement;
+    const file = (fileInput.files as FileList)[0];
+    this.cate.updateThumbImage(id, file).subscribe(
+      (response) => {
+        console.log('Image update successfully', response);
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Error update image', error);
       }
     );
   }

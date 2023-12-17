@@ -18,9 +18,13 @@ export class OrderHistoryComponent {
   data: [] = [];
   nameCustomer: any;
   comment: any;
-  orders: any;
+  orders: any[] = [];
   orderDetailsState: { [orderId: number]: boolean } = {};
   total: any;
+  currentOrders: any[] = []; // Danh sách vouchers trên trang hiện tại
+  itemsPerPage: number = 4; // Số lượng mục trên mỗi trang
+  currentPage: number = 1; // Trang hiện tại
+  totalPages: number = 0; // Tổng số trang
 
   constructor( 
     private formBuilder: FormBuilder,
@@ -42,14 +46,10 @@ export class OrderHistoryComponent {
    }
 
    ngOnInit(): void {
-    this.oH.getAllByCustomerId(this.id).subscribe((data) => {
-      console.log(data);  
-      this.orders = data;
-
-    });
-
-    
+    this.loadOrder();
+    console.log(this.data);  
    }
+
 
 toggleDetails(orderId: number) {
   this.orderDetailsState[orderId] = !this.orderDetailsState[orderId];
@@ -63,6 +63,40 @@ calculateTotal(order: any): number {
   return total;
 }
 
+loadOrder() {
+  this.oH.getAllByCustomerId(this.id).subscribe((data) => {
+    this.orders = data;
+    this.orders.sort((a: any, b: any) => {
+      const dateA = new Date(a['orderDate']).getTime();
+      const dateB = new Date(b['orderDate']).getTime();
+      return dateB - dateA;
+    });
+    console.log(this.orders);
+    this.calculateTotalPages();
+    this.updateOrders();
+  });
+}
 
+calculateTotalPages() {
+  this.totalPages = Math.ceil(this.orders.length / this.itemsPerPage);
+}
+// Hàm để cập nhật danh sách vouchers trên trang hiện tại
+updateOrders() {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  const endIndex = startIndex + this.itemsPerPage;
+  this.currentOrders = this.orders.slice(startIndex, endIndex);
+}
 
+nextPage() {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+    this.updateOrders();
+  }
+}
+previousPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.updateOrders();
+  }
+}
 }

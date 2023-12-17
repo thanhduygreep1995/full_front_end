@@ -17,7 +17,6 @@ import { TokenService } from '../services/token.service';
 import { WishService } from '../services/wish.service';
 
 
-
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -49,6 +48,11 @@ export class ViewComponent {
   interval: any;
   startIndex = 0;
   displayedImg: any[] = [];
+  currentFeedbacks: any[] = []; // Danh sách vouchers trên trang hiện tại
+  itemsPerPage: number = 4; // Số lượng mục trên mỗi trang
+  currentPage: number = 1; // Trang hiện tại
+  totalPages: number = 0; // Tổng số trang
+
 
  
   constructor( 
@@ -62,6 +66,7 @@ export class ViewComponent {
     private tokenService: TokenService,
     private wish: WishService,
     private el: ElementRef,
+    private datePipe: DatePipe
     // private snackBar: MatSnackBar
 
   ) {
@@ -141,10 +146,9 @@ export class ViewComponent {
       console.log('Dữ liệu mới đã được cập nhật:', this.Spec);
     });
 
-    this.fB.getFeedBackProduct(this.id).subscribe((data) => {
-        this.feedBacks = data;
-      });
-      this.responsiveOptions = [
+    this.loadFeedback();
+
+    this.responsiveOptions = [
         {
             breakpoint: '1199px',
             numVisible: 1,
@@ -332,6 +336,8 @@ export class ViewComponent {
     })
   }
   
+  
+
   createFeedback(){
     this.id = Number(this.route.snapshot.params['id']);    
     const feedback = {
@@ -356,7 +362,54 @@ export class ViewComponent {
   );
   }
 
-
+  loadFeedback() {
+        this.fB.getFeedBackProduct(this.id).subscribe((data) => {
+         this.feedBacks = data;
+         this.feedBacks.sort((a: any, b: any) => {
+          const dateA = new Date(a['createDate'][0], a['createDate'][1] - 1, a['createDate'][2], a['createDate'][3], a['createDate'][4]).getTime();
+          const dateB = new Date(b['createDate'][0], b['createDate'][1] - 1, b['createDate'][2], b['createDate'][3], b['createDate'][4]).getTime();
+          return dateB - dateA;
+        });
+         for (let i of this.feedBacks) {
+          const dateArray = i.updateDate;
+          const dateObject = new Date(
+            dateArray[0],
+            dateArray[1] - 1,
+            dateArray[2],
+            dateArray[3],
+            dateArray[4]
+          );
+          i.updateDate = this.datePipe.transform(dateObject, 'dd/MM/yyyy - hh:mm');
+          console.log(i.updateDate);
+        }
+         console.log(this.feedBacks);
+         this.calculateTotalPages();
+         this.updateOrders();
+       });
+     }
+  
+  calculateTotalPages() {
+    this.totalPages = Math.ceil(this.feedBacks.length / this.itemsPerPage);
+  }
+  // Hàm để cập nhật danh sách vouchers trên trang hiện tại
+  updateOrders() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.currentFeedbacks = this.feedBacks.slice(startIndex, endIndex);
+  }
+  
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updateOrders();
+    }
+  }
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateOrders();
+    }
+  }
 }
 
 
