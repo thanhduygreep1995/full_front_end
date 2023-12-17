@@ -26,7 +26,7 @@ getNewProduct(){
   return this.h.get<IProduct[]>( url );
 }
 getTypeProduct(){
-  var url="http://localhost:8080/api/v0/categories"
+  var url="http://localhost:8080/api/v0/categories/active"
   return this.h.get<any[]>(url);
 }
 getSanPhamTheoLoai(idType: number = 0) {
