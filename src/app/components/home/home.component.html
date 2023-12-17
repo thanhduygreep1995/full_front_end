@@ -1,11 +1,22 @@
-<!-- ---- Mobile Menu Bar ----- -->
-
 <body>
+    <div class="bg-cover bg-no-repeat bg-center py-56 relative" style="background-image: url('../assets/images/banner_smartphone.png');">
+        <div class="container">
+            <!-- ---- Banner Content   ----- -->
+            <h1 class="xl:text-6xl md:text-5xl text-4xl text-gray-800 font-semibold mb-4 ">
+                Best Collection For <br class="hidden sm:block "> Home Decoration
+            </h1>
+            <p class="text-base text-gray-600 leading-6 ">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate <br class="hidden sm:block "> rhoncus pellentesque id integer neque, vel accumsan dolor diam.
+            </p>
 
-
-
-    <!-- ---- Start Banner  ----- -->
-
+            <div class="mt-12">
+                <a href="shop.html" class="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition ">
+                    Shop Now
+               </a>
+            </div>
+            <!-- ---- Banner Content End  ----- -->
+        </div>
+    </div>
     <!-- ---- End Banner ----- -->
     <!-- ---- Start Features  ----- -->
     <div class="container py-16 " style="background-color: #ffffff;">
@@ -107,16 +118,20 @@
                                     <div style="display: flex; flex-direction: column;  height: 3rem ">
                                         <a href="/view/{{pro.id}}" (click)="onChangeView(pro.id)">
                                             <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition truncate-overflow-20" style="word-wrap: break-word; overflow-wrap: break-word;">
+
                                                 {{pro.model}}
+
                                             </h6>
                                         </a>
                                     </div>
 
                                     <div class="flex items-baseline mb-1 space-x-2 ">
+
                                         <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discount | currency:".":"":"1.0"}} VNĐ</p>
                                     </div>
                                     <div class="flex items-baseline mb-1 space-x-2 ">
                                         <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"1.0"}} VNĐ </p>
+
                                     </div>
                                     <div>
                                         <div class="flex items-center" class="flex items-center">

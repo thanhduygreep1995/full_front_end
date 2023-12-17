@@ -18,8 +18,7 @@ import { ProByTypeComponent } from './components/pro-by-type/pro-by-type.compone
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { UserComponent } from './components/user/user.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
-import { TopProductComponent } from './components/top-product/top-product.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 import { MyReviewComponent } from './components/my-review/my-review.component';
@@ -31,22 +30,38 @@ import { PersonalProfileComponent } from './components/personal-profile/personal
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { OderFailureComponent } from './components/oder-failure/oder-failure.component';
 import { AuthGuard } from './components/guards/auth.guard';
+import { ActivatedRoute } from '@angular/router';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 const routes: Routes = [
+
   {
     path: 'admin',
     loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule),
+    import('./admin/admin.module').then((m) => m.AdminModule),
   },
+
   {
     path: '',
     component: UserComponent,
     children: [
+      {
+        path: 'shop/category',
+        component: ShopComponent,
+        children: [
+          {
+            path: '',
+            component: CategoriesComponent,
+            data: { matrixParams: ['id'] }, // Sử dụng data để truyền thông tin matrix parameters
+          },
+        ],
+      },
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'view/:id', component: ViewComponent },
       { path: 'shop', component: ShopComponent },
       { path: 'shop/category/:id', component: ShopComponent },
+      { path: 'shop/brand/:id', component: ShopComponent },
       { path: 'account', component: AccountComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
@@ -67,7 +82,7 @@ const routes: Routes = [
       { path: 'account/vouchers', component: VoucherComponent,canActivate: [AuthGuard] },
       { path: 'account/myreview', component: MyReviewComponent,canActivate: [AuthGuard] },
       { path: 'oder-failure', component: OderFailureComponent },
-      { path: 'top-product', component: TopProductComponent },
+      
 
     ],
   },

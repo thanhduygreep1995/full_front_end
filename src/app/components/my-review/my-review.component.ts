@@ -24,6 +24,8 @@ export class MyReviewComponent implements OnInit {
     this.feedbackService.getAllByCustomerId(this.id).subscribe((data) => {  
       this.feedbacks = data;
       console.log(data)
+
+
       const ratingObservables: Observable<number>[] = this.feedbacks.map((feedback) =>
       this.getRating(feedback.productId)
     );
@@ -31,6 +33,8 @@ export class MyReviewComponent implements OnInit {
       ratings.forEach((rating, index) => {
         this.feedbacks[index].ratings = rating 
       });
+
+
     });
       for (let feedback of this.feedbacks) {
         const dateArray = feedback.createDate;

@@ -33,7 +33,6 @@ import { CommonModule } from '@angular/common';
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FilterPipe } from './components/pipes/filter.pipe';
-import { NavbarComponent } from './components/navbar-bo/navbar.component';
 import { VoucherComponent } from './components/voucher/voucher.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -46,11 +45,12 @@ import { OderFailureComponent } from './components/oder-failure/oder-failure.com
 import { TokenInterceptor } from './components/interceptors/token.interceptor';
 import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { ButtonModule } from 'primeng/button';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { TopProductComponent } from './components/top-product/top-product.component';
-
-
+import { BrandComponent } from './components/brand/brand.component';
+import { SearchFilterPipe } from './utilities/search-filter.pipe';
 registerLocaleData(localeVi);
 
 @NgModule({
@@ -78,8 +78,8 @@ registerLocaleData(localeVi);
     OrderHistoryComponent,
     UserComponent,
     FilterPipe,
-    ProductListComponent,
     NavbarComponent,
+    ProductListComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     VoucherComponent,
@@ -88,6 +88,8 @@ registerLocaleData(localeVi);
     PersonalProfileComponent,
     OderFailureComponent,
     TopProductComponent,
+    BrandComponent,
+    SearchFilterPipe,
     
 
   ],
