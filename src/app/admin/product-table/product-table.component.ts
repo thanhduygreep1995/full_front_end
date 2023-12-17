@@ -18,7 +18,6 @@ const swalWithBootstrapButtons = Swal.mixin({
     cancelButton: 'btn btn-success',
   },
   buttonsStyling: false,
-  timer: 2000
 });
 
 declare var require: any;
