@@ -6,7 +6,7 @@
         style="border: 1px solid #ebe9e9; border-radius: 5px;margin-bottom: 25px; padding: 20px;">
         <h2 class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6  ">List Product </h2>
         <div class="grid lg:grid-cols-5 sm:grid-cols-3 gap-6" >
-            <div class="group rounded bg-white shadow overflow-hidden " *ngFor="let pro of   listSP">
+            <div class="group rounded bg-white shadow overflow-hidden " *ngFor="let pro of products | searchFilter:searchTerm">
                 <div class="relative ">
                     <img src="{{pro.thumbnail}}" class="w-full" />
 
@@ -47,10 +47,10 @@
                     <div class="flex items-center ">
                         <div class="flex gap-1 text-sm text-yellow-400 ">
                             <div *ngFor="let starInfo of pro.starsInfo">
-                                <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
+                                             <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
                             </div>
                         </div>
-                        <div class="text-xs text-center text-gray-500 ml-3">{{ pro.count }} Reviews</div>
+                        <div class="text-xs text-center text-gray-500 ml-3">{{ pro.ratingProduct.length }} Reviews</div>
 
                     </div>
                 </div>

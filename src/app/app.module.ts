@@ -49,6 +49,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ButtonModule } from 'primeng/button';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { TopProductComponent } from './components/top-product/top-product.component';
+import { BrandComponent } from './components/brand/brand.component';
+import { SearchFilterPipe } from './utilities/search-filter.pipe';
 registerLocaleData(localeVi);
 
 @NgModule({
@@ -86,6 +88,8 @@ registerLocaleData(localeVi);
     PersonalProfileComponent,
     OderFailureComponent,
     TopProductComponent,
+    BrandComponent,
+    SearchFilterPipe,
     
 
   ],

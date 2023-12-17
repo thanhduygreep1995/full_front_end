@@ -11,8 +11,12 @@ export class ProductService {
   private baseSpecUrl = 'http://localhost:8080/api/v0/specifications';
 
   private baseImageUrl = 'http://localhost:8080/api/v0/images';
-
+  private product$ = new BehaviorSubject<any>([]);
+  productOb$ = this.product$.asObservable();
   constructor(private http: HttpClient) { }
+  pushListProduct(data:any) {
+    this.product$.next(data)
+  }
   getProducts(): Observable<any[]> {
     return this.http.get<any[]>(this.baseProductUrl);
   }

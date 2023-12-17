@@ -154,9 +154,9 @@ export class HomeComponent  {
     // }
     })
     // Subscribe to the searchTerm changes
-    this.searchService.currentSearchTerm.subscribe(searchTerm => {
-      this.filterProducts(searchTerm);
-    });
+    // this.searchService.currentSearchTerm.subscribe(searchTerm => {
+    //   this.filterProducts(searchTerm);
+    // });
 
     // Fetch products from the API
     this.productService.getProducts().subscribe(
@@ -193,19 +193,19 @@ export class HomeComponent  {
     this.updateVisibleItems();
   }
 
-  filterProducts(searchTerm: string) {
-    // Implement your search logic here
-    const searchTermLower = searchTerm.toLowerCase();
+  // filterProducts(searchTerm: string) {
+  //   // Implement your search logic here
+  //   const searchTermLower = searchTerm.toLowerCase();
 
-    if (this.listSP && Array.isArray(this.listSP)) {
-      // Kiểm tra xem this.listSP có tồn tại và là một mảng không
-      this.filteredProducts = this.listSP.filter((product: { name: string; }) => {
-        return product.name.toLowerCase().includes(searchTermLower);
-      });
-    } else {
-      console.error('listSP is undefined or not an array in filterProducts.');
-    }
-  }
+  //   if (this.listSP && Array.isArray(this.listSP)) {
+  //     // Kiểm tra xem this.listSP có tồn tại và là một mảng không
+  //     this.filteredProducts = this.listSP.filter((product: { name: string; }) => {
+  //       return product.name.toLowerCase().includes(searchTermLower);
+  //     });
+  //   } else {
+  //     console.error('listSP is undefined or not an array in filterProducts.');
+  //   }
+  // }
 
   
 }

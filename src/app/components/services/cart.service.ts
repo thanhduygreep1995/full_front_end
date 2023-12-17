@@ -37,6 +37,7 @@ export class CartService {
         ngay: sp.ngay,
         idType: sp.idType,
         tongTien: sp.price,
+
         discount: sp.discount,
         discountPrice: sp.discountPrice,
         model: sp.model,
