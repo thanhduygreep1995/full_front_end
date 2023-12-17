@@ -17,8 +17,7 @@ const swalWithBootstrapButtons = Swal.mixin({
     confirmButton: 'btn btn-danger mx-3',
     cancelButton: 'btn btn-success',
   },
-  buttonsStyling: false,
-  timer: 2000
+  buttonsStyling: false
 })
 
 @Component({
