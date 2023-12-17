@@ -117,7 +117,7 @@ export class CategoryEditionComponent implements OnInit {
     const categoryInfo = {
       name: this.infoCategory.value.name,
       // description: this.infoCategory.value.description,
-      categoryStatus: this.infoCategory.value.status,
+      status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
     this.cate.getAllCategories().subscribe((data) => {
@@ -177,30 +177,30 @@ export class CategoryEditionComponent implements OnInit {
     const categoryInfo = {
       name: this.infoCategory.value.name,
       description: this.infoCategory.value.description,
-      categoryStatus: this.infoCategory.value.status,
+      status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
-    this.cate.getAllCategories().subscribe((data) => {
-      console.log(data);
-      this.categories = data;
-      for (let o of this.categories) { 
-        if((this.infoCategory.value.country != o.country )
-        ) {
-            break;
-        } 
-        if (this.infoCategory.value.name == o.name) {
-          setTimeout(() => {
-            this.isSpinning = false;
-            Swal.fire({
-              icon: 'error',
-              title: 'Name of category is existed already',
-              showConfirmButton: false,
-              timer: 2000
-            })
-          }, this.progressTimerOut);
-          return;
-        }
-      }
+    // this.cate.getAllCategories().subscribe((data) => {
+    //   console.log(data);
+    //   this.categories = data;
+    //   for (let o of this.categories) { 
+    //     if((this.infoCategory.value.name != o.name && this.infoCategory.value.status != o.status )
+    //     ) {
+    //         break;
+    //     } 
+    //     if (this.infoCategory.value.name == o.name && this.infoCategory.value.status == o.status) {
+    //       setTimeout(() => {
+    //         this.isSpinning = false;
+    //         Swal.fire({
+    //           icon: 'error',
+    //           title: 'Name of category is existed already',
+    //           showConfirmButton: false,
+    //           timer: 2000
+    //         })
+    //       }, this.progressTimerOut);
+    //       return;
+    //     }
+    //   }
     this.cate.updateCategory(this.id, categoryInfo).subscribe(
       (response) => {
         setTimeout(() => {
@@ -230,7 +230,7 @@ export class CategoryEditionComponent implements OnInit {
       }
       );
   
-    });
+    // });
       }
 
   refreshTable() {
