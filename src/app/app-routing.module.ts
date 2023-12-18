@@ -18,10 +18,7 @@ import { ProByTypeComponent } from './components/pro-by-type/pro-by-type.compone
 import { AccountSidebarComponent } from './components/account-sidebar/account-sidebar.component';
 import { UserComponent } from './components/user/user.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
-import { TopProductComponent } from './components/top-product/top-product.component';
-
-
-
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { MyReviewComponent } from './components/my-review/my-review.component';
 import { VoucherComponent } from './components/voucher/voucher.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -35,22 +32,39 @@ import { ContactComponent } from './components/contact/contact.component';
 import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AboutComponent } from './components/about/about.component';
+import { ActivatedRoute } from '@angular/router';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { TopProductComponent } from './components/top-product/top-product.component';
 
 const routes: Routes = [
+
   {
     path: 'admin',
     loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule),
+    import('./admin/admin.module').then((m) => m.AdminModule),
   },
+
   {
     path: '',
     component: UserComponent,
     children: [
+      {
+        path: 'shop/category',
+        component: ShopComponent,
+        children: [
+          {
+            path: '',
+            component: CategoriesComponent,
+            data: { matrixParams: ['id'] }, // Sử dụng data để truyền thông tin matrix parameters
+          },
+        ],
+      },
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'view/:id', component: ViewComponent },
       { path: 'shop', component: ShopComponent },
       { path: 'shop/category/:id', component: ShopComponent },
+      { path: 'shop/brand/:id', component: ShopComponent },
       { path: 'account', component: AccountComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },

@@ -21,7 +21,7 @@ export class MyReviewComponent implements OnInit {
     private datePipe: DatePipe
   ) {}
   ngOnInit(): void {
-    this.feedbackService.getAllByCustomerId(this.id).subscribe((data) => {
+    this.feedbackService.getAllByCustomerId(this.id).subscribe((data) => {  
       this.feedbacks = data;
       data.sort((a:any, b:any) => {
         // Assuming your products have a 'createDate' field to sort by
@@ -31,13 +31,17 @@ export class MyReviewComponent implements OnInit {
       });
       // this.feedbacks = data;
       console.log(data)
+
+
       const ratingObservables: Observable<number>[] = this.feedbacks.map((feedback) =>
       this.getRating(feedback.productId)
     );
-    forkJoin(ratingObservables).subscribe((ratings: number[]) => {
+  forkJoin(ratingObservables).subscribe((ratings: number[]) => {
       ratings.forEach((rating, index) => {
         this.feedbacks[index].ratings = rating 
       });
+
+
     });
       for (let feedback of this.feedbacks) {
         const dateArray = feedback.createDate;

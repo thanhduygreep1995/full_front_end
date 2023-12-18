@@ -41,7 +41,8 @@ export class HomeComponent  {
      private productService: ProductService, 
      private searchService:SearchService,
      private router:Router
-     ){
+     )
+     {
     // this.h.get("http://localhost:8080/api/v0/home",
     // {observe: 'response'}).subscribe(res => { 
     //   console.log("ok=", res.ok);
@@ -154,9 +155,9 @@ export class HomeComponent  {
     // }
     })
     // Subscribe to the searchTerm changes
-    this.searchService.currentSearchTerm.subscribe(searchTerm => {
-      this.filterProducts(searchTerm);
-    });
+    // this.searchService.currentSearchTerm.subscribe(searchTerm => {
+    //   this.filterProducts(searchTerm);
+    // });
 
     // Fetch products from the API
     this.productService.getProducts().subscribe(
@@ -192,25 +193,25 @@ export class HomeComponent  {
     ];
     this.updateVisibleItems();
   }
-
-  filterProducts(searchTerm: string) {
-    // Implement your search logic here
-    const searchTermLower = searchTerm.toLowerCase();
-
-    if (this.listSP && Array.isArray(this.listSP)) {
-      // Kiểm tra xem this.listSP có tồn tại và là một mảng không
-      this.filteredProducts = this.listSP.filter((product: { name: string; }) => {
-        return product.name.toLowerCase().includes(searchTermLower);
-      });
-    } else {
-      console.error('listSP is undefined or not an array in filterProducts.');
-    }
-  }
   discountPercentage(price: number, discountPrice: number) {
     const percentage = ((price - discountPrice) / price) * 100;
     const roundedPercentage = Math.round(Math.abs(percentage)); // Làm tròn số phần trăm gần nhất và chuyển thành số dương
     return roundedPercentage;
   }
+  // filterProducts(searchTerm: string) {
+  //   // Implement your search logic here
+  //   const searchTermLower = searchTerm.toLowerCase();
+
+  //   if (this.listSP && Array.isArray(this.listSP)) {
+  //     // Kiểm tra xem this.listSP có tồn tại và là một mảng không
+  //     this.filteredProducts = this.listSP.filter((product: { name: string; }) => {
+  //       return product.name.toLowerCase().includes(searchTermLower);
+  //     });
+  //   } else {
+  //     console.error('listSP is undefined or not an array in filterProducts.');
+  //   }
+  // }
+
   
 }
 export class Product{

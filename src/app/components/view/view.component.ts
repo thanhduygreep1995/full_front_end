@@ -18,7 +18,6 @@ import { WishService } from '../services/wish.service';
 import { AuthGuard } from '../guards/auth.guard';
 
 
-
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -376,9 +375,11 @@ export class ViewComponent {
       timer: 1000,
     });
   }
+  
+  
 
-  createFeedback() {
-    this.id = Number(this.route.snapshot.params['id']);
+  createFeedback(){
+    this.id = Number(this.route.snapshot.params['id']);    
     const feedback = {
       nameCustomer: this.infoProduct.nameCustomer,
       comment: this.infoProduct.comment,
@@ -432,6 +433,7 @@ export class ViewComponent {
     ", Chất lượng camera: " + spec.camera ;
   }
 
+
   shareOnFacebook(id: string) {
     let urlToShare = `http://localhost:4200/view/${id}`; // Replace with your actual URL
     window.open('https://www.facebook.com/sharer/sharer.php?u=' + urlToShare,'facebook-share-dialog','width=626,height=436');
@@ -447,25 +449,30 @@ export class ViewComponent {
   }
 
   loadFeedback() {
-     this.fB.getFeedBackProduct(this.id).subscribe((data) => {
-      this.feedBacks = data;
-      for (let i of this.feedBacks) {
-        
-        const dateArray = i.updateDate;
-        const dateObject = new Date(
-          dateArray[0],
-          dateArray[1] - 1,
-          dateArray[2],
-          dateArray[3],
-          dateArray[4]
-        );
-        i.updateDate = this.datePipe.transform(dateObject, 'dd/MM/yyyy');
-        console.log(i.updateDate);
-      }
-      this.calculateTotalPages();
-      this.updateOrders();
-    });
-  }
+        this.fB.getFeedBackProduct(this.id).subscribe((data) => {
+         this.feedBacks = data;
+         this.feedBacks.sort((a: any, b: any) => {
+          const dateA = new Date(a['createDate'][0], a['createDate'][1] - 1, a['createDate'][2], a['createDate'][3], a['createDate'][4]).getTime();
+          const dateB = new Date(b['createDate'][0], b['createDate'][1] - 1, b['createDate'][2], b['createDate'][3], b['createDate'][4]).getTime();
+          return dateB - dateA;
+        });
+         for (let i of this.feedBacks) {
+          const dateArray = i.updateDate;
+          const dateObject = new Date(
+            dateArray[0],
+            dateArray[1] - 1,
+            dateArray[2],
+            dateArray[3],
+            dateArray[4]
+          );
+          i.updateDate = this.datePipe.transform(dateObject, 'dd/MM/yyyy - hh:mm');
+          console.log(i.updateDate);
+        }
+         console.log(this.feedBacks);
+         this.calculateTotalPages();
+         this.updateOrders();
+       });
+     }
   
   calculateTotalPages() {
     this.totalPages = Math.ceil(this.feedBacks.length / this.itemsPerPage);
