@@ -41,15 +41,16 @@ export class HomeComponent  {
      private productService: ProductService, 
      private searchService:SearchService,
      private router:Router
-     ){
-    this.h.get("http://localhost:8080/api/v0/home",
-    {observe: 'response'}).subscribe(res => { 
-      console.log("ok=", res.ok);
-      console.log("body=", res.body);
-      console.log("res=", res);
-      console.log("Content-Type=", res.headers.get('Content-Type'));
-      this.listSP= res.body;
-    })
+     )
+     {
+    // this.h.get("http://localhost:8080/api/v0/home",
+    // {observe: 'response'}).subscribe(res => { 
+    //   console.log("ok=", res.ok);
+    //   console.log("body=", res.body);
+    //   console.log("res=", res);
+    //   console.log("Content-Type=", res.headers.get('Content-Type'));
+    //   this.listSP= res.body;
+    // })
   }
 
   onChangeView(id: number): void {

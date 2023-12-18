@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
 
   ) { }
   listProduct:any;
+
   showHin:any = false;
   ngOnInit() {
     this.customerResponse = this.customerService.getCustomerResponseFromLocalStorage();
