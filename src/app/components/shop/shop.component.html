@@ -26,18 +26,18 @@
  <div class="col-span-3" >
       <!-- ---- Shorting --->
       <div class="mb-4 flex items-center " >
-          <select (click)=" onTypeSelect()" class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
+          <!-- <select (click)=" onTypeSelect()" class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
                <ng-container *ngFor="let loai of listTypePro">
                  <option [value]="loai.id">{{ loai.name | uppercase }}</option>
                </ng-container>
-             </select>
+             </select> -->
           <div class="flex gap-2 ml-auto ">
-               <div class="border border-primary w-10 h-9 flex items-center justify-center text-white hover:text-gray-600  rounded cursor-pointer focus: bg-primary" >
-                    <i (click)="showGridView()" class="fas fa-th"></i>
+               <div (click)="showGridView()" class="border border-primary w-10 h-9 flex items-center justify-center text-white hover:text-gray-600  rounded cursor-pointer focus: bg-primary" >
+                    <i class="fas fa-th"></i>
                </div>
  
-               <div class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 hover:text-white rounded cursor-pointer hover:bg-primary  ">
-                    <i class="fas fa-list" (click)="showListView()"></i>
+               <div (click)="showListView()" class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 hover:text-white rounded cursor-pointer hover:bg-primary  ">
+                    <i class="fas fa-list" ></i>
                </div>
  
           </div>
@@ -70,11 +70,11 @@
                <div>
                     <p class="text-primary text-lg font-semibold">{{item.price | currency:".":"":"1.0"}} VNĐ</p>
                </div>
-               <a href="#" (click)="addToCart(item)"
+               <button (click)="addToCart(item)"
                     class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium ">Add
                     to Cart
 
-               </a>
+               </button>
 
           </div>
         

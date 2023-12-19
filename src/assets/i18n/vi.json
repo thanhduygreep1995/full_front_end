@@ -9,17 +9,17 @@
   "navbar": {
     "categoty": "Tất cả danh mục",
     "home": "Trang chủ",
-    "shop": "Cửa Hàng",
-    "about": "Giới Thiệu",
-    "contact": "Liên Hệ",
+    "shop": "Cửa hàng",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
     "terms": "Điều khoản sử dụng",
-    "login": "Đăng Nhập",
-    "register": "Đăng Ký",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
     "logout": "Đăng xuất",
     "greeting": "Xin chào"
   },
   "about_us": {
-    "about_us": "Vê Chúng Tôi",
+    "about_us": "Vê chúng tôi",
     "history_and_development": {
       "title": "Lịch Sử và Phát Triển Của Cửa Hàng",
       "content": [
@@ -158,6 +158,44 @@
       }
     }
   },
+  "banner": {
+    "beforeTitle": "Bộ Sưu Tập Tốt Nhất Cho",
+    "afterTitle": "Trang Trí Nhà Cửa",
+    "button": "Mua Ngay"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "Giỏ hàng"
+    },
+    "ProductCart": {
+      "product": "Sản phẩm",
+      "quantity": "Số lượng",
+      "total": "Tổng cộng",
+      "orderSummary": "Tóm tắt đơn hàng",
+      "totalAmount": "Tổng cộng",
+      "processToCheckout": "Tiến hành thanh toán"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "Thanh toán"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "Thanh toán",
+      "fullName": "Họ và tên",
+      "streetAddress": "Địa chỉ",
+      "phoneNumber": "Số điện thoại",
+      "emailAddress": "Địa chỉ Email",
+      "paymentMethod": "Phương thức thanh toán",
+      "payInCash": "Thanh toán bằng tiền mặt",
+      "vnPay": "VnPay",
+      "note": "Ghi chú",
+      "apply": "Áp dụng",
+      "placeOrder": "Đặt hàng",
+      "total": "Tổng cộng:",
+      "coupon": "Mã giảm giá"
+    }
+  },
   "login": {
     "heading": "Đăng nhập",
     "title": "Đăng nhập nếu bạn là khách hàng cũ",
@@ -274,7 +312,7 @@
     }
   },
   "footer": {
-    "infor":"Khách hàng phải rất quan trọng, khách hàng sẽ được khách hàng theo dõi.",
+    "infor": "Khách hàng phải rất quan trọng, khách hàng sẽ được khách hàng theo dõi.",
     "solutions": {
       "title": "Giải pháp",
       "marketing": "Marketing",

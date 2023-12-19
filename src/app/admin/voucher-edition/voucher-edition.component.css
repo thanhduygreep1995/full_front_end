@@ -7,9 +7,3 @@
     margin-top: 23%;
     margin-left: 45%;
 }
-.truncate-overflow-20 {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    -webkit-line-clamp: 6; /* Number of lines to show */
-  }

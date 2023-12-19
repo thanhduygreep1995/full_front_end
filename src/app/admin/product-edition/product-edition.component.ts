@@ -248,10 +248,10 @@ fnUpdateProduct() {
     model: this.productForm.value.model,
     price: this.productForm.value.price,
     stockQuantity: this.productForm.value.stockQuantity,
-    // thumbnail: this.productForm.value.thumbnail,
+    thumbnail: this.productForm.value.thumbnail,
     description: this.productForm.value.description,
     discountPercentage: this.productForm.value.discountPercentage,
-    discountPrice: this.productForm.value.discountPrice,
+    discountPrice: Math.round(this.productForm.value.price - (this.productForm.value.price  * (this.productForm.value.discountPercentage / 100)) ),
     status: this.productForm.value.status,
     categoryId: {
       id: this.selectedCategoryId,

@@ -158,6 +158,44 @@
       }
     }
   },
+  "banner": {
+    "beforeTitle": "Лучшая коллекция для",
+    "afterTitle": "домашнего декора",
+    "button": "Купить сейчас"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "Корзина"
+    },
+    "ProductCart": {
+      "product": "Продукт",
+      "quantity": "Количество",
+      "total": "Всего",
+      "orderSummary": "Сводка заказа",
+      "totalAmount": "Всего",
+      "processToCheckout": "Перейти к оформлению заказа"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "Оформление заказа"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "Оформление заказа",
+      "fullName": "Полное имя",
+      "streetAddress": "Улица, дом",
+      "phoneNumber": "Номер телефона",
+      "emailAddress": "Адрес электронной почты",
+      "paymentMethod": "Способ оплаты",
+      "payInCash": "Оплата наличными",
+      "vnPay": "VnPay",
+      "note": "Примечание",
+      "apply": "Применить",
+      "placeOrder": "Оформить заказ",
+      "total": "Итого:",
+      "coupon": "Купон"
+    }
+  },
   "login": {
     "heading": "Вход",
     "title": "Войдите, если вы уже зарегистрированы",
@@ -274,7 +312,7 @@
     }
   },
   "footer": {
-    "infor":"Клиенты должны быть очень важны, клиентов будут следовать другие клиенты.",
+    "infor": "Клиенты должны быть очень важны, клиентов будут следовать другие клиенты.",
     "solutions": {
       "title": "Решения",
       "marketing": "Маркетинг",

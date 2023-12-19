@@ -68,27 +68,27 @@
                     <ul class="dropdown-content">
                          <li class="p2 inline-flex items-center">
                               <img class="mr-1" width="24px" src="../assets/images/vi.jpg">
-                              <a href="#" (click)="changeLanguage('vi')">Tiếng Việt</a>
+                              <button  (click)="changeLanguage('vi')">Tiếng Việt</button>
                          </li>
                          <li class="p2 inline-flex items-center">
                               <img class="mr-1" width="24px" src="../assets/images/en.jpg">
-                              <a href="#" (click)="changeLanguage('en')">English</a>
+                              <button  (click)="changeLanguage('en')">English</button>
                          </li>
                          <li class="p2 inline-flex items-center">
                               <img class="mr-1" width="24px" src="../assets/images/ja.jpg">
-                              <a href="#" (click)="changeLanguage('ja')">日本語</a>
+                              <button  (click)="changeLanguage('ja')">日本語</button>
                          </li>
                          <li class="p2 inline-flex items-center">
                               <img class="mr-1" width="24px" src="../assets/images/zh.jpg">
-                              <a href="#" (click)="changeLanguage('zh')">中文</a>
+                              <button  (click)="changeLanguage('zh')">中文</button>
                          </li>
                          <li class="p2 inline-flex items-center">
                               <img class="mr-1" width="24px" src="../assets/images/fr.jpg">
-                              <a href="#" (click)="changeLanguage('fr')">Français</a>
+                              <button  (click)="changeLanguage('fr')">Français</button>
                          </li>
                          <li class="p2 inline-flex items-center">
                               <img class="mr-1" width="24px" src="../assets/images/ru.jpg">
-                              <a href="#" (click)="changeLanguage('ru')">Русский</a>
+                              <button  (click)="changeLanguage('ru')">Русский</button>
                          </li>
                     </ul>
                </div>
@@ -112,136 +112,4 @@
 
 
 <!-- ---- Start NavBar ----- -->
-<nav class="bg-gray-800 hidden lg:block ">
-     <div class="container">
-          <div class="flex">
-               <!-- ---- All Category ----- -->
-               <div class="px-8 py-4 bg-primary flex items-center cursor-pointer group relative ">
-                    <span class="text-white ">
-                         <i class="fas fa-bars"></i>
-                    </span>
-                    <span class="capitalize ml-2 text-white font-semibold">{{'navbar.categoty'|translate}}</span>
 
-
-                    <div
-                         class="absolute left-0 top-full w-full bg-white shadow-md py-3 invisible opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
-                         <!-- ---- Start single category ----- -->
-                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
-                              <img src="../assets/images/icons/bed.svg" class="w-5 h-5 object-contain " />
-                              <span class="ml-6 text-gray-700 text-sm font-semibold "> BedRoom</span>
-                         </a>
-                         <!-- ---- single category End ----- -->
-
-                         <!-- ---- Start single category ----- -->
-                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
-                              <img src="../assets/images/icons/sofa.svg" class="w-5 h-5 object-contain " />
-                              <span class="ml-6 text-gray-700 text-sm font-semibold "> Sofa</span>
-                         </a>
-                         <!-- ---- single category End ----- -->
-
-
-                         <!-- ---- Start single category ----- -->
-                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
-                              <img src="../assets/images/icons/office.svg" class="w-5 h-5 object-contain " />
-                              <span class="ml-6 text-gray-700 text-sm font-semibold "> Office</span>
-                         </a>
-                         <!-- ---- single category End ----- -->
-
-
-                         <!-- ---- Start single category ----- -->
-                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
-                              <img src="../assets/images/icons/outdoor-cafe.svg" class="w-5 h-5 object-contain " />
-                              <span class="ml-6 text-gray-700 text-sm font-semibold "> OutDoor</span>
-                         </a>
-                         <!-- ---- single category End ----- -->
-
-
-                         <!-- ---- Start single category ----- -->
-                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
-                              <img src="../assets/images/icons/terrace.svg" class="w-5 h-5 object-contain " />
-                              <span class="ml-6 text-gray-700 text-sm font-semibold "> Mattress</span>
-                         </a>
-                         <!-- ---- single category End ----- -->
-
-
-                         <!-- ---- Start single category ----- -->
-                         <a href="#" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
-                              <img src="../assets/images/icons/sofa.svg" class="w-5 h-5 object-contain " />
-                              <span class="ml-6 text-gray-700 text-sm font-semibold "> Sofa</span>
-                         </a>
-                         <!-- ---- single category End ----- -->
-
-                    </div>
-
-               </div>
-
-               <!-- ---- All Category End ----- -->
-
-               <!-- ---- Nav Menu ----- -->
-
-               <div class="flex items-center justify-between flex-grow pl-12 ">
-                    <div class="flex items-center space-x-6 text-base capitalize ">
-                         <a routerLink="/" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
-                              {{'navbar.home'| translate}} </a>
-                         <a routerLink="/shop" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
-                              {{'navbar.shop'| translate}} </a>
-                         <a routerLink="/about" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
-                              {{'navbar.about'|translate}} </a>
-                         <a routerLink="/contact" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
-                              {{'navbar.contact'|translate}} </a>
-                         <a routerLink="/terms-of-use"
-                              class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
-                              {{'navbar.terms'|translate}} </a>
-                    </div>
-                    <div class="  flex items-center cursor-pointer group relative ">
-                         <ng-container *ngIf="!customerResponse">
-                              <a href="login.html"
-                                   class="text-gray-200 hover:bg-primary  font-bold px-5 py-4   ml-auto  hover:text-white transition font-semibold "
-                                   routerLink="/login"> {{'navbar.login'|translate}} </a>
-
-                              <a href="login.html"
-                                   class=" text-gray-200 hover:bg-primary  font-bold px-3 py-4  ml-auto text-gray-200 hover:text-white transition font-semibold "
-                                   routerLink="/register"> {{'navbar.register'|translate}} </a>
-                         </ng-container>
-
-                         <ng-container *ngIf="customerResponse">
-                              <div class="px-8  hover:bg-primary flex items-center cursor-pointer group relative ">
-                                   <a href=""
-                                        class="text-gray-200 font-bold px-3 py-4   ml-auto  hover:text-white transition font-semibold ">{{'navbar.greeting'|translate}},
-                                        {{customerResponse.first_name}}
-                                        {{customerResponse.last_name}} </a>
-
-                                   <div class="absolute left-0 top-full w-full bg-white shadow-md  invisible opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
-                                        
-                                        <!-- ---- Start single category ----- -->
-                                        <a routerLink="/account/personal-profile" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
-                                             <div class="w-5 h-5 object-contain " >
-                                                  <i class="fas fa-user "></i></div>
-                                             <span class="ml-6 text-gray-700 text-sm font-semibold ">{{'header.account'|translate}}</span>
-                                        </a>
-                                        <!-- ---- single category End ----- -->
-
-
-                                        <!-- ---- Start single category ----- -->
-                                        <a href="/login" class="px-6 py-3 flex items-center hover:bg-gray-100 transition " (click)="logout()">
-                                             <div class="w-5 h-5 object-contain " >
-                                                  <i class="fa fa-sign-out"></i>
-                                             </div>
-                                             <span class="ml-6 text-gray-700 text-sm font-semibold ">{{'navbar.logout'|translate}}</span>
-                                        </a>
-                                        <!-- ---- single category End ----- -->
-                                   </div>
-                              </div>
-                         </ng-container>
-
-                    </div>
-
-               </div>
-
-               <!-- ---- Nav Menu End ----- -->
-
-          </div>
-
-     </div>
-
-</nav>

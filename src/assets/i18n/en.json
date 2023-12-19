@@ -158,6 +158,44 @@
       }
     }
   },
+  "banner": {
+    "beforeTitle": "Best Collection For",
+    "afterTitle": "Home Decoration",
+    "button": "Shop Now"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "Shopping Cart"
+    },
+    "ProductCart": {
+      "product": "Product",
+      "quantity": "Quantity",
+      "total": "Total",
+      "orderSummary": "Order Summary",
+      "totalAmount": "Total",
+      "processToCheckout": "Proceed to Checkout"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "Checkout"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "Checkout",
+      "fullName": "Full Name",
+      "streetAddress": "Street Address",
+      "phoneNumber": "Phone Number",
+      "emailAddress": "Email Address",
+      "paymentMethod": "Payment Method",
+      "payInCash": "Pay in cash",
+      "vnPay": "VnPay",
+      "note": "Note",
+      "apply": "Apply",
+      "placeOrder": "Place Order",
+      "total": "Total:",
+      "coupon": "Coupon"
+    }
+  },
   "login": {
     "heading": "Login",
     "title": "Login if you are a returning customer",
@@ -274,7 +312,7 @@
     }
   },
   "footer": {
-    "infor":"Customers must be very important, customers will be followed by customers.",
+    "infor": "Customers must be very important, customers will be followed by customers.",
     "solutions": {
       "title": "Solutions",
       "marketing": "Marketing",

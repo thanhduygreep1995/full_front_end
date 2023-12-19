@@ -183,6 +183,7 @@ export class OriginEditionComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
+          this.router.navigate(['/admin/origin-table']);
         }, this.progressTimerOut);
       },
       (error) => {

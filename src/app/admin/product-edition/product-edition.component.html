@@ -87,14 +87,12 @@
                                         Price min 1.
                                     </div>
                                 </div>
-                                <!-- <div>
-                                    <label for="thumbnail" class="form-label">
-                                        Thumb Nail</label>
-                                    <input formControlName="thumbnail" type="text" class="form-control mb-2" name="thumbnail" id="thumbnail" placeholder="Enter Thumb Nail" />
-                                    <div *ngIf="productForm.controls['thumbnail'].invalid && productForm.controls['thumbnail'].touched" class="text-danger">
-                                        Thumb Nail is required.
-                                    </div>
-                                </div> -->
+                                <div>
+                                    <!-- <label for="thumbnail" class="form-label">
+                                        Thumb Nail</label> -->
+                                    <input hidden formControlName="thumbnail" type="text" class="form-control mb-2" name="thumbnail" id="thumbnail" placeholder="Enter Thumb Nail" />
+                                    
+                                </div>
 
                                 <label for="description" class="form-label">Description</label>
                                 <input formControlName="description" type="text" class="form-control mb-2" name="description" id="description" placeholder="Enter your Description" />

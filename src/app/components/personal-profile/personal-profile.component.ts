@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CustomerService } from '../services/customer/customer.service';
 import { DatePipe } from '@angular/common';
 import { TokenService } from '../services/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-personal-profile',
@@ -73,6 +74,12 @@ export class PersonalProfileComponent implements OnInit {
       (response) => {
         setTimeout(() => {
           this.loading = false;
+          Swal.fire({
+            icon: 'success',
+            title: " Update successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }, 2000);
         console.log('Successfully updated Profile!');
         // alert('Successfully updated Profile!');

@@ -6,6 +6,7 @@ import { query } from '@angular/animations';
 import { CartService } from '../services/cart.service';
 import { DataService } from '../services/data.service';
 import { Itypeprd } from '../interfaces/itypeprd';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -50,6 +51,12 @@ this.listSP= res.body;
   }
   addToCart(product: any) {
     this.cartService.addToCart(product);
+    Swal.fire({
+      icon: 'success',
+      title: 'Added To Cart Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
   }
   
   onTypeSelect() {

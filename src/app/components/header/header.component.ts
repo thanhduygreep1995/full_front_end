@@ -46,12 +46,6 @@ export class HeaderComponent implements OnInit {
       console.log(this.cartItems)
     });
 
-      this.wish.getWishItems().subscribe((items) => {
-        this.count = items;
-        this.wishItem = items;
-        console.log(this.count)
-        console.log(this.cartItems)
-      });
     this.languageService.setInitialAppLanguage();
     this.productService.productOb$.subscribe(data=>{
       this.listProduct = data;
@@ -82,7 +76,6 @@ export class HeaderComponent implements OnInit {
     location.reload();
   }
   
-
   
 
 

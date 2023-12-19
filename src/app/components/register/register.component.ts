@@ -23,7 +23,7 @@ export class RegisterComponent  {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-      isAgreed: [false, Validators.requiredTrue]
+      // isAgreed: [false, Validators.requiredTrue]
     },
     {validator: this.passwordMatchValidator});
     this.infoCustomer.valueChanges.subscribe(() => {
@@ -43,7 +43,6 @@ export class RegisterComponent  {
   }
   
   register() {
-    // if (this.infoCustomer.valid) {
       this.loading = true; // Hiển thị spinner
       const formData = this.infoCustomer.value;
       this.customerS.createCustomer(formData)
@@ -74,7 +73,6 @@ export class RegisterComponent  {
           }
         }
       );
-    // }
   }
 
 }

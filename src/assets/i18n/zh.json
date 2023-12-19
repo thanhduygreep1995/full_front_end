@@ -158,6 +158,44 @@
       }
     }
   },
+  "banner": {
+    "beforeTitle":"家居装饰的",
+    "afterTitle": "最佳收藏",
+    "button": "立即购买"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "购物车"
+    },
+    "ProductCart": {
+      "product": "产品",
+      "quantity": "数量",
+      "total": "总计",
+      "orderSummary": "订单摘要",
+      "totalAmount": "总计",
+      "processToCheckout": "进行结账"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "结账"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "结账",
+      "fullName": "全名",
+      "streetAddress": "街道地址",
+      "phoneNumber": "电话号码",
+      "emailAddress": "电子邮箱地址",
+      "paymentMethod": "付款方式",
+      "payInCash": "现金支付",
+      "vnPay": "VnPay",
+      "note": "备注",
+      "apply": "应用",
+      "placeOrder": "下订单",
+      "total": "总计：",
+      "coupon": "优惠券"
+    }
+  },
   "login": {
     "heading": "登录",
     "title": "如果您是老客户，请登录",
@@ -274,7 +312,7 @@
     }
   },
   "footer": {
-    "infor":"顾客必须非常重要，顾客将会被其他顾客所跟随。",
+    "infor": "顾客必须非常重要，顾客将会被其他顾客所跟随。",
     "solutions": {
       "title": "解决方案",
       "marketing": "营销",

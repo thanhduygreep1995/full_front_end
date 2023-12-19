@@ -15,10 +15,13 @@ export class LoginGuard {
         const isTokenExpired = this.tokenService.isTokenExpired();
         const isCustomerId = this.tokenService.getCustomerId() > 0;
         if (!isTokenExpired && isCustomerId) {
-            this.router.navigate(['/login']);
+            
             return true;
         } 
+
+        this.router.navigate(['/login']);
         return false;
+        
     }
 }
 

@@ -1,3 +1,5 @@
+import { Role } from "../interfaces/irole";
+
 export interface customerResponse {
     id: number;
     first_name: string;
@@ -8,5 +10,6 @@ export interface customerResponse {
     address: string;
     facebook_id: string;
     google_id: string;
+    role_id: Role;
   
 }

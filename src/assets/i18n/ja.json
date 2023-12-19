@@ -158,6 +158,44 @@
       }
     }
   },
+  "banner": {
+    "beforeTitle":"ホームデコレーションのベス",
+    "afterTitle": "トコレクション",
+    "button": "今すぐショップ"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "ショッピングカート"
+    },
+    "ProductCart": {
+      "product": "製品",
+      "quantity": "数量",
+      "total": "合計",
+      "orderSummary": "注文の概要",
+      "totalAmount": "合計",
+      "processToCheckout": "支払い手続きへ"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "チェックアウト"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "チェックアウト",
+      "fullName": "フルネーム",
+      "streetAddress": "住所",
+      "phoneNumber": "電話番号",
+      "emailAddress": "メールアドレス",
+      "paymentMethod": "支払い方法",
+      "payInCash": "現金で支払う",
+      "vnPay": "VnPay",
+      "note": "メモ",
+      "apply": "適用",
+      "placeOrder": "注文する",
+      "total": "合計：",
+      "coupon": "クーポン"
+    }
+  },
   "login": {
     "heading": "ログイン",
     "title": "前回のお客様はログインしてください",
@@ -274,7 +312,7 @@
     }
   },
   "footer": {
-    "infor":"お客様は非常に重要であり、お客様はお客様に続きます。",
+    "infor": "お客様は非常に重要であり、お客様はお客様に続きます。",
     "solutions": {
       "title": "ソリューション",
       "marketing": "マーケティング",

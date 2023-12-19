@@ -158,6 +158,44 @@
       }
     }
   },
+  "banner": {
+    "beforeTitle":"Meilleure Collection Pour la",
+    "afterTitle": "Décoration Intérieure",
+    "button": "Acheter maintenant"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "Panier"
+    },
+    "ProductCart": {
+      "product": "Produit",
+      "quantity": "Quantité",
+      "total": "Total",
+      "orderSummary": "Résumé de la commande",
+      "totalAmount": "Total",
+      "processToCheckout": "Passer à la caisse"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "Paiement"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "Paiement",
+      "fullName": "Nom complet",
+      "streetAddress": "Adresse",
+      "phoneNumber": "Numéro de téléphone",
+      "emailAddress": "Adresse e-mail",
+      "paymentMethod": "Méthode de paiement",
+      "payInCash": "Payer en espèces",
+      "vnPay": "VnPay",
+      "note": "Remarque",
+      "apply": "Appliquer",
+      "placeOrder": "Passer commande",
+      "total": "Total :",
+      "coupon": "Coupon"
+    }
+  },
   "login": {
     "heading": "Connexion",
     "title": "Connectez-vous si vous êtes un client existant",
@@ -274,7 +312,7 @@
     }
   },
   "footer": {
-    "infor":"Les clients doivent être très importants, les clients seront suivis par d'autres clients.",
+    "infor": "Les clients doivent être très importants, les clients seront suivis par d'autres clients.",
     "solutions": {
       "title": "Solutions",
       "marketing": "Marketing",

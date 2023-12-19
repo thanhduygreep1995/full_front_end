@@ -7,7 +7,7 @@
           <span class="text-sm text-gray-500 ">
                <i class="fas fa-chevron-right"></i>
           </span>
-          <p class="text-gray-500 font-medium uppercase">Shopping Cart </p>
+          <p class="text-gray-500 font-medium uppercase">{{'cart.BreadCrum.shoppingCart'|translate}}</p>
      </div>
 
 </div>
@@ -24,9 +24,9 @@
      <div class="xl:col-span-9 lg:col-span-8 ">
 
           <div class="bg-gray-200 py-2 pl-12 pr-20 xl:pr-28 mb-4 hidden md:flex ">
-               <p class="text-gray-600 text-center">Product </p>
-               <p class="text-gray-600 text-center ml-auto" style="margin-right: 150px;">Quantity </p>
-               <p class="text-gray-600 text-center" style="margin-right: 50px;">Total </p>
+               <p class="text-gray-600 text-center">{{'cart.ProductCart.product'|translate}}</p>
+               <p class="text-gray-600 text-center ml-auto" style="margin-right: 150px;">{{'cart.ProductCart.quantity'|translate}} </p>
+               <p class="text-gray-600 text-center" style="margin-right: 50px;">{{'cart.ProductCart.total'|translate}} </p>
           </div>
 
           <!-- ---- Shipping Cart--->
@@ -65,19 +65,19 @@
                </div>
                <div class="xl:col-span-3 lg:col-span-4 border border-gray-200 px-4 py-4 rounded mt-6 lg:mt-0 bg-gray-100">
 
-                    <h3 class="text-gray-800 text-lg mb-4 font-medium uppercase ">Order Summary</h3>
+                    <h3 class="text-gray-800 text-lg mb-4 font-medium uppercase ">{{'cart.ProductCart.orderSummary'|translate}}</h3>
                     <hr>
           
           
           
                     <div class="flex justify-between my-3 text-gray-800 font-semibold uppercase">
-                         <h4>Total</h4>
+                         <h4>{{'cart.ProductCart.totalAmount'|translate}}</h4>
                          <h4>{{ tongtien() | currency:".":"":"1.0"}} VNĐ</h4>
           
                     </div>
                     <a routerLink="/checkout" 
                          class="bg-primary border border-primary text-white px-4 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition text-sm w-full block text-center ">
-                         Process to checkout
+                         {{'cart.ProductCart.processToCheckout'|translate}}
                     </a>
           
           

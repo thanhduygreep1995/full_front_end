@@ -7,7 +7,7 @@
                     <span class="text-white ">
                          <i class="fas fa-bars"></i>
                     </span>
-                    <span class="capitalize ml-2 text-white font-semibold">All categories</span>
+                    <span class="capitalize ml-2 text-white font-semibold">{{'navbar.categoty'|translate}}</span>
 
 
                     <div 
@@ -34,29 +34,68 @@
                <!-- ---- Nav Menu ----- -->
 
                <div class="flex items-center justify-between flex-grow pl-12 ">
-                    <div class="flex items-center space-x-6 text-base capitalize ">
-                         <a href="index.html" routerLink="/"
-                              class="text-gray-200 hover:text-yellow-400 transition font-semibold "> Home </a>
-                         <a href="shop.html" class="text-gray-200 hover:text-yellow-400 transition font-semibold "
-                              routerLink="/shop"> Shop </a>
-                         <a href="index.html" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
-                              About Us </a>
-                         <a href="index.html" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
-                              Contact Us </a>
+                    <div class="flex items-center space-x-6 text-base  ">
+                         <a routerLink="/" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
+                              {{'navbar.home'| translate}} </a>
+                         <a routerLink="/shop" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
+                              {{'navbar.shop'| translate}} </a>
+                         <a routerLink="/about" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
+                              {{'navbar.about'|translate}} </a>
+                         <a routerLink="/contact" class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
+                              {{'navbar.contact'|translate}} </a>
+                         <a routerLink="/terms-of-use"
+                              class="text-gray-200 hover:text-yellow-400 transition font-semibold ">
+                              {{'navbar.terms'|translate}} </a>
                     </div>
-                    
+                    <div class="  flex items-center cursor-pointer group relative ">
+                         <ng-container *ngIf="!customerResponse">
+                              <a href="login.html"
+                                   class="text-gray-200 hover:bg-primary  font-bold px-5 py-4   ml-auto  hover:text-white transition font-semibold "
+                                   routerLink="/login"> {{'navbar.login'|translate}} </a>
 
-                    <div class="  flex items-center cursor-pointer group relative gap-3">
-                         <a 
-                              class="text-gray-200 hover:bg-primary  font-bold px-3 py-4   ml-auto  hover:text-white transition font-semibold "
-                              routerLink="/login"> Login </a>
-                         <a 
-                              class=" text-gray-200 hover:bg-primary  font-bold px-3 py-4  ml-auto text-gray-200 hover:text-white transition font-semibold "
-                              routerLink="/register"> Register </a>
-                              <div class="  flex items-center cursor-pointer group relative gap-2"  >
-                                   <img src="http://t-farm.us/images/vi.png" alt="">
-                                   <img src="http://t-farm.us/images/en.png" alt="">
+                              <a href="login.html"
+                                   class=" text-gray-200 hover:bg-primary  font-bold px-3 py-4  ml-auto text-gray-200 hover:text-white transition font-semibold "
+                                   routerLink="/register"> {{'navbar.register'|translate}} </a>
+                         </ng-container>
+
+                         <ng-container *ngIf="customerResponse">
+                              <div class="px-8  hover:bg-primary flex items-center cursor-pointer group relative ">
+                                   <a href=""
+                                        class="text-gray-200 font-bold px-3 py-4   ml-auto  hover:text-white transition font-semibold ">{{'navbar.greeting'|translate}},
+                                        {{customerResponse.first_name}}
+                                        {{customerResponse.last_name}} </a>
+
+                                   <div class="absolute left-0 top-full w-full bg-white shadow-md  invisible opacity-0 group-hover:opacity-100 group-hover:visible transition duration-300 z-50 divide-y divide-gray-300 divide-dashed  ">
+                                        
+                                        <!-- ---- Start single category ----- -->
+                                        <a routerLink="/account/personal-profile" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                                             <div class="w-5 h-5 object-contain " >
+                                                  <i class="fas fa-user "></i></div>
+                                             <span class="ml-6 text-gray-700 text-sm font-semibold ">{{'header.account'|translate}}</span>
+                                        </a>
+                                        <!-- ---- single category End ----- -->
+                                        <!-- ---- Start single category ----- -->
+                                        <div *ngIf="customerResponse.role_id.name=='ADMIN'">
+                                             <a routerLink="/admin" class="px-6 py-3 flex items-center hover:bg-gray-100 transition ">
+                                                  <div class="w-5 h-5 object-contain " >
+                                                       <i class="fas fa-cogs"></i></div>
+                                                  <span class="ml-6 text-gray-700 text-sm font-semibold ">Quản lý</span>
+                                             </a>
+                                        </div>
+                                        <!-- ---- single category End ----- -->
+
+                                        <!-- ---- Start single category ----- -->
+                                        <a href="/login" class="px-6 py-3 flex items-center hover:bg-gray-100 transition " (click)="logout()">
+                                             <div class="w-5 h-5 object-contain " >
+                                                  <i class="fa fa-sign-out"></i>
+                                             </div>
+                                             <span class="ml-6 text-gray-700 text-sm font-semibold ">{{'navbar.logout'|translate}}</span>
+                                        </a>
+                                        <!-- ---- single category End ----- -->
+                                   </div>
                               </div>
+                         </ng-container>
+
                     </div>
 
                </div>

@@ -71,6 +71,8 @@
     }
 }
 .custom-carousel-item:hover {
+    padding-top: 5px;
+    padding-bottom: 7px;
     transform: scale(1.015); /* Scale lớn hơn khi hover */
     z-index: 1; /* Đẩy phần tử lên trên để che phủ các phần tử khác */
 }

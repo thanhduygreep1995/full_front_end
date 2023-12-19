@@ -95,7 +95,7 @@ export class LoginComponent {
       error: (error: any) => {
         Swal.fire({
           icon: 'error',
-          title: error.error.message,
+          title: 'Something wrong!',
           showConfirmButton: false,
           timer: 1000,
         });

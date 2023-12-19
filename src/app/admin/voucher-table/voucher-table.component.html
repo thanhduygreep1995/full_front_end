@@ -1,0 +1,75 @@
+<!-- Content Wrapper. Contains page content -->
+<!-- <div class="content-wrapper"> -->
+<!-- Content Header (Page header) -->
+<section class="content-header" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Voucher List</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Voucher List</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<!-- Main content -->
+<section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <!-- <h3 class="card-title">Danh Sách Category</h3> -->
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive">
+                        <table datatable *ngIf="vouchers && vouchers.length > 0" [dtOptions]="dtOptions" class="table table-bordered table-striped row-border hover">
+                            <!-- Các cột dữ liệu ở đây -->
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Code voucher</th>
+                                    <th>Value</th>
+                                    <th>Status</th>
+                                    <th>Expired Date</th>
+                                    <th class="col-2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let c of vouchers; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ c.codeVoucher }}</td>
+                                    <td>{{ c.value }}</td>
+                                    <td>{{ c.status }}</td>
+                                    <td>{{ c.expiredDate | date: 'dd/MM/yyyy' }}</td>
+                                    <td class="col-2">
+                                        <button class="btn btn-danger" (click)="fnDeleteCategory(c.id)">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- </div> -->
+<!-- /.content-wrapper -->
