@@ -310,6 +310,7 @@ export class OrderTableComponent implements OnInit {
     this.oS.getOrder().subscribe(
       (newData) => {
         this.orders = newData;
+        this.orders.reverse();
         // for (let o of this.orders) {
         //   o.orderDate =  moment.default(o.orderDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
         // };

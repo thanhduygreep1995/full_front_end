@@ -51,6 +51,10 @@
                                                 {{o.status}}
                                             </p>
                                         </ng-template>
+                                        <p [class.active-voucher]="o.statusPayment === 'Đã thanh toán'"
+                                        [ngClass]="{'text-green-400': o.statusPayment !== 'Chưa thanh toán'}" class="items-start justify-start  text-lg">
+                                            {{o.statusPayment}}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="">

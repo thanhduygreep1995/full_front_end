@@ -43,7 +43,7 @@
                                     <th>Order Date</th>
                                     <th>Note</th>
                                     <th>Status</th>
-                                    <!-- <th>Status Payment</th> -->
+                                    <th>Status Payment</th>
                                     <th>Payment Method</th>
                                     <th>Discount Price</th>
                                     <!-- <th hidden>Product Name</th>
@@ -65,7 +65,7 @@
                                     <td>{{ o.orderDate | date: 'dd/MM/yyyy'}}</td>
                                     <td>{{ o.note }}</td>
                                     <td>{{ o.status }}</td>
-                                    <!-- <td>{{ o.statusPayment }}</td> -->
+                                    <td>{{ o.statusPayment }}</td>
                                     <td>{{ o.paymentMethod }}</td>
                                     <td>{{ o.discountPrice+""| currency:",":"":"1.0"}} VNĐ</td>
                                     <!-- <td hidden>{{ o.orderDetail.product.name }}</td>
