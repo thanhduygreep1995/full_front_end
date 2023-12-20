@@ -1,31 +1,3 @@
-
-<!-- ---- Mobile Side Bar ----- -->
-<div class="fixed left-0 top-0 w-full h-full z-50 bg-black bg-opacity-30 shadow hidden " id="mobileMenu">
-    <div class="absolute left-0 top-0 w-72 h-full z-50 bg-white shadow">
-        <div id="closeMenu" class="text-gray-400 hover:text-primary text-lg absolute right-3 top-3 cursor-pointer ">
-            <i class="fas fa-times"></i>
-        </div>
-        <h3 class="text-xl font-semibold text-white mb-2 font-roboto pl-4 pt-4 pb-4 bg-primary ">Menu</h3>
-        <div>
-            <a href="index.html" class="block px-4 py-4 font-medium transition hover:bg-gray-200 ">
-                Home
-            </a>
-            <a href="index.html" class="block px-4 py-4 font-medium transition hover:bg-gray-200 ">
-                Shop
-            </a>
-
-            <a href="index.html" class="block px-4 py-4 font-medium transition hover:bg-gray-200 ">
-                About Us
-            </a>
-            <a href="index.html" class="block px-4 py-4 font-medium transition hover:bg-gray-200 ">
-                Contact Us
-            </a>
-        </div>
-
-    </div>
-
-</div>
-
 <!-- ---- End Mobile Side Bar ----- -->
 
 
@@ -43,7 +15,7 @@
         <span class="text-sm text-gray-500 ">
             <i class="fas fa-chevron-right"></i>
         </span>
-        <p class="text-gray-500 font-medium uppercase">ITALIAN L SHAPE SOFA</p>
+        <p class="text-gray-500 font-medium uppercase">{{infoProduct.name}}</p>
     </div>
 
 </div>
@@ -52,216 +24,216 @@
 <!-- ---- Product View  --->
 <div class="container pt-4 pb-6 grid lg:grid-cols-2 gap-6 ">
     <!-- ---- Product Image  --->
-    <div>
-        <div>
-            <img id="main-img" src="{{infoProduct.images}}" class="w-full" />
-        </div>
 
-        <div class="grid grid-cols-5 gap-4 mt-4 ">
-
-            <div
-                (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg')">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/230529/iphone-13-pro-max-xanh-la-thumb-600x600.jpg"
-                    class="single-img w-full cursor-pointer border hover:border-primary " />
+    <section class="gallery">
+        <div class="container">
+            <div class="img-container justify-center" class="Image">
+                <img [src]="selectedImageUrl" class="mx-auto" alt="" id="preview">
             </div>
-
-            <div
-                (click)="changeImage('https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg')">
-                <img src="https://cdn.tgdd.vn/Products/Images/42/271717/oppo-reno7-z-5g-thumb-1-1-600x600.jpg"
-                    class="single-img file:w-full cursor-pointer bhover:border-primary   " />
+            <div class="arrow-buttons">
+                <button (click)="prevSlide()">❮</button>
+                <div class="img-prev text-center">
+                    <div class="img-slide" [class.active]="in === selectedIndex" *ngFor="let i of Images.slice(startIndex, startIndex + 4); let in = index">
+                        <img style="width: 109px; height: 110px;" (click)="imageChange(i.imageUrl, in + startIndex)" src="{{i.imageUrl}}" alt="Image{{in + startIndex + 1}}" app-view>
+                    </div>
+                </div>
+                <button (click)="nextSlide()">❯</button>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- <section class="gallery">
+        <div class="container">
+            <p-carousel  >
+                <ng-template pTemplate="header">
+                  <div>
+                    <img [src]="Images[selectedIndex].imageUrl" alt=" " style="height: 410px;"  >
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="footer" class="container">
+                  <div class="img-prev text-center">
+                    <button (click)="prevSlide()">❮</button>
+                    <div class="img-slide" *ngFor="let i of displayedImages; let in = index">
+                        <img (click)="imageChange(i.imageUrl, startIndex + in)" [src]="i.imageUrl" alt="Image{{ startIndex + in + 1 }}" app-view  style="height: 110px;">
+                      </div>
+                      
+                    <button (click)="nextSlide()">❯</button>
+                  </div>
+                </ng-template>
+              </p-carousel>
+        </div>
+      </section> -->
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class=" card ">
+        <p-carousel [value]="Images " [numVisible]="5 " [numScroll]="5 " [circular]="true " [responsiveOptions]="responsiveOptions ">
+            <ng-template let-i pTemplate="item ">
+                <div class="surface-border border-round px-4 py-2 custom-carousel-item ">
+
+                    <div class="relative group ">
+                        <div style="height: 220px; display: flex; align-items: center; justify-content: center; " class="align-text-center ">
+                            <img src="{{i.imageUrl}} " class="w-full " />
+                        </div>
+                    </div> -->
+    <!-- Rest of your content -->
+
+    <!-- </div>
+</ng-template>
+</p-carousel>
+</div> -->
+
     <!-- ---- End Product Image  --->
 
     <!-- ---- Product Content  --->
     <div>
-        <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2">{{infoProduct.name}}</h2>
-        <div class="flex items-center mb-4">
+        <h2 class="md:text-3xl text-2xl font-medium uppercase mb-2 ">{{infoProduct.name}}</h2>
+        <div class="flex items-center mb-4 ">
             <div class="flex gap-1 text-sm ">
                 <div class="flex items-center ">
-                    <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[0].filled, 'half-filled': starsInfo[0].half, 'no-fill': starsInfo[0].noFill}"></span>
-                    <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[1].filled, 'half-filled': starsInfo[1].half, 'no-fill': starsInfo[1].noFill}"></span>
-                    <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[2].filled, 'half-filled': starsInfo[2].half, 'no-fill': starsInfo[2].noFill}"></span>
-                    <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[3].filled, 'half-filled': starsInfo[3].half, 'no-fill': starsInfo[3].noFill}"></span>
-                    <span class="star  text-yellow-400" [ngClass]="{'filled': starsInfo[4].filled, 'half-filled': starsInfo[4].half, 'no-fill': starsInfo[4].noFill}"></span>
+                    <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[0].filled, 'half-filled': starsInfo[0].half, 'no-fill': starsInfo[0].noFill} "></span>
+                    <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[1].filled, 'half-filled': starsInfo[1].half, 'no-fill': starsInfo[1].noFill} "></span>
+                    <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[2].filled, 'half-filled': starsInfo[2].half, 'no-fill': starsInfo[2].noFill} "></span>
+                    <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[3].filled, 'half-filled': starsInfo[3].half, 'no-fill': starsInfo[3].noFill} "></span>
+                    <span class="star text-yellow-400 " [ngClass]="{ 'filled': starsInfo[4].filled, 'half-filled': starsInfo[4].half, 'no-fill': starsInfo[4].noFill} "></span>
                 </div>
             </div>
-            <div class="text-xs text-gray-500 ml-3">({{ count }} Reviews)</div>
-            
+            <div class="text-xs text-gray-500 ml-3 ">({{ count }} Reviews)</div>
+
         </div>
 
-        <div class="space-y-2">
+        <div class="space-y-2 ">
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Availability : </span>
-                <span class="text-green-600"> {{infoProduct.productStatus}} </span>
+                <span class="text-green-600 text-bold ">{{infoProduct.status === 'OUT_OF_STOCK' ? 'OUT OF STOCK' :
+                    infoProduct.status}}</span>
             </p>
 
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Brand : </span>
-                <span class="text-gray-600"> {{infoProduct.brandId.name}} </span>
+                <span class="text-gray-600 ">{{infoProduct.brandId.name}}</span>
             </p>
 
             <p class="text-gray-800 font-semibold space-x-2 ">
                 <span>Category : </span>
-                <span class="text-gray-600"> {{infoProduct.categoryId.name}} </span>
-            </p>
-
-            <p class="text-gray-800 font-semibold space-x-2 ">
-                <span>SKU : </span>
-                <span class="text-gray-600">AKHASFD34 </span>
+                <span class="text-gray-600 ">{{infoProduct.categoryId.name}}</span>
             </p>
         </div>
 
         <div class="mt-4 flex items-baseline gap-3 ">
-            <span class="text-primary font-semibold text-xl ">{{infoProduct.discountPrice| currency:".":"":"6.0"}}
+            <span class="text-primary font-semibold text-xl ">{{infoProduct.discountPrice| currency:". ":" ":"1.0"}}
                 VNĐ</span>
-            <span class="text-gray-500 text-base line-through">{{infoProduct.price| currency:".":"":"6.0"}} VNĐ</span>
-            <span class="text-primary font-semibold text-xl ">{{infoProduct.discount|number:'1.0-0':'fr'}} %</span>
+            <span class="text-gray-500 text-base line-through ">{{infoProduct.price| currency:". ":" ":"1.0"}}
+                VNĐ</span>
+            <span class="text-white font-semibold text-sm bg-primary p-2 rounded-full ">-{{infoProduct.discountPercentage|number:'1.0-0':'fr'}}%</span>
         </div>
-        <p class="mt-4 text-gray-600">
+        <p class="mt-4 text-gray-600 ">
             {{infoProduct.description}}
         </p>
 
-
-        <!-- ---- Size filter --->
-
-        <div class="pt-4">
-            <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Size </h3>
-            <div class="flex items-center gap-2">
-                <!-- ---- Single Size --->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-s" />
-                    <label for="size-s"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">S</label>
-                </div>
-                <!-- ---- End Single Size --->
-
-                <!-- ---- Single Size --->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-m" />
-                    <label for="size-m"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">M</label>
-                </div>
-                <!-- ---- End Single Size --->
-
-
-                <!-- ---- Single Size --->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-l" />
-                    <label for="size-l"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">L</label>
-                </div>
-                <!-- ---- End Single Size --->
-
-
-                <!-- ---- Single Size --->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-xs" />
-                    <label for="size-xs"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">XS</label>
-                </div>
-                <!-- ---- End Single Size --->
-
-
-                <!-- ---- Single Size --->
-                <div class="size-selector">
-                    <input type="radio" name="size" class="hidden" id="size-xl" />
-                    <label for="size-xl"
-                        class="text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center cursor-pointer shadow-sm text-gray-600 ">XL</label>
-                </div>
-                <!-- ---- End Single Size --->
-
-            </div>
-        </div>
-        <!-- ---- End Size filter --->
-
         <!-- ----  Color filter --->
-        <div class="pt-4">
+        <!-- <div class="pt-4 ">
             <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium ">Color </h3>
 
-            <div class="flex items-center gap-2">
-                <!-- ---- Single Color --->
-                <div class="color-selector">
-                    <input type="radio" name="color" class="hidden" id="color-red" checked />
-                    <label for="color-red" style="background-color: brown;"
-                        class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
+            <div class="flex items-center gap-2 "> -->
+        <!-- ---- Single Color --->
+        <!-- <div class="color-selector ">
+            <input type="radio " name="color " class="hidden " id="color-red " checked />
+            <label for="color-red " style="background-color: brown; " class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm "></label>
 
-                </div>
-                <!-- ----  End Single Color --->
+        </div> -->
+        <!-- ----  End Single Color --->
 
-                <!-- ---- Single Color --->
-                <div class="color-selector">
-                    <input type="radio" name="color" class="hidden" id="color-white" />
-                    <label for="color-white" style="background-color:blueviolet;"
-                        class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
+        <!-- ---- Single Color --->
+        <!-- <div class="color-selector ">
+            <input type="radio " name="color " class="hidden " id="color-white " />
+            <label for="color-white " style="background-color:blueviolet; " class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm "></label>
 
-                </div>
-                <!-- ----  End Single Color --->
+        </div> -->
+        <!-- ----  End Single Color --->
 
 
-                <!-- ---- Single Color --->
-                <div class="color-selector">
-                    <input type="radio" name="color" class="hidden" id="color-black" />
-                    <label for="color-black" style="background-color: #000000;"
-                        class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm"></label>
+        <!-- ---- Single Color --->
+        <!-- <div class="color-selector ">
+            <input type="radio " name="color " class="hidden " id="color-black " />
+            <label for="color-black " style="background-color: #000000; " class="text-xs border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center cursor-pointer shadow-sm "></label>
 
-                </div>
-                <!-- ----  End Single Color --->
-            </div>
-        </div>
+        </div> -->
+        <!-- ----  End Single Color --->
+        <!-- </div>
+</div> -->
 
         <!-- ---- End Color filter --->
 
         <!-- ---- Quantity --->
-        <div class="mt-4">
-            <h3 class="text-base text-gray-800 mb-1">Quantity</h3>
+        <!-- <div class="mt-4 ">
+            <h3 class="text-base text-gray-800 mb-1 ">Quantity</h3>
             <div class="flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max ">
-                <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"> - </div>
-                <div class="h-8 w-10 flex items-center justify-center"> 5 </div>
-                <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none"> + </div>
+                <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none "> - </div>
+                <div class="h-8 w-10 flex items-center justify-center "> 5 </div>
+                <div class="h-8 w-8 text-xl flex items-center justify-center cursor-pointer select-none "> + </div>
 
             </div>
-        </div>
+        </div> -->
         <!-- ---- End Quantity --->
 
 
         <!-- ---- ADD TO CART BUTTON --->
 
         <div class="flex gap-3 border-b border-gray-200 pb-5 mt-6 ">
-            <a (click)="addToCart(products)" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center ">
-                <span class="mr-2"><i class="fas fa-shopping-bag"></i> </span> Add to Cart
-            </a>
+            <!-- <button (click)="addToCart(infoProduct)" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent cursor-pointer hover:text-primary transition text-sm flex items-center ">
+                <span class="mr-2 "><i class="fas fa-shopping-bag "></i> </span> Add to Cart
+            </button>
+            <button (click)="addToWish(infoProduct)" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary cursor-pointer transition text-sm flex items-center ">
+                <span class="mr-2 "><i class="fas fa-heart "></i> </span> Wishlist
+            </button>
 
-            <a href="#"
-                class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center ">
-                <span class="mr-2"><i class="fas fa-heart"></i> </span> Whishlist
-            </a>
+            <button (click)="onClick()" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center cursor-pointer ">
+                <span class="mr-2 "><i class="fas fa-star "></i> </span> RATING
+            </button> -->
 
-        <a (click)="onClick()"
-        class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center cursor-pointer">
-            <span class="mr-2"><i class="fas fa-star"></i> </span> RATING
-        </a>
+            <button (click)="addToCart(infoProduct)" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" [class.disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase hover:bg-transparent cursor-pointer hover:text-primary transition text-sm flex items-center">
+                <span class="mr-2"><i class="fas fa-shopping-bag"></i></span> Add to Cart
+            </button>
+            
+            <button (click)="addToWish(infoProduct)" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" [class.disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary cursor-pointer transition text-sm flex items-center">
+                <span class="mr-2"><i class="fas fa-heart"></i></span> Wishlist
+            </button>
+            
+            <button (click)="onClick()" [disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" [class.disabled]="infoProduct.status !== 'AVAILABLE' || infoProduct.stockQuantity === 0" class="border border-gray-600 text-gray-600 px-8 py-2 font-medium rounded uppercase hover:bg-transparent hover:text-primary transition text-sm flex items-center cursor-pointer">
+                <span class="mr-2"><i class="fas fa-star"></i></span> RATING
+            </button>
+            
         </div>
         <!-- ---- End ADD TO CART BUTTON --->
 
         <!-- ---- Product Share Icon --->
 
         <div class="flex space-x-3 mt-4 ">
-            <a href="#"
-                class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
-                <i class="fab fa-facebook-f"></i>
+            <a (click)="shareOnFacebook(infoProduct.id)" class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center ">
+                <i class="fab fa-facebook-f "></i>
             </a>
-            <a href="#"
-                class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
-                <i class="fab fa-twitter"></i>
+            <a (click)="shareOnTwitter(infoProduct.id)" class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center ">
+                <i class="fab fa-twitter "></i>
             </a>
 
-            <a href="#"
-                class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
-                <i class="fab fa-instagram"></i>
+            <a (click)="shareOnInstagram(infoProduct.thumbnail)" class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center ">
+                <i class="fab fa-instagram "></i>
             </a>
 
+            <button (click)="openModal();generateQRCode()" class="text-gray-400 hover:text-gray-600 h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center">
+                <i class="fas fa-qrcode"></i>
+            </button>                       
+            <div *ngIf="isModalOpen" (click)="closeModal()" class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50 flex items-center justify-center">
+                <img [src]="qrCodeImage" alt="Modal content">
+            </div>
         </div>
 
         <!-- ---- End Product Share Icon --->
@@ -273,41 +245,146 @@
 </div>
 
 <!-- ---- End Product View --->
-
+<div *ngIf="loading " class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 ">
+    <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-primary "></div>
+</div>
 
 <!-- ---- Product Details  --->
 
-<div class="container pb-16">
+<div class="container pb-16 ">
     <h3 class="border-b border-gray-200 font-roboto text-gray-800 font-medium pb-3 ">Product Details </h3>
 
-    <div class="lg:w-4/5 xl:w-3/5 pt-6">
-        <div class="space-y-3 text-gray-600">
-            <p>{{infoProduct.mota}}</p>
-        </div>
+    <div class="lg:w-4/5 xl:w-3/5 pt-6 ">
+        <!-- <div *ngIf="Spec.products.description !='Trống' || null; else defaultImage " class="space-y-3 text-gray-600 ">
+            <p>{{Spec.products.description}}</p>
+            <ng-template #defaultImage>
+                <p></p>
+            </ng-template>
+        </div> -->
 
-
-        <table class="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
+        <table class="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6 ">
             <tr>
-                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold">Color</th>
-                <td class="py-2 px-4 border border-gray-300  ">Black , Brown , Red </td>
-
+                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold ">Processor</th>
+                <td *ngIf="Spec.processor !='Trống' || null; else defaultImage " class="py-2 px-4 border border-gray-300 ">{{Spec.processor}}</td>
+                <ng-template #defaultImage>
+                    <td class="py-2 px-4 border border-gray-300 "></td>
+                </ng-template>
             </tr>
-
             <tr>
-                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold">Size </th>
-                <td class="py-2 px-4 border border-gray-300  ">XL, L, M, S </td>
-
+                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold ">Graphic Card</th>
+                <td *ngIf="Spec.graphicsCard !='Trống' || null; else defaultImage " class="py-2 px-4 border border-gray-300 ">{{Spec.graphicsCard}}</td>
+                <ng-template #defaultImage>
+                    <td class="py-2 px-4 border border-gray-300 "></td>
+                </ng-template>
             </tr>
-
             <tr>
-                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold">Weight </th>
-                <td class="py-2 px-4 border border-gray-300  ">55kg </td>
-
+                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold ">Ram</th>
+                <td *ngIf="Spec.ram !='Trống' || null; else defaultImage " class="py-2 px-4 border border-gray-300 ">
+                    {{Spec.ram}}</td>
+                <ng-template #defaultImage>
+                    <td class="py-2 px-4 border border-gray-300 "></td>
+                </ng-template>
+            </tr>
+            <tr>
+                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold ">Storage</th>
+                <td *ngIf="Spec.storage !='Trống' || null; else defaultImage " class="py-2 px-4 border border-gray-300 ">{{Spec.storage}}</td>
+                <ng-template #defaultImage>
+                    <td class="py-2 px-4 border border-gray-300 "></td>
+                </ng-template>
+            </tr>
+            <tr>
+                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold ">Display</th>
+                <td *ngIf="Spec.display !='Trống' || null; else defaultImage " class="py-2 px-4 border border-gray-300 ">{{Spec.display}}</td>
+                <ng-template #defaultImage>
+                    <td class="py-2 px-4 border border-gray-300 "></td>
+                </ng-template>
+            </tr>
+            <tr>
+                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold ">OperatingSystem</th>
+                <td *ngIf="Spec.operatingSystem !='Trống' || null; else defaultImage " class="py-2 px-4 border border-gray-300 ">{{Spec.operatingSystem}}</td>
+                <ng-template #defaultImage>
+                    <td class="py-2 px-4 border border-gray-300 "></td>
+                </ng-template>
+            </tr>
+            <tr>
+                <th class="py-2 px-4 border border-gray-300 w-40 font-semibold ">Camera</th>
+                <td *ngIf="Spec.camera !='Trống' || null; else defaultImage " class="py-2 px-4 border border-gray-300 ">
+                    {{Spec.camera}}</td>
+                <ng-template #defaultImage>
+                    <td class="py-2 px-4 border border-gray-300 "></td>
+                </ng-template>
             </tr>
         </table>
     </div>
 
+    <!-- component -->
+    <div class="grid grid-cols-2 gap-8 mt-4 ">
+        <div class="row d-flex justify-content-start m-3 ">
+            <div class="antialiased mx-auto max-w-screen-sm col-6 ">
+                <h3 class="mb-4 text-lg font-semibold text-gray-900 ">Comments</h3>
+                <form class="mb-6 ">
+                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
+                        <label for="comment " class="sr-only ">Name</label>
+                        <input id="nameCustomer " name="nameCustomer " [(ngModel)]="infoProduct.nameCustomer " rows="6 " class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800" placeholder="Your name "
+                            required>
+                    </div>
+                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
+                        <label for="comment " class="sr-only ">Your comment</label>
+                        <textarea id="comment " name="comment " [(ngModel)]="infoProduct.comment " rows="6 " class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800" placeholder="Write a comment... "
+                            required></textarea>
+                    </div>
+                    <button type="button" (click)="createFeedback() " class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800 ">
+                        Post comment
+                    </button>
+                </form>
+                <div *ngIf="feedBacks.length > 0" class="mt-4">
+                    <ul>
+                        <li>
+                            <div class="space-y-4 " *ngFor="let f of currentFeedbacks ">
+                                <div class="flex ">
+                                    <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed mt-3 bg-white ">
+                                        <footer class="flex justify-between items-center mb-2 ">
+                                            <div class="flex items-center ">
+                                                <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold ">
+                                                    <img class="mr-2 w-6 h-6 rounded-full " src="https://flowbite.com/docs/images/people/profile-picture-2.jpg "><strong>{{f.nameCustomer}}</strong></p>
+                                                <p class="text-sm text-gray-600 dark:text-gray-400 ">{{f.updateDate}}</p>
+                                            </div>
+                                        </footer>
+                                        <p class="text-sm ">
+                                            {{f.comment}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pagination flex items-center justify-between mt-4">
+                                <div>
+                                    <button (click)="previousPage()" [disabled]="currentPage === 1" class="px-3 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300">
+                                    Previous
+                                </button>
+                                </div>
+                                <div class="text-gray-700">
+                                    Page {{ currentPage }} of {{ totalPages }}
+                                </div>
+                                <div>
+                                    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="px-3 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300">
+                                    Next
+                                </button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
+
+
+
 
 <!-- ---- End Product Details --->
 
@@ -317,6 +394,3 @@
 
 
 <!-- ---- End  Related Product --->
-
-
-

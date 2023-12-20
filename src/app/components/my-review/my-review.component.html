@@ -1,0 +1,59 @@
+<!-- ---- BreadCrum ----- -->
+<div class="container py-4 flex justify-between">
+    <div class="flex gap-3 items-center">
+        <a routerLink="/" class="text-primary text-base">
+            <i class="fas fa-home"></i>
+        </a>
+        <span class="text-sm text-gray-500">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        <p class="text-gray-500 font-medium uppercase">{{'feedbackReview.my_review'|translate}}</p>
+    </div>
+</div>
+<!-- ---- End BreadCrum --->
+<!-- ---- Account Wrapper--->
+
+<div class="container lg:grid grid-cols-12 items-start gap-6 pt-4 pb-16">
+    <!-- ---- Sidebar --->
+    <div class="col-span-3">
+        <app-account-sidebar></app-account-sidebar>
+    </div>
+    <!-- ----End Sidebar--->
+
+    <!-- ----Account Content --->
+    <div class="col-span-9 gap-4 mt-6 lg:mt-0">
+        <div class="max-w-3xl mx-auto bg-white p-8 shadow">
+            <h1 class="text-2xl font-semibold mb-4">{{'feedbackReview.title'|translate}}</h1>
+
+            <ul class="space-y-4">
+                <!-- Sample feedback item -->
+                <li *ngFor="let feedback of feedbacks" class="border rounded-md p-4">
+                    <div class="flex justify-between">
+
+                        <h2 class="text-xl font-semibold">{{feedback.products.name}}</h2>
+
+                        <div class="flex items-center">
+                            <span class="text-gray-500">{{ feedback.createDate | date: 'dd/MM/yyyy' }}</span>
+                            <span class="ml-2 text-gray-600">
+                                <ng-container *ngIf="feedback.ratings">
+                                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                    <span class="star" [ngClass]="{'text-yellow-400': star <= feedback.ratings.rating}">&#9733;</span>
+                                  </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="!feedback.ratings">
+                                  <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+                                    <span class="star">&#9733;</span>
+                                  </ng-container>
+                                </ng-container>
+                              </span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mt-2">{{feedback.comment}}.</p>
+                    <a routerLink="/view/{{feedback.products.id}}"
+                        class="text-primary font-medium hover:underline">{{'feedbackReview.viewButton'|translate}}</a>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+</div>

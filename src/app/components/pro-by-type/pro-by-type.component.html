@@ -1,50 +1,162 @@
-<div class="grid lg:grid-cols-4 sm:grid-cols-3 gap-6">
-    <div class="group rounded bg-white shadow overflow-hidden product-list " *ngFor="let pro of listProduct">
-        <div class="relative ">
-            <img  src="{{pro.images}}" class="w-full" />
-
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition ">
-                <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex  items-center justify-center ">
-                    <i class="fas fa-search"></i>
-                </a>
-                <a  class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center ">
-                    <i class="fas fa-heart"></i>
-                </a>
-            </div>
+<div  >
+    <div class="grid lg:grid-cols-4 sm:grid-cols-3 gap-6" *ngIf="listProduct.length === 0 || listProduct === null; else productLoop">
+        <!-- Hiển thị tất cả sản phẩm khi selectedProducts rỗng hoặc null -->
+<div class="group rounded bg-white shadow overflow-hidden product-list " *ngFor="let pro of products">
+    <div class="relative "  >
+        <div class="container" >
+            <img  src="{{pro.thumbnail}}"   style="height: 160px; "/>
         </div>
+        
 
-        <div class="pt-4 pb-3 px-4 ">
-            <div style="display: flex; flex-direction: column;  height: 3rem ">
-                <a routerLink="/view/{{pro.id}}" href="#">
-                    <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition" style="word-wrap: break-word; overflow-wrap: break-word;">
-                        {{pro.model}}
-                    </h6>
-                </a>
-            </div>
-
-            <div class="flex items-baseline mb-1 space-x-2 ">
-                <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discountPrice | currency:".":"":"6.0"}} VNĐ</p>
-            </div>
-            <div class="flex items-baseline mb-1 space-x-2 ">
-             <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"6.0"}} VNĐ </p>
-         </div>
-            <div class="flex items-center ">
-                <div class="flex gap-1 text-sm text-yellow-400 ">
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                    <span><i class="fas fa-star"></i> </span>
-                </div>
-                <div class="text-xs text-gray-500 ml-3 ">(120)</div>
-
-            </div>
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition ">
+            <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex  items-center justify-center ">
+                <i class="fas fa-search"></i>
+            </a>
+            <a (click)="addToWish(pro)" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center ">
+                <i class="fas fa-heart"></i>
+            </a>
         </div>
-
-        <a (click)="addToCart(pro)"  class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium 
-        hover:bg-transparent hover:text-primary transition ">
-               Add To Cart
-          </a>
     </div>
 
-   </div>     
+    <div class="pt-4 pb-3 px-4 ">
+        <div style="display: flex; flex-direction: column;  height: 3rem ">
+            <a routerLink="/view/{{pro.id}}" >
+                <h6 class="truncate-overflow-20 uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition" style="word-wrap: break-word; overflow-wrap: break-word;">
+                    {{pro.model}}
+                </h6>
+            </a>
+        </div>
+
+        <div class="flex items-baseline mb-1 space-x-2 ">
+            <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discountPrice | currency:".":"":"1.0"}} VNĐ</p>
+        </div>
+        <div class="flex items-baseline mb-1 space-x-2 ">
+            <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"1.0"}} VNĐ </p>
+        </div>
+        <div class="flex items-center ">
+            <div class="flex gap-1 text-sm text-yellow-400 ">
+                <div *ngFor="let starInfo1 of pro.starsInfo1">
+                    <span class="star" [ngClass]="{'filled': starInfo1.filled, 'half-filled': starInfo1.half, 'no-fill': starInfo1.noFill}"></span>
+                </div>
+            </div>
+            <div class="text-xs text-center text-gray-500 ml-3">{{ pro.ratingProduct.length }} Reviews</div>
+
+        </div>
+    </div>
+
+    <a (click)="addToCart(pro)" class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium 
+    hover:bg-transparent hover:text-primary transition ">
+           Add To Cart
+      </a>
+</div>
+      </div>
+    </div>
+      <ng-template #productLoop>
+        <div class="grid lg:grid-cols-4 sm:grid-cols-3 gap-6" >
+        <!-- Hiển thị sản phẩm từ selectedProducts khi có -->
+        <div class="group rounded bg-white shadow overflow-hidden product-list " *ngFor="let pro of listProduct">
+            <div class="relative "  >
+                <div class="container" >
+                    <img  src="{{pro.thumbnail}}"   style="height: 160px; "/>
+                </div>
+                
+        
+                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition ">
+                    <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex  items-center justify-center ">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <a (click)="addToWish(pro)" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center ">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                </div>
+            </div>
+        
+            <div class="pt-4 pb-3 px-4 ">
+                <div style="display: flex; flex-direction: column;  height: 3rem ">
+                    <a routerLink="/view/{{pro.id}}" >
+                        <h6 class="truncate-overflow-20 uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition" style="word-wrap: break-word; overflow-wrap: break-word;">
+                            {{pro.model}}
+                        </h6>
+                    </a>
+                </div>
+        
+                <div class="flex items-baseline mb-1 space-x-2 ">
+                    <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discountPrice | currency:".":"":"1.0"}} VNĐ</p>
+                </div>
+                <div class="flex items-baseline mb-1 space-x-2 ">
+                    <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"1.0"}} VNĐ </p>
+                </div>
+                <div class="flex items-center ">
+                    <div class="flex gap-1 text-sm text-yellow-400 ">
+                        <div *ngFor="let starInfo of pro.starsInfo">
+                            <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-center text-gray-500 ml-3">{{ pro.ratingProduct.length }} Reviews</div>
+        
+                </div>
+            </div>
+        
+            <a (click)="addToCart(pro)" class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium 
+            hover:bg-transparent hover:text-primary transition ">
+                   Add To Cart
+              </a>
+        </div>
+    </div>
+      </ng-template>
+      
+    
+
+
+
+
+
+
+<!-- <div  *ngFor="let pro of listProduct">
+    <div class="relative "  >
+        <div class="container" >
+            <img  src="{{pro.thumbnail}}"   style="height: 160px; "/>
+        </div>
+        
+
+        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition ">
+            <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex  items-center justify-center ">
+                <i class="fas fa-search"></i>
+            </a>
+            <a class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center ">
+                <i class="fas fa-heart"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="pt-4 pb-3 px-4 ">
+        <div style="display: flex; flex-direction: column;  height: 3rem ">
+            <a routerLink="/view/{{pro.id}}" >
+                <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition" style="word-wrap: break-word; overflow-wrap: break-word;">
+                    {{pro.model}}
+                </h6>
+            </a>
+        </div>
+
+        <div class="flex items-baseline mb-1 space-x-2 ">
+            <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discountPrice | currency:".":"":"1.0"}} VNĐ</p>
+        </div>
+        <div class="flex items-baseline mb-1 space-x-2 ">
+            <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"1.0"}} VNĐ </p>
+        </div>
+        <div class="flex items-center ">
+            <div class="flex gap-1 text-sm text-yellow-400 ">
+                <div *ngFor="let starInfo of pro.starsInfo">
+                    <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
+                </div>
+            </div>
+            <div class="text-xs text-center text-gray-500 ml-3">{{ pro.count }} Reviews</div>
+
+        </div>
+    </div>
+
+    <a (click)="addToCart(pro)" class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium 
+    hover:bg-transparent hover:text-primary transition ">
+           Add To Cart
+      </a>
+</div> -->

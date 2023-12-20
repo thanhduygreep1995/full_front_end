@@ -1,0 +1,346 @@
+{
+  "header": {
+    "wisth": "Yêu thích",
+    "cart": "Giỏ hàng",
+    "search": "Tìm kiếm",
+    "searchSubmit": "Tìm",
+    "account": "Tài khoản"
+  },
+  "navbar": {
+    "categoty": "Tất cả danh mục",
+    "home": "Trang chủ",
+    "shop": "Cửa hàng",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản sử dụng",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất",
+    "greeting": "Xin chào"
+  },
+  "about_us": {
+    "about_us": "Vê chúng tôi",
+    "history_and_development": {
+      "title": "Lịch Sử và Phát Triển Của Cửa Hàng",
+      "content": [
+        {
+          "text": "Ngày Thành Lập: Vào ngày 9 tháng 9 năm 2023, chúng tôi bắt đầu hành trình của mình với niềm đam mê về công nghệ và mong muốn đem đến những sản phẩm tốt nhất cho khách hàng."
+        },
+        {
+          "text": "Những Bước Phát Triển Quan Trọng: Trải qua hành trình phát triển, chúng tôi đã mở rộng sản phẩm từ các dòng điện thoại thông minh đến các thiết bị điện tử thông minh khác như đồng hồ thông minh và máy tính bảng. Đối tác chiến lược và mạng lưới phân phối của chúng tôi đã được mở rộng trên toàn quốc, đem lại sự tiện lợi và sự tin cậy cho khách hàng."
+        },
+        {
+          "text": "Sứ Mệnh và Tầm Nhìn: Chúng tôi cam kết đem đến công nghệ tiên tiến nhất, dịch vụ tận tâm và trải nghiệm mua sắm thú vị nhất cho khách hàng. Tầm nhìn của chúng tôi là trở thành người dẫn đầu trong việc cung cấp những giải pháp công nghệ sáng tạo và hiệu quả."
+        }
+      ]
+    },
+    "highlights": {
+      "title": "Các Điểm Nổi Bật",
+      "content": [
+        {
+          "text": "Sản Phẩm và Dịch Vụ: Tại chúng tôi, bạn sẽ tìm thấy một loạt các sản phẩm từ các thương hiệu nổi tiếng nhất trên thị trường. Từ những chiếc điện thoại di động chất lượng đến các thiết bị điện tử thông minh và phụ kiện tiện ích, mọi sản phẩm đều được chúng tôi lựa chọn kỹ lưỡng để đáp ứng nhu cầu của khách hàng."
+        },
+        {
+          "text": "Tính Năng Nổi Bật: Được thiết kế với những tính năng độc đáo, hiệu suất cao và công nghệ tiên tiến nhất, các sản phẩm của chúng tôi mang đến trải nghiệm sử dụng tuyệt vời và tiện ích cho người dùng."
+        },
+        {
+          "text": "Chất Lượng và Cam Kết: Chúng tôi cam kết với chất lượng sản phẩm và dịch vụ, cũng như chính sách bảo hành uy tín và hỗ trợ khách hàng tận tâm."
+        },
+        {
+          "text": "Đối Tác và Thương Hiệu: Đối tác chiến lược của chúng tôi là những thương hiệu uy tín hàng đầu, mang lại sự đa dạng và chất lượng tối đa cho khách hàng."
+        }
+      ]
+    },
+    "support_and_reviews": {
+      "title": "Thông Tin Hỗ Trợ và Đánh Giá",
+      "content": [
+        {
+          "text": "Hỗ Trợ Khách Hàng: Chúng tôi cung cấp dịch vụ hỗ trợ 24/7 thông qua số điện thoại, email và chat trực tuyến, sẵn sàng giải đáp mọi thắc mắc của khách hàng."
+        },
+        {
+          "text": "Đánh Giá và Phản Hồi: Sự tin cậy của chúng tôi được minh chứng qua đánh giá tích cực từ khách hàng, đó là động lực lớn để chúng tôi tiếp tục cải thiện và phục vụ tốt hơn."
+        }
+      ]
+    },
+    "news_and_updates": {
+      "title": "Tin Tức và Công Nghệ Mới",
+      "content": [
+        {
+          "text": "Cập Nhật Công Nghệ: Trang web của chúng tôi luôn cập nhật thông tin về các xu hướng, công nghệ mới và sự kiện quan trọng trong ngành công nghệ."
+        },
+        {
+          "text": "Sự Kiện và Khuyến Mãi: Chúng tôi thường xuyên tổ chức các sự kiện và chương trình khuyến mãi để tri ân khách hàng và đem đến các ưu đãi đặc biệt."
+        }
+      ]
+    },
+    "policies_and_legal_info": {
+      "title": "Chính Sách và Thông Tin Pháp Lý",
+      "content": [
+        {
+          "text": "Chính Sách Bảo Mật: Chúng tôi cam kết bảo vệ thông tin cá nhân của khách hàng theo chính sách bảo mật được công khai."
+        },
+        {
+          "text": "Chính Sách Đổi Trả và Bảo Hành: Cung cấp thông tin chi tiết về quy định đổi trả, bảo hành sản phẩm để khách hàng yên tâm khi mua sắm."
+        },
+        {
+          "text": "Thông Tin Pháp Lý: Các thông tin liên quan đến bản quyền, điều khoản và điều kiện sử dụng trang web, đảm bảo sự minh bạch và uy tín trong kinh doanh."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "contact_us": "Liên hệ chúng tôi",
+    "contact_info": "THÔNG TIN LIÊN HỆ",
+    "store_name": "CỬA HÀNG CÔNG NGHỆ ĐIỆN TỬ EGU",
+    "address": "Địa chỉ:",
+    "phone": "Điện thoại:",
+    "hotline": "Hotline:",
+    "fax": "Fax:",
+    "send_contact_information": "Gửi thông tin liên hệ",
+    "contact_feedback": "Liên hệ",
+    "name": "Họ tên",
+    "address_field": "Địa chỉ",
+    "email_field": "Email",
+    "phone_field": "Điện thoại",
+    "title_field": "Tiêu đề",
+    "content_field": "Nội dung",
+    "send_button": "Gửi",
+    "description": "Xin vui lòng điền các yêu cầu vào mẫu dưới đây và gửi cho chúng tôi. Chúng tôi sẽ trả lời bạn ngay sau khi nhận được. Xin chân thành cảm ơn!"
+  },
+  "terms": {
+    "term_use": "Điều khoản và điều kiện",
+    "termsConditions": {
+      "title": "Điều khoản & Điều kiện",
+      "privacyPolicy": {
+        "heading": "Chính sách Bảo mật",
+        "content": [
+          "Chào mừng Quý Khách Hàng đến với EGU STORE. Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn và sử dụng nó một cách có trách nhiệm để cung cấp trải nghiệm mua sắm tốt nhất.",
+          "Dưới đây là các điểm chính của Chính sách Bảo mật của chúng tôi:"
+        ],
+        "sections": [
+          {
+            "title": "1. Thu thập thông tin khách hàng",
+            "points": [
+              "Để sử dụng dịch vụ của chúng tôi, Quý Khách Hàng cần cung cấp một số thông tin cá nhân cần thiết.",
+              "Thông tin này giúp chúng tôi xác định giao hàng và thanh toán một cách chính xác."
+            ]
+          },
+          {
+            "title": "2. Sử dụng thông tin",
+            "points": [
+              "Thông tin cá nhân của bạn được sử dụng để cung cấp dịch vụ tốt nhất, bao gồm gửi bản tin, hỗ trợ khách hàng và cải thiện chất lượng dịch vụ.",
+              "Chúng tôi sử dụng thông tin để giải quyết các vấn đề phát sinh và ngăn chặn vi phạm pháp luật."
+            ]
+          },
+          {
+            "title": "3. Chia sẻ thông tin",
+            "points": [
+              "Thông tin cá nhân không bao giờ được chia sẻ, trừ khi có yêu cầu từ cơ quan pháp luật hoặc khi cần bảo vệ quyền lợi của cả người dùng và EGU STORE.",
+              "Chúng tôi chỉ chia sẻ thông tin khi có sự đồng ý của Quý Khách Hàng hoặc trong những trường hợp cụ thể được thông báo trước."
+            ]
+          },
+          {
+            "title": "4. Bảo mật thông tin khách hàng",
+            "points": [
+              "Quý Khách Hàng cũng đóng vai trò quan trọng trong việc bảo vệ thông tin cá nhân của mình bằng cách duy trì an toàn cho mật khẩu và thoát khỏi tài khoản khi sử dụng chung máy tính.",
+              "Chúng tôi cam kết không tiết lộ thông tin cá nhân của Quý Khách Hàng vì mục đích thương mại."
+            ]
+          },
+          {
+            "title": "Liên hệ",
+            "content": [
+              "Nếu bạn có bất kỳ thắc mắc hay đóng góp nào liên quan đến Chính sách Bảo mật của chúng tôi, vui lòng liên hệ qua số điện thoại hoặc email dưới đây:",
+              "Điện thoại: 0908 77 00 95 – Email: edgu1707@gmail.com",
+              "Lưu ý: Chính sách bảo mật thông tin khách hàng của EGU STORE chỉ được áp dụng tại http://www.EGUSTORE.com/. Nó không bao gồm hoặc liên quan đến các bên thứ ba khác đặt quảng cáo hoặc có liên kết tại EGUSTORE."
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "banner": {
+    "beforeTitle": "Bộ Sưu Tập Tốt Nhất Cho",
+    "afterTitle": "Trang Trí Nhà Cửa",
+    "button": "Mua Ngay"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "Giỏ hàng"
+    },
+    "ProductCart": {
+      "product": "Sản phẩm",
+      "quantity": "Số lượng",
+      "total": "Tổng cộng",
+      "orderSummary": "Tóm tắt đơn hàng",
+      "totalAmount": "Tổng cộng",
+      "processToCheckout": "Tiến hành thanh toán"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "Thanh toán"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "Thanh toán",
+      "fullName": "Họ và tên",
+      "streetAddress": "Địa chỉ",
+      "phoneNumber": "Số điện thoại",
+      "emailAddress": "Địa chỉ Email",
+      "paymentMethod": "Phương thức thanh toán",
+      "payInCash": "Thanh toán bằng tiền mặt",
+      "vnPay": "VnPay",
+      "note": "Ghi chú",
+      "apply": "Áp dụng",
+      "placeOrder": "Đặt hàng",
+      "total": "Tổng cộng:",
+      "coupon": "Mã giảm giá"
+    }
+  },
+  "login": {
+    "heading": "Đăng nhập",
+    "title": "Đăng nhập nếu bạn là khách hàng cũ",
+    "email": "Địa chỉ email",
+    "password": "Mật khẩu",
+    "checkbox": "Ghi nhớ thông tin đăng nhập",
+    "submit": "Đăng nhập",
+    "forgot": "Quên mật khẩu?"
+  },
+  "orLoginInWith": {
+    "title": "HOẶC ĐĂNG NHẬP VỚI",
+    "register": "Đăng ký ngay",
+    "dontHaveAccount": "Chưa có tài khoản?"
+  },
+  "forgotPassword": {
+    "heading": "Quên mật khẩu",
+    "title": "Nhập email của bạn để thiết lập lại mật khẩu của bạn",
+    "emailLabel": "Địa chỉ email",
+    "emailRequiredError": "Email là bắt buộc!",
+    "emailFormatError": "Định dạng email không hợp lệ!",
+    "submitButtonText": "Gửi"
+  },
+  "resetPassword": {
+    "heading": "Đặt lại mật khẩu",
+    "title": "Nhập mã thông báo đặt lại và mật khẩu mới của bạn",
+    "resetPasswordTokenLabel": "Mã thông báo đặt lại mật khẩu",
+    "resetPasswordTokenInputPlaceholder": "Nhập mã thông báo đặt lại mật khẩu",
+    "resetPasswordTokenRequiredError": "Mã thông báo đặt lại mật khẩu là bắt buộc!",
+    "newPasswordLabel": "Mật khẩu mới",
+    "newPasswordInputPlaceholder": "Nhập mật khẩu mới",
+    "newPasswordRequiredError": "Mật khẩu mới là bắt buộc!",
+    "newPasswordMinLengthError": "Mật khẩu mới phải có ít nhất 6 ký tự!",
+    "submitButtonText": "Đặt lại mật khẩu"
+  },
+  "emptyCart": {
+    "title": "KHÔNG CÓ SẢN PHẨM NÀO TRONG GIỎ HÀNG CỦA BẠN",
+    "message": "Cảm ơn bạn đã ghé thăm trang web của chúng tôi",
+    "continueShoppingButtonText": "TIẾP TỤC MUA SẮM"
+  },
+  "accountSidebar": {
+    "greeting": "Xin Chào",
+    "title": "Quản lý tài khoản",
+    "profileInformation": "Thông tin cá nhân",
+    "changePassword": "Đổi mật khẩu",
+    "myActivities": "Hoạt động của tôi",
+    "orderHistory": "Lịch sử mua hàng",
+    "myReview": "Đánh giá của tôi",
+    "paymentMethod": "Phương thức thanh toán",
+    "voucher": "Mã giảm giá",
+    "wishlist": "Yêu thích của tôi",
+    "logout": "Đăng xuất"
+  },
+  "changePassword": {
+    "title": "Đổi mật khẩu",
+    "currentPasswordLabel": "Mật khẩu hiện tại",
+    "currentPasswordPlaceholder": "Nhập mật khẩu hiện tại",
+    "currentPasswordRequiredError": "Mật khẩu hiện tại là bắt buộc!",
+    "newPasswordLabel": "Mật khẩu mới",
+    "newPasswordPlaceholder": "Nhập mật khẩu mới",
+    "newPasswordRequiredError": "Mật khẩu mới là bắt buộc!",
+    "newPasswordMinLengthError": "Mật khẩu mới phải có ít nhất 6 ký tự!",
+    "confirmPasswordLabel": "Xác nhận mật khẩu",
+    "confirmPasswordPlaceholder": "Xác nhận mật khẩu mới",
+    "confirmPasswordRequiredError": "Xác nhận mật khẩu là bắt buộc!",
+    "confirmPasswordMismatchError": "Xác nhận mật khẩu không khớp với mật khẩu mới!",
+    "saveButton": "Lưu thay đổi"
+  },
+  "editProfile": {
+    "title": "Chỉnh sửa thông tin",
+    "fullNameLabel": "Tên hiển thị",
+    "fullNameReadOnlyNotice": "Sử dụng tên thật để dễ dàng quản lý và xác định",
+    "personalInformationTitle": "Thông tin cá nhân",
+    "firstNameLabel": "Họ",
+    "lastNameLabel": "Tên",
+    "dateOfBirthLabel": "Ngày sinh",
+    "phoneNumberLabel": "Số điện thoại",
+    "saveButton": "Lưu thay đổi",
+    "cancelButton": "Hủy bỏ"
+  },
+  "wishlistProduct": {
+    "my_wishlist": "Yêu thích của tôi",
+    "title": "KHÔNG CÓ SẢN PHẨM NÀO TRONG YÊU THÍCH CỦA BẠN",
+    "message": "Cảm ơn bạn đã ghé thăm trang web của chúng tôi",
+    "continueShoppingButtonText": "TIẾP TỤC MUA SẮM",
+    "addToCartButtonText": "Thêm vào giỏ hàng"
+  },
+  "feedbackReview": {
+    "my_review": "MY REVIEW",
+    "title": "Trang đánh giá phản hồi",
+    "viewButton": "Xem"
+  },
+  "voucherPage": {
+    "addVoucherForm": {
+      "codeVoucherLabel": "Mã giảm giá",
+      "codeVoucherPlaceholder": "Nhập mã tại đây",
+      "applyButton": "Áp dụng"
+    },
+    "myVouchersTitle": "Mã giảm giá của tôi",
+    "voucherList": {
+      "beforeTitle": "Mã giảm giá ",
+      "afterTitle": " cho tất cả sản phẩm.",
+      "activeVoucherStatus": "Sử dụng ngay",
+      "inactiveVoucherStatus": "Không thể dùng",
+      "usedVoucherStatus": "Đã sử dụng",
+      "expiredVoucherStatus": "Hết hạn: ",
+      "storeAppLabel": "Chỉ có thể áp dụng tại ứng dụng Egu_Store.",
+      "pagination": {
+        "previousButton": "Trước",
+        "pageText": "Trang",
+        "ofText": "của",
+        "nextButton": "Tiếp"
+      },
+      "noVouchersMessage": "Không có voucher nào."
+    }
+  },
+  "footer": {
+    "infor": "Khách hàng phải rất quan trọng, khách hàng sẽ được khách hàng theo dõi.",
+    "solutions": {
+      "title": "Giải pháp",
+      "marketing": "Marketing",
+      "analytics": "Phân tích",
+      "commerce": "Thương mại",
+      "insights": "Thông tin chi tiết"
+    },
+    "support": {
+      "title": "Hỗ trợ",
+      "pricing": "Giá cả",
+      "documentation": "Tài liệu",
+      "guides": "Hướng dẫn",
+      "apiStatus": "Tình trạng API"
+    },
+    "company": {
+      "title": "Công ty",
+      "about": "Về chúng tôi",
+      "blog": "Blog",
+      "jobs": "Công việc",
+      "service": "Dịch vụ"
+    },
+    "legal": {
+      "title": "Pháp lý",
+      "claim": "Yêu cầu",
+      "privacy": "Quyền riêng tư",
+      "policy": "Chính sách",
+      "terms": "Điều khoản"
+    },
+    "copyright": "© Easy Learning 2022"
+  }
+}

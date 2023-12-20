@@ -112,13 +112,12 @@ export class BrandTableComponent implements OnInit {
   }
 
   onUpdate(id: number): void {
-    this.router.navigate(['/brand-edition', id]);
+    this.router.navigate(['admin/brand-edition', id]);
     this.buttonService.setShowButton5(true)
   }
 
   fnDeleteBrand(id: any) {
-    const brandToDelete = this.brands.find((brand: { id: any; }) => brand.id == id);
-    this.isSpinning = true;
+    const brandToDelete = this.brands.find((brand: { id: any; }) => brand.id == id);   
     if (brandToDelete) {
       swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
@@ -129,6 +128,7 @@ export class BrandTableComponent implements OnInit {
         cancelButtonText: 'No, cancel!',
         reverseButtons: false
       }).then((result) => {
+        this.isSpinning = true;
         if (result.isConfirmed) {
           // Gửi yêu cầu xóa đến backend
           this.bS.deleteBrand(id).subscribe(() => {

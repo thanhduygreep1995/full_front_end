@@ -1,234 +1,185 @@
-<!-- ---- Mobile Menu Bar ----- -->
 <body>
-     
-
-    <div
-         class="fixed w-full border-t border-gray shadow-sm bg-white py-3 bottom-0 left-0 flex justify-around items-start px-6 lg:hidden z-40  ">
-    
-         <a href="#" class="block text-center text-gray-700 hover:text-primary transition relative ">
-              <div class="text-2xl" id="menuBar">
-                   <i class="fas fa-bars"></i>
-              </div>
-              <div class="text-xs leading-3">Menu</div>
-         </a>
-    
-         <a href="" class="block text-center text-gray-700 hover:text-primary transition relative ">
-              <div class="text-2xl">
-                   <i class="fas fa-list-ul"></i>
-              </div>
-              <div class="text-xs leading-3">Category</div>
-         </a>
-    
-         <a href="" class="block text-center text-gray-700 hover:text-primary transition relative ">
-              <div class="text-2xl">
-                   <i class="fas fa-search"></i>
-              </div>
-              <div class="text-xs leading-3">Search</div>
-         </a>
-    
-         <a href="" class="block text-center text-gray-700 hover:text-primary transition relative ">
-              <span
-                   class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center tw-bg-primary text-white text-xs ">5
-              </span>
-              <div class="text-2xl">
-                   <i class="fas fa-shopping-bag"></i>
-              </div>
-              <div class="text-xs leading-3">Cart</div>
-         </a>
-    
+  <!-- ---- Start Banner  ----- -->
+  <div class="bg-cover bg-no-repeat bg-center py-56 relative"
+    style="background-image: url('../assets/images/banner_smartphone.png');">
+    <div class="container">
+      <!-- ---- Banner Content   ----- -->
+      <h1 class="xl:text-6xl md:text-5xl text-4xl text-gray-800 font-semibold mb-4 ">
+        {{'banner.beforeTitle'|translate}} <br class="hidden sm:block ">{{'banner.afterTitle'|translate}}
+      </h1>
+      <p class="text-base text-gray-600 leading-6 ">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate <br class="hidden sm:block "> rhoncus
+        pellentesque id integer neque, vel accumsan dolor diam.
+      </p>
+      <div class="mt-12">
+        <a routerLink="/shop"
+          class="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition ">
+          {{'banner.button'|translate}}
+        </a>
+      </div>
+      <!-- ---- Banner Content End  ----- -->
     </div>
-    
-    <!-- ----End Mobile Menu Bar ----- -->
-    
-    <!-- ---- Mobile Side Bar ----- -->
-    
-    <div class="fixed left-0 top-0 w-full h-full z-50 bg-black bg-opacity-30 shadow hidden " >
-         <div class="absolute left-0 top-0 w-72 h-full z-50 bg-white shadow">
-              <div id="closeMenu" class="text-gray-400 hover:text-primary text-lg absolute right-3 top-3 cursor-pointer ">
-                   <i class="fas fa-times"></i>
-              </div>
-              <h3 class="text-xl font-semibold text-white mb-2 font-roboto pl-4 pt-4 pb-4 tw-bg-primary ">Menu</h3>
-              <div>
-                   <a href="index.html" class="block px-4 py-4 font-medium transition hover:bg-gray-200 ">
-                        Home
-                   </a>
-                   <a href="index.html" class="block px-4 py-4 font-medium transition hover:bg-gray-200 ">
-                        Shop
-                   </a>
-    
-                   <a href="index.html" class="block px-4 py-4 font-medium transition hover:bg-gray-200 ">
-                        About Us
-                   </a>
-                   <a href="index.html" class="block px-4 py-4 font-medium transition hover:bg-gray-200 ">
-                        Contact Us
-                   </a>
-              </div>
-    
-         </div>
-    
-    </div>
-    
-    <!-- ---- End Mobile Side Bar ----- -->
-    
-    
-    <!-- ---- Start Banner  ----- -->
-    <div class="bg-cover bg-no-repeat bg-center py-56 relative"
-         style="background-image: url('../assets/images/banner_smartphone.png');">
-         <div class="container">
-              <!-- ---- Banner Content   ----- -->
-              <h1 class="xl:text-6xl md:text-5xl text-4xl text-gray-800 font-semibold mb-4 ">
-                   Best Collection For <br class="hidden sm:block "> Home Decoration
-              </h1>
-              <p class="text-base text-gray-600 leading-6 ">
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate <br class="hidden sm:block "> rhoncus
-                   pellentesque
-                   id
-                   integer neque, vel accumsan dolor diam.
-              </p>
-    
-              <div class="mt-12">
-               <a href="shop.html" class="bg-primary border border-primary text-white px-8 py-3 font-medium rounded-md uppercase hover:bg-transparent hover:text-primary transition ">
-                    Shop Now
-               </a>
-              </div>
-              <!-- ---- Banner Content End  ----- -->
-         </div>
-    </div>
-    <!-- ---- End Banner ----- -->
-    <!-- ---- Start Features  ----- -->
-    <div class="container py-16 " style="background-color: #ffffff;">
-         <div class="container py-16 "
-              style="border: 1px solid #f6f5f5; margin-top: 30px;border-radius: 5px;margin-bottom: 25px;">
-              <div class="lg:w-12/12 grid md:grid-cols-3 lg:gap-6 mx-auto justify-center ">
-                   <!-- ---- Single Features  ----- -->
-                   <div
-                        class="border-primary border rounded-sm px-8 lg:px-3 lg:py-6 py-4 flex justify-center items-center gap-5 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
-    
-                        <img src="../assets/images/icons/delivery-van.svg" class="lg:w-12 w-10 h-12 object-contain " />
-                        <div>
-                             <h4 class="font-medium capitalize text-lg ">Free Shipping </h4>
-                             <p class="text-gray-500 text-xs lg:text-sm "> Order Over $200 </p>
-                        </div>
-                   </div>
-                   <!-- ----End  Single Features  ----- -->
-    
-    
-                   <!-- ---- Single Features  ----- -->
-                   <div
-                        class="border-primary border rounded-sm px-8 lg:px-3 lg:py-6 py-4 flex justify-center items-center gap-5 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
-    
-                        <img src="../assets/images/icons/money-back.svg" class="lg:w-12 w-10 h-12 object-contain " />
-                        <div>
-                             <h4 class="font-medium capitalize text-lg ">Money Returns </h4>
-                             <p class="text-gray-500 text-xs lg:text-sm "> 30 Days Money Return </p>
-                        </div>
-                   </div>
-                   <!-- ----End  Single Features  ----- -->
-    
-    
-    
-                   <!-- ---- Single Features  ----- -->
-                   <div
-                        class="border-primary border rounded-sm px-8 lg:px-3 lg:py-6 py-4 flex justify-center items-center gap-5 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
-    
-                        <img src="../assets/images/icons/service-hours.svg" class="lg:w-12 w-10 h-12 object-contain " />
-                        <div>
-                             <h4 class="font-medium capitalize text-lg ">24/7 Support </h4>
-                             <p class="text-gray-500 text-xs lg:text-sm "> Customer Support </p>
-                        </div>
-                   </div>
-                   <!-- ----End  Single Features  ----- -->
-              </div>
-    
-         </div>
-    
-         <!-- ---- End Features  ----- -->
-    
-    
-         <!-- ---- Start Categories  ----- -->
-    
-    <app-type-product></app-type-product>
-         <!-- ---- End Categories  ----- -->
-    
-         <!-- ---- Start Top New Arrival  ----- -->
-    
+  </div>
+  <!-- ---- End Banner ----- -->
+  <!-- ---- Start Features  ----- -->
+  <div class="container">
+    <div class="container py-8" style="border: 1px solid #f6f5f5; margin-top: 30px;border-radius: 5px;margin-bottom: 25px; ">
+        <div class="lg:w-12/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto justify-center">
+            <!-- ---- Single Features  ----- -->
+            <div class="border-primary border rounded-sm px-8 lg:px-3 lg:py-6 py-4 flex justify-center items-center gap-5 transition hover:border-slate-400 hover:bg-gray-200 duration-300 ">
 
-    
-         <!-- ---- End Top New Arrival  ----- -->
-    
-         <!-- ---- Start Add  ----- -->
-         <div class="container pb-16 ">
-              <a href="#">
-                   <img src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/10/banner/C53-720-220-720x220-1.png"
-                        class="w-full" />
-              </a>
-    
-         </div>
-         <!-- ---- End Add  ----- -->
-    
-    
-         <!-- ---- Start  Recomended for you   ----- -->
-    
-         <div class="container pb-16 "
-              style="border: 1px solid #ebe9e9; border-radius: 5px;margin-bottom: 25px; padding: 20px;">
-              <h2 class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6  ">Recomended For You </h2>
-    
-              <!-- ---- Start Single Product  ----- -->
-    
-              <div class="grid lg:grid-cols-5 sm:grid-cols-3 gap-6">
-                <div class="group rounded bg-white shadow overflow-hidden " *ngFor="let pro of listSP">
-                    <div class="relative ">
-                        <img  src="{{pro.images}}" class="w-full" />
-        
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition ">
-                            <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex  items-center justify-center ">
-                              <i class="fas fa-search"></i>
-                            </a>
-                            <a  (click)="addToWish(pro)"  class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center ">
-                                <i class="fas fa-heart"></i>
-                            </a>
-
-
-
-                        </div>
-                    </div>
-        
-                    <div class="pt-4 pb-3 px-4 ">
-                        <div style="display: flex; flex-direction: column;  height: 3rem ">
-                            <a href ="/view/{{pro.id}}" >
-                                <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition" style="word-wrap: break-word; overflow-wrap: break-word;">
-                                    {{pro.model}}
-                                </h6>
-                            </a>
-                        </div>
-        
-                        <div class="flex items-baseline mb-1 space-x-2 ">
-                            <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discountPrice | currency:".":"":"6.0"}} VNĐ</p>
-                        </div>
-                        <div class="flex items-baseline mb-1 space-x-2 ">
-                         <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"6.0"}} VNĐ </p>
-                     </div>
-                        <div class="flex items-center ">
-                            <div class="flex gap-1 text-sm text-yellow-400 ">
-                                <span><i class="fas fa-star"></i> </span>
-                                <span><i class="fas fa-star"></i> </span>
-                                <span><i class="fas fa-star"></i> </span>
-                                <span><i class="fas fa-star"></i> </span>
-                                <span><i class="fas fa-star"></i> </span>
-                            </div>
-                            <div class="text-xs text-gray-500 ml-3 ">(120)</div>
-        
-                        </div>
-                    </div>
-        
-                    <a (click)="addToCart(pro)" class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium hover:bg-transparent hover:text-primary transition ">
-                           Add To Cart
-                      </a>
+                <img src="../assets/images/icons/delivery-van.svg" class="lg:w-12 w-10 h-12 object-contain " />
+                <div>
+                    <h4 class="font-medium capitalize text-lg ">Free Shipping </h4>
+                    <p class="text-gray-500 text-xs lg:text-sm "> Order Over $200 </p>
                 </div>
-        
-               </div>        
-              <!-- ---- End Single Product  ----- -->
-              <!-- commnent -->
-         </div>
+            </div>
+            <!-- ----End  Single Features  ----- -->
+
+
+            <div
+            class="border-primary border rounded-sm px-8 lg:px-3 lg:py-6 py-4 flex justify-center items-center gap-5 transition hover:border-slate-400 hover:bg-gray-200 duration-300">
+            <img src="../assets/images/icons/money-back.svg" class="lg:w-12 w-10 h-12 object-contain" />
+            <div>
+              <h4 class="font-medium capitalize text-base">Money Returns </h4>
+              <p class="text-gray-500 text-xs lg:text-sm text-base"> 30 Days Money Return </p>
+            </div>
+          </div>
+          <!-- ----End  Single Features  ----- -->
+          <!-- ---- Single Features  ----- -->
+          <div
+            class="border-primary border rounded-sm px-8 lg:px-3 lg:py-6 py-4 flex justify-center items-center gap-5 transition hover:border-slate-400 hover:bg-gray-200 duration-300">
+            <img src="../assets/images/icons/secure-payment.svg" class="lg:w-12 w-10 h-12 object-contain" />
+            <div>
+              <h4 class="font-medium capitalize text-base">Warranty Policy </h4>
+              <p class="text-gray-500 text-xs lg:text-sm text-base"> 12 month warranty, 15 days return </p>
+            </div>
+          </div>
+          <!-- ----End  Single Features  ----- -->
+          <!-- ---- Single Features  ----- -->
+          <div
+            class="border-primary border rounded-sm px-8 lg:px-3 lg:py-6 py-4 flex justify-center items-center gap-5 transition hover:border-slate-400 hover:bg-gray-200 duration-300">
+            <img src="../assets/images/icons/service-hours.svg" class="lg:w-12 w-10 h-12 object-contain" />
+            <div>
+              <h4 class="font-medium capitalize text-base">24/7 Support </h4>
+              <p class="text-gray-500 text-xs lg:text-sm text-base"> Customer Support </p>
+            </div>
+          </div>
+          <!-- ----End  Single Features  ----- -->
+        </div>
+
     </div>
-    
+
+    <!-- ---- End Features  ----- -->
+</div>
+
+  <!-- ---- Start Categories  ----- -->
+  <app-type-product></app-type-product>
+  <!-- ---- End Categories  ----- -->
+
+  <!--Start Top New -->
+  <app-new-product></app-new-product>
+  <!--End Top New -->
+
+  <!-- ---- Start Top New Arrival  ----- -->
+  <app-top-product></app-top-product>
+  <!-- ---- End Top New Arrival  ----- -->
+
+  <!-- ---- Start Add  ----- -->
+  <div class="container pb-16 ">
+    <a href="#">
+      <img
+        src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2023/10/banner/C53-720-220-720x220-1.png"
+        class="w-full" />
+    </a>
+  </div>
+  <!-- ---- End Add  ----- -->
+
+
+  <!-- ---- Start  Recomended for you   ----- -->
+  <!-- <div class="py-8 container"> -->
+    <div class="container pb-16 " >
+      <!-- <h2 class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6  ">Recomended For You </h2> -->
+      <div class="flex items-center py-4">
+        <hr class="flex-grow border-b">
+        <h3 class="px-4 text-gray-900 font-semibold text-xl uppercase">Recomended For You</h3>
+        <hr class="flex-grow border-b">
+      </div>
+      <!-- ---- Start Single Product  ----- -->
+      <div class="card">
+        <p-carousel [value]="listSP" [numVisible]="5" [numScroll]="1" [circular]="true"
+          [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
+          <ng-template let-pro pTemplate="item">
+            <div class="surface-border border-round custom-carousel-item">
+              <div class="group rounded bg-white shadow overflow-hidden relative">
+                <div>
+                <span style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;" class="absolute top-1 left-1 z-50 justify-items-center  bg-red-500 text-white text-sm font-bold rounded-full">-{{discountPercentage(pro.price,pro.discount)}}%</span>
+                  <div class="relative group">
+                    <div style="height: 220px; display: flex; align-items: center; justify-content: center;"
+                      class="align-text-center">
+                      <img src="{{pro.thumbnail}}" class="w-full p-5" />
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                      <a href="/view/{{pro.id}}"
+                        class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                        <i class="fas fa-search"></i>
+                      </a>
+                      <a (click)="addToWish(pro)"
+                        class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                        <i class="fas fa-heart"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Rest of your content -->
+                </div>
+
+                <div class="p-5">
+                  <div style="display: flex; flex-direction: column;  height: 3rem ">
+                    <a href="/view/{{pro.id}}" (click)="onChangeView(pro.id)">
+                      <h6
+                        class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition truncate-overflow-20"
+                        style="word-wrap: break-word; overflow-wrap: break-word;">
+                        {{pro.model}}
+                      </h6>
+                    </a>
+                  </div>
+
+                  <div class="flex items-baseline mb-1 space-x-2 ">
+                    <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discount
+                      | currency:".":"":"1.0"}} VNĐ</p>
+                  </div>
+                  <div class="flex items-baseline mb-1 space-x-2 ">
+                    <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"1.0"}}
+                      VNĐ </p>
+                  </div>
+                  <div>
+                    <div class="flex justify-between" class="flex items-center" >
+                      <div class="flex gap-1 text-md">
+                        <div *ngFor="let starInfo of pro.starsInfo">
+                          <span class="star"
+                            [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
+                        </div>
+                      </div>
+                      <div class="text-xs text-center text-gray-500 flex items-center ml-3">{{ pro.count }} Reviews</div>
+
+                    </div>
+                  </div>
+
+                </div>
+                <a (click)="addToCart(pro)"
+                  class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium hover:bg-transparent hover:text-primary transition ">
+                  Add To Cart
+                </a>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+      <!-- ---- End Single Product  ----- -->
+      <!-- commnent -->
+    </div>
+  <!-- </div> -->
+  <div class="card flex flex-column align-items-center">
+    <p-scrollTop></p-scrollTop>
+  </div>

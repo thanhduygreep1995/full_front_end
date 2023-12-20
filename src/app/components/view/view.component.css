@@ -3,16 +3,87 @@
     height: 1em;
     display: inline-block;
     background-size: contain;
-  }
-  
-  .filled {
+}
+
+.filled {
     background-image: url('/assets/img/filled-star.svg');
-  }
-  
-  .half-filled {
+}
+
+.half-filled {
     background-image: url('/assets/img/half-filled-star.svg');
+}
+
+.no-fill {
+    background-image: url('/assets/img/no-filled-star.svg');
+}
+
+.custom-carousel-item {
+    margin-left: -5px;
+    /* Adjust this value as needed */
+    margin-right: 4px;
+    /* Adjust this value as needed */
+}
+
+.relative {
+    border-radius: 10PX;
+}
+
+.img-container {
+    width: 600px;
+    height: 800px;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.img-prev {
+    margin-top: 10px;
+    display: flex;
+    overflow: hidden;
+}
+
+.img-slide {
+    /* display: inline-block; */
+    width: 24%;
+    margin: 0 1px;
+    cursor: pointer;
+    opacity: 0.6;
+    display: flex;
+    transition: transform 0.5s ease;
+    width: fit-content;
+}
+
+.active {
+    border: 2px solid #222;
+    opacity: 1;
+}
+
+button[disabled],
+button.disabled {
+  opacity: 0.6; /* Giảm độ trong suốt để làm mờ */
+  cursor: not-allowed; /* Thay đổi kiểu con trỏ khi hover */
+}
+
+button[disabled]:hover,
+button.disabled:hover {
+  opacity: 0.6; /* Giữ mức độ làm mờ khi hover */
+  cursor: not-allowed;
+  /* Các kiểu dáng khác khi hover */
+  background-color: #ccc; /* Ví dụ: đổi màu nền */
+  color: #666; /* Ví dụ: đổi màu chữ */
+  border: 1px solid #999; /* Ví dụ: đổi màu viền */
+}
+.arrow-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
   }
   
-  .no-fill {
-    background-image: url('/assets/img/no-filled-star.svg');
+  .arrow-buttons button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
   }

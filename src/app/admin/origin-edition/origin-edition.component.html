@@ -17,9 +17,8 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
 </div>
 <!-- Main content -->
 <section class="content" *ngIf="!isSpinning" [@fadeInOut]="!isSpinning">
@@ -40,7 +39,7 @@
                                     infoOrigin.controls['country'].invalid &&
                                     infoOrigin.controls['country'].touched
                                     " class="text-danger">
-                                        Country Name is required.
+                                        Country name is required.
                                     </div>
                                 </div>
                             </div>
@@ -49,12 +48,12 @@
                     <hr />
                     <div class="row mx-2 mb-2">
                         <div class="col-12 d-flex flex-wrap justify-content-end">
-                            <button (click)="fnAddOrigin()" [disabled]="ButtonSave" type="button" class="btn btn-primary mx-2">
-                              Save
+                            <button (click)="fnAddOrigin()" [disabled]="ButtonSave" type="button" class="btn mx-2" style="background-color: cadetblue;">
+                                <i class="fa fa-plus"></i>
                             </button>
-                            <button *ngIf="buttonService.getShowButton6()" (click)="fnUpdateOrigin()" [disabled]="ButtonUpdate" [disabled]="" type="button" class="btn btn-primary mx-2">
-                              Update
-                            </button>
+                            <button *ngIf="buttonService.getShowButton6()" (click)="fnUpdateOrigin()" [disabled]="ButtonUpdate" type="button" class="btn mx-2" style="background-color: cornflowerblue;">
+                                <i class="fa fa-pencil"></i>
+                              </button>
                         </div>
                     </div>
                 </form>

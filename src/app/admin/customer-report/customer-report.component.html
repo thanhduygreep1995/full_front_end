@@ -3,117 +3,109 @@
 <!-- Content Header (Page header) -->
 <section class="content-header" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
     <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Customer Report</h1>
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Customer Report</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Customer Report</li>
+                </ol>
+            </div>
         </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Customer Report</li>
-          </ol>
-        </div>
-      </div>
     </div>
     <!-- /.container-fluid -->
-  </section>
+</section>
 
-  <!-- Main content -->
-  <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+<!-- Main content -->
+<section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <!-- <div class="card-header">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- <div class="card-header">
               <h3 class="card-title">Select Date To Show Report</h3>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Launch demo modal
               </button>
             </div>  -->
-            <!-- /.card-header -->
-            
-            <div class="card-body">  
-              <table
-                id="example"
-                datatable
-                *ngIf="CustomerReports && CustomerReports.length > 0"
-                [dtOptions]="dtOptions"
-                class="table table-bordered table-striped row-border hover"
-              >
-                <!-- Các cột dữ liệu ở đây -->
-                
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th>Full Name</th>
-                    <th>Revenue</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Birthday</th>
-                    <th>Day Created</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <div id="dataTableContainer">
-                
+                    <!-- /.card-header -->
+
+                    <div class="card-body table-responsive">
+                        <table id="example" datatable *ngIf="CustomerReports && CustomerReports.length > 0" [dtOptions]="dtOptions" class="table table-bordered table-striped row-border hover">
+                            <!-- Các cột dữ liệu ở đây -->
+
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Full Name</th>
+                                    <th>Revenue</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Birthday</th>
+                                    <th>Day Created</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <div id="dataTableContainer">
+
+                            </div>
+                            <tbody>
+                                <tr *ngFor="let b of CustomerReports; let i = index" class="print-hide">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ b.name }}</td>
+                                    <td>{{ b.revenue+" "| currency:",":"":"1.0"}} VNĐ</td>
+                                    <td>{{ b.email }}</td>
+                                    <td>{{ b.phone}}</td>
+                                    <td>{{ b.birth_date| date:'dd/MM/yyyy'}}</td>
+                                    <td>{{ b.day_created| date:'dd/MM/yyyy' }}</td>
+                                    <td>{{ b.status }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <tbody>
-                  <tr *ngFor="let b of CustomerReports; let i = index" class="print-hide">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ b.name }}</td>
-                    <td>{{ b.revenue}}</td>
-                    <td>{{ b.email }}</td>
-                    <td>{{ b.phone}}</td>
-                    <td>{{ b.birth_date}}</td>
-                    <td>{{ b.day_created }}</td>
-                    <td>{{ b.status }}</td>
-                  </tr>
-                </tbody>             
-              </table>
             </div>
-            <!-- /.card-body -->
-          </div>
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+        <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
-  </section>
+</section>
 
-  <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+<section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h3>Chart</h3>
-              <h3 class="card-title">Customer Report</h3>
-            </div> 
-            <!-- /.card-header -->
-            
-            <div class="card-body">
-              <div class="container" *ngIf="isLine" [@fadeIn]="isLine"  width="200px" height="200px">
-                <canvas id="lineChart"></canvas>
-              </div>
-              <div class="container" *ngIf="isPie" [@fadeIn]="isPie" width="200px" height="200px">
-                <canvas id="pieChart"></canvas>
-              </div>
-              <div class="container" *ngIf="isPieS" [@fadeIn]="isPieS" width="200px" height="200px">
-                <canvas id="pieSChart"></canvas>
-              </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Chart</h3>
+                        <h3 class="card-title">Customer Report</h3>
+                    </div>
+                    <!-- /.card-header -->
+
+                    <div class="card-body">
+                        <div class="container" *ngIf="isLine" [@fadeIn]="isLine" width="200px" height="200px">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                        <div class="container" *ngIf="isPie" [@fadeIn]="isPie" width="200px" height="200px">
+                            <canvas id="pieChart"></canvas>
+                        </div>
+                        <div class="container" *ngIf="isPieS" [@fadeIn]="isPieS" width="200px" height="200px">
+                            <canvas id="pieSChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
             </div>
-            <!-- /.card-body -->
-          </div>
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+        <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
-  <!-- </div> -->
-  <!-- /.content-wrapper -->
-
-
+</section>
+<!-- /.content -->
+<!-- </div> -->
+<!-- /.content-wrapper -->

@@ -4,6 +4,7 @@ import { IProduct } from 'src/app/components/interfaces/iproduct';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { CartService } from '../services/cart.service';
+import Swal from 'sweetalert2';
 registerLocaleData(localeFr, 'fr');
 
 @Component({
@@ -31,13 +32,18 @@ export class WishlistComponent {
 
   removeFromWish(sp: IProduct) {
     this.wish.removeFromWish(sp);
-
   }
   callCountFunction(): void {
 
   }
   addToCart(product: any) {
     this.cartService.addToCart(product);
+    Swal.fire({
+      icon:'success',
+      title: 'Added To Cart Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
   }
 
 }

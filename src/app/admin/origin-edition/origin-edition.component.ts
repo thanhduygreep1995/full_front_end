@@ -67,7 +67,7 @@ export class OriginEditionComponent implements OnInit {
       this.ButtonSave = this.infoOrigin.controls['country'].invalid;
     });
     this.infoOrigin.valueChanges.subscribe(() => {
-      this.ButtonUpdate = this.infoOrigin.invalid;
+      this.ButtonUpdate = this.infoOrigin.controls['country'].invalid;
     });
   }
 
@@ -96,12 +96,29 @@ export class OriginEditionComponent implements OnInit {
       country: this.infoOrigin.value.country,
     };
     this.isSpinning = true;
+    this.oS.getAllOrigins().subscribe((data) => {
+      console.log(data);
+      this.origins = data;
+      for (let o of this.origins) {
+        if (this.infoOrigin.value.country == o.country) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Country of origins is existed already',
+              showConfirmButton: false,
+              timer: 7000
+            })
+          }, this.progressTimerOut);
+          return;
+        } 
+      }
     this.oS.createOrigin(originInfo).subscribe(
       (response) => {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create Origin!');
-          this.router.navigate(['/origin-table']);
+          this.router.navigate(['/admin/origin-table']);
           this.infoOrigin.reset();
           Swal.fire({
             icon: 'success',
@@ -121,23 +138,44 @@ export class OriginEditionComponent implements OnInit {
             timer: 2000
           })
         }, this.progressTimerOut);
-        console.error('Failed to Create Origin:', error);
       }
-    );
+      );
+    }, (err) => {
+      console.log(err);
+    });
   }
-
   fnUpdateOrigin() {
     const originInfo = {
       country: this.infoOrigin.value.country,
     };
-
+    this.isSpinning = true;
+    this.oS.getAllOrigins().subscribe((data) => {
+      console.log(data);
+      this.origins = data;
+      for (let o of this.origins) { 
+        if((this.infoOrigin.value.country != o.country )
+        ) {
+            break;
+        } 
+        if (this.infoOrigin.value.country == o.country) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Country of origins is existed already',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          }, this.progressTimerOut);
+          return;
+        }
+      }
     this.oS.updateOrigin(this.id, originInfo).subscribe(
       (response) => {
         console.log('Successfully updated Origin!');
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated Origin!');
-          window.location.reload();
           this.infoOrigin.reset();
           Swal.fire({
             icon: 'success',
@@ -145,6 +183,7 @@ export class OriginEditionComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
+          this.router.navigate(['/admin/origin-table']);
         }, this.progressTimerOut);
       },
       (error) => {
@@ -159,18 +198,20 @@ export class OriginEditionComponent implements OnInit {
         }, this.progressTimerOut);
         console.error('Failed to update Origin:', error);
       }
-    );
-  }
-  refreshTable() {
-    // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới
-    this.oS.getAllOrigins().subscribe(
-      (newData) => {
-        this.origins = newData;
-        console.log('Dữ liệu mới đã được cập nhật:', this.origins);
-      },
-      (error) => {
-        console.error('Lỗi khi lấy dữ liệu mới:', error);
+      );
+  
+    });
       }
-    );
+      refreshTable() {
+        // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới
+        this.oS.getAllOrigins().subscribe(
+          (newData) => {
+            this.origins = newData;
+            console.log('Dữ liệu mới đã được cập nhật:', this.origins);
+          },
+          (error) => {
+            console.error('Lỗi khi lấy dữ liệu mới:', error);
+          }
+        );
+      }
   }
-}

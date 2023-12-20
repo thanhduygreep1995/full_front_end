@@ -1,0 +1,346 @@
+{
+  "header": {
+    "wisth": "ウィッシュリスト",
+    "cart": "カート",
+    "search": "検索",
+    "searchSubmit": "検索",
+    "account": "アカウント"
+  },
+  "navbar": {
+    "categoty": "すべてのカテゴリ",
+    "home": "ホーム",
+    "shop": "ショップ",
+    "about": "当社について",
+    "contact": "お問い合わせ",
+    "terms": "利用規約",
+    "login": "ログイン",
+    "register": "登録",
+    "logout": "ログアウト",
+    "greeting": "こんにちは"
+  },
+  "about_us": {
+    "about_us": "会社概要",
+    "history_and_development": {
+      "title": "店舗の歴史と発展",
+      "content": [
+        {
+          "text": "設立日：2023年9月9日に設立され、私たちはテクノロジーへの情熱を持ち、最高の製品をお客様に提供することを目指して旅を始めました。"
+        },
+        {
+          "text": "主な発展段階：私たちの発展の旅を通じて、スマートフォンからスマートウォッチやタブレットなどの他のスマート電子デバイスへの製品ラインを拡大しました。戦略的パートナーや流通ネットワークは全国に拡大し、お客様に便利さと信頼性を提供しています。"
+        },
+        {
+          "text": "使命とビジョン：私たちは、お客様に最も先進的なテクノロジー、専念したサービス、最も魅力的なショッピング体験を提供することを約束します。私たちのビジョンは、革新的で効率的なテクノロジーソリューションを提供する先駆者であることです。"
+        }
+      ]
+    },
+    "highlights": {
+      "title": "キーハイライト",
+      "content": [
+        {
+          "text": "製品とサービス：当店では、市場で最も有名なブランドの製品を幅広く取り揃えています。高品質の携帯電話からスマート電子デバイスや便利なアクセサリーまで、すべての製品はお客様のニーズに合わせて厳選されています。"
+        },
+        {
+          "text": "主な特長：独自の特長、高性能、最新のテクノロジーで設計された当社の製品は、ユーザーに優れた体験と利便性を提供します。"
+        },
+        {
+          "text": "品質とコミットメント：製品とサービスの品質、信頼できる保証ポリシー、専念した顧客サポートにコミットしています。"
+        },
+        {
+          "text": "パートナーシップとブランド：戦略的パートナーは信頼できる有名なブランドであり、お客様に多様性と最高品質を提供しています。"
+        }
+      ]
+    },
+    "support_and_reviews": {
+      "title": "サポート情報とレビュー",
+      "content": [
+        {
+          "text": "カスタマーサポート：電話、メール、オンラインチャットを通じて24時間365日サポートサービスを提供しており、お客様のお問い合わせに対応します。"
+        },
+        {
+          "text": "レビューとフィードバック：お客様からの好意的なフィードバックにより、私たちは改善し、より良いサービスを提供する動機を得ています。"
+        }
+      ]
+    },
+    "news_and_updates": {
+      "title": "ニュースと新技術",
+      "content": [
+        {
+          "text": "技術のアップデート：当社のウェブサイトでは常に、テクノロジー業界のトレンド、新しい技術、重要なイベントに関する情報を更新しています。"
+        },
+        {
+          "text": "イベントとプロモーション：お客様に感謝の意を示し、特別な取引を提供するために定期的にイベントやプロモーションプログラムを開催しています。"
+        }
+      ]
+    },
+    "policies_and_legal_info": {
+      "title": "ポリシーと法的情報",
+      "content": [
+        {
+          "text": "プライバシーポリシー：公開されたプライバシーポリシーに基づいて、お客様の個人情報を保護することにコミットしています。"
+        },
+        {
+          "text": "返品と保証ポリシー：製品の返品規定、保証に関する詳細な情報を提供し、お客様が安心してショッピングできるようにしています。"
+        },
+        {
+          "text": "法的情報：著作権、ウェブサイトの利用規約と条件に関する情報を提供し、ビジネスにおける透明性と信頼性を確保しています。"
+        }
+      ]
+    }
+  },
+  "contact": {
+    "contact_us": "お問い合わせ",
+    "contact_info": "連絡先情報",
+    "store_name": "EGU ELECTRONICS TECHNOLOGY STORE",
+    "address": "住所：",
+    "phone": "電話：",
+    "hotline": "ホットライン：",
+    "fax": "FAX：",
+    "send_contact_information": "連絡先情報を送信",
+    "contact_feedback": "連絡フィードバック",
+    "name": "名前",
+    "address_field": "住所",
+    "email_field": "Eメール",
+    "phone_field": "電話番号",
+    "title_field": "件名",
+    "content_field": "内容",
+    "send_button": "送信",
+    "description": "以下のフォームにご記入のうえ、送信してください。お返事までしばらくお待ちください。ありがとうございます！"
+  },
+  "terms": {
+    "term_use": "利用規約",
+    "termsConditions": {
+      "title": "利用規約",
+      "privacyPolicy": {
+        "heading": "プライバシーポリシー",
+        "content": [
+          "EGU STOREへようこそ。個人情報を保護し、責任を持って最高のショッピング体験を提供することに取り組んでいます。",
+          "以下は、当社のプライバシーポリシーの主要なポイントです。"
+        ],
+        "sections": [
+          {
+            "title": "1. 顧客情報の収集",
+            "points": [
+              "当社のサービスを利用するために、顧客は一部の必要な個人情報を提供する必要があります。",
+              "この情報は、配送や支払いを正確に決定するのに役立ちます。"
+            ]
+          },
+          {
+            "title": "2. 情報の利用",
+            "points": [
+              "個人情報は、最高のサービス提供のために使用されます。これには、ニュースレターの送信、顧客サポート、サービス品質の向上が含まれます。",
+              "情報は問題の解決や法的違反の防止に使用されます。"
+            ]
+          },
+          {
+            "title": "3. 情報の共有",
+            "points": [
+              "個人情報は、法執行機関の要求やユーザーとEGU STOREの両者の権利を保護するために要求される場合を除いて、決して共有されません。",
+              "我々は、事前に通知された特定のケースまたは顧客の同意を得てのみ情報を共有します。"
+            ]
+          },
+          {
+            "title": "4. 顧客情報のセキュリティ",
+            "points": [
+              "顧客は、パスワードのセキュリティを維持し、共有されたコンピュータからログアウトすることで、個人情報の保護に重要な役割を果たします。",
+              "商業目的で顧客の個人情報を開示しないことを約束します。"
+            ]
+          },
+          {
+            "title": "お問い合わせ",
+            "content": [
+              "当社のプライバシーポリシーに関連する質問や貢献がある場合は、以下の電話番号またはメールアドレスでお問い合わせください：",
+              "電話：0908 77 00 95 – メール：edgu1707@gmail.com",
+              "注：EGU STOREの顧客情報プライバシーポリシーはhttp://www.EGUSTORE.com/でのみ適用されます。EGUSTOREで広告やリンクされている第三者には関係しません。"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "banner": {
+    "beforeTitle":"ホームデコレーションのベス",
+    "afterTitle": "トコレクション",
+    "button": "今すぐショップ"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "ショッピングカート"
+    },
+    "ProductCart": {
+      "product": "製品",
+      "quantity": "数量",
+      "total": "合計",
+      "orderSummary": "注文の概要",
+      "totalAmount": "合計",
+      "processToCheckout": "支払い手続きへ"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "チェックアウト"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "チェックアウト",
+      "fullName": "フルネーム",
+      "streetAddress": "住所",
+      "phoneNumber": "電話番号",
+      "emailAddress": "メールアドレス",
+      "paymentMethod": "支払い方法",
+      "payInCash": "現金で支払う",
+      "vnPay": "VnPay",
+      "note": "メモ",
+      "apply": "適用",
+      "placeOrder": "注文する",
+      "total": "合計：",
+      "coupon": "クーポン"
+    }
+  },
+  "login": {
+    "heading": "ログイン",
+    "title": "前回のお客様はログインしてください",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "checkbox": "ログイン情報を保存する",
+    "submit": "ログイン",
+    "forgot": "パスワードをお忘れですか？"
+  },
+  "orLoginInWith": {
+    "title": "または以下でログイン",
+    "register": "今すぐ登録",
+    "dontHaveAccount": "アカウントをお持ちでない方？"
+  },
+  "forgotPassword": {
+    "heading": "パスワードをお忘れですか",
+    "title": "パスワードをリセットするためにメールアドレスを入力してください",
+    "emailLabel": "メールアドレス",
+    "emailRequiredError": "メールアドレスが必要です！",
+    "emailFormatError": "無効なメール形式です！",
+    "submitButtonText": "送信"
+  },
+  "resetPassword": {
+    "heading": "パスワードをリセット",
+    "title": "リセットトークンと新しいパスワードを入力してください",
+    "resetPasswordTokenLabel": "リセットトークン",
+    "resetPasswordTokenInputPlaceholder": "リセットトークンを入力",
+    "resetPasswordTokenRequiredError": "リセットトークンが必要です！",
+    "newPasswordLabel": "新しいパスワード",
+    "newPasswordInputPlaceholder": "新しいパスワードを入力",
+    "newPasswordRequiredError": "新しいパスワードが必要です！",
+    "newPasswordMinLengthError": "新しいパスワードは少なくとも6文字必要です！",
+    "submitButtonText": "パスワードをリセット"
+  },
+  "emptyCart": {
+    "title": "カートに商品がありません",
+    "message": "当サイトをご利用いただきありがとうございます",
+    "continueShoppingButtonText": "ショッピングを続ける"
+  },
+  "accountSidebar": {
+    "greeting": "ようこそ",
+    "title": "アカウント管理",
+    "profileInformation": "プロフィール情報",
+    "changePassword": "パスワード変更",
+    "myActivities": "マイアクティビティ",
+    "orderHistory": "注文履歴",
+    "myReview": "マイレビュー",
+    "paymentMethod": "支払い方法",
+    "voucher": "クーポン",
+    "wishlist": "ほしい物リスト",
+    "logout": "ログアウト"
+  },
+  "changePassword": {
+    "title": "パスワード変更",
+    "currentPasswordLabel": "現在のパスワード",
+    "currentPasswordPlaceholder": "古いパスワードを入力",
+    "currentPasswordRequiredError": "現在のパスワードは必須です！",
+    "newPasswordLabel": "新しいパスワード",
+    "newPasswordPlaceholder": "新しいパスワードを入力",
+    "newPasswordRequiredError": "新しいパスワードは必須です！",
+    "newPasswordMinLengthError": "新しいパスワードは少なくとも6文字以上である必要があります！",
+    "confirmPasswordLabel": "パスワードを確認",
+    "confirmPasswordPlaceholder": "新しいパスワードを確認",
+    "confirmPasswordRequiredError": "パスワード確認は必須です！",
+    "confirmPasswordMismatchError": "パスワード確認が新しいパスワードと一致しません！",
+    "saveButton": "変更を保存"
+  },
+  "editProfile": {
+    "title": "情報を編集",
+    "fullNameLabel": "表示名",
+    "fullNameReadOnlyNotice": "管理や識別のために実名を使用してください",
+    "personalInformationTitle": "個人情報",
+    "firstNameLabel": "名",
+    "lastNameLabel": "姓",
+    "dateOfBirthLabel": "生年月日",
+    "phoneNumberLabel": "電話番号",
+    "saveButton": "変更を保存",
+    "cancelButton": "キャンセル"
+  },
+  "wishlistProduct": {
+    "my_wishlist": "ほしい物リスト",
+    "title": "ほしい物リストに商品がありません",
+    "message": "当サイトをご利用いただきありがとうございます",
+    "continueShoppingButtonText": "ショッピングを続ける",
+    "addToCartButtonText": "カートに追加"
+  },
+  "feedbackReview": {
+    "my_review": "マイレビュー",
+    "title": "フィードバックレビューページ",
+    "viewButton": "表示"
+  },
+  "voucherPage": {
+    "addVoucherForm": {
+      "codeVoucherLabel": "割引コード",
+      "codeVoucherPlaceholder": "ここにコードを入力してください",
+      "applyButton": "適用する"
+    },
+    "myVouchersTitle": "私の割引コード",
+    "voucherList": {
+      "beforeTitle": "割引コード",
+      "afterTitle": " 全製品に対して。",
+      "activeVoucherStatus": "今すぐ使用",
+      "inactiveVoucherStatus": "使用できません",
+      "usedVoucherStatus": "使用済み",
+      "expiredVoucherStatus": "有効期限切れ: ",
+      "storeAppLabel": "Egu_Storeアプリでのみ利用可能です。",
+      "pagination": {
+        "previousButton": "前へ",
+        "pageText": "ページ",
+        "ofText": "/",
+        "nextButton": "次へ"
+      },
+      "noVouchersMessage": "利用可能な割引コードはありません。"
+    }
+  },
+  "footer": {
+    "infor": "お客様は非常に重要であり、お客様はお客様に続きます。",
+    "solutions": {
+      "title": "ソリューション",
+      "marketing": "マーケティング",
+      "analytics": "アナリティクス",
+      "commerce": "コマース",
+      "insights": "インサイト"
+    },
+    "support": {
+      "title": "サポート",
+      "pricing": "価格",
+      "documentation": "ドキュメンテーション",
+      "guides": "ガイド",
+      "apiStatus": "APIステータス"
+    },
+    "company": {
+      "title": "会社",
+      "about": "約",
+      "blog": "ブログ",
+      "jobs": "仕事",
+      "service": "サービス"
+    },
+    "legal": {
+      "title": "法的",
+      "claim": "請求",
+      "privacy": "プライバシー",
+      "policy": "ポリシー",
+      "terms": "条件"
+    },
+    "copyright": "© Easy Learning 2022"
+  }
+}

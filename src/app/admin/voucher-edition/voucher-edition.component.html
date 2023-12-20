@@ -1,0 +1,81 @@
+<section class="content-header" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Voucher Edition</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Voucher Edition</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+<section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-10">
+                <form class="card" [formGroup]="infoVoucher">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-body">
+                                <div class="mb-1">
+                                    <label for="codeVoucher" class="form-label">Type Code </label>
+                                    <input formControlName="codeVoucher" type="text" class="form-control mb-2" id="codeVoucher" placeholder="Enter type code" />
+                                    <div *ngIf="infoVoucher.controls['codeVoucher'].invalid && infoVoucher.controls['codeVoucher'].touched" class="text-danger">
+                                        Code voucher is required
+                                    </div>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="value" class="form-label">Value</label>
+                                    <input formControlName="value" type="text" class="form-control mb-2" id="value" placeholder="Enter value" />
+                                    <div *ngIf=" infoVoucher.controls['value'].invalid && infoVoucher.controls['value'].touched" class="text-danger">
+                                        Value is required
+                                    </div>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select formControlName="status" class="form-control select2" style="width: 100%">
+                                        <option value="ACTIVE">ACTIVE</option>
+                                        <option value="INACTIVE">INACTIVE</option>
+                                        <option value="EXPIRED">EXPIRED</option>
+                                        <option value="USED">USED</option>
+                                    </select>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="expiredDate" class="form-label">Expired Date</label>
+                                    <input formControlName="expiredDate" type="date" class="form-control mb-2"  id="expiredDate" />
+                                    <div *ngIf=" infoVoucher.controls['expiredDate'].invalid &&
+                                            infoVoucher.controls['expiredDate'].touched" class="text-danger">
+                                        Date expired is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row mx-2 mb-2">
+                        <div class="col-12 d-flex flex-wrap justify-content-end">
+                            <button (click)="fnAddBrand()" [disabled]="ButtonSave" type="button" class="btn mx-2" style="background-color: cadetblue;">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <!-- <button *ngIf="buttonService.getShowButton5()" (click)="fnUpdateBrand()" [disabled]="ButtonUpdate" type="button" class="btn mx-2" style="background-color: cornflowerblue;">
+                                <i class="fa fa-pencil"></i>
+                            </button> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->

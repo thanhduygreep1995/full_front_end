@@ -1,0 +1,79 @@
+<!-- ---- BreadCrum ----- -->
+<div class="container py-4 flex justify-between">
+  <div class="flex gap-3 items-center">
+    <a href="index.html" class="text-primary text-base">
+      <i class="fas fa-home"></i>
+    </a>
+    <span class="text-sm text-gray-500">
+      <i class="fas fa-chevron-right"></i>
+    </span>
+    <p class="text-gray-500 font-medium uppercase">My Account</p>
+  </div>
+</div>
+<!-- ---- End BreadCrum --->
+
+<!-- ---- Account Wrapper--->
+
+<div class="container lg:grid grid-cols-12 items-start gap-6 pt-4 pb-16">
+  <!-- ---- Sidebar --->
+  <div class="col-span-3">
+    <app-account-sidebar></app-account-sidebar>
+  </div>
+  <!-- ----End Sidebar--->
+
+  <!-- ----Account Content --->
+  <div class="col-span-9 gap-4 mt-6 lg:mt-0">
+    <div class="max-w-3xl mx-auto bg-white p-8 shadow">
+      <h2 class="text-2xl font-bold mb-4">{{'editProfile.title'|translate}}</h2>
+      <form [formGroup]="changeProForm">
+        <!-- <div class="mb-4 bg-gray-100 p-4">
+          <label for="name" class="block text-gray-700 font-bold mb-2">{{'editProfile.fullNameLabel'|translate}}</label>
+          <input formControlName="fullName" readonly type="text" id="name" name="name"
+            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Nguyễn Văn A" />
+          <small>{{'editProfile.fullNameReadOnlyNotice'|translate}}</small>
+        </div> -->
+        <div class="mt-6 bg-gray-100 shadow rounded p-4 divide-y divide-gray-200 space-y-4 text-gray-600">
+          <!-- <h3 class="font-bold">{{'editProfile.personalInformationTitle'|translate}}</h3> -->
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2">{{'editProfile.firstNameLabel'|translate}}</label>
+            <input formControlName="firstName" type="text" id="firstName" name="firstName"
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Enter First Name" />
+          </div>
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2">{{'editProfile.lastNameLabel'|translate}}</label>
+            <input formControlName="lastName" type="text" id="lastName" name="lastName"
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Enter Last Name" />
+          </div>
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2">{{'editProfile.dateOfBirthLabel'|translate}}</label>
+            <input formControlName="dateOfBirth" type="date" id="dateOfBirth" name="dateOfBirth"
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+          </div>
+          <div class="mb-8">
+            <label for="phoneNumber" class="block text-gray-700 font-bold mb-2">{{'editProfile.phoneNumberLabel'|translate}}</label>
+            <input formControlName="phoneNumber" type="text" id="phoneNumber" name="phoneNumber"
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Enter Phone Number" />
+          </div>
+        </div>
+        <div class="mt-4">
+          <button (click)="fnUpdateProfile()" type="submit"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            {{'editProfile.saveButton'|translate}}
+          </button>
+          <button (click)="ngOnInit()" type="submit"
+            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-3">
+            {{'editProfile.cancelButton'|translate}}
+          </button>
+        </div>
+      </form>
+      <div *ngIf="loading"
+        class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-primary"></div>
+      </div>
+    </div>
+  </div>
+</div>

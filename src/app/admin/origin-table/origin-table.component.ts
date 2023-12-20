@@ -17,8 +17,7 @@ const swalWithBootstrapButtons = Swal.mixin({
     confirmButton: 'btn btn-danger mx-3',
     cancelButton: 'btn btn-success',
   },
-  buttonsStyling: false,
-  timer: 2000
+  buttonsStyling: false
 })
 
 @Component({
@@ -112,7 +111,7 @@ export class OriginTableComponent implements OnInit {
     });
   }
   onUpdate(id: number): void {
-    this.router.navigate(['/origin-edition', id]);
+    this.router.navigate(['admin/origin-edition', id]);
     this.buttonService.setShowButton6(true)
   }
 

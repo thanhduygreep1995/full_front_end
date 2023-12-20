@@ -17,9 +17,8 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
 </div>
 <!-- Main content -->
 <section class="content" *ngIf="!isSpinning" [@fadeInOut]="!isSpinning">
@@ -36,37 +35,23 @@
                                     <label for="name" class="form-label">Name</label>
                                     <input formControlName="name" type="text" class="form-control mb-2" name="name" id="name" placeholder="Category Name" />
                                     <div *ngIf="
-                      infoCategory.controls['name'].invalid &&
-                      infoCategory.controls['name'].touched
-                    " class="text-danger">
-                                        Category Name is required.
+                                        infoCategory.controls['name'].invalid &&
+                                        infoCategory.controls['name'].touched
+                                        " class="text-danger">
+                                        Category name is required.
                                     </div>
+                                    <input hidden formControlName="thumbnail" type="text" class="form-control mb-2" name="thumbnail" id="thumbnail" placeholder="Category Name" />
+                                    <!-- <label for="description" class="form-label">Description</label>
+                                    <input formControlName="description" type="text" class="form-control mb-2" name="description" id="description" placeholder="Enter your Description" />
+                                    <div *ngIf="infoCategory.controls['description'].invalid && infoCategory.controls['description'].touched" class="text-danger">
+                                        Category Description is required.
+                                    </div> -->
 
-                                    <label for="description" class="form-label">Description</label
-                  >
-                  <input
-                    formControlName="description"
-                    type="text"
-                    class="form-control mb-2"
-                    name="description"
-                    id="description"
-                    placeholder="Enter your Description"
-                  />
-                  <div
-                    *ngIf="
-                      infoCategory.controls['description'].invalid &&
-                      infoCategory.controls['description'].touched
-                    "
-                    class="text-danger"
-                  >
-                    Category Description is required.
-                  </div>
-
-                  <label for="categoryStatus" class="form-label">Status</label>
+                                    <label for="status" class="form-label">Status</label>
                                     <select formControlName="status" class="form-control select2" style="width: 100%">
-                    <option value="ACTIVE">ACTIVE</option>
-                    <option value="INACTIVE">INACTIVE</option>
-                  </select>
+                                        <option value="ACTIVE">ACTIVE</option>
+                                        <option value="INACTIVE">INACTIVE</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -74,11 +59,11 @@
                     <hr />
                     <div class="row mx-2 mb-2">
                         <div class="col-12 d-flex flex-wrap justify-content-end">
-                            <button (click)="fnAddCategory()" [disabled]="ButtonSave" type="button" class="btn btn-primary mx-2">
-                                Save
+                            <button (click)="fnAddCategory()" [disabled]="ButtonSave" type="button" class="btn mx-2" style="background-color: cadetblue;">
+                                <i class="fa fa-plus"></i>
                             </button>
-                            <button *ngIf="buttonService.getShowButton4()" (click)="fnUpdateCategory()" [disabled]="ButtonUpdate" type="button" class="btn btn-primary mx-2">
-                                Update
+                            <button *ngIf="buttonService.getShowButton4()" (click)="fnUpdateCategory()" [disabled]="ButtonUpdate" type="button" class="btn mx-2" style="background-color: cornflowerblue;">
+                                <i class="fa fa-pencil"></i>
                             </button>
                         </div>
                     </div>

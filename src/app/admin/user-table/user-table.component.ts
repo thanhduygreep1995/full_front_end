@@ -6,9 +6,7 @@ import Swal from 'sweetalert2';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormBuilder } from '@angular/forms';
 import { CustomerService } from '../service/customer/customer.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { RoleService } from '../service/role/role.service';
-import * as moment from 'moment';
 
 
 declare var require: any;
@@ -26,17 +24,6 @@ const swalWithBootstrapButtons = Swal.mixin({
   timer: 2000
 });
 
-interface orderdetailResponse {
-  id: any;
-  firstName: any;
-  lastName : any;
-  dateOfBirth: any;
-  email: any;
-  phoneNumber: any;
-  createDate: any;
-  status: any;
-  role: any;
-}
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
@@ -77,8 +64,6 @@ export class UserTableComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private cS: CustomerService,
-    private route: ActivatedRoute,
-    private router: Router,
     private rS: RoleService
   ) 
   {
@@ -96,28 +81,11 @@ export class UserTableComponent implements OnInit {
   }
 
 ngOnInit(): void {
-  // Chuỗi JSON từ yêu cầu của bạn
-  this.route.params.subscribe((params) => {
-    if (params && params['id']) {
-      this.id = params['id'];
-      this.cS.getCustomerById(this.id).subscribe(
-        (response: Object) => {
-          this.customerForm.patchValue(response as orderdetailResponse);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } else {
-    }
-  });
-
-  this.defaultStatus();
-  this.refreshTable();
   this.dtOptions = this.getDTOptions();
   this.getCustomer();
   this.rS.getRole().subscribe((data) => {
     this.roles = data;
+    console.log('Role', data);
   });
   
 }
@@ -126,11 +94,6 @@ getCustomer(): any {
       console.log(customers);
       if (customers != null && Array.isArray(customers) && customers.length > 0) {
         this.customers =  customers;
-        // Thêm dữ liệu mới vào mảng chartDate và chartRevenue
-        for (let c of this.customers) {
-          c.createDate =  moment.default(c.createDate, 'YYYY-MM-DD').format('DD/MM/YYYY');
-          c.dateOfBirth =  moment.default(c.dateOfBirth, 'YYYY-MM-DD').format('DD/MM/YYYY');
-        };
       }   
   },(error) => {
     console.error(error);
@@ -181,11 +144,18 @@ getDTOptions(): any {
     ],
   };
 }
-defaultStatus() {
-
+defaultStatus(id: number) {
+  this.cS.getCustomerById(id).subscribe(
+    (customer: any) => {
+      this.customerForm.patchValue({
+        status: customer.status,
+        id: customer.role.id // Giả sử có một trường là roleId trong đối tượng khách hàng
+      });
+    });
 }
 onUpdate(id: number): void {
   this.selectedCustomerId = id;
+  this.defaultStatus(id);
 }
 
 refreshTable() {
@@ -213,15 +183,15 @@ fnUpdateCustomer() {
         this.refreshTable(); // Tải lại dữ liệu sau khi cập nhật thành công
         setTimeout(() => {
           this.isSpinning = false;
-          this.customerForm.reset();
-          this.defaultStatus();
           Swal.fire({
             icon: 'success',
-            title: 'Successfully updated Order!',
+            title: 'Successfully updated!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
+            window.location.reload();
           })
-        }, this.progressTimerOut),window.location.reload();
+        }, this.progressTimerOut)
       },
       (error) => {
         console.error('Failed to update Order:', error);

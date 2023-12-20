@@ -9,6 +9,8 @@ export class ReportService {
   private baseOrderUrl = 'http://localhost:8080/api/v0/income-reports';
 
   private baseCustomerUrl = 'http://localhost:8080/api/v0/customer-reports';
+  
+  private baseProductUrl = 'http://localhost:8080/api/v0/top-sold';
 
   constructor(private http: HttpClient) {}
 
@@ -30,6 +32,15 @@ export class ReportService {
   getNoneBuyingCustomerReport(): Observable<any[]> {
     return this.http.get<any[]>(this.baseCustomerUrl + '/none-buying-list');
   }
+
+  getTopSoldReport(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseProductUrl);
+  }
+
+  getCategoryQunatityReport(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseProductUrl}/category`);
+  }
+
   getStatus(): Observable<string> {
     return this.http.get<string>(`${this.baseCustomerUrl}/status`);
   }

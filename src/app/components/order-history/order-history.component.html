@@ -24,77 +24,102 @@
         <div class="max-w-3xl mx-auto bg-white p-8 shadow">
             <div class="max-w-3xl mx-auto">
                 <h1 class="text-3xl-bold mb-8">Invoice List</h1>
-                <div class="bg-white rounded-lg shadow p-4 mb-4" *ngFor="let o of orders">
-                    <!-- Thông tin đặt hàng -->
-                    <div class="flex items-center justify-between mb-2">
-                        <div>
-                            <h2 class="text-lg font-semibold">Order # {{o.id}}</h2>
-                            <p class="text-gray-500">Order date: {{o.orderDate| date: 'dd-MM-yyyy'}}</p>
-                        </div>
-                        <div class="order-last">
-                            <label for="" class="font-bold"></label>
-                            <p *ngIf="o.status === 'PROCESSING'; else shippedDelivered" class="items-start justify-start text-yellow-400 font-bold text-lg">
-                                {{o.status}}
-                            </p>
+                <div *ngIf="orders.length > 0" class="mt-4">
+                    <ul>
+                        <li>
+                            <div class="bg-white rounded-lg shadow p-4 mb-4" *ngFor="let o of currentOrders">
+                                <!-- Thông tin đặt hàng -->
+                                <div class="flex items-center justify-between mb-2">
+                                    <div>
+                                        <h2 class="text-lg font-semibold">Order # {{o.id}}</h2>
+                                        <p class="text-gray-500">Order date: {{o.orderDate| date: 'dd-MM-yyyy'}}</p>
+                                    </div>
+                                    <div class="order-last">
+                                        <label for="" class="font-bold"></label>
+                                        <p *ngIf="o.status === 'PROCESSING'; else shippedDelivered" class="items-start justify-start text-yellow-400 font-bold text-lg">
+                                            {{o.status}}
+                                        </p>
 
-                            <ng-template #shippedDelivered>
-                                <p *ngIf="o.status === 'PENDING'" class="items-start justify-start text-blue-500 font-bold text-lg">
-                                    {{o.status}}
-                                </p>
-                                <p *ngIf="o.status === 'DELIVERED'" class="items-start justify-start text-green-400 font-bold text-lg">
-                                    {{o.status}}
-                                </p>
-                                <p *ngIf="o.status === 'CANCELLED'" class="items-start justify-start text-primary font-bold text-lg">
-                                    {{o.status}}
-                                </p>
-                            </ng-template>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="flex justify-between">
-                            <div class="w-80">
-                                <label for="" class="font-bold">Address: </label>
-                                <div class="grid grid-cols-1">
-                                    <p>63 Đường Số 18, Phường 8, Gò Vấp, Thành phố Hồ Chí Minh, Vietnam</p>
+                                        <ng-template #shippedDelivered>
+                                            <p *ngIf="o.status === 'PENDING'" class="items-start justify-start text-blue-500 font-bold text-lg">
+                                                {{o.status}}
+                                            </p>
+                                            <p *ngIf="o.status === 'DELIVERED'" class="items-start justify-start text-green-400 font-bold text-lg">
+                                                {{o.status}}
+                                            </p>
+                                            <p *ngIf="o.status === 'CANCELLED'" class="items-start justify-start text-primary font-bold text-lg">
+                                                {{o.status}}
+                                            </p>
+                                        </ng-template>
+                                        <p [class.active-voucher]="o.statusPayment === 'Đã thanh toán'"
+                                        [ngClass]="{'text-green-400': o.statusPayment !== 'Chưa thanh toán'}" class="items-start justify-start  text-lg">
+                                            {{o.statusPayment}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="flex justify-between">
+                                        <div class="w-80">
+                                            <label for="" class="font-bold">Address: </label>
+                                            <div class="grid grid-cols-1">
+                                                <p> {{o.address}}</p>
+                                            </div>
+                                        </div>
+                                        <div class=" flex items-center justify-end ">
+                                            <p class="text-xl font-semibold ">{{calculateTotal(o)| currency:".":"":"1.0"}} VNĐ</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row-reverse"><button class="text-blue-500 " (click)="toggleDetails(o.id)">Detail</button></div>
+
+                                </div>
+
+                                <div class="bg-white rounded-lg shadow p-4 mb-4 " *ngIf="orderDetailsState[o.id]">
+                                    <table class="container grid-cols-12 items-start gap-6">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">Product</th>
+                                                <th class="text-right">Quantity</th>
+                                                <th class="text-right">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let oD of o.orderDetail">
+                                                <td class="text-left">{{ oD.product.model}}</td>
+                                                <td class="text-right">{{ oD.quantity }}</td>
+                                                <td class="text-right">{{ oD.totalPrice| currency:".":"":"1.0"}} VNĐ</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <label for="" class="font-bold">Note: </label>
+                                    <p class="">
+                                        {{o.note}}
+                                    </p>
+
+
+                                    <!-- <label for="">Các sản phẩm</label>
+                                <div *ngFor="let oD of o.orderDetail" class="container grid-cols-12 items-start gap-6">
+                                    <p> {{oD.product.model}} <span class="-left- -right-2 -top-1 w-5 h-5 rounded-full bg-primary text-white text-xs">      {{oD.quantity}}</span></p>
+        
+                                    <p class=" flex items-center justify-end ">{{oD.totalPrice| currency:".":"":"1.0"}} VNĐ</p>
+                                </div> -->
                                 </div>
                             </div>
-                            <div class=" flex items-center justify-end ">
-                                <p class="text-xl font-semibold ">{{calculateTotal(o)| currency:".":"":"6.0"}} VNĐ</p>
-                            </div>
+                        </li>
+                    </ul>
+                    <div class="pagination flex items-center justify-between mt-4">
+                        <div>
+                            <button (click)="previousPage()" [disabled]="currentPage === 1" class="px-3 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Previous
+                        </button>
                         </div>
-                        <div class="flex flex-row-reverse"><button class="text-blue-500 " (click)="toggleDetails(o.id)">Detail</button></div>
-
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow p-4 mb-4 " *ngIf="orderDetailsState[o.id]">
-                        <table class="container grid-cols-12 items-start gap-6">
-                            <thead>
-                                <tr>
-                                    <th class="text-left">Product</th>
-                                    <th class="text-right">Quantity</th>
-                                    <th class="text-right">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let oD of o.orderDetail">
-                                    <td class="text-left">{{ oD.product.model}}</td>
-                                    <td class="text-right">{{ oD.quantity }}</td>
-                                    <td class="text-right">{{ oD.totalPrice| currency:".":"":"6.0"}} VNĐ</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <label for="" class="font-bold">Note: </label>
-                        <p class="">
-                            {{o.note}}
-                        </p>
-
-
-                        <!-- <label for="">Các sản phẩm</label>
-                        <div *ngFor="let oD of o.orderDetail" class="container grid-cols-12 items-start gap-6">
-                            <p> {{oD.product.model}} <span class="-left- -right-2 -top-1 w-5 h-5 rounded-full bg-primary text-white text-xs">      {{oD.quantity}}</span></p>
-
-                            <p class=" flex items-center justify-end ">{{oD.totalPrice| currency:".":"":"6.0"}} VNĐ</p>
-                        </div> -->
+                        <div class="text-gray-700">
+                            Page {{ currentPage }} of {{ totalPages }}
+                        </div>
+                        <div>
+                            <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="px-3 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            Next
+                        </button>
+                        </div>
                     </div>
                 </div>
             </div>

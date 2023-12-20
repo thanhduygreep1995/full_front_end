@@ -19,26 +19,25 @@
   <div class="container grid lg:grid-cols-4 gap-6 pt-4 pb-16 items-start relative">
        <!-- ---- Sidebar --->
        
- <app-categories></app-categories>
-       <!-- ---- End Sidebar --->
+<app-categories></app-categories>
+
  
  <!-- ---- Product --->
- <div class="col-span-3">
+ <div class="col-span-3" >
       <!-- ---- Shorting --->
-      <div class="mb-4 flex items-center ">
-          <select class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary " >
-               <option>Default sorting</option>
-               <option>Price low-high</option>
-               <option>Price high-low</option>
-               <option>Latest product</option> 
-          </select>
+      <div class="mb-4 flex items-center " >
+          <!-- <select (click)=" onTypeSelect()" class="w-44 text-sm text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
+               <ng-container *ngFor="let loai of listTypePro">
+                 <option [value]="loai.id">{{ loai.name | uppercase }}</option>
+               </ng-container>
+             </select> -->
           <div class="flex gap-2 ml-auto ">
-               <div class="border border-primary w-10 h-9 flex items-center justify-center text-white hover:text-gray-600  rounded cursor-pointer focus: bg-primary" >
-                    <i (click)="showGridView()" class="fas fa-th"></i>
+               <div (click)="showGridView()" class="border border-primary w-10 h-9 flex items-center justify-center text-white hover:text-gray-600  rounded cursor-pointer focus: bg-primary" >
+                    <i class="fas fa-th"></i>
                </div>
  
-               <div class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 hover:text-white rounded cursor-pointer hover:bg-primary  ">
-                    <i class="fas fa-list" (click)="showListView()"></i>
+               <div (click)="showListView()" class="border border-gray-300 w-10 h-9 flex items-center justify-center text-gray-600 hover:text-white rounded cursor-pointer hover:bg-primary  ">
+                    <i class="fas fa-list" ></i>
                </div>
  
           </div>
@@ -57,7 +56,11 @@
                *ngFor="let item of listSP">
 
                <div class="w-28 flex-shrink-0 ">
-                    <img src="{{item.images}}" class="w-full" />
+
+
+                    <img src="{{item.thumbnail}}" class="w-full" />
+
+
                </div>
 
                <div class="md:w-1/3 w-full">
@@ -65,13 +68,13 @@
 
                </div>
                <div>
-                    <p class="text-primary text-lg font-semibold">{{item.price | currency:".":"":"6.0"}} VNĐ</p>
+                    <p class="text-primary text-lg font-semibold">{{item.price | currency:".":"":"1.0"}} VNĐ</p>
                </div>
-               <a href="#" (click)="addToCart(item)"
+               <button (click)="addToCart(item)"
                     class="ml-auto md:ml-0 block px-6 py-2 text-center text-sm text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium ">Add
                     to Cart
 
-               </a>
+               </button>
 
           </div>
         
@@ -82,7 +85,9 @@
  
  </div>
  </div>
-
+ <div class="card flex flex-column align-items-center">
+     <p-scrollTop></p-scrollTop>
+ </div>
 
 
  <!-- ---- End Shop Wrapper ---> 

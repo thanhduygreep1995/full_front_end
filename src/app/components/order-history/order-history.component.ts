@@ -3,6 +3,7 @@ import { OrderHistoryService } from '../services/order-history/order-history.ser
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-order-history',
@@ -12,18 +13,23 @@ import { FormBuilder } from '@angular/forms';
 export class OrderHistoryComponent {
   products: any;
   infoOrder: any;
-  id: any;
+  id: any = this.tokenS.getCustomerId();
   feedBacks: any;
   data: [] = [];
   nameCustomer: any;
   comment: any;
-  orders: any;
+  orders: any[] = [];
   orderDetailsState: { [orderId: number]: boolean } = {};
   total: any;
+  currentOrders: any[] = []; // Danh sách vouchers trên trang hiện tại
+  itemsPerPage: number = 4; // Số lượng mục trên mỗi trang
+  currentPage: number = 1; // Trang hiện tại
+  totalPages: number = 0; // Tổng số trang
 
   constructor( 
     private formBuilder: FormBuilder,
     private oH: OrderHistoryService,
+    private tokenS: TokenService
   ) {
     this.infoOrder = this.formBuilder.group({
       id: [''],
@@ -35,20 +41,15 @@ export class OrderHistoryComponent {
       paymentMethod: [''],
       discountPrice: [''],
       orderDetail: [''],
-      customer: 5
+      customer: ['']
     });
    }
 
    ngOnInit(): void {
-    const customer = 1;
-    this.oH.getAllByCustomerId(customer).subscribe((data) => {
-      console.log(data);  
-      this.orders = data;
-
-    });
-
-    
+    this.loadOrder();
+    console.log(this.data);  
    }
+
 
 toggleDetails(orderId: number) {
   this.orderDetailsState[orderId] = !this.orderDetailsState[orderId];
@@ -62,6 +63,40 @@ calculateTotal(order: any): number {
   return total;
 }
 
+loadOrder() {
+  this.oH.getAllByCustomerId(this.id).subscribe((data) => {
+    this.orders = data;
+    this.orders.sort((a: any, b: any) => {
+      const dateA = new Date(a['orderDate']).getTime();
+      const dateB = new Date(b['orderDate']).getTime();
+      return dateB - dateA;
+    });
+    console.log(this.orders);
+    this.calculateTotalPages();
+    this.updateOrders();
+  });
+}
 
+calculateTotalPages() {
+  this.totalPages = Math.ceil(this.orders.length / this.itemsPerPage);
+}
+// Hàm để cập nhật danh sách vouchers trên trang hiện tại
+updateOrders() {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  const endIndex = startIndex + this.itemsPerPage;
+  this.currentOrders = this.orders.slice(startIndex, endIndex);
+}
 
+nextPage() {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+    this.updateOrders();
+  }
+}
+previousPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.updateOrders();
+  }
+}
 }

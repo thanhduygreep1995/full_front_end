@@ -17,55 +17,122 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
 </div>
 <!-- Main content -->
 <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-
-
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh Sách User</h3>
+                        <!-- <h3 class="card-title">Danh Sách User</h3> -->
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table datatable *ngIf="specs && specs.length > 0" [dtOptions]="dtOptions" class="table table-bordered table-striped row-border hover">
                             <thead>
                                 <tr>
-                                    <th hidden>Id</th>
-                                    <th>No</th>
-                                    <th>processor</th>
-                                    <th>graphicsCard</th>
-                                    <th>ram</th>
-                                    <th>storage</th>
-                                    <th>display</th>
-                                    <th>operatingSystem</th>
-                                    <th>camera</th>
-                                    <th>Action</th>
+                                    <!-- <th hidden>Id</th> -->
+                                    <th class="col-2">No.</th>
+                                    <th>Processor</th>
+                                    <th>Graphics Card</th>
+                                    <th>Ram</th>
+                                    <th>Storage</th>
+                                    <th>Display</th>
+                                    <th>Operating System</th>
+                                    <th>Camera</th>
+                                    <th>Product</th>
+                                    <th class="col-2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let s of specs; let i = index">
-                                    <td hidden>{{ s.id }}</td>
-                                    <td>{{ i + 1 }}</td>
-                                    <td>{{ s.processor }}</td>
-                                    <td>{{ s.graphicsCard }}</td>
-                                    <td>{{ s.ram }}</td>
-                                    <td>{{ s.storage }}</td>
-                                    <td>{{ s.display }}</td>
-                                    <td>{{ s.operatingSystem }}</td>
-                                    <td>{{ s.camera }}</td>
+                                    <!-- <td hidden>{{ s.id }}</td> -->
+                                    <td class="col-2">{{ i + 1 }}</td>
                                     <td>
-                                        <button class="btn btn-info" (click)="onUpdate(s.id)">
-                                            Update
+                                        <div *ngIf="s.processor != 'Trống'; else defaultImage">
+                                            {{ s.processor }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+
+                                    <td>
+                                        <div *ngIf="s.graphicsCard != 'Trống'; else defaultImage">
+                                            {{ s.graphicsCard }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.ram != 'Trống'; else defaultImage">
+                                            {{ s.ram }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.storage != 'Trống'; else defaultImage">
+                                            {{ s.storage }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.display != 'Trống'; else defaultImage">
+                                            {{ s.display }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.operatingSystem != 'Trống'; else defaultImage">
+                                            {{ s.operatingSystem }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="s.camera != 'Trống'; else defaultImage">
+                                            {{ s.camera }}
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td>
+                                    <!-- <td>
+                                        <div *ngFor="let p of s.productId">
+                                            <div *ngIf="p.name; else defaultImage">
+                                                {{ p.name }}
+                                            </div>
+                                        </div>
+
+                                        <ng-template #defaultImage>
+                                            <img src="https://drive.google.com/uc?id=1mw6lLFswJQOiqjx-kIpce3bA1SmWrAQs&export=view">
+                                        </ng-template>
+                                    </td> -->
+                                    <td>{{ s.products.model }}</td>
+                                    <td class="col-2">
+                                        <button class="btn mx-2" style="background-color: cornflowerblue;" (click)="onUpdate(s.id)">
+                                            <i class="fa fa-pencil"></i>
                                         </button>
                                         <button class="btn btn-danger" (click)="fnDeleteProduct(s.id)">
-                                            Delete
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
                                 </tr>

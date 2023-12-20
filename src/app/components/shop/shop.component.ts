@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProduct } from 'src/app/components/interfaces/iproduct';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { query } from '@angular/animations';
 import { CartService } from '../services/cart.service';
+import { DataService } from '../services/data.service';
+import { Itypeprd } from '../interfaces/itypeprd';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -11,7 +14,7 @@ import { CartService } from '../services/cart.service';
 })
 export class ShopComponent {
   listSP:any;
-  constructor(private h:HttpClient,private route: ActivatedRoute, private cartService: CartService){
+  constructor(private h:HttpClient,private route: ActivatedRoute, private cartService: CartService,private d:DataService,private router: Router){
     this.h.get("http://localhost:8080/api/v0/products",
     {observe: 'response'}
 ).subscribe(
@@ -25,11 +28,18 @@ this.listSP= res.body;
    
   }
   id: any
+
+
+
+
+  
+  listTypePro:Itypeprd[] = [];
   ngOnInit(): void{
+
     this.route.paramMap.subscribe(query=>{
       this.id =query.get('id');
     })
-    
+    this.d.getTypeProduct().subscribe( d => this.listTypePro = d);
   }
   isGridView = true;
   showGridView() {
@@ -41,5 +51,21 @@ this.listSP= res.body;
   }
   addToCart(product: any) {
     this.cartService.addToCart(product);
+    Swal.fire({
+      icon: 'success',
+      title: 'Added To Cart Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
   }
+  
+  onTypeSelect() {
+  
+    
+    // Use the selectedTypeId to construct the route or perform other navigation logic
+    this.router.navigate(['/your-path']);
+  }
+
+
+  
 }

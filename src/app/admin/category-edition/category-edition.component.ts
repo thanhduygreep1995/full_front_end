@@ -64,20 +64,24 @@ export class CategoryEditionComponent implements OnInit {
       id: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
+      thumbnail: [''],
       status: [''],
     });
     this.infoCategory.valueChanges.subscribe(() => {
       const nameControl = this.infoCategory.controls['name'].invalid;
       const descriptionControl =
         this.infoCategory.controls['description'].invalid;
-      this.ButtonSave = nameControl || descriptionControl;
+      this.ButtonSave = nameControl;
       // this.ButtonSave = this.infoCategory.invalid; validate thất cả
     });
     this.infoCategory.valueChanges.subscribe(() => {
       this.ButtonDelete = this.infoCategory.controls['id'].invalid;
     });
     this.infoCategory.valueChanges.subscribe(() => {
-      this.ButtonUpdate = this.infoCategory.invalid;
+      const nameControl = this.infoCategory.controls['name'].invalid;
+      const descriptionControl =
+        this.infoCategory.controls['description'].invalid;
+      this.ButtonUpdate  = nameControl;
     });
   }
 
@@ -113,17 +117,34 @@ export class CategoryEditionComponent implements OnInit {
   fnAddCategory() {
     const categoryInfo = {
       name: this.infoCategory.value.name,
-      description: this.infoCategory.value.description,
+      // description: this.infoCategory.value.description,
       status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
+    this.cate.getAllCategories().subscribe((data) => {
+      console.log(data);
+      this.categories = data;
+      for (let o of this.categories) {
+        if (this.infoCategory.value.name == o.name) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Name of category is existed already',
+              showConfirmButton: false,
+              timer: 7000
+            })
+          }, this.progressTimerOut);
+          return;
+        } 
+      }
     this.cate.createCategory(categoryInfo).subscribe(
       (response) => {
 
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create category!');
-          this.router.navigate(['/category-table']);
+          this.router.navigate(['/admin/category-table']);
           this.infoCategory.reset();
           this.defaultComboBox();
           Swal.fire({
@@ -147,23 +168,47 @@ export class CategoryEditionComponent implements OnInit {
           })
         }, this.progressTimerOut);
       }
-    );
+      );
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   fnUpdateCategory() {
     const categoryInfo = {
       name: this.infoCategory.value.name,
-      description: this.infoCategory.value.description,
+      thumbnail: this.infoCategory.value.thumbnail,
+      // description: this.infoCategory.value.description,
       status: this.infoCategory.value.status,
     };
     this.isSpinning = true;
+    this.cate.getAllCategories().subscribe((data) => {
+      console.log(data);
+      this.categories = data;
+      for (let o of this.categories) { 
+        if((this.infoCategory.value.name != o.name && this.infoCategory.value.status == o.status )
+        ) {
+            break;
+        } 
+        if (this.infoCategory.value.name == o.name&& this.infoCategory.value.status == o.status) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Name of category is existed already',
+              showConfirmButton: false,
+              timer: 2000
+            })
+          }, this.progressTimerOut);
+          return;
+        }
+      }
     this.cate.updateCategory(this.id, categoryInfo).subscribe(
       (response) => {
-
         setTimeout(() => {
           this.isSpinning = false;
+          this.router.navigate(['/admin/category-table']);
           console.log('Successfully updated category!');
-          window.location.reload();
           this.infoCategory.reset();
           this.defaultComboBox();
           Swal.fire({
@@ -171,6 +216,7 @@ export class CategoryEditionComponent implements OnInit {
             title: 'Successfully updated category!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
           })
         }, this.progressTimerOut);
       },
@@ -185,8 +231,10 @@ export class CategoryEditionComponent implements OnInit {
           });
         }, this.progressTimerOut);
       }
-    );
-  }
+      );
+  
+    });
+      }
 
   refreshTable() {
       // Gọi API hoặc thực hiện các thao tác khác để lấy lại dữ liệu mới

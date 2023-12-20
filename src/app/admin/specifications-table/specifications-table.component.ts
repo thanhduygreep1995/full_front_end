@@ -123,7 +123,7 @@ export class SpecificationsTableComponent implements OnInit {
     });
   }
   onUpdate(id: number): void {
-    this.router.navigate(['/specifications-edition', id])
+    this.router.navigate(['admin/specifications-edition', id])
     this.buttonService.setShowButton3(true)
   }
 
@@ -147,7 +147,6 @@ export class SpecificationsTableComponent implements OnInit {
             setTimeout(() => {
               this.isSpinning = false;
               console.log('Danh mục đã được xóa thành công');
-              window.location.reload();
               this.SpecForm.reset();
               this.refreshTable();
               Swal.fire({

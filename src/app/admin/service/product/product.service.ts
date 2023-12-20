@@ -33,7 +33,16 @@ export class ProductService {
   //   return this.http.get(this.baseUrl + '/active');
   // }
 
-  getProductById(id: any) {
-    return this.http.get(this.baseUrl + '/' + id);
+  getProductById(id: any): Observable<any> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.get<any>(url);
+  }
+  
+
+  updateThumbImage(id: any, files: File){
+    const formData: FormData = new FormData();
+    formData.append('thumbImage', files, files.name);
+    const url = `${this.baseUrl + '/image'}/${id}`;
+    return this.http.put(url, formData, { responseType: 'text' });
   }
 }

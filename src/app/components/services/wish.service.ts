@@ -9,20 +9,23 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class WishService {
 
-   itemts: IWish[] = [];
+
+   items: IWish[] = [];
+
    private cartSubject = new BehaviorSubject<IWish[]>([]);
    constructor(private h: HttpClient) { 
     const saveWish = localStorage.getItem('wish');
     if (saveWish) {
-      this.itemts = JSON.parse(saveWish);
+      this.items = JSON.parse(saveWish);
       console.log('this hook work');
-      this.cartSubject.next(this.itemts);
+      this.cartSubject.next(this.items);
    }
   }
   addToWish(sp: IProduct) {
-    const index = this.itemts.findIndex(item => item.id == sp.id);
+    console.log('add to wishlist')
+    const index = this.items.findIndex(item => item.id == sp.id);
     if (index >= 0) {
-      const item = this.itemts[index];
+      const item = this.items[index];
     //   item.soluong++;
     //   item.tongTien = item.price * item.soluong;
 
@@ -31,7 +34,12 @@ export class WishService {
       const item: IWish = {
         id: sp.id,
         hinh: sp.hinh,
-        images:sp.images,
+
+
+        // images: sp.thumbnail,
+        thumbnail: sp.thumbnail,
+
+
         soluong: 1,
         solanxem: 0,
         hot: 1,
@@ -43,12 +51,20 @@ export class WishService {
         discountPrice: sp.discountPrice,
         model: sp.model,
         name: sp.name,
-        price: sp.price ,
+        price: sp.price,
         updateDate: sp.updateDate,
-        categoryId: sp.categoryId
+        categoryId: sp.categoryId,
+
+
+        // thumbnail: '',
+        Images: [],
+        starsInfo: undefined,
+        count: undefined
+
+
       }
       
-      this.itemts.push(item)
+      this.items.push(item)
      
     }
     this.saveWishToLocalStorage();
@@ -56,31 +72,31 @@ export class WishService {
   }
 
   removeFromWish(sp: IProduct) {
-    const index = this.itemts.findIndex(item => item.id === sp.id);
+    const index = this.items.findIndex(item => item.id === sp.id);
     if (index > -1) {
-      this.itemts.splice(index, 1);
+      this.items.splice(index, 1);
       // this.cartSubject.next(this.cartItems);
           this.saveWishToLocalStorage();
     }
   }
   private saveWishToLocalStorage() {
-    localStorage.setItem('wish', JSON.stringify(this.itemts));
+    localStorage.setItem('wish', JSON.stringify(this.items));
   }
 
 
 
   clearWish() {
-    this.itemts = [];
+    this.items = [];
     this.saveWishToLocalStorage();
-    return this.itemts
+    return this.items
   }
   getWishItems(): Observable<IWish[]> {
     return this.cartSubject.asObservable();
   }
   
-  getItems() { return this.itemts };
+  getItems() { return this.items };
   count(){
-    return this.itemts.length;
+    return this.items.length;
   }
 }
 

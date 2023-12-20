@@ -14,10 +14,15 @@ export class CategoriesComponent {
   listTypePro:Itypeprd[] = [];
   ngOnInit(): void {
     this.d.getTypeProduct().subscribe( d => this.listTypePro = d);
+    let queryparam = window.location.pathname.split('/');
+    let param = queryparam[queryparam.length-1];
+    this.selectedProducts = param.split(',').map(function(item) {
+      return parseInt(item, 10);
+  });
+  this.d.pushChangeCategory(this.selectedProducts);
   }
   toggleProductSelection(productId: number) {
     const index = this.selectedProducts.indexOf(productId);
-
     if (index === -1) {
       // Nếu sản phẩm chưa được chọn, thêm nó vào danh sách
       this.selectedProducts.push(productId);
@@ -25,13 +30,13 @@ export class CategoriesComponent {
       // Nếu sản phẩm đã được chọn, loại bỏ nó khỏi danh sách
       this.selectedProducts.splice(index, 1);
     }
-
+    
     if (this.selectedProducts.length > 0) {
-      // Nếu có ít nhất một sản phẩm được chọn, cập nhật routerLink với danh sách các sản phẩm
       this.router.navigate(['/shop/category', this.selectedProducts.join(',')]);
     } else {
       // Nếu không có sản phẩm nào được chọn, xóa routerLink
       this.router.navigate(['/shop']);
     }
+    this.d.pushChangeCategory(this.selectedProducts);
   }
 }

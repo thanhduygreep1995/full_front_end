@@ -6,17 +6,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ButtonService } from '../service/button/buttonservice';
+import { ProductService } from '../service/product/product.service';
 
-interface SpecResponse {
-  id: any;
-  processor: any;
-  graphicsCard: any;
-  ram: any;
-  storage: any;
-  display: any;
-  operatingSystem: any;
-  camera: any;
-}
 
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -56,17 +47,23 @@ export class SpecificationsEditionComponent implements OnInit {
   ButtonSave: boolean = true;
   ButtonDelete: boolean = true;
   ButtonUpdate: boolean = true;
+
   isSpinning: boolean = false;
+  selectedProductId!: any;
+  product: any;
   progressTimerOut: number = 1200;
 
   constructor(
     private formBuilder: FormBuilder,
     private ss: SpecService,
+    private ps: ProductService,
     private route: ActivatedRoute,
     private router: Router,
     public buttonService: ButtonService
   ) {
     this.specForm = this.formBuilder.group({
+      selectedProduct: ['', Validators.required],
+      id: ['', Validators.required],
       processor: ['', Validators.required],
       graphicsCard: ['', Validators.required],
       ram: ['', Validators.required],
@@ -74,16 +71,19 @@ export class SpecificationsEditionComponent implements OnInit {
       display: ['', Validators.required],
       operatingSystem: ['', Validators.required],
       camera: ['', Validators.required],
+      products: this.formBuilder.group({
+        id: ["", Validators.required],
+      }),
     });
     this.specForm.valueChanges.subscribe(() => {
-      
       const nameControl = this.specForm.controls['processor'].invalid;
-      const descriptionControl =
-        this.specForm.controls['graphicsCard'].invalid;
-      this.ButtonSave = nameControl || descriptionControl;
+      this.specForm.controls['graphicsCard'].invalid;
+      this.ButtonSave = nameControl;
     });
+
     this.specForm.valueChanges.subscribe(() => {
-      this.ButtonUpdate = this.specForm.invalid;
+      const nameControl = this.specForm.controls['processor'].invalid;
+      this.ButtonUpdate = nameControl;
     });
   }
 
@@ -92,8 +92,9 @@ export class SpecificationsEditionComponent implements OnInit {
       if (params && params['id']) {
         this.id = params['id'];
         this.ss.getSpecById(this.id).subscribe(
-          (response: Object) => {
-            this.specForm.patchValue(response as SpecResponse);
+          (response: any) => {
+            console.log(response)
+            this.specForm.patchValue(response);
           },
           (error) => {
             console.log(error);
@@ -104,6 +105,16 @@ export class SpecificationsEditionComponent implements OnInit {
         // Xử lý trường hợp không tìm thấy `id`, ví dụ chuyển hướng người dùng đến trang khác hoặc hiển thị thông báo lỗi
       }
     });
+
+    this.ss.getAllSpec().subscribe((data) => {
+      this.Specs = data;
+    });
+    this.ps.getAllProduct().subscribe((data) =>{
+      this.product = data;
+      console.log('products', data);
+    });
+    this.selectedProductId = '0';
+
   }
   fnAddSpec() {
     const Specinfo = {
@@ -114,8 +125,36 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
+      products: {
+        id: this.selectedProductId
+      }
     };
     this.isSpinning = true;
+    this.ss.getAllSpec().subscribe((data) => {
+      console.log(data);
+      this.Specs = data;
+      for (let s of this.Specs) {
+        if (this.specForm.value.products.id == s.products.id &&
+          this.specForm.value.processor === s.processor &&
+          this.specForm.value.graphicsCard === s.graphicsCard &&
+          this.specForm.value.ram === s.ram &&
+          this.specForm.value.storage === s.storage &&
+          this.specForm.value.display === s.display &&
+          this.specForm.value.operatingSystem === s.operatingSystem &&
+          this.specForm.value.camera === s.camera
+          ) {
+          setTimeout(() => {
+            this.isSpinning = false;
+            Swal.fire({
+              icon: 'error',
+              title: 'Product of specifications is existed already',
+              showConfirmButton: false,
+              timer: 7000
+            })
+          }, this.progressTimerOut);
+          return;
+        } 
+      }
     this.ss.createSpec(Specinfo).subscribe(
       (response) => {
         console.log('Successfully Create Specification!');
@@ -123,7 +162,7 @@ export class SpecificationsEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create Specification!');
-          this.router.navigate(['/specifications-table']);
+          this.router.navigate(['/admin/specifications-table']);
           this.specForm.reset();
           Swal.fire({
             icon: 'success',
@@ -145,7 +184,11 @@ export class SpecificationsEditionComponent implements OnInit {
         }, this.progressTimerOut);
         console.error('Failed to Create Specification:', error);
       }
-    );
+      );
+    }, (err) => {
+      console.log(err);
+    });
+  
   }
 
   fnUpdateSpec() {
@@ -157,6 +200,9 @@ export class SpecificationsEditionComponent implements OnInit {
       display: this.specForm.value.display,
       operatingSystem: this.specForm.value.operatingSystem,
       camera: this.specForm.value.camera,
+      products: {
+        id: this.selectedProductId
+      }
     };
     this.isSpinning = true;
     this.ss.updateSpec(this.id, Specinfo).subscribe(
@@ -165,13 +211,14 @@ export class SpecificationsEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully updated specification!');
-          window.location.reload();
           this.specForm.reset();
           Swal.fire({
             icon: 'success',
             title: 'Successfully updated specification!',
             showConfirmButton: false,
             timer: 2000
+          }).then(() => {
+            window.location.reload();
           })
         }, this.progressTimerOut);
       },

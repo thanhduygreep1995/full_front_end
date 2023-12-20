@@ -141,9 +141,14 @@ export class CustomerReportComponent implements OnInit {
         
             // Thêm dữ liệu từ CustomerReports vào mảng dataToCopy
             this.CustomerReports.forEach((item, index) => {
+              const dateCreated = moment.default(item.day_created);
+              const formattedDate: string = dateCreated.format('DD/MM/YYYY');
+
+              const bDateCreated = moment.default(item.birth_date);
+              const bFormattedDate: string = bDateCreated.format('DD/MM/YYYY');
               I = index + 1;
               dataToCopy.push(`${index + 1}  ${item.name}   ${item.revenue}   ${item.email}
-                 ${item.phone}   ${item.birth_date}   ${item.day_created}   ${item.status}`);
+                 ${item.phone}   ${bFormattedDate}   ${formattedDate}   ${item.status}`);
               
             });
             // dataToCopy.push('Total Revenue  ' + this.getTotalRevenue());
@@ -184,7 +189,7 @@ export class CustomerReportComponent implements OnInit {
             const worksheet = workbook.addWorksheet('Income Report');
             
             // Merge hàng cho tiêu đề
-            worksheet.mergeCells('A1:D1');
+            worksheet.mergeCells('A1:H1');
            // Thiết lập tiêu đề cho Excel
             worksheet.getCell('A1').value = 'Customer Report';
             worksheet.getCell('A1').font = { size: 20, bold: true, };
@@ -193,19 +198,23 @@ export class CustomerReportComponent implements OnInit {
              'Email', 'Phone', 'Birthday', 'Day Created', 'Status'];
 
             this.CustomerReports.forEach((item, index) => {
-              
+              const dateCreated = moment.default(item.day_created);
+              const formattedDate: string = dateCreated.format('DD/MM/YYYY');
+
+              const bDateCreated = moment.default(item.birth_date);
+              const bFormattedDate: string = bDateCreated.format('DD/MM/YYYY');
               worksheet.addRow([index + 1 , item.name, item.revenue,
-                 item.email, item.phone, item.birth_date, item.day_created, item.status]);
+                 item.email, item.phone, bFormattedDate, formattedDate, item.status]);
             });
-            const totalRevenueRow = this.CustomerReports.length + 3;
-            worksheet.mergeCells(`A${totalRevenueRow}:C${totalRevenueRow}`);
-            worksheet.getCell(`A${totalRevenueRow}`).value = 'Total Revenue';
-            worksheet.getCell(`A${totalRevenueRow}`).alignment = { vertical: 'middle', horizontal: 'center' }
+            // const totalRevenueRow = this.CustomerReports.length + 3;
+            // worksheet.mergeCells(`A${totalRevenueRow}:C${totalRevenueRow}`);
+            // worksheet.getCell(`A${totalRevenueRow}`).value = 'Total Revenue';
+            // worksheet.getCell(`A${totalRevenueRow}`).alignment = { vertical: 'middle', horizontal: 'center' }
             
 
 
             // Thiết lập dữ liệu dọc (vertical) cho ô cột Total Revenue
-            worksheet.getCell(`D${totalRevenueRow}`).alignment = { vertical: 'middle', horizontal: 'center' };
+            // worksheet.getCell(`D${totalRevenueRow}`).alignment = { vertical: 'middle', horizontal: 'center' };
             
             // Set column widths (optional)
             worksheet.columns.forEach((column, index) => {
@@ -227,12 +236,18 @@ export class CustomerReportComponent implements OnInit {
             // const totalRevenue = this.getTotalRevenue();
             // Thêm tiêu đề cho các cột
             const csvData: any[] = [['Customer Report']];
+
             csvData.push(['No', 'Full Name', 'Revenue',
             'Email', 'Phone', 'Birthday', 'Day Created', 'Status']);
             // Thêm dữ liệu vào mảng CSV
             this.CustomerReports.forEach((item, index) => {
+              const dateCreated = moment.default(item.day_created);
+              const formattedDate: string = dateCreated.format('DD/MM/YYYY');
+  
+              const bDateCreated = moment.default(item.birth_date);
+              const bFormattedDate: string = bDateCreated.format('DD/MM/YYYY');
               csvData.push([index + 1 , item.name, item.revenue,
-                item.email, item.phone, item.birth_date, item.day_created, item.status]);
+                item.email, item.phone, bFormattedDate, formattedDate, item.status]);
             });
 
             // Thêm dòng tổng tiền vào mảng CSV
@@ -306,8 +321,8 @@ export class CustomerReportComponent implements OnInit {
           // this.chartRevenue.splice(0, this.chartRevenue.length);
           this.CustomerReports = report;
           for (let b of this.CustomerReports) {
-            b.birth_date =  moment.default(b.birth_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
-            b.day_created =  moment.default(b.day_created, 'YYYY-MM-DD').format('DD/MM/YYYY');
+            // b.birth_date =  moment.default(b.birth_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+            // b.day_created =  moment.default(b.day_created, 'YYYY-MM-DD').format('DD/MM/YYYY');
             if (b.revenue == 0) {
               this.countNoneBuyings++;
             }else{
@@ -346,19 +361,25 @@ export class CustomerReportComponent implements OnInit {
       '</tr>' +
       '</thead>' +
       '<tbody>';
+
   
-    tableData += this.CustomerReports.map((item, index) => {
-      return '<tr>' +
-        '<td>' + (index + 1) + '</td>' +
-        '<td>' + item.name + '</td>' +
-        '<td>' + item.revenue + '</td>' +
-        '<td>' + item.email + '</td>' +
-        '<td>' + item.phone + '</td>' +
-        '<td>' + item.birth_date + '</td>' +
-        '<td>' + item.day_created + '</td>' +
-        '<td>' + item.status + '</td>' +
-        '</tr>';
-    }).join('');
+      tableData += this.CustomerReports.map((item, index) => {
+        const dateCreated = moment.default(item.day_created);
+        const formattedDate: string = dateCreated.format('DD/MM/YYYY');
+
+        const bDateCreated = moment.default(item.birth_date);
+        const bFormattedDate: string = bDateCreated.format('DD/MM/YYYY');
+        return '<tr>' +
+          '<td>' + (index + 1) + '</td>' +
+          '<td>' + item.name + '</td>' +
+          '<td>' + item.revenue + '</td>' +
+          '<td>' + item.email + '</td>' +
+          '<td>' + item.phone + '</td>' +
+          '<td>' + bFormattedDate + '</td>' +
+          '<td>' + formattedDate+ '</td>' +
+          '<td>' + item.status + '</td>' +
+          '</tr>';
+      }).join('');
   
     tableData += '</tbody>' +
                   '</table>';
@@ -462,8 +483,8 @@ export class CustomerReportComponent implements OnInit {
         if (report != null && Array.isArray(report) && report.length > 0) {
           this.CustomerReports = report;   
           for (let b of this.CustomerReports) {
-            b.birth_date =  moment.default(b.birth_date, 'YYYY-MM-DD').format('DD-MM-YYYY');
-            b.day_created =  moment.default(b.day_created, 'YYYY-MM-DD').format('DD-MM-YYYY');
+            // b.birth_date =  moment.default(b.birth_date, 'YYYY-MM-DD').format('DD-MM-YYYY');
+            // b.day_created =  moment.default(b.day_created, 'YYYY-MM-DD').format('DD-MM-YYYY');
             this.chartCustomerLabels.push(b.name);
             this.chartRevenue.push(b.revenue);
           };
@@ -498,8 +519,8 @@ export class CustomerReportComponent implements OnInit {
         this.countLocked = 0;
   
         for (let b of this.CustomerReports) {
-          b.birth_date = moment.default(b.birth_date, 'YYYY-MM-DD').format('DD-MM-YYYY');
-          b.day_created = moment.default(b.day_created, 'YYYY-MM-DD').format('DD-MM-YYYY');
+          // b.birth_date = moment.default(b.birth_date, 'YYYY-MM-DD').format('DD-MM-YYYY');
+          // b.day_created = moment.default(b.day_created, 'YYYY-MM-DD').format('DD-MM-YYYY');
   
           if (b.status == status) {
             this.countActive++;

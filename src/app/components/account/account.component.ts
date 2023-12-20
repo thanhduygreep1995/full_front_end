@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer/customer.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-account',
@@ -9,8 +10,8 @@ import { CustomerService } from '../services/customer/customer.service';
 export class AccountComponent implements OnInit {
   customerInfo: any; // Khai báo biến để lưu thông tin khách hàng
   fullName: any;
-  id: any = 1;
-  constructor(private customer: CustomerService) {}
+  id: any = this.tokenService.getCustomerId();
+  constructor(private customer: CustomerService,private tokenService: TokenService) {}
   ngOnInit(): void {
     this.customer.getCustomerById(this.id).subscribe((data: any) => {
       this.customerInfo = data; // Lưu thông tin khách hàng vào biến customerInfo

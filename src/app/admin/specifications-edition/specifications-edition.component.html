@@ -17,9 +17,8 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
 </div>
 <!-- Main content -->
 <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
@@ -31,28 +30,26 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group card-body">
-
                                 <div class="mb-1">
-                                    <input hidden readonly formControlName="id" type="text" class="form-control mb-2" name="id" id="id" placeholder="Enter Product Id" />
                                     <label for="processor" class="form-label">Processor</label>
                                     <input formControlName="processor" type="text" class="form-control mb-2" name="processor" id="processor" placeholder="Enter processor Name">
                                     <div *ngIf="specForm.controls['processor'].invalid &&
                                     specForm.controls['processor'].touched" class="text-danger"> Processor is required.
                                     </div>
                                     <label for="graphicsCard" class="form-label">Graphics Card</label>
-                                    <input formControlName="graphicsCard" type="graphicsCard" class="form-control mb-2" name="graphicsCard" id="graphicsCard" placeholder="Enter graphicsCard">
+                                    <input formControlName="graphicsCard" type="graphicsCard" class="form-control mb-2" name="graphicsCard" id="graphicsCard" placeholder="Enter graphicsCard, Ex: Moled">
                                     <div *ngIf="specForm.controls['graphicsCard'].invalid &&
                                     specForm.controls['graphicsCard'].touched" class="text-danger"> Graphics card is required.
                                     </div>
 
                                     <label for="ram" class="form-label">Ram</label>
-                                    <input formControlName="ram" type="text" class="form-control mb-2" name="ram" id="ram" placeholder="Enter your Ram">
+                                    <input formControlName="ram" type="text" class="form-control mb-2" name="ram" id="ram" placeholder="Enter your Ram, Ex: 12GB">
                                     <div *ngIf="specForm.controls['ram'].invalid &&
                                     specForm.controls['ram'].touched" class="text-danger"> Ram is required.
                                     </div>
 
                                     <label for="storage" class="form-label">Storage</label>
-                                    <input formControlName="storage" type="text" class="form-control" name="storage" id="storage" placeholder="Enter Storage">
+                                    <input formControlName="storage" type="text" class="form-control" name="storage" id="storage" placeholder="Enter Storage, Ex: 128GB">
                                     <div *ngIf="specForm.controls['storage'].invalid &&
                                     specForm.controls['storage'].touched" class="text-danger"> Storage is required.
                                     </div>
@@ -64,36 +61,41 @@
                                     </div>
 
                                     <label for="operatingSystem" class="form-label">Operating System</label>
-                                    <input formControlName="operatingSystem" type="text" class="form-control mb-2" name="operatingSystem" id="operatingSystem" placeholder="Enter your Category Id">
+                                    <input formControlName="operatingSystem" type="text" class="form-control mb-2" name="operatingSystem" id="operatingSystem" placeholder="Enter your Category Id, Ex: Androids or IOS">
                                     <div *ngIf="specForm.controls['operatingSystem'].invalid &&
-                                    specForm.controls['operatingSystem'].touched" class="text-danger"> Operating System is required.
+                                    specForm.controls['operatingSystem'].touched" class="text-danger"> Operating system is required.
                                     </div>
 
                                     <label for="camera" class="form-label">Camera</label>
-                                    <input formControlName="camera" type="text" class="form-control mb-2" name="camera" id="camera" placeholder="Enter your Camera">
+                                    <input formControlName="camera" type="text" class="form-control mb-2" name="camera" id="camera" placeholder="Enter your Camera, Ex: 12MPx">
                                     <div *ngIf="specForm.controls['camera'].invalid &&
                                     specForm.controls['camera'].touched" class="text-danger"> Camera is required.
                                     </div>
-
+                                    <div formGroupName="products">
+                                        <label for="">Product</label><br>
+                                        <select formControlName="id" name="id" class="form-control select2" style="width: 100%" [(ngModel)]="selectedProductId">
+                                            <option value="0" selected disabled>Select Product</option>
+                                            <option  *ngFor="let p of product" value="{{p.id}}">{{p.model}}</option>
+                                        </select>
+                                    </div>
                                     <!-- <label for="originId" class="form-label">Product</label>
                                     <input formControlName="originId" type="text" class="form-control mb-2" name="originId" id="originId" placeholder="Enter your Origin Id">
                                     <div *ngIf="infoSpecification.controls['originId'].invalid &&
                                         infoSpecification.controls['originId'].touched" class="text-danger"> Product is required.
                                     </div> -->
-                                </div>
-                                <hr>
-                                <div class="row mx-2 mb-2">
-                                    <div class="col-12 d-flex flex-wrap justify-content-end">
-                                        <button (click)="fnAddSpec()" [disabled]="ButtonSave" type="button" class="btn btn-primary mx-2" name="btn-save">Save</button>
-                                        <button *ngIf="buttonService.getShowButton3()" (click)="fnUpdateSpec()" [disabled]="ButtonUpdate" type="button" class="btn btn-primary mx-2">Update</button>
+
+                                    <hr>
+                                    <div class="row mx-2 mb-2">
+                                        <div class="col-12 d-flex flex-wrap justify-content-end">
+                                            <button (click)="fnAddSpec()" [disabled]="ButtonSave" type="button" class="btn mx-2" style="background-color: cadetblue;" name="btn-save"><i class="fa fa-plus"></i></button>
+                                            <button *ngIf="buttonService.getShowButton3()" (click)="fnUpdateSpec()" type="button" class="btn mx-2" style="background-color: cornflowerblue;"><i class="fa fa-pencil"></i></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
-
-
             </div>
 
         </div>

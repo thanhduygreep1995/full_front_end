@@ -17,9 +17,8 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="half-circle-spinner">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
+<div *ngIf="isSpinning" [@fadeInOut]="isSpinning" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
 </div>
 <!-- Main content -->
 <section class="content" *ngIf="!isSpinning" [@fadeIn]="!isSpinning">
@@ -28,15 +27,15 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Danh Sách Brands</h3>
+                        <!-- <h3 class="card-title">Danh Sách Brands</h3> -->
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table datatable *ngIf="brands && brands.length > 0" [dtOptions]="dtOptions" class="table table-bordered table-striped row-border hover">
                             <!-- Các cột dữ liệu ở đây -->
                             <thead>
                                 <tr>
-                                    <th class="col-2">No</th>
+                                    <th class="col-2">No.</th>
                                     <th>Brand Name</th>
                                     <th class="col-2">Action</th>
                                 </tr>
@@ -46,12 +45,12 @@
                                     <td class="col-2">{{ i + 1 }}</td>
                                     <td>{{ b.name }}</td>
                                     <td class="col-2">
-                                        <button class="btn btn-info mx-2" (click)="onUpdate(b.id)">
-                      Update
-                    </button>
+                                        <button class="btn mx-2" style="background-color: cornflowerblue;" (click)="onUpdate(b.id)">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
                                         <button class="btn btn-danger" (click)="fnDeleteBrand(b.id)">
-                      Delete
-                    </button>
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>

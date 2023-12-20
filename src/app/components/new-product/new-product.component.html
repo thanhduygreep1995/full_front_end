@@ -1,63 +1,74 @@
-<div class="container pb-16 " style="border: 1px solid #ebe9e9; border-radius: 5px;margin-bottom: 25px;">
-    <h2 class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6  ">Top New Arrival </h2>
-    <div class="grid lg:grid-cols-5 sm:grid-cols-2 gap-6 ">
-        <!-- ---- Start Single Product  ----- -->
-        <div class="group rounded bg-white shadow overflow-hidden " *ngFor="let pro of listProduct">
-            <div class="relative ">
-                <img  src="{{pro.images}}" class="w-full" />
-
-                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition ">
-                    <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex  items-center justify-center ">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <a href="#" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center ">
-                        <i class="fas fa-heart"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="pt-4 pb-3 px-4 ">
-                <div style="display: flex; flex-direction: column;  height: 3rem ">
-                    <a routerLink="/view/{{pro.id}}" href="#">
-                        <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition" style="word-wrap: break-word; overflow-wrap: break-word;">
-                            {{pro.model}}
-                        </h6>
-                    </a>
-                </div>
-
-                <div class="flex items-baseline mb-1 space-x-2 ">
-                    <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">{{pro.discountPrice | currency:".":"":"6.0"}} VNĐ</p>
-                    <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"6.0"}} VNĐ </p>
-                </div>
-                <div class="flex items-center ">
-                    <div class="flex gap-1 text-sm text-yellow-400 ">
-                        <span><i class="fas fa-star"></i> </span>
-                        <span><i class="fas fa-star"></i> </span>
-                        <span><i class="fas fa-star"></i> </span>
-                        <span><i class="fas fa-star"></i> </span>
-                        <span><i class="fas fa-star"></i> </span>
-                    </div>
-                    <div class="text-xs text-gray-500 ml-3 ">(120)</div>
-
-                </div>
-            </div>
-
-            <a (click)="addToCart(pro)" class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium hover:bg-transparent hover:text-primary transition ">
-                   Add To Cart
-              </a>
-        </div>
-
-        <!-- ---- End Single Product  ----- -->
-
-
-        <!-- ---- Start Single Product  ----- -->
-
-
-
-
-
-
+<div class="container pb-16 ">
+    <div class="flex items-center py-4">
+        <hr class="flex-grow border-b">
+        <h3 class="px-4 text-gray-900 font-semibold text-xl uppercase">Top New Arrival</h3>
+        <hr class="flex-grow border-b">
     </div>
+
+    <div class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div class="surface-border border-round py-2" *ngFor="let pro of listProduct">
+            <div class="group rounded bg-white shadow overflow-hidden relative">
+                <span style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;" class="absolute top-1 left-1 z-50 justify-items-center  bg-red-500 text-white text-sm font-bold rounded-full">-{{pro.discountPercentage}}%</span>
+                <div class="relative group">
+                    <div style="height: 220px; display: flex; align-items: center; justify-content: center;"
+                        class="align-text-center">
+                        <img src="{{pro.thumbnail}}"
+                            class="w-full p-5" />
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition">                     
+                        <a href="/view/{{pro.id}}"
+                            class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <a (click)="addToWish(pro)"
+                            class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                            <i class="fas fa-heart"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <div style="display: flex; flex-direction: column;  height: 3rem ">
+                        <a href="/view/{{pro.id}}">
+                            <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition truncate-overflow-20"
+                                style="word-wrap: break-word; overflow-wrap: break-word;">
+                                {{pro.model}}
+                            </h6>
+                        </a>
+                    </div>
+
+                    <div class="flex items-baseline mb-1 space-x-2 ">
+                        <p class="text-l text-primary font-roboto font-semibold" style="white-space: nowrap;">
+                            {{pro.discountPrice | currency:".":"":"1.0"}} VNĐ</p>
+                    </div>
+                    <div class="flex items-baseline mb-1 space-x-2 ">
+                        <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price|
+                            currency:".":"":"1.0"}} VNĐ </p>
+                    </div>
+                    <div>
+                        <div class="flex items-center" class="flex justify-between">
+                            <div class="flex gap-1 text-md">
+                                <div *ngFor="let starInfo of pro.starsInfo">
+                                    <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
+                                </div>
+                            </div>
+                            <div class="text-xs text-center text-gray-500 flex items-center">({{ pro.ratingProduct.length }}) Reviews</div>
+
+                        </div>
+                    </div>
+                </div>
+                <a (click)="addToCart(pro)"
+                    class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b font-medium hover:bg-transparent hover:text-primary transition ">
+                    Add To Cart
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="pagination-nav flex justify-center mt-4">
+        <a href="/shop" class="font-bold py-2 px-4 rounded-full text-white">
+            View all products <i class="fas fa-angle-right"></i>
+        </a>
+    </div>
+    
 
 </div>
 

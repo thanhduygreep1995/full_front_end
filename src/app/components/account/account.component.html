@@ -37,14 +37,14 @@
          <div class="space-y-1" *ngIf="customerInfo">
            <h3 class="text-gray-700 font-medium">{{fullName}}</h3>
            <p class="text-gray-800">{{ customerInfo.email }}</p>
-           <p class="text-gray-800">{{ customerInfo.dateOfBirth }}</p>
+           <p class="text-gray-800">{{ customerInfo.dateOfBirth| date:'dd/MM/yyyy' }}</p>
            <p class="text-gray-800">(+84){{ customerInfo.phoneNumber }}</p>
          </div>
        </div>
        <!-- ----End single card --->
    
        <!-- ----single card --->
-       <div class="shadow rounded bg-gray-100 px-4 pt-6 pb-8">
+       <!-- <div class="shadow rounded bg-gray-100 px-4 pt-6 pb-8">
          <div class="flex justify-between items-center mb-4">
            <h3 class="font-medium capitalize text-gray-800 text-lg">
              Shipping Address
@@ -53,10 +53,10 @@
          </div>
          <div class="space-y-1">
            <h3 class="text-gray-700 font-medium">Kazi Ariyan</h3>
-           <p class="" text-gray-800>ariyan@gmail.com</p>
+           <p class="" text-gray-800>123 Fake Street, City, State, Zip Code</p>
            <p class="" text-gray-800>(123)3434-43434</p>
          </div>
-       </div>
+       </div> -->
        <!-- ----End single card --->
    
        <!-- ----single card --->
