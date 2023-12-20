@@ -1,0 +1,346 @@
+{
+  "header": {
+    "wisth": "Wish List",
+    "cart": "Cart",
+    "search": "Search",
+    "searchSubmit": "Search",
+    "account": "Account"
+  },
+  "navbar": {
+    "categoty": "All Categories",
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "terms": "Terms & Conditions",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "greeting": "Hello"
+  },
+  "about_us": {
+    "about_us": "About Us",
+    "history_and_development": {
+      "title": "History and Development of the Store",
+      "content": [
+        {
+          "text": "Establishment Date: Established on September 9, 2023, we embarked on our journey with a passion for technology, aiming to bring the best products to our customers."
+        },
+        {
+          "text": "Key Development Steps: Throughout our development journey, we expanded our product line from smartphones to other smart electronic devices such as smartwatches and tablets. Our strategic partners and distribution network have expanded nationwide, ensuring convenience and reliability for our customers."
+        },
+        {
+          "text": "Mission and Vision: We are committed to delivering the most advanced technology, dedicated service, and the most exciting shopping experience for our customers. Our vision is to be at the forefront of providing innovative and efficient technology solutions."
+        }
+      ]
+    },
+    "highlights": {
+      "title": "Key Highlights",
+      "content": [
+        {
+          "text": "Products and Services: At our store, you'll find a range of products from the most renowned brands in the market. From high-quality mobile phones to smart electronic devices and useful accessories, all our products are carefully selected to meet customers' needs."
+        },
+        {
+          "text": "Prominent Features: Designed with unique features, high performance, and the latest technology, our products offer an excellent user experience and utility for users."
+        },
+        {
+          "text": "Quality and Commitment: We are committed to product and service quality, as well as reputable warranty policies and dedicated customer support."
+        },
+        {
+          "text": "Partnerships and Brands: Our strategic partners are leading reputable brands, offering diversity and maximum quality for our customers."
+        }
+      ]
+    },
+    "support_and_reviews": {
+      "title": "Support Information and Reviews",
+      "content": [
+        {
+          "text": "Customer Support: We provide 24/7 support services via phone, email, and online chat, ready to address any customer queries."
+        },
+        {
+          "text": "Reviews and Feedback: Our reliability is evidenced by positive feedback from customers, which motivates us to continue improving and serving better."
+        }
+      ]
+    },
+    "news_and_updates": {
+      "title": "News and New Technology",
+      "content": [
+        {
+          "text": "Technology Updates: Our website always updates information on trends, new technologies, and important events in the tech industry."
+        },
+        {
+          "text": "Events and Promotions: We regularly organize events and promotional programs to show appreciation to customers and offer special deals."
+        }
+      ]
+    },
+    "policies_and_legal_info": {
+      "title": "Policies and Legal Information",
+      "content": [
+        {
+          "text": "Privacy Policy: We are committed to protecting customers' personal information according to publicly disclosed privacy policies."
+        },
+        {
+          "text": "Return and Warranty Policy: Providing detailed information on product return regulations, warranty, ensuring customer confidence while shopping."
+        },
+        {
+          "text": "Legal Information: Information related to copyrights, terms and conditions of website usage, ensuring transparency and credibility in business."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "contact_us": "Contact Us",
+    "contact_info": "Contact Information",
+    "store_name": "EGU ELECTRONICS TECHNOLOGY STORE",
+    "address": "Address:",
+    "phone": "Phone:",
+    "hotline": "Hotline:",
+    "fax": "Fax:",
+    "send_contact_information": "Send Contact Information",
+    "contact_feedback": "Contact Feedback",
+    "name": "Name",
+    "address_field": "Address",
+    "email_field": "Email",
+    "phone_field": "Phone",
+    "title_field": "Title",
+    "content_field": "Content",
+    "send_button": "Send",
+    "description": "Please fill in the following form and send it to us. We will reply you as soon as possible. Thank you!"
+  },
+  "terms": {
+    "term_use": "Terms & Conditions",
+    "termsConditions": {
+      "title": "Terms & Conditions",
+      "privacyPolicy": {
+        "heading": "Privacy Policy",
+        "content": [
+          "Welcome to EGU STORE. We are committed to protecting your personal information and using it responsibly to provide the best shopping experience.",
+          "Below are the key points of our Privacy Policy:"
+        ],
+        "sections": [
+          {
+            "title": "1. Customer information collection",
+            "points": [
+              "To use our services, customers need to provide some necessary personal information.",
+              "This information helps us accurately determine delivery and payment."
+            ]
+          },
+          {
+            "title": "2. Use of information",
+            "points": [
+              "Your personal information is used to provide the best services, including sending newsletters, customer support, and improving service quality.",
+              "We use information to resolve arising issues and prevent legal violations."
+            ]
+          },
+          {
+            "title": "3. Information sharing",
+            "points": [
+              "Personal information is never shared unless requested by law enforcement or to protect the rights of both users and EGU STORE.",
+              "We only share information with customer consent or in specific cases notified in advance."
+            ]
+          },
+          {
+            "title": "4. Customer information security",
+            "points": [
+              "Customers also play a crucial role in protecting their personal information by maintaining password security and logging out of shared computers.",
+              "We commit not to disclose customer personal information for commercial purposes."
+            ]
+          },
+          {
+            "title": "Contact",
+            "content": [
+              "If you have any questions or contributions related to our Privacy Policy, please contact us via the phone or email below:",
+              "Phone: 0908 77 00 95 – Email: edgu1707@gmail.com",
+              "Note: EGU STORE's customer information privacy policy is only applicable at http://www.EGUSTORE.com/. It does not include or relate to third parties advertising or linking at EGUSTORE."
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "banner": {
+    "beforeTitle": "Best Collection For",
+    "afterTitle": "Home Decoration",
+    "button": "Shop Now"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "Shopping Cart"
+    },
+    "ProductCart": {
+      "product": "Product",
+      "quantity": "Quantity",
+      "total": "Total",
+      "orderSummary": "Order Summary",
+      "totalAmount": "Total",
+      "processToCheckout": "Proceed to Checkout"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "Checkout"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "Checkout",
+      "fullName": "Full Name",
+      "streetAddress": "Street Address",
+      "phoneNumber": "Phone Number",
+      "emailAddress": "Email Address",
+      "paymentMethod": "Payment Method",
+      "payInCash": "Pay in cash",
+      "vnPay": "VnPay",
+      "note": "Note",
+      "apply": "Apply",
+      "placeOrder": "Place Order",
+      "total": "Total:",
+      "coupon": "Coupon"
+    }
+  },
+  "login": {
+    "heading": "Login",
+    "title": "Login if you are a returning customer",
+    "email": "Email",
+    "password": "Password",
+    "checkbox": "Remember Me",
+    "submit": "Login",
+    "forgot": "Forgot Password?"
+  },
+  "orLoginInWith": {
+    "title": "OR LOGIN IN WITH",
+    "register": "Register now",
+    "dontHaveAccount": "Don't have an account?"
+  },
+  "forgotPassword": {
+    "heading": "Forgot Password",
+    "title": "Enter your email to reset your password",
+    "emailLabel": "Email Address",
+    "emailRequiredError": "Email is required!",
+    "emailFormatError": "Invalid email format!",
+    "submitButtonText": "Submit"
+  },
+  "resetPassword": {
+    "heading": "Reset Password",
+    "title": "Enter your reset token and new password",
+    "resetPasswordTokenLabel": "Reset Token",
+    "resetPasswordTokenInputPlaceholder": "Enter Reset Token",
+    "resetPasswordTokenRequiredError": "Reset Token is required!",
+    "newPasswordLabel": "New Password",
+    "newPasswordInputPlaceholder": "Enter New Password",
+    "newPasswordRequiredError": "New password is required!",
+    "newPasswordMinLengthError": "New password must be at least 6 characters long!",
+    "submitButtonText": "Reset Password"
+  },
+  "emptyCart": {
+    "title": "THERE IS NO PRODUCT IN CART",
+    "message": "Thank you for coming to our website",
+    "continueShoppingButtonText": "CONTINUE SHOPPING"
+  },
+  "accountSidebar": {
+    "greeting": "Welcome",
+    "title": "Manage Account",
+    "profileInformation": "Profile Information",
+    "changePassword": "Change Password",
+    "myActivities": "My Activities",
+    "orderHistory": "My Order History",
+    "myReview": "My Review",
+    "paymentMethod": "Payment Method",
+    "voucher": "Voucher",
+    "wishlist": "My Wish List",
+    "logout": "Logout"
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "currentPasswordLabel": "Current password",
+    "currentPasswordPlaceholder": "Enter current password",
+    "currentPasswordRequiredError": "Current password is required!",
+    "newPasswordLabel": "New password",
+    "newPasswordPlaceholder": "Enter new password",
+    "newPasswordRequiredError": "New password is required!",
+    "newPasswordMinLengthError": "New password must be at least 6 characters long!",
+    "confirmPasswordLabel": "Confirm password",
+    "confirmPasswordPlaceholder": "Confirm new password",
+    "confirmPasswordRequiredError": "Confirm password is required!",
+    "confirmPasswordMismatchError": "Confirm password does not match the new password!",
+    "saveButton": "Save Change"
+  },
+  "editProfile": {
+    "title": "Edit Information",
+    "fullNameLabel": "Display Name",
+    "fullNameReadOnlyNotice": "Use real names for easy management and identification",
+    "personalInformationTitle": "Personal Information",
+    "firstNameLabel": "First Name",
+    "lastNameLabel": "Last Name",
+    "dateOfBirthLabel": "Date of Birth",
+    "phoneNumberLabel": "Phone Number",
+    "saveButton": "Save Changes",
+    "cancelButton": "Cancel"
+  },
+  "wishlistProduct": {
+    "my_wishlist": "MY WISH LIST",
+    "title": "THERE IS NO PRODUCT IN WISHLIST",
+    "message": "Thank you for coming to our website",
+    "continueShoppingButtonText": "CONTINUE SHOPPING",
+    "addToCartButtonText": "Add to Cart"
+  },
+  "feedbackReview": {
+    "my_review": "MY REVIEW",
+    "title": "Feedback Review Page",
+    "viewButton": "View"
+  },
+  "voucherPage": {
+    "addVoucherForm": {
+      "codeVoucherLabel": "Voucher Code",
+      "codeVoucherPlaceholder": "Enter discount code here",
+      "applyButton": "Apply"
+    },
+    "myVouchersTitle": "My Vouchers",
+    "voucherList": {
+      "beforeTitle": "Discount code ",
+      "afterTitle": " for all products.",
+      "activeVoucherStatus": "Use it now",
+      "inactiveVoucherStatus": "Can not use",
+      "usedVoucherStatus": "Used",
+      "expiredVoucherStatus": "Expired: ",
+      "storeAppLabel": "Can only be applied at the Egu_Store app.",
+      "pagination": {
+        "previousButton": "Previous",
+        "pageText": "Page",
+        "ofText": "of",
+        "nextButton": "Next"
+      },
+      "noVouchersMessage": "No vouchers available."
+    }
+  },
+  "footer": {
+    "infor": "Customers must be very important, customers will be followed by customers.",
+    "solutions": {
+      "title": "Solutions",
+      "marketing": "Marketing",
+      "analytics": "Analytics",
+      "commerce": "Commerce",
+      "insights": "Insights"
+    },
+    "support": {
+      "title": "Support",
+      "pricing": "Pricing",
+      "documentation": "Documentation",
+      "guides": "Guides",
+      "apiStatus": "API Status"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About",
+      "blog": "Blog",
+      "jobs": "Jobs",
+      "service": "Service"
+    },
+    "legal": {
+      "title": "Legal",
+      "claim": "Claim",
+      "privacy": "Privacy",
+      "policy": "Policy",
+      "terms": "Terms"
+    },
+    "copyright": "© Easy Learning 2022"
+  }
+}

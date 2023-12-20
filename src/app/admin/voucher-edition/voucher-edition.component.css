@@ -1,0 +1,9 @@
+.spinner-border {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    position: relative;
+    /* position: absolute; */
+    margin-top: 23%;
+    margin-left: 45%;
+}

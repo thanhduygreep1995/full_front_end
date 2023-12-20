@@ -1,0 +1,346 @@
+{
+  "header": {
+    "wisth": "愿望清单",
+    "cart": "购物车",
+    "search": "搜索",
+    "searchSubmit": "搜索",
+    "account": "账户"
+  },
+  "navbar": {
+    "categoty": "所有类别",
+    "home": "首页",
+    "shop": "商店",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "terms": "条款和条件",
+    "login": "登录",
+    "register": "注册",
+    "logout": "退出登录",
+    "greeting": "你好"
+  },
+  "about_us": {
+    "about_us": "关于我们",
+    "history_and_development": {
+      "title": "店铺的历史与发展",
+      "content": [
+        {
+          "text": "成立日期：于2023年9月9日成立，我们怀着对技术的热情开始了我们的旅程，旨在为客户带来最优质的产品。"
+        },
+        {
+          "text": "重要发展步骤：在我们的发展过程中，我们将产品线从智能手机扩展到其他智能电子设备，如智能手表和平板电脑。我们的战略合作伙伴和分销网络已在全国范围内扩展，为客户提供便利和可靠性。"
+        },
+        {
+          "text": "使命与愿景：我们致力于为客户提供最先进的技术、专注的服务和最令人兴奋的购物体验。我们的愿景是成为提供创新高效技术解决方案的领导者。"
+        }
+      ]
+    },
+    "highlights": {
+      "title": "重点亮点",
+      "content": [
+        {
+          "text": "产品与服务：在我们的商店，您将找到市场上最知名品牌的一系列产品。从高品质的手机到智能电子设备和实用配件，我们精心挑选所有产品，以满足客户的需求。"
+        },
+        {
+          "text": "突出特点：设计独特特色、高性能和最新技术，我们的产品为用户提供出色的使用体验和实用性。"
+        },
+        {
+          "text": "品质与承诺：我们致力于产品和服务质量，以及声誉良好的保修政策和专注的客户支持。"
+        },
+        {
+          "text": "合作伙伴关系与品牌：我们的战略合作伙伴是领先的知名品牌，为客户提供多样性和最大品质。"
+        }
+      ]
+    },
+    "support_and_reviews": {
+      "title": "支持信息和评论",
+      "content": [
+        {
+          "text": "客户支持：我们通过电话、电子邮件和在线聊天提供全天候的24/7支持服务，随时解答客户的任何疑问。"
+        },
+        {
+          "text": "评论和反馈：客户积极的反馈证明了我们的可靠性，这激励着我们不断改进和提供更好的服务。"
+        }
+      ]
+    },
+    "news_and_updates": {
+      "title": "新闻和新技术",
+      "content": [
+        {
+          "text": "技术更新：我们的网站始终更新技术行业的趋势、新技术和重要事件的信息。"
+        },
+        {
+          "text": "活动和促销：我们定期组织活动和促销活动，以感谢客户并提供特别优惠。"
+        }
+      ]
+    },
+    "policies_and_legal_info": {
+      "title": "政策与法律信息",
+      "content": [
+        {
+          "text": "隐私政策：我们承诺根据公开披露的隐私政策保护客户的个人信息。"
+        },
+        {
+          "text": "退换货和保修政策：提供有关产品退换货、保修的详细信息，确保客户放心购物。"
+        },
+        {
+          "text": "法律信息：涉及版权、网站使用条款和条件的信息，确保业务透明度和信誉。"
+        }
+      ]
+    }
+  },
+  "contact": {
+    "contact_us": "联系我们",
+    "contact_info": "联系信息",
+    "store_name": "EGU电子科技商店",
+    "address": "地址：",
+    "phone": "电话：",
+    "hotline": "热线电话：",
+    "fax": "传真：",
+    "send_contact_information": "发送联系信息",
+    "contact_feedback": "联系反馈",
+    "name": "姓名",
+    "address_field": "地址",
+    "email_field": "电子邮件",
+    "phone_field": "电话",
+    "title_field": "标题",
+    "content_field": "内容",
+    "send_button": "发送",
+    "description": "请填写以下表格并发送给我们。我们会尽快回复您。谢谢！"
+  },
+  "terms": {
+    "term_use": "条款和条件",
+    "termsConditions": {
+      "title": "条款和条件",
+      "privacyPolicy": {
+        "heading": "隐私政策",
+        "content": [
+          "欢迎来到EGU STORE。我们致力于保护您的个人信息，并负责任地使用它，为您提供最佳的购物体验。",
+          "以下是我们隐私政策的要点："
+        ],
+        "sections": [
+          {
+            "title": "1. 客户信息收集",
+            "points": [
+              "为了使用我们的服务，客户需要提供一些必要的个人信息。",
+              "这些信息有助于我们准确确定交付和付款情况。"
+            ]
+          },
+          {
+            "title": "2. 信息使用",
+            "points": [
+              "您的个人信息用于提供最佳服务，包括发送通讯、客户支持和改善服务质量。",
+              "我们使用信息解决问题并防止违法行为。"
+            ]
+          },
+          {
+            "title": "3. 信息共享",
+            "points": [
+              "除非法律要求或保护用户和EGU STORE的权利，否则永远不会共享个人信息。",
+              "我们只在事先通知的特定情况下或经过客户同意后分享信息。"
+            ]
+          },
+          {
+            "title": "4. 客户信息安全",
+            "points": [
+              "客户通过维护密码安全和登出共享计算机，在保护个人信息方面发挥着至关重要的作用。",
+              "我们承诺不会为商业目的披露客户的个人信息。"
+            ]
+          },
+          {
+            "title": "联系方式",
+            "content": [
+              "如果您有关于我们隐私政策的任何问题或意见，请通过以下电话或电子邮件与我们联系：",
+              "电话：0908 77 00 95 – 电子邮件：edgu1707@gmail.com",
+              "注意：EGU STORE的客户信息隐私政策仅适用于http://www.EGUSTORE.com/。它不包括或涉及在EGUSTORE上广告或链接的第三方。"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "banner": {
+    "beforeTitle":"家居装饰的",
+    "afterTitle": "最佳收藏",
+    "button": "立即购买"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "购物车"
+    },
+    "ProductCart": {
+      "product": "产品",
+      "quantity": "数量",
+      "total": "总计",
+      "orderSummary": "订单摘要",
+      "totalAmount": "总计",
+      "processToCheckout": "进行结账"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "结账"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "结账",
+      "fullName": "全名",
+      "streetAddress": "街道地址",
+      "phoneNumber": "电话号码",
+      "emailAddress": "电子邮箱地址",
+      "paymentMethod": "付款方式",
+      "payInCash": "现金支付",
+      "vnPay": "VnPay",
+      "note": "备注",
+      "apply": "应用",
+      "placeOrder": "下订单",
+      "total": "总计：",
+      "coupon": "优惠券"
+    }
+  },
+  "login": {
+    "heading": "登录",
+    "title": "如果您是老客户，请登录",
+    "email": "邮箱",
+    "password": "密码",
+    "checkbox": "记住我",
+    "submit": "登录",
+    "forgot": "忘记密码？"
+  },
+  "orLoginInWith": {
+    "title": "或者使用以下方式登录",
+    "register": "现在注册",
+    "dontHaveAccount": "没有账户？"
+  },
+  "forgotPassword": {
+    "heading": "忘记密码",
+    "title": "输入您的电子邮箱以重置密码",
+    "emailLabel": "邮箱地址",
+    "emailRequiredError": "邮箱地址必填！",
+    "emailFormatError": "无效的邮箱格式！",
+    "submitButtonText": "提交"
+  },
+  "resetPassword": {
+    "heading": "重置密码",
+    "title": "输入重置令牌和新密码",
+    "resetPasswordTokenLabel": "重置令牌",
+    "resetPasswordTokenInputPlaceholder": "输入重置令牌",
+    "resetPasswordTokenRequiredError": "重置令牌必填！",
+    "newPasswordLabel": "新密码",
+    "newPasswordInputPlaceholder": "输入新密码",
+    "newPasswordRequiredError": "新密码必填！",
+    "newPasswordMinLengthError": "新密码至少需要6个字符！",
+    "submitButtonText": "重置密码"
+  },
+  "emptyCart": {
+    "title": "购物车中没有商品",
+    "message": "感谢您访问我们的网站",
+    "continueShoppingButtonText": "继续购物"
+  },
+  "accountSidebar": {
+    "greeting": "欢迎",
+    "title": "账户管理",
+    "profileInformation": "个人资料",
+    "changePassword": "修改密码",
+    "myActivities": "我的活动",
+    "orderHistory": "我的订单记录",
+    "myReview": "我的评价",
+    "paymentMethod": "付款方式",
+    "voucher": "优惠券",
+    "wishlist": "我的收藏清单",
+    "logout": "退出登录"
+  },
+  "changePassword": {
+    "title": "修改密码",
+    "currentPasswordLabel": "当前密码",
+    "currentPasswordPlaceholder": "输入旧密码",
+    "currentPasswordRequiredError": "当前密码必填！",
+    "newPasswordLabel": "新密码",
+    "newPasswordPlaceholder": "输入新密码",
+    "newPasswordRequiredError": "新密码必填！",
+    "newPasswordMinLengthError": "新密码长度至少为6个字符！",
+    "confirmPasswordLabel": "确认密码",
+    "confirmPasswordPlaceholder": "确认新密码",
+    "confirmPasswordRequiredError": "确认密码必填！",
+    "confirmPasswordMismatchError": "确认密码与新密码不匹配！",
+    "saveButton": "保存修改"
+  },
+  "editProfile": {
+    "title": "编辑信息",
+    "fullNameLabel": "显示名称",
+    "fullNameReadOnlyNotice": "为了方便管理和识别，请使用真实姓名",
+    "personalInformationTitle": "个人信息",
+    "firstNameLabel": "名字",
+    "lastNameLabel": "姓氏",
+    "dateOfBirthLabel": "出生日期",
+    "phoneNumberLabel": "电话号码",
+    "saveButton": "保存更改",
+    "cancelButton": "取消"
+  },
+  "wishlistProduct": {
+    "my_wishlist": "我的收藏清单",
+    "title": "收藏清单中没有商品",
+    "message": "感谢您访问我们的网站",
+    "continueShoppingButtonText": "继续购物",
+    "addToCartButtonText": "添加到购物车"
+  },
+  "feedbackReview": {
+    "my_review": "我的评价",
+    "title": "反馈评价页面",
+    "viewButton": "查看"
+  },
+  "voucherPage": {
+    "addVoucherForm": {
+      "codeVoucherLabel": "折扣码",
+      "codeVoucherPlaceholder": "在此输入代码",
+      "applyButton": "应用"
+    },
+    "myVouchersTitle": "我的折扣码",
+    "voucherList": {
+      "beforeTitle": "折扣码",
+      "afterTitle": " 适用于所有产品。",
+      "activeVoucherStatus": "立即使用",
+      "inactiveVoucherStatus": "无法使用",
+      "usedVoucherStatus": "已使用",
+      "expiredVoucherStatus": "已过期：",
+      "storeAppLabel": "仅可在 Egu_Store 应用中使用。",
+      "pagination": {
+        "previousButton": "上一页",
+        "pageText": "页",
+        "ofText": "/",
+        "nextButton": "下一页"
+      },
+      "noVouchersMessage": "没有可用的折扣码。"
+    }
+  },
+  "footer": {
+    "infor": "顾客必须非常重要，顾客将会被其他顾客所跟随。",
+    "solutions": {
+      "title": "解决方案",
+      "marketing": "营销",
+      "analytics": "分析",
+      "commerce": "商业",
+      "insights": "见解"
+    },
+    "support": {
+      "title": "支持",
+      "pricing": "定价",
+      "documentation": "文档",
+      "guides": "指南",
+      "apiStatus": "API状态"
+    },
+    "company": {
+      "title": "公司",
+      "about": "关于",
+      "blog": "博客",
+      "jobs": "工作",
+      "service": "服务"
+    },
+    "legal": {
+      "title": "法律",
+      "claim": "索赔",
+      "privacy": "隐私",
+      "policy": "政策",
+      "terms": "条款"
+    },
+    "copyright": "© Easy Learning 2022"
+  }
+}

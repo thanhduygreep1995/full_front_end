@@ -5,6 +5,7 @@ import { CustomerService } from '../services/customer.service';
 import { TokenService } from '../services/token.service';
 import { WishService } from '../services/wish.service';
 import { CartService } from '../services/cart.service';
+import { LanguageService } from '../services/language.service';
 
 import { SearchService } from '../services/search.service';
 import { debounceTime, switchMap } from 'rxjs';
@@ -31,7 +32,8 @@ export class HeaderComponent implements OnInit {
     private wish: WishService,
     private productService: ProductService,
     private cart: CartService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private languageService: LanguageService
 
   ) { }
   listProduct:any;
@@ -43,6 +45,8 @@ export class HeaderComponent implements OnInit {
       this.cartItems = items;
       console.log(this.cartItems)
     });
+
+    this.languageService.setInitialAppLanguage();
     this.productService.productOb$.subscribe(data=>{
       this.listProduct = data;
     })
@@ -66,6 +70,13 @@ export class HeaderComponent implements OnInit {
     this.tokenService.removeToken();
 
   }
+  selectedLanguage : string=this.languageService.getCurrentLanguage();
+  changeLanguage(lang :string ) {
+    this.languageService.changeLanguage(lang);
+    location.reload();
+  }
+  
+  
 
 
 

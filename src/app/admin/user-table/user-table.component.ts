@@ -185,7 +185,7 @@ fnUpdateCustomer() {
           this.isSpinning = false;
           Swal.fire({
             icon: 'success',
-            title: 'Successfully updated Order!',
+            title: 'Successfully updated!',
             showConfirmButton: false,
             timer: 2000
           }).then(() => {

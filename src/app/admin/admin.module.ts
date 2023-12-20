@@ -40,6 +40,8 @@ import { ChartModule } from 'primeng/chart';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 import { TopSoldReportComponent } from './top-sold-report/top-sold-report.component';
 import { CategoryComponent } from './category/category.component';
+import { VoucherEditionComponent } from './voucher-edition/voucher-edition.component';
+import { VoucherTableComponent } from './voucher-table/voucher-table.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { CategoryComponent } from './category/category.component';
     CustomerReportComponent,
     ImageComponent,
     TopSoldReportComponent,
-    CategoryComponent
+    CategoryComponent,
+    VoucherEditionComponent,
+    VoucherTableComponent
   ],
 
   imports: [

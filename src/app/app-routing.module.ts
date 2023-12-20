@@ -28,8 +28,14 @@ import { PersonalProfileComponent } from './components/personal-profile/personal
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { OderFailureComponent } from './components/oder-failure/oder-failure.component';
 import { AuthGuard } from './components/guards/auth.guard';
+import { ContactComponent } from './components/contact/contact.component';
+import { TermsOfUseComponent } from './components/terms-of-use/terms-of-use.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AboutComponent } from './components/about/about.component';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { TopProductComponent } from './components/top-product/top-product.component';
+import { LoginGuard } from './components/guards/login.guard';
 
 const routes: Routes = [
 
@@ -66,22 +72,27 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'address', component: AddressComponent },
-      { path: 'checkout', component: CheckoutComponent,canActivate: [AuthGuard] },
+      { path: 'checkout', component: CheckoutComponent, canActivate:[LoginGuard] },
       { path: 'oder-complete', component: OderCompleteComponent },
       { path: 'newproduct', component: NewProductComponent },
       { path: 'typeproduct', component: TypeProductComponent },
       { path: 'checkcart', component: CheckCartComponent },
-      { path: 'account/order-history', component: OrderHistoryComponent,canActivate: [AuthGuard] },
+      { path: 'account/order-history', component: OrderHistoryComponent,canActivate:[LoginGuard] },
       { path: 'listproduct', component: ProductListComponent },
-      { path: 'account/personal-profile', component: PersonalProfileComponent,canActivate: [AuthGuard]},
-      { path: 'account/change-password', component: ChangePasswordComponent,canActivate: [AuthGuard] },
+      { path: 'account/personal-profile', component: PersonalProfileComponent,canActivate:[LoginGuard]},
+      { path: 'account/change-password', component: ChangePasswordComponent,canActivate:[LoginGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'reset-password', component: ResetPasswordComponent },
-      { path: 'account/vouchers', component: VoucherComponent,canActivate: [AuthGuard] },
-      { path: 'account/myreview', component: MyReviewComponent,canActivate: [AuthGuard] },
+      { path: 'account/vouchers', component: VoucherComponent ,canActivate:[LoginGuard]},
+      { path: 'account/myreview', component: MyReviewComponent,canActivate:[LoginGuard]},
       { path: 'oder-failure', component: OderFailureComponent },
-      
+      { path: 'top-product', component: TopProductComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'terms-of-use', component: TermsOfUseComponent },
 
+      
+      { path: '**', component: NotFoundComponent },
     ],
   },
 ];

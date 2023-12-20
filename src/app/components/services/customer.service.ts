@@ -68,4 +68,13 @@ export class CustomerService{
             console.log('error removing customerResponse from localStorage', error);
         }
     }
+    saveLoginInfoToLocalStorage(email: string, rememberMe: boolean) {
+        if (rememberMe) {
+          localStorage.setItem('rememberedEmail', email);
+        }
+      }
+      // Lấy thông tin đăng nhập từ localStorage
+      getRememberedEmail(): string | null {
+        return localStorage.getItem('rememberedEmail');
+      }
 }

@@ -1,0 +1,40 @@
+a:hover {
+    cursor: pointer; /* Sử dụng hình con trỏ bản tay */
+}
+  /* CSS */
+.surface-border {
+    transition: transform 0.3s ease;
+}
+
+.surface-border:hover {
+    transform: scale(1.025); /* Thay đổi kích thước khi hover */
+}
+
+/* CSS */
+.pagination-nav a {
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    background-color: #FD3D57; /* Một phiên bản đậm hơn của red-500 */
+}
+
+.pagination-nav a:hover {
+    background-color: #8C001A; 
+}
+
+.star {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    background-size: contain;
+}
+
+.filled {
+    background-image: url('/assets/img/filled-star.svg');
+}
+
+.half-filled {
+    background-image: url('/assets/img/half-filled-star.svg');
+}
+
+.no-fill {
+    background-image: url('/assets/img/no-filled-star.svg');
+}

@@ -114,7 +114,6 @@ export class BrandEditionComponent implements OnInit {
     this.bS.createBrand(brandInfo).subscribe(
       (response) => {
         console.log('Successfully Create Brand!');  
-        this.router.navigate(['/brand-table']);
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create Brand!');
@@ -125,6 +124,7 @@ export class BrandEditionComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
+          this.router.navigate(['admin/brand-table']);
         }, this.progressTimerOut);
       },
       (error) => {
@@ -183,6 +183,7 @@ export class BrandEditionComponent implements OnInit {
             showConfirmButton: false,
             timer: 2000
           })
+          this.router.navigate(['admin/brand-table']);
         }, this.progressTimerOut);
       },
       (error) => {

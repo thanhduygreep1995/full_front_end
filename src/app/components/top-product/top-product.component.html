@@ -1,18 +1,22 @@
-<div class="container pb-16 " style="border: 1px solid #ebe9e9; border-radius: 5px;margin-bottom: 25px; padding: 20px;">
-    <h2 class="text-2xl md:text-3xl font-medium text-gray-800 uppercase mb-6  ">Top Sale </h2>
+<div class="container pb-16 ">
+    <div class="flex items-center py-4">
+        <hr class="flex-grow border-b">
+        <h3 class="px-4 text-gray-900 font-semibold text-xl uppercase">Top Products Sale</h3>
+        <hr class="flex-grow border-b">
+    </div>
 
     <!-- ---- Start Single Product  ----- -->
     <div class="card">
-
-        <p-carousel [value]="products" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000">
-
+        <p-carousel [value]="products" [numVisible]="5" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" [autoplayInterval]="5000">
             <ng-template let-pro pTemplate="item">
-                <div class="surface-border border-round px-4 py-2 custom-carousel-item">
-                    <div class="group rounded bg-white shadow overflow-hidden px-5">
+                <div class="surface-border border-round custom-carousel-item">
+                    <div class="group rounded bg-white shadow overflow-hidden relative">
                         <div>
+                            <span style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background-color: rgb(116, 182, 3);" class="absolute top-1 left-1 z-50 justify-items-center text-white text-sm font-bold rounded-full">Hot</span>
+                            <span style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; top: 45px" class="absolute  left-1 z-50 justify-items-center bg-red-500 text-white text-sm font-bold rounded-full">-{{pro.discountPercentage}}%</span>
                             <div class="relative group">
                                 <div style="height: 220px; display: flex; align-items: center; justify-content: center;" class="align-text-center">
-                                    <img src="{{pro.thumbnail}}" class="w-full" />
+                                    <img src="{{pro.thumbnail}}" class="w-full p-5" />
                                 </div>
 
 
@@ -20,7 +24,7 @@
                                     <a href="/view/{{pro.id}}" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
                                         <i class="fas fa-search"></i>
                                     </a>
-                                    <a href="#" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
+                                    <a (click)="addToWish(pro)" class="text-white text-lg w-9 h-9 rounded-full bg-primary hover:bg-gray-800 transition flex items-center justify-center">
                                         <i class="fas fa-heart"></i>
                                     </a>
                                 </div>
@@ -30,7 +34,7 @@
                         </div>
 
 
-                        <div class="pt-5 pb-3">
+                        <div class="p-5">
                             <div style="display: flex; flex-direction: column;  height: 3rem ">
                                 <a href="/view/{{pro.id}}">
                                     <h6 class="uppercase font-medium text-l mb-2 text-gray-800 hover:text-primary transition truncate-overflow-20" style="word-wrap: break-word; overflow-wrap: break-word;">
@@ -46,13 +50,13 @@
                                 <p class="text-sm text-gray-400 font-roboto  line-through "> {{pro.price| currency:".":"":"1.0"}} VNĐ </p>
                             </div>
                             <div>
-                                <div class="flex items-center" class="flex items-center">
+                                <div class="flex items-center" class="flex justify-between">
                                     <div class="flex gap-1 text-md">
                                         <div *ngFor="let starInfo of pro.starsInfo">
                                             <span class="star" [ngClass]="{'filled': starInfo.filled, 'half-filled': starInfo.half, 'no-fill': starInfo.noFill}"></span>
                                         </div>
                                     </div>
-                                    <div class="text-xs text-center text-gray-500 ml-3">{{ pro.ratingProduct.length }} Reviews</div>
+                                    <div class="text-xs text-center text-gray-500 flex items-center">({{ pro.ratingProduct.length }}) Reviews</div>
 
                                 </div>
                             </div>

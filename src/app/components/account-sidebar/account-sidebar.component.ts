@@ -18,4 +18,8 @@ export class AccountSidebarComponent implements OnInit {
       this.fullName = `${data.lastName} ${data.firstName}`;
     });
   }
+  logout(){
+    this.customerS.removeCustomerResponseFromLocalStorage();
+    this.tokenService.removeToken();
+  }
 }

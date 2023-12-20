@@ -7,64 +7,86 @@
              </h2>
              <p class="text-gray-600 mb-6 text-sm">Register here if you don't have account </p>
  
-     <form method="" action="">
+     <form [formGroup]="infoCustomer">
      <div class="space-y-4">
  
           <div>
                <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > First Name <span class="text-primary">*</span> </label>
-               <input type="text" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
-               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Duy" />
+               <input formControlName="firstName" type="text" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Enter first name" />
+               <div *ngIf="infoCustomer.controls['firstName'].invalid && infoCustomer.controls['firstName'].touched
+                            " class="text-red-500">First name is required</div>
           </div>
  
           <div>
                 <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > Last Name <span class="text-primary">*</span> </label>
-                <input type="text" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
-                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Pham" />
+                <input formControlName="lastName" type="text" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Enter last name" />
+                <div *ngIf="infoCustomer.controls['lastName'].invalid && infoCustomer.controls['lastName'].touched
+                            " class="text-red-500">Last name is required</div>
            </div>
  
            <div>
                 <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > Phone Number <span class="text-primary">*</span> </label>
-                <input type="number" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
-                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Pham" />
+                <input formControlName="phoneNumber" type="number" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Enter phone number" />
+                <div *ngIf="infoCustomer.controls['phoneNumber'].errors && infoCustomer.controls['phoneNumber'].touched">
+                     <div class="text-red-500" *ngIf="infoCustomer.controls['phoneNumber'].errors['required']"> Phone number is required</div>
+                    <div class="text-red-500" *ngIf="infoCustomer.controls['phoneNumber'].errors['pattern']">Invalid phone number</div>
+                </div>
            </div>
  
            <div>
                 <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" >Date Of Birth <span class="text-primary">*</span> </label>
-                <input type="date" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
-                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Confirm your password" />
+                <input formControlName="dateOfBirth" type="date" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="" />
+                <div *ngIf="infoCustomer.controls['dateOfBirth'].invalid && infoCustomer.controls['dateOfBirth'].touched" class="text-red-500">Date of birth is required</div>
            </div>
  
           <div>
                <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > Email Address <span class="text-primary">*</span> </label>
-               <input type="email" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+               <input formControlName="email" type="email" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="example@mail.com" />
+               <div *ngIf="infoCustomer.controls['email'].errors && infoCustomer.controls['email'].touched">
+                    <div class="text-red-500" *ngIf="infoCustomer.controls['email'].errors['required']">Email is required</div>
+                   <div class="text-red-500" *ngIf="infoCustomer.controls['email'].errors['email']">Please enter a valid email address</div>
+               </div>
           </div>
  
           <div>
                <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" > Password <span class="text-primary">*</span> </label>
-               <input type="password" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
-               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Type Password" />
+               <input formControlName="password" type="password" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Enter Password" />
+               <div *ngIf="infoCustomer.controls['password'].errors && infoCustomer.controls['password'].touched">
+                    <div class="text-red-500" *ngIf="infoCustomer.controls['password'].errors['required']">Password is required</div>
+                   <div class="text-red-500" *ngIf="infoCustomer.controls['password'].errors['minlength']">Password must be at least 6 characters</div>
+               </div>
           </div>
  
  
           <div>
                <label class="block mb-2 text-sm font-medium dark:text-white text-gray-600" >Confirm Password <span class="text-primary">*</span> </label>
-               <input type="password" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
+               <input formControlName="confirmPassword" type="password" class="input-box bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 
                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary" placeholder="Confirm your password" />
+               <div *ngIf="infoCustomer.controls['confirmPassword'].errors && infoCustomer.controls['confirmPassword'].touched">
+                    <div class="text-red-500" *ngIf="infoCustomer.controls['confirmPassword'].errors['required']">Confirm password is required</div>
+                   <div class="text-red-500" *ngIf="infoCustomer.controls['confirmPassword'].errors['minlength']">Password must be at least 6 characters</div>
+                   <div class="text-red-500" *ngIf="infoCustomer.controls['confirmPassword'].errors['mismatch']">Confirm passwords do not match</div>
+               </div>
           </div>
  
      </div>
  
-     <div class="flex items-center justify-center mt-6 ">
+     <!-- <div class="flex items-center justify-center mt-6 ">
           <div class="flex items-center ">
-               <input type="checkbox" id="agrement" class="text-primary focus:ring-0 rounded-sm cursor-pointer " />
+               <input formControlName="isAgreed" type="checkbox" id="agrement" class="text-primary focus:ring-0 rounded-sm cursor-pointer " />
                <label for="agreement" class="text-gray-600 ml-3 cursor-pointer" >I have read and agree to the <a href="#" class="text-primary"> terms & conditions</a></label>
           </div>
           
-     </div>
+     </div> -->
  
-     <div class="mt-4">
-          <button type="submit" class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium ">Create account </button> 
+     <div class="mt-8">
+          <button [disabled]="btnCreate"  type="submit" (click)="register()" class="block w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium ">Create account </button> 
      </div>
  
  
@@ -95,7 +117,10 @@
  
  
      </form>
- 
+     <div *ngIf="loading"
+     class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+          <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-primary"></div>
+     </div>
         </div>
  
    </div>

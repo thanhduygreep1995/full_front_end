@@ -20,10 +20,10 @@ export class CartComponent implements OnInit  {
 
   items = this.cart.getItems();
   ngOnInit() {
-    const storedItems = localStorage.getItem('items');
-    if (storedItems) {
-      this.items = JSON.parse(storedItems);
-    }
+    // const storedItems = localStorage.getItem('items');
+    // if (storedItems) {
+    //   this.items = JSON.parse(storedItems);
+    // }
 
   }
   tongtien() {
@@ -46,12 +46,7 @@ export class CartComponent implements OnInit  {
   }
 
   tangSoLuong(item1: any) {
-    const item = this.items.find(item => item.id == item1.id);
-    if (item != undefined) {
-      item.soluong++;
-      item.tongTien = item.soluong * item.price;
-      this.saveToLocalStorage();
-    }
+    this.cart.addToCart(item1)
   }
   tongsoluong(item1: any) {
     let tsl: number = 0;

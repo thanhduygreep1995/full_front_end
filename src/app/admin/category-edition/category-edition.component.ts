@@ -64,6 +64,7 @@ export class CategoryEditionComponent implements OnInit {
       id: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
+      thumbnail: [''],
       status: [''],
     });
     this.infoCategory.valueChanges.subscribe(() => {
@@ -143,7 +144,7 @@ export class CategoryEditionComponent implements OnInit {
         setTimeout(() => {
           this.isSpinning = false;
           console.log('Successfully Create category!');
-          this.router.navigate(['/category-table']);
+          this.router.navigate(['/admin/category-table']);
           this.infoCategory.reset();
           this.defaultComboBox();
           Swal.fire({
@@ -176,6 +177,7 @@ export class CategoryEditionComponent implements OnInit {
   fnUpdateCategory() {
     const categoryInfo = {
       name: this.infoCategory.value.name,
+      thumbnail: this.infoCategory.value.thumbnail,
       // description: this.infoCategory.value.description,
       status: this.infoCategory.value.status,
     };
@@ -205,6 +207,7 @@ export class CategoryEditionComponent implements OnInit {
       (response) => {
         setTimeout(() => {
           this.isSpinning = false;
+          this.router.navigate(['/admin/category-table']);
           console.log('Successfully updated category!');
           this.infoCategory.reset();
           this.defaultComboBox();

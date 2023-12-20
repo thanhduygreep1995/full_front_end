@@ -22,9 +22,11 @@ export class ProByTypeComponent {
   listSP: any;
   selectedProducts: any[] = [];
   listProduct: any[] = [];
-  products: any[] = [];
+  products: any;
   filteredProducts: any[] = [];
   starsInfo: { filled: boolean, half: boolean, noFill: boolean }[] = [];
+  starsInfo1: { filled: boolean, half: boolean, noFill: boolean }[] = [];
+  productId: any;
   constructor(private h: HttpClient, private route: ActivatedRoute,
     private d: DataService, private cart: CartService,
     private wish: WishService,
@@ -54,6 +56,34 @@ export class ProByTypeComponent {
       return floorValue + 0.5;
     }
   }
+  getRatingListByProduct1() {
+    if (!this.products) {
+      console.error('products is undefined or null.');
+      return;
+    }
+    this.products.forEach((item: any) => {
+      // console.log('Product total_r:', item.total_rate);
+      console.log('Product:', item); // Kiểm tra xem dữ liệu sản phẩm có đúng không
+      console.log('Product total_r:', item.total_rate); 
+      if (item.total_rate != 0 && item.ratingProduct.length != 0) {
+        const averageRating = item.total_rate / item.ratingProduct.length;
+        const averageNumber = this.customRound(averageRating);
+        const starsInfo1 = this.calculateStars(averageNumber);
+  
+        // Thêm đánh giá cho từng sản phẩm
+        item.averageRating = averageRating;
+        item.averageNumber = averageNumber;
+        item.starsInfo1 = starsInfo1;
+      } else {
+        // Không có đánh giá, bạn có thể thiết lập giá trị mặc định
+        item.averageRating = 0;
+        item.averageNumber = 0;
+        item.starsInfo1 = this.calculateStars(0);
+      }
+  
+      // console.log('Product after rating:', item); // Kiểm tra xem dữ liệu đã được gán đúng không
+    });
+  }
 
   getRatingListByProduct() {
     if (!this.listProduct) {
@@ -62,7 +92,7 @@ export class ProByTypeComponent {
     }
     this.listProduct.forEach((item: any) => {
       console.log('Product:', item); // Kiểm tra xem dữ liệu sản phẩm có đúng không
-
+      console.log('Product total_r:', item.total_rate);
       if (item.total_rate != 0 && item.ratingProduct.length != 0) {
         const averageRating = item.total_rate / item.ratingProduct.length;
         const averageNumber = this.customRound(averageRating);
@@ -126,15 +156,19 @@ export class ProByTypeComponent {
   preListCategoryId: any = [];
   currListCategoryId: any = [];
   ngOnInit(): void {
+ 
 
-    this.d.getTakeProduct().subscribe(data => {
-      this.listProduct = data;
-      this.listProduct.forEach((product: any) => {
+    this.productService.getProducts().subscribe(data => {
+      this.products = data;
+
+      this.products.forEach((product: any) => {
         const productId = product.id;
+        console.log('Erro type:',typeof(productId));
         this.rP.getTotalByProductId(productId).subscribe((ratingData) => {
+          console.log('Erro rating:',ratingData);
           product.total_rate = ratingData || 0;
-          // console.log(product.total_rate);
-          this.getRatingListByProduct();
+          // console.log('Erro rating:',ratingData);
+          this.getRatingListByProduct1();
         });
       });
     },
@@ -142,38 +176,29 @@ export class ProByTypeComponent {
       console.error('Error fetching products:', error);
     }
   );
+  
     
     console.log("listTypeProduct", this.selectedProducts);
-    // Lấy id từ route parameter
+
     this.route.paramMap.subscribe(query => {
       this.id = query.get('id');
     });
 
-    // Chuyển đổi id từ string sang number
+
     this.idType = Number(this.route.snapshot.params['id']);
 
-    // Gọi API để lấy thông tin loại sản phẩm
     this.d.getTenLoaiSanPham(this.idType).subscribe(
       loai => {
         this.name = loai[0].name;
       }
     );
 
-    // Gọi API để lấy danh sách sản phẩm theo loại
-    // this.d.getSanPhamTheoLoai(this.idType).subscribe(
-    //   (res: HttpResponse<IProduct[]>) => {
-    //     if (res.body) {
-    //       // Gán danh sách sản phẩm vào biến listProduct
-    //       this.listProduct = res.body;
-    //     }
-    //   },
-    //   error => {
-    //     console.error(error);
-    //   }
-    // );
+
 
     this.d.categoryAsOsb.subscribe(data => {
       this.listProduct = [];
+
+ 
       data.forEach((element: number | undefined) => {
         this.d.getSanPhamTheoLoai(element).subscribe(
           (res: HttpResponse<IProduct[]>) => {
@@ -184,6 +209,7 @@ export class ProByTypeComponent {
                 const productId = product.id;
                 this.rP.getTotalByProductId(productId).subscribe((ratingData) => {
                   product.total_rate = ratingData || 0;
+
                   console.log('producttotal', product.total_rate);
                   this.getRatingListByProduct();
                 });
@@ -203,38 +229,8 @@ export class ProByTypeComponent {
 
 
     // Fetch products from the API
-    this.productService.getProducts().subscribe(
-      data => {
-        this.products = data;
-        this.filteredProducts = this.products;
-      },
-      error => {
-        console.error("Error fetching products:", error);
-      }
-    );
-    this.responsiveOptions = [
-      {
-        breakpoint: '1200px',
-        numVisible: 5,
-        numScroll: 1
-      },
-      {
-        breakpoint: '992px',
-        numVisible: 5,
-        numScroll: 1
-      },
-      {
-        breakpoint: '768px',
-        numVisible: 5,
-        numScroll: 1
-      },
-      {
-        breakpoint: '576px',
-        numVisible: 5,
-        numScroll: 1
-      }
-    ];
-    this.updateVisibleItems();
+
+   
 
   }
 
@@ -252,24 +248,46 @@ export class ProByTypeComponent {
       console.error('listProduct is undefined or not an array in filterProducts.');
     }
   }
-  // addToCart(product: any) {
-  //   this.cartService.addToCart(product);
-  // }
-  onSaveAllClick() {
-    this.saveAllToSelectedProducts();
-    console.log("listTypeProduct", this.selectedProducts);
-  }
-  // Lưu sản phẩm vào một mảng khác (ví dụ: danh sách sản phẩm đã được chọn)
-  saveAllToSelectedProducts() {
-    // Kiểm tra xem listProduct có dữ liệu không
-    if (this.listProduct.length < 0) {
-      // Thêm tất cả sản phẩm từ listProduct vào mảng selectedProducts
-      this.selectedProducts = [...this.selectedProducts, ...this.listProduct];
 
-      console.log('Tất cả sản phẩm từ listProduct đã được thêm vào selectedProducts.');
-    } else {
-      console.log('Không có sản phẩm nào trong listProduct để thêm.');
-    }
+  fillAllProducts() {
+    // Lấy tất cả sản phẩm từ API hoặc từ service của bạn
+    this.productService.getProducts().subscribe(
+      data => {
+        this.products = data;
+  
+
+          // Nếu có sản phẩm, lấy thông tin đánh giá và hiển thị
+          this.products.forEach((product: any) => {
+            const productId = product.id;
+            this.rP.getTotalByProductId(productId).subscribe((ratingData) => {
+              product.total_rate = ratingData || 0;
+              console.log('producttotal', product.total_rate);
+              console.log('product1',product.id);
+              this.getRatingListByProduct1();
+            });
+
+          });
+       
+
+      },
+      error => {
+        console.error('Error fetching products:', error);
+      }
+    );
   }
+  // onSaveAllClick() {
+  //   this.saveAllToSelectedProducts();
+
+  //   console.log("listTypeProduct", this.selectedProducts);
+  // }
+  // // Lưu sản phẩm vào một mảng khác (ví dụ: danh sách sản phẩm đã được chọn)
+  // saveAllToSelectedProducts() {
+  //   // Kiểm tra xem listProduct có dữ liệu không
+ 
+  //      if (this.selectedProducts.length === 0 || this.selectedProducts === null) {
+  //     this.selectedProducts =[];
+  //     this.fillAllProducts();
+  //   }
+  // }
 }
 

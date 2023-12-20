@@ -23,6 +23,13 @@ export class MyReviewComponent implements OnInit {
   ngOnInit(): void {
     this.feedbackService.getAllByCustomerId(this.id).subscribe((data) => {  
       this.feedbacks = data;
+      data.sort((a:any, b:any) => {
+        // Assuming your products have a 'createDate' field to sort by
+        const dateA = new Date(a['createDate']).getTime();
+        const dateB = new Date(b['createDate']).getTime();
+        return dateB - dateA; // Sort in descending order (latest first)
+      });
+      // this.feedbacks = data;
       console.log(data)
 
 

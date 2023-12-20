@@ -60,6 +60,21 @@
     opacity: 1;
 }
 
+button[disabled],
+button.disabled {
+  opacity: 0.6; /* Giảm độ trong suốt để làm mờ */
+  cursor: not-allowed; /* Thay đổi kiểu con trỏ khi hover */
+}
+
+button[disabled]:hover,
+button.disabled:hover {
+  opacity: 0.6; /* Giữ mức độ làm mờ khi hover */
+  cursor: not-allowed;
+  /* Các kiểu dáng khác khi hover */
+  background-color: #ccc; /* Ví dụ: đổi màu nền */
+  color: #666; /* Ví dụ: đổi màu chữ */
+  border: 1px solid #999; /* Ví dụ: đổi màu viền */
+}
 .arrow-buttons {
     display: flex;
     justify-content: space-between;

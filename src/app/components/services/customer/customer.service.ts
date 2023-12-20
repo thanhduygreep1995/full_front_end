@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -18,10 +18,9 @@ export class CustomerService {
     const url = `${this.baseUrl}/profile/${id}`;
     return this.http.put(url, category, { responseType: 'text' });
   }
-  // login(customerLogin: CustomerLoginDTO): Observable<any> {
-  //   const url = `${this.baseUrl}/login`;
-  //   return this.http.post(url, customerLogin, { responseType: 'text' });
-  // }
+  createCustomer(customerData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/register`, customerData, { responseType: 'text' });
+  }
   changepassword(id:any,customerChangePassword: any): Observable<any> {
     const url = `${this.baseUrl}/change-password/${id}`;
     return this.http.put(url, customerChangePassword, { responseType: 'text' });
@@ -34,4 +33,12 @@ export class CustomerService {
     const url = `${this.baseUrl}/resetPassword`;
     return this.http.post(url, customerResetPassword,{ responseType: 'text' });
   }
+  removeCustomerResponseFromLocalStorage(): void{
+    try {
+        localStorage.removeItem('customer');
+        console.log('removed customerResponse from localStorage');
+    } catch (error) {
+        console.log('error removing customerResponse from localStorage', error);
+    }
+}
 }

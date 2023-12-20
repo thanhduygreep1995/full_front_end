@@ -51,6 +51,7 @@ export class CheckoutComponent {
           }
           console.log('Giá trị của vnp_ResponseCode00:', vnpResponseCode);
           this.createOrderVNP();
+          this.processPayment();
           break;
         case '05':
         case '06':
@@ -92,6 +93,7 @@ export class CheckoutComponent {
   city: any;
   district: any;
   ward: any;
+  note: string = '';
 
   createOrderVNP(){
     const retrievedOrderData = this.checkoutService.getOrderData();
@@ -187,6 +189,7 @@ export class CheckoutComponent {
     if (this.paymentMethod === 'Cash') {
       this.voucherStatus();
       this.createNewOrder();
+      this.processPayment();
       this.router.navigate(['/oder-complete']);
     } else if (this.paymentMethod === 'VnPay') {
       this.receiveCode(this.formCoupon.value.codeVoucher);
@@ -205,28 +208,34 @@ export class CheckoutComponent {
       return 0;
     }
   }
-  // createOrderData(): any {
-  //   return {
-  //     name: this.name,
-  //     email: this.email,
-  //     address: this.address + ', ' + this.ward + ', ' + this.district + ', ' + this.city,
-  //     phone: this.phone,
-  //     status: 'PENDING',
-  //     paymentMethod: this.paymentMethod,
-  //     discountPrice: this.isDiscount(),
-  //     totalAmount: this.tt,
-  //     customer: {
-  //       id: this.id,
-  //     },
-  //   };
-  // }
+  createOrderData(statusPayment: any): any {
+    const orderData: any =  {
+      name: this.name,
+      email: this.email,
+      address: this.address,
+      // ward: this.ward,
+      // district: this.district,
+      // city: this.city,
+      phone: this.phone,
+      status: 'PENDING',
+      paymentMethod: this.paymentMethod,
+      discountPrice: this.isDiscount(),
+      totalAmount: this.tt,
+      statusPayment: statusPayment,
+      note: this.note,
+      customer: {
+        id: this.id,
+      },
+    };
+    return orderData;
+  }
 
   onOrder(){
-    const orderData = this.createOrderData();
+    const orderData = this.createOrderData("Đã thanh toán");
     this.checkoutService.setOrderData(orderData)
   }
   createNewOrder(): void {
-    const orderData = this.createOrderData();
+    const orderData = this.createOrderData("Chưa thanh toán");
     this.checkoutService.createOrder(orderData).subscribe((response) => {
       console.log('create success order');
       this.createOrderDetail(response.id);
@@ -275,22 +284,22 @@ export class CheckoutComponent {
   //     return 0;
   //   }
   // }
-  createOrderData(): any {
-    const orderData: any =  {
-      name: this.name,
-      email: this.email,
-      address: this.address + ', ' + this.ward + ', ' + this.district + ', ' + this.city,
-      phone: this.phone,
-      status: 'PENDING',
-      paymentMethod: this.paymentMethod,
-      discountPrice: this.isDiscount(),
-      totalAmount: this.tt,
-      customer: {
-        id: this.id,
-      },
-    };
-    return orderData;
-  }
+  // createOrderData(): any {
+  //   const orderData: any =  {
+  //     name: this.name,
+  //     email: this.email,
+  //     address: this.address + ', ' + this.ward + ', ' + this.district + ', ' + this.city,
+  //     phone: this.phone,
+  //     status: 'PENDING',
+  //     paymentMethod: this.paymentMethod,
+  //     discountPrice: this.isDiscount(),
+  //     totalAmount: this.tt,
+  //     customer: {
+  //       id: this.id,
+  //     },
+  //   };
+  //   return orderData;
+  // }
 
   // onOrder(){
   //   const orderData = this.createOrderData();

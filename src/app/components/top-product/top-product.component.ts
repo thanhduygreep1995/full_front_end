@@ -4,6 +4,8 @@ import { RatingService } from 'src/app/components/services/rating.service';
 import { CartService } from '../services/cart.service';
 import { IProduct } from 'src/app/components/interfaces/iproduct';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { WishService } from '../services/wish.service';
 
 
 @Component({
@@ -24,7 +26,7 @@ export class TopProductComponent {
   totalRate: any[] = [];
 
 
-  constructor( private h: HttpClient, private pS:ProductService,private cart: CartService, private rP: RatingService) { }
+  constructor( private h: HttpClient, private pS:ProductService,private cart: CartService, private rP: RatingService,private wish: WishService) { }
   ngOnInit(): void {
 
     this.pS.getProductTop().subscribe((data) => {
@@ -44,23 +46,23 @@ export class TopProductComponent {
     });
     this.responsiveOptions = [
       {
-          breakpoint: '1199px',
+          breakpoint: '1200px',
           numVisible: 5,
           numScroll: 1
       },
       {
-          breakpoint: '991px',
+          breakpoint: '992px',
           numVisible: 5,
           numScroll: 1
       },
       {
-          breakpoint: '767px',
-          numVisible: 5,
+          breakpoint: '768px',
+          numVisible: 3,
           numScroll: 1
       },
       {
         breakpoint: '576px',
-        numVisible: 5,
+        numVisible: 2,
         numScroll: 1
       }
     ];
@@ -122,7 +124,26 @@ export class TopProductComponent {
 
   addToCart(product:IProduct){
     this.cart.addToCart(product);
-    alert("Đã thêm vào giỏ hàng")
+    Swal.fire({
+      icon:'success',
+      title: 'Added To Cart Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
   }
+  addToWish(product:IProduct){
+    this.wish.addToWish(product);
+    Swal.fire({
+      icon:'success',
+      title: 'Add To Wishlist Successfully',
+      showConfirmButton: false,
+      timer: 1000
+    })
+  }
+  // discountPercentage(price: number, discountPrice: number) {
+  //   const percentage = ((price - discountPrice) / price) * 100;
+  //   const roundedPercentage = Math.round(Math.abs(percentage)); // Làm tròn số phần trăm gần nhất và chuyển thành số dương
+  //   return roundedPercentage;
+  // }
 }
 

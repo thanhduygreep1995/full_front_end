@@ -54,7 +54,7 @@ export class HomeComponent  {
   }
 
   onChangeView(id: number): void {
-    this.router.navigate(['/view.component', id]);
+    this.router.navigate(['/view', id]);
   }
 
   customRound(value: number): number {
@@ -182,18 +182,22 @@ export class HomeComponent  {
       },
       {
           breakpoint: '768px',
-          numVisible: 5,
+          numVisible: 3,
           numScroll: 1
       },
       {
         breakpoint: '576px',
-        numVisible: 5,
+        numVisible: 2,
         numScroll: 1
       }
     ];
     this.updateVisibleItems();
   }
-
+  discountPercentage(price: number, discountPrice: number) {
+    const percentage = ((price - discountPrice) / price) * 100;
+    const roundedPercentage = Math.round(Math.abs(percentage)); // Làm tròn số phần trăm gần nhất và chuyển thành số dương
+    return roundedPercentage;
+  }
   // filterProducts(searchTerm: string) {
   //   // Implement your search logic here
   //   const searchTermLower = searchTerm.toLowerCase();

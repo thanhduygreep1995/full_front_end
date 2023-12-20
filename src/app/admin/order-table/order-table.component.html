@@ -35,7 +35,7 @@
                             <thead>
                                 <tr>
                                     <!-- <th hidden>Id</th> -->
-                                    <th>No</th>
+                                    <th>No.</th>
                                     <th>Customer</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -43,6 +43,7 @@
                                     <th>Order Date</th>
                                     <th>Note</th>
                                     <th>Status</th>
+                                    <th>Status Payment</th>
                                     <th>Payment Method</th>
                                     <th>Discount Price</th>
                                     <!-- <th hidden>Product Name</th>
@@ -59,11 +60,12 @@
                                     <td>{{ o.email }}</td>
                                     <td>{{ o.phone }}</td>
                                     <td>
-                                        {{o.address+', '+o.district+', '+o.city+', '+o.country}}
+                                        {{o.address}}
                                     </td>
                                     <td>{{ o.orderDate | date: 'dd/MM/yyyy'}}</td>
                                     <td>{{ o.note }}</td>
                                     <td>{{ o.status }}</td>
+                                    <td>{{ o.statusPayment }}</td>
                                     <td>{{ o.paymentMethod }}</td>
                                     <td>{{ o.discountPrice+""| currency:",":"":"1.0"}} VNĐ</td>
                                     <!-- <td hidden>{{ o.orderDetail.product.name }}</td>
@@ -123,7 +125,7 @@
                                             <thead>
                                                 <tr>
                                                     <!-- <th hidden>Id</th> -->
-                                                    <th>No</th>
+                                                    <th>No.</th>
                                                     <th>Product</th>
                                                     <th>Quantity</th>
                                                     <th>Phone</th>
@@ -171,7 +173,7 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="updateModalLabel">Update Quantity Order Dteail</h5>
+                                        <h5 class="modal-title" id="updateModalLabel">Update Quantity Order Detail</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>

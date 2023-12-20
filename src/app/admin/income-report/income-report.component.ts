@@ -167,8 +167,10 @@ export class IncomeReportComponent implements OnInit {
         
             // Thêm dữ liệu từ IncomeReports vào mảng dataToCopy
             this.IncomeReports.forEach((item, index) => {
+              const dateCreated = moment.default(item.date);
+              const formattedDate: string = dateCreated.format('DD/MM/YYYY');
               I = index + 1;
-              dataToCopy.push(`${index + 1}  ${item.date}   ${item.orders}   ${item.revenue}`);
+              dataToCopy.push(`${index + 1}  ${formattedDate}   ${item.orders}   ${item.revenue}`);
               
             });
             dataToCopy.push('Total Revenue  ' + this.getTotalRevenue());
@@ -217,8 +219,9 @@ export class IncomeReportComponent implements OnInit {
             worksheet.getRow(2).values = ['No', 'Date', 'Orders Time', 'Revenue'];
 
             this.IncomeReports.forEach((item, index) => {
-              
-              worksheet.addRow([index + 1 , item.date, item.orders, item.revenue]);
+              const dateCreated = moment.default(item.date);
+              const formattedDate: string = dateCreated.format('DD/MM/YYYY');
+              worksheet.addRow([index + 1 , formattedDate, item.orders, item.revenue]);
             });
             const totalRevenueRow = this.IncomeReports.length + 3;
             worksheet.mergeCells(`A${totalRevenueRow}:C${totalRevenueRow}`);
@@ -253,7 +256,9 @@ export class IncomeReportComponent implements OnInit {
             csvData.push(['No', 'Date', 'Orders Time', 'Revenue']);
             // Thêm dữ liệu vào mảng CSV
             this.IncomeReports.forEach((item, index) => {
-              csvData.push([index + 1, item.date, item.orders, item.revenue]);
+              const dateCreated = moment.default(item.date);
+              const formattedDate: string = dateCreated.format('DD/MM/YYYY');
+              csvData.push([index + 1, formattedDate, item.orders, item.revenue]);
             });
 
             // Thêm dòng tổng tiền vào mảng CSV
@@ -321,9 +326,11 @@ export class IncomeReportComponent implements OnInit {
       '<tbody>';
   
     tableData += this.IncomeReports.map((item, index) => {
+      const dateCreated = moment.default(item.date);
+      const formattedDate: string = dateCreated.format('DD/MM/YYYY');
       return '<tr>' +
         '<td>' + (index + 1) + '</td>' +
-        '<td>' + item.date + '</td>' +
+        '<td>' + formattedDate + '</td>' +
         '<td>' + item.orders + '</td>' +
         '<td>' + item.revenue + '</td>' +
         '</tr>';

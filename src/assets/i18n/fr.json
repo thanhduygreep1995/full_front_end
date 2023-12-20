@@ -1,0 +1,346 @@
+{
+  "header": {
+    "wisth": "Liste de souhaits",
+    "cart": "Panier",
+    "search": "Recherche",
+    "searchSubmit": "Rechercher",
+    "account": "Compte"
+  },
+  "navbar": {
+    "categoty": "Toutes les catégories",
+    "home": "Accueil",
+    "shop": "Boutique",
+    "about": "À propos de nous",
+    "contact": "Nous contacter",
+    "terms": "Termes et conditions",
+    "login": "Se connecter",
+    "register": "S'inscrire",
+    "logout": "Se déconnecter",
+    "greeting": "Bonjour"
+  },
+  "about_us": {
+    "about_us": "À propos de nous",
+    "history_and_development": {
+      "title": "Histoire et Développement du Magasin",
+      "content": [
+        {
+          "text": "Date de création : Établis le 9 septembre 2023, nous avons entamé notre parcours avec une passion pour la technologie, dans le but d'offrir les meilleurs produits à nos clients."
+        },
+        {
+          "text": "Étapes clés du développement : Tout au long de notre parcours de développement, nous avons élargi notre gamme de produits, passant des smartphones à d'autres appareils électroniques intelligents tels que les montres connectées et les tablettes. Nos partenaires stratégiques et notre réseau de distribution se sont étendus à l'échelle nationale, garantissant la commodité et la fiabilité pour nos clients."
+        },
+        {
+          "text": "Mission et Vision : Nous nous engageons à fournir la technologie la plus avancée, un service dédié et une expérience d'achat excitante pour nos clients. Notre vision est d'être à l'avant-garde en fournissant des solutions technologiques innovantes et efficaces."
+        }
+      ]
+    },
+    "highlights": {
+      "title": "Points Forts",
+      "content": [
+        {
+          "text": "Produits et Services : Dans notre magasin, vous trouverez toute une gamme de produits des marques les plus renommées du marché. Des téléphones mobiles de haute qualité aux appareils électroniques intelligents et aux accessoires utiles, tous nos produits sont soigneusement sélectionnés pour répondre aux besoins des clients."
+        },
+        {
+          "text": "Fonctionnalités Principales : Conçus avec des fonctionnalités uniques, des performances élevées et les dernières technologies, nos produits offrent une excellente expérience utilisateur et une grande utilité."
+        },
+        {
+          "text": "Qualité et Engagement : Nous nous engageons envers la qualité des produits et services, ainsi que des politiques de garantie réputées et un support client dévoué."
+        },
+        {
+          "text": "Partenariats et Marques : Nos partenaires stratégiques sont des marques réputées de premier plan, offrant diversité et qualité maximale pour nos clients."
+        }
+      ]
+    },
+    "support_and_reviews": {
+      "title": "Informations de Support et Avis",
+      "content": [
+        {
+          "text": "Support Client : Nous proposons un service de support 24/7 via téléphone, e-mail et chat en ligne, prêts à répondre à toutes les questions des clients."
+        },
+        {
+          "text": "Avis et Retours : Notre fiabilité est attestée par les retours positifs de nos clients, ce qui nous motive à continuer à nous améliorer et à mieux servir."
+        }
+      ]
+    },
+    "news_and_updates": {
+      "title": "Actualités et Nouvelles Technologies",
+      "content": [
+        {
+          "text": "Mises à Jour Technologiques : Notre site web met régulièrement à jour les informations sur les tendances, les nouvelles technologies et les événements importants dans l'industrie technologique."
+        },
+        {
+          "text": "Événements et Promotions : Nous organisons régulièrement des événements et des programmes promotionnels pour remercier nos clients et leur offrir des offres spéciales."
+        }
+      ]
+    },
+    "policies_and_legal_info": {
+      "title": "Politiques et Informations Légales",
+      "content": [
+        {
+          "text": "Politique de Confidentialité : Nous nous engageons à protéger les informations personnelles des clients conformément aux politiques de confidentialité publiquement divulguées."
+        },
+        {
+          "text": "Politique de Retour et de Garantie : Fournir des informations détaillées sur les réglementations de retour de produit, la garantie, garantissant la confiance des clients lors de leurs achats."
+        },
+        {
+          "text": "Informations Légales : Les informations relatives aux droits d'auteur, aux termes et conditions d'utilisation du site web, garantissent la transparence et la crédibilité des activités commerciales."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "contact_us": "Nous contacter",
+    "contact_info": "Informations de contact",
+    "store_name": "Boutique de Technologie EGU ELECTRONICS",
+    "address": "Adresse :",
+    "phone": "Téléphone :",
+    "hotline": "Ligne directe :",
+    "fax": "Fax :",
+    "send_contact_information": "Envoyer les informations de contact",
+    "contact_feedback": "Feedback de contact",
+    "name": "Nom",
+    "address_field": "Adresse",
+    "email_field": "E-mail",
+    "phone_field": "Téléphone",
+    "title_field": "Titre",
+    "content_field": "Contenu",
+    "send_button": "Envoyer",
+    "description": "Veuillez remplir le formulaire suivant et nous l'envoyer. Nous vous répondrons dès que possible. Merci !"
+  },
+  "terms": {
+    "term_use": "Termes et conditions",
+    "termsConditions": {
+      "title": "Termes et conditions",
+      "privacyPolicy": {
+        "heading": "Politique de confidentialité",
+        "content": [
+          "Bienvenue chez EGU STORE. Nous nous engageons à protéger vos informations personnelles et à les utiliser de manière responsable pour vous offrir la meilleure expérience d'achat.",
+          "Voici les points clés de notre politique de confidentialité :"
+        ],
+        "sections": [
+          {
+            "title": "1. Collecte d'informations clients",
+            "points": [
+              "Pour utiliser nos services, les clients doivent fournir certaines informations personnelles nécessaires.",
+              "Ces informations nous aident à déterminer précisément la livraison et le paiement."
+            ]
+          },
+          {
+            "title": "2. Utilisation des informations",
+            "points": [
+              "Vos informations personnelles sont utilisées pour fournir les meilleurs services, notamment l'envoi de newsletters, le support client et l'amélioration de la qualité de service.",
+              "Nous utilisons les informations pour résoudre les problèmes et prévenir les violations légales."
+            ]
+          },
+          {
+            "title": "3. Partage d'informations",
+            "points": [
+              "Les informations personnelles ne sont jamais partagées sauf demande des forces de l'ordre ou pour protéger les droits des utilisateurs et d'EGU STORE.",
+              "Nous ne partageons les informations qu'avec le consentement du client ou dans des cas spécifiques préalablement notifiés."
+            ]
+          },
+          {
+            "title": "4. Sécurité des informations clients",
+            "points": [
+              "Les clients jouent également un rôle crucial dans la protection de leurs informations personnelles en maintenant la sécurité des mots de passe et en se déconnectant des ordinateurs partagés.",
+              "Nous nous engageons à ne pas divulguer les informations personnelles des clients à des fins commerciales."
+            ]
+          },
+          {
+            "title": "Contact",
+            "content": [
+              "Si vous avez des questions ou des contributions concernant notre politique de confidentialité, veuillez nous contacter via les coordonnées téléphoniques ou par e-mail suivantes :",
+              "Téléphone : 0908 77 00 95 – E-mail : edgu1707@gmail.com",
+              "Note : La politique de confidentialité des informations clients d'EGU STORE s'applique uniquement à http://www.EGUSTORE.com/. Elle n'inclut pas ou n'est pas liée aux tiers faisant de la publicité ou des liens sur EGUSTORE."
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "banner": {
+    "beforeTitle":"Meilleure Collection Pour la",
+    "afterTitle": "Décoration Intérieure",
+    "button": "Acheter maintenant"
+  },
+  "cart": {
+    "BreadCrum": {
+      "shoppingCart": "Panier"
+    },
+    "ProductCart": {
+      "product": "Produit",
+      "quantity": "Quantité",
+      "total": "Total",
+      "orderSummary": "Résumé de la commande",
+      "totalAmount": "Total",
+      "processToCheckout": "Passer à la caisse"
+    }
+  },
+  "checkout": {
+    "BreadCrum": {
+      "checkout": "Paiement"
+    },
+    "CheckoutWrapper": {
+      "checkoutTitle": "Paiement",
+      "fullName": "Nom complet",
+      "streetAddress": "Adresse",
+      "phoneNumber": "Numéro de téléphone",
+      "emailAddress": "Adresse e-mail",
+      "paymentMethod": "Méthode de paiement",
+      "payInCash": "Payer en espèces",
+      "vnPay": "VnPay",
+      "note": "Remarque",
+      "apply": "Appliquer",
+      "placeOrder": "Passer commande",
+      "total": "Total :",
+      "coupon": "Coupon"
+    }
+  },
+  "login": {
+    "heading": "Connexion",
+    "title": "Connectez-vous si vous êtes un client existant",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "checkbox": "Se souvenir de moi",
+    "submit": "Se connecter",
+    "forgot": "Mot de passe oublié ?"
+  },
+  "orLoginInWith": {
+    "title": "OU SE CONNECTER AVEC",
+    "register": "S'inscrire maintenant",
+    "dontHaveAccount": "Vous n'avez pas de compte ?"
+  },
+  "forgotPassword": {
+    "heading": "Mot de passe oublié",
+    "title": "Entrez votre adresse e-mail pour réinitialiser votre mot de passe",
+    "emailLabel": "Adresse e-mail",
+    "emailRequiredError": "L'adresse e-mail est obligatoire !",
+    "emailFormatError": "Format d'e-mail invalide !",
+    "submitButtonText": "Soumettre"
+  },
+  "resetPassword": {
+    "heading": "Réinitialiser le mot de passe",
+    "title": "Entrez votre jeton de réinitialisation et un nouveau mot de passe",
+    "resetPasswordTokenLabel": "Jeton de réinitialisation",
+    "resetPasswordTokenInputPlaceholder": "Entrez le jeton de réinitialisation",
+    "resetPasswordTokenRequiredError": "Le jeton de réinitialisation est requis !",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordInputPlaceholder": "Entrez le nouveau mot de passe",
+    "newPasswordRequiredError": "Le nouveau mot de passe est requis !",
+    "newPasswordMinLengthError": "Le nouveau mot de passe doit comporter au moins 6 caractères !",
+    "submitButtonText": "Réinitialiser le mot de passe"
+  },
+  "emptyCart": {
+    "title": "PANIER VIDE",
+    "message": "Merci de visiter notre site Web",
+    "continueShoppingButtonText": "CONTINUER LES ACHATS"
+  },
+  "accountSidebar": {
+    "greeting": "Bienvenue",
+    "title": "Gérer le compte",
+    "profileInformation": "Informations de profil",
+    "changePassword": "Changer le mot de passe",
+    "myActivities": "Mes activités",
+    "orderHistory": "Historique de mes commandes",
+    "myReview": "Mes avis",
+    "paymentMethod": "Méthode de paiement",
+    "voucher": "Bon d'achat",
+    "wishlist": "Ma liste de souhaits",
+    "logout": "Se déconnecter"
+  },
+  "changePassword": {
+    "title": "Changer le mot de passe",
+    "currentPasswordLabel": "Mot de passe actuel",
+    "currentPasswordPlaceholder": "Entrez l'ancien mot de passe",
+    "currentPasswordRequiredError": "Le mot de passe actuel est requis !",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "Entrez le nouveau mot de passe",
+    "newPasswordRequiredError": "Le nouveau mot de passe est requis !",
+    "newPasswordMinLengthError": "Le nouveau mot de passe doit comporter au moins 6 caractères !",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+    "confirmPasswordPlaceholder": "Confirmez le nouveau mot de passe",
+    "confirmPasswordRequiredError": "La confirmation du mot de passe est requise !",
+    "confirmPasswordMismatchError": "La confirmation du mot de passe ne correspond pas au nouveau mot de passe !",
+    "saveButton": "Enregistrer les modifications"
+  },
+  "editProfile": {
+    "title": "Modifier les informations",
+    "fullNameLabel": "Nom d'affichage",
+    "fullNameReadOnlyNotice": "Utilisez votre vrai nom pour une gestion et une identification faciles",
+    "personalInformationTitle": "Informations personnelles",
+    "firstNameLabel": "Prénom",
+    "lastNameLabel": "Nom",
+    "dateOfBirthLabel": "Date de naissance",
+    "phoneNumberLabel": "Numéro de téléphone",
+    "saveButton": "Enregistrer les modifications",
+    "cancelButton": "Annuler"
+  },
+  "wishlistProduct": {
+    "my_wishlist": "MA LISTE DE SOUHAITS",
+    "title": "Aucun produit dans la liste de souhaits",
+    "message": "Merci de visiter notre site Web",
+    "continueShoppingButtonText": "CONTINUER LES ACHATS",
+    "addToCartButtonText": "Ajouter au panier"
+  },
+  "feedbackReview": {
+    "my_review": "MES AVIS",
+    "title": "Page de commentaires",
+    "viewButton": "Voir"
+  },
+  "voucherPage": {
+    "addVoucherForm": {
+      "codeVoucherLabel": "Code de réduction",
+      "codeVoucherPlaceholder": "Entrez le code ici",
+      "applyButton": "Appliquer"
+    },
+    "myVouchersTitle": "Mes codes de réduction",
+    "voucherList": {
+      "beforeTitle": "Code de réduction",
+      "afterTitle": " pour tous les produits.",
+      "activeVoucherStatus": "Utiliser maintenant",
+      "inactiveVoucherStatus": "Impossible d'utiliser",
+      "usedVoucherStatus": "Utilisé",
+      "expiredVoucherStatus": "Expiré :",
+      "storeAppLabel": "Applicable uniquement dans l'application Egu_Store.",
+      "pagination": {
+        "previousButton": "Précédent",
+        "pageText": "Page",
+        "ofText": "de",
+        "nextButton": "Suivant"
+      },
+      "noVouchersMessage": "Aucun code de réduction disponible."
+    }
+  },
+  "footer": {
+    "infor": "Les clients doivent être très importants, les clients seront suivis par d'autres clients.",
+    "solutions": {
+      "title": "Solutions",
+      "marketing": "Marketing",
+      "analytics": "Analytique",
+      "commerce": "Commerce",
+      "insights": "Perspectives"
+    },
+    "support": {
+      "title": "Support",
+      "pricing": "Tarification",
+      "documentation": "Documentation",
+      "guides": "Guides",
+      "apiStatus": "Statut de l'API"
+    },
+    "company": {
+      "title": "Société",
+      "about": "À propos",
+      "blog": "Blog",
+      "jobs": "Emplois",
+      "service": "Service"
+    },
+    "legal": {
+      "title": "Légal",
+      "claim": "Réclamation",
+      "privacy": "Confidentialité",
+      "policy": "Politique",
+      "terms": "Termes"
+    },
+    "copyright": "© Easy Learning 2022"
+  }
+}
